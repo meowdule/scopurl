@@ -1,0 +1,299 @@
+"use client";
+
+import { useCallback, useState } from "react";
+import { validateHttpUrl } from "@/lib/validateUrl";
+import { checkDns } from "@/lib/dnsCheck";
+import type { QuickCheckResult, ReportPhase, ReportJson } from "@/lib/types";
+import {
+  hasDispatchToken,
+  startAnalysis,
+  type DeviceProfile,
+  type TraceMode,
+} from "@/lib/startAnalysis";
+import {
+  buildAnalysisOptions,
+  DEFAULT_MAX_DEPTH,
+  DEFAULT_MAX_PAGES,
+  DEFAULT_TRACE_MODE,
+  FREE_MAX_PAGES,
+} from "@/lib/analysisOptions";
+import { fetchReport, fetchStatus } from "@/lib/pollReport";
+import { formatStatusError } from "@/lib/analysisErrors";
+import { AnalysisStatusPanel } from "@/components/AnalysisStatusPanel";
+import { AnalysisWaitExperience } from "@/components/AnalysisWaitExperience";
+import { analyzeFormStrings as t } from "@/lib/uiStrings";
+
+function newReportId(): string {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return `r-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+type AnalyzeFormProps = {
+  onReportReady?: (report: ReportJson) => void;
+};
+
+export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
+  const [urlInput, setUrlInput] = useState("");
+  const [deviceProfile, setDeviceProfile] = useState<DeviceProfile>("desktop");
+  const [maxPages, setMaxPages] = useState(DEFAULT_MAX_PAGES);
+  const [maxDepth, setMaxDepth] = useState(DEFAULT_MAX_DEPTH);
+  const [traceMode, setTraceMode] = useState<TraceMode>(DEFAULT_TRACE_MODE);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [reportId, setReportId] = useState<string | null>(null);
+  const [phase, setPhase] = useState<ReportPhase | null>(null);
+  const [quick, setQuick] = useState<Partial<QuickCheckResult> | null>(null);
+  const [estimatedWaitLabel, setEstimatedWaitLabel] = useState<string | null>(
+    null,
+  );
+
+  const reset = useCallback(() => {
+    setError(null);
+    setReportId(null);
+    setEstimatedWaitLabel(null);
+    setPhase(null);
+    setQuick(null);
+  }, []);
+
+  const runInstantChecks = useCallback(async (normalizedUrl: string) => {
+    const host = new URL(normalizedUrl).hostname;
+    const dns = await checkDns(host);
+    setQuick((q) => ({
+      ...q,
+      validUrl: true,
+      dnsOk: dns.ok,
+      dnsMessage: dns.message,
+      errorCode: dns.ok ? undefined : ("dns_fail" as const),
+    }));
+    if (!dns.ok) {
+      setError(formatStatusError("dns_fail", dns.message));
+    }
+  }, []);
+
+  const pollLoop = useCallback(
+    async (id: string) => {
+      const started = Date.now();
+      const maxMs = 45 * 60 * 1000;
+      while (Date.now() - started < maxMs) {
+        try {
+          const status = await fetchStatus(id);
+          if (status) {
+            setPhase(status.phase);
+            setEstimatedWaitLabel(status.estimatedWaitLabel || null);
+            if (status.quick) setQuick(status.quick);
+            if (status.phase === "complete") {
+              const report = await fetchReport(id);
+              if (report) {
+                setBusy(false);
+                setPhase(null);
+                setQuick(null);
+                setReportId(null);
+                setEstimatedWaitLabel(null);
+                onReportReady?.(report);
+                return;
+              }
+            }
+            if (status.phase === "failed") {
+              setError(formatStatusError(status.errorCode, status.error));
+              setBusy(false);
+              return;
+            }
+          }
+        } catch {
+          /* transient network errors */
+        }
+        await new Promise((r) => setTimeout(r, 3500));
+      }
+      setError(formatStatusError("timeout", "Timed out waiting for the report."));
+      setBusy(false);
+    },
+    [onReportReady],
+  );
+
+  const onAnalyze = useCallback(async () => {
+    setError(null);
+    const v = validateHttpUrl(urlInput);
+    if (!v.ok || !v.normalized) {
+      setError(v.error || "Invalid URL");
+      return;
+    }
+
+    const id = newReportId();
+    setReportId(id);
+    setBusy(true);
+    setPhase("queued");
+    setQuick({ validUrl: true });
+    setEstimatedWaitLabel(t.waitEstimate);
+
+    await runInstantChecks(v.normalized);
+
+    try {
+      await startAnalysis(
+        id,
+        v.normalized,
+        buildAnalysisOptions({
+          deviceProfile,
+          maxPages,
+          maxDepth,
+          traceMode,
+        }),
+      );
+      void pollLoop(id);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Could not start analysis.";
+      setError(msg);
+      setBusy(false);
+    }
+  }, [
+    deviceProfile,
+    maxDepth,
+    maxPages,
+    pollLoop,
+    runInstantChecks,
+    traceMode,
+    urlInput,
+  ]);
+
+  const showStatus = busy || (phase === "failed" && quick);
+  const failed = phase === "failed";
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <input
+          type="url"
+          inputMode="url"
+          placeholder="https://example.com"
+          className="w-full flex-1 rounded-lg border border-surface-border bg-surface-raised px-4 py-3 text-sm text-slate-100 outline-none ring-accent/40 placeholder:text-slate-500 focus:ring-2"
+          value={urlInput}
+          disabled={busy}
+          onChange={(e) => setUrlInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") void onAnalyze();
+          }}
+        />
+        <button
+          type="button"
+          onClick={() => void onAnalyze()}
+          disabled={busy}
+          className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition hover:bg-accent-muted disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {busy ? t.analyzing : "Analyze"}
+        </button>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300">
+        <span className="text-slate-400">{t.deviceSize}</span>
+        <label className="flex cursor-pointer items-center gap-2">
+          <input
+            type="radio"
+            name="deviceProfile"
+            value="desktop"
+            checked={deviceProfile === "desktop"}
+            disabled={busy}
+            onChange={() => setDeviceProfile("desktop")}
+            className="accent-accent"
+          />
+          {t.desktop}
+        </label>
+        <label className="flex cursor-pointer items-center gap-2">
+          <input
+            type="radio"
+            name="deviceProfile"
+            value="mobile"
+            checked={deviceProfile === "mobile"}
+            disabled={busy}
+            onChange={() => setDeviceProfile("mobile")}
+            className="accent-accent"
+          />
+          {t.mobile}
+        </label>
+      </div>
+
+      <details className="rounded-lg border border-surface-border bg-surface-raised/50 px-4 py-3 text-sm">
+        <summary className="cursor-pointer select-none text-slate-300">
+          {t.advancedOptions}
+        </summary>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <label className="block">
+            <span className="text-xs text-slate-400">
+              {t.maxPages(FREE_MAX_PAGES)}
+            </span>
+            <input
+              type="number"
+              min={1}
+              max={FREE_MAX_PAGES}
+              value={maxPages}
+              disabled={busy}
+              onChange={(e) => setMaxPages(Number(e.target.value))}
+              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+            />
+          </label>
+          <label className="block">
+            <span className="text-xs text-slate-400">{t.maxDepth}</span>
+            <input
+              type="number"
+              min={0}
+              max={10}
+              value={maxDepth}
+              disabled={busy}
+              onChange={(e) => setMaxDepth(Number(e.target.value))}
+              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+            />
+          </label>
+          <label className="block sm:col-span-2">
+            <span className="text-xs text-slate-400">{t.traceLabel}</span>
+            <select
+              value={traceMode}
+              disabled={busy}
+              onChange={(e) => setTraceMode(e.target.value as TraceMode)}
+              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+            >
+              <option value="failure">{t.traceFailure}</option>
+              <option value="all">{t.traceAll}</option>
+              <option value="off">{t.traceOff}</option>
+            </select>
+          </label>
+        </div>
+      </details>
+
+      {!hasDispatchToken() && (
+        <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+          A GitHub tab may open - click <strong>Submit new issue</strong> once
+          to start analysis. For one-click Analyze, add the{" "}
+          <code className="font-mono text-xs">QUEUE_DISPATCH_TOKEN</code> secret.
+        </p>
+      )}
+
+      {error && (
+        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+          {error}
+        </div>
+      )}
+
+      {showStatus && (
+        <div className="space-y-4">
+          <AnalysisStatusPanel
+            phase={phase}
+            quick={quick}
+            estimatedWaitLabel={estimatedWaitLabel}
+            failed={failed}
+          />
+          {busy && !failed && <AnalysisWaitExperience active={busy} />}
+        </div>
+      )}
+
+      {reportId && !busy && error && (
+        <button
+          type="button"
+          className="text-sm text-accent underline-offset-4 hover:underline"
+          onClick={reset}
+        >
+          Clear
+        </button>
+      )}
+    </div>
+  );
+}

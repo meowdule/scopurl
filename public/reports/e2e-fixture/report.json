@@ -1,0 +1,60 @@
+{
+  "reportId": "e2e-fixture",
+  "targetUrl": "https://example.com",
+  "deviceProfile": "desktop",
+  "createdAt": "2026-06-01T12:00:00.000Z",
+  "completedAt": "2026-06-01T12:01:00.000Z",
+  "expiresAt": "2026-07-01T12:01:00.000Z",
+  "cardId": "e2e-card",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 100,
+    "internalLinkCount": 3
+  },
+  "pages": [
+    {
+      "url": "https://example.com/",
+      "statusCode": 200,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "crawledAt": "2026-06-01T12:01:00.000Z"
+    }
+  ],
+  "brokenLinks": [],
+  "summary": {
+    "healthScore": 82,
+    "avgLighthousePerformance": 85,
+    "avgAxeIssuesPerPage": 0,
+    "totalConsoleErrors": 0,
+    "totalFailedRequests": 0,
+    "mobileWarnings": [],
+    "categoryScores": {
+      "performance": 85,
+      "accessibility": 90,
+      "ux": 80,
+      "seo": 75
+    },
+    "statusLabel": "Good",
+    "topImprovements": [
+      "접근성 라벨을 보강하면 좋습니다",
+      "모바일 가로 스크롤을 점검해 보세요",
+      "이미지 최적화 여지가 있습니다"
+    ]
+  },
+  "crawlLimits": {
+    "requested": { "maxPages": 20, "maxDepth": 2, "traceMode": "failure" },
+    "applied": { "maxPages": 20, "maxDepth": 2, "traceMode": "failure" }
+  }
+}

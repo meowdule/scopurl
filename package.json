@@ -1,0 +1,41 @@
+{
+  "name": "snapit-sitescope",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/sync-reports-to-out.mjs",
+    "start": "next start",
+    "lint": "next lint",
+    "analyze:local": "node scripts/run-analysis.mjs",
+    "cleanup:reports": "node scripts/cleanup-retention.mjs",
+    "qa:errors": "node scripts/qa/test-error-codes.mjs",
+    "qa:smoke": "node scripts/qa/smoke-analysis.mjs",
+    "qa:getcha": "node scripts/qa/smoke-getcha.mjs",
+    "qa": "npm run qa:errors && npm run build && npm run qa:smoke",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "lighthouse": "^12.2.1",
+    "next": "^14.2.28",
+    "playwright": "^1.52.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^20.17.50",
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.28",
+    "postcss": "^8.5.3",
+    "serve": "^14.2.4",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}
+

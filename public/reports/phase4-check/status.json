@@ -1,0 +1,23 @@
+{
+  "reportId": "phase4-check",
+  "updatedAt": "2026-06-01T05:55:10.654Z",
+  "targetUrl": "https://example.com",
+  "phase": "complete",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://example.com/",
+    "redirectChain": [
+      "https://example.com"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 97,
+    "internalLinkCount": 1,
+    "screenshotRelativePath": "reports/phase4-check/screenshots/quick-home.jpg"
+  },
+  "expiresAt": "2026-07-01T05:55:10.648Z"
+}

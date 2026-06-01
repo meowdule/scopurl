@@ -1,0 +1,293 @@
+{
+  "reportId": "trace-test",
+  "targetUrl": "https://example.com",
+  "deviceProfile": "mobile",
+  "createdAt": "2026-06-01T06:03:56.744Z",
+  "completedAt": "2026-06-01T06:04:48.988Z",
+  "expiresAt": "2026-07-01T06:04:48.988Z",
+  "cardId": "4ad7f824-01ec-4ea6-9ffb-515bdf4b26e7",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://example.com/",
+    "redirectChain": [
+      "https://example.com"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 96,
+    "internalLinkCount": 1,
+    "screenshotRelativePath": "reports/trace-test/screenshots/quick-home.jpg"
+  },
+  "pages": [
+    {
+      "url": "https://example.com/",
+      "statusCode": 200,
+      "redirects": [
+        "https://example.com/"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [],
+      "lighthouse": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 93,
+        "seo": 80,
+        "fcp": 761.0845,
+        "lcp": 761.0845,
+        "cls": 0,
+        "tbt": 0,
+        "si": 761.0845,
+        "collected": true,
+        "mode": "full"
+      },
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "mobile": "screenshots/da79ded4-4802-492b-89da-0af969473973-mobile.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://example.com/",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 5개, 클릭 후보 1개",
+          "candidateCount": 1,
+          "success": true
+        },
+        {
+          "action": "external_navigation",
+          "label": "Learn more",
+          "targetHint": "generic",
+          "urlBefore": "https://example.com/",
+          "urlAfter": "https://www.iana.org/help/example-domains",
+          "routeBefore": "/",
+          "routeAfter": "/help/example-domains",
+          "outbound": true,
+          "success": true,
+          "meaningful": true
+        }
+      ],
+      "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ Learn more — 외부 이동 (크롤 제외)\n   └─ 외부 → www.iana.org",
+      "interactionDiscovery": {
+        "profile": "homepage",
+        "deviceProfile": "mobile",
+        "runtimeRoutes": 1,
+        "outboundRoutes": 2,
+        "candidatesFound": 1,
+        "clicksAttempted": 1,
+        "clicksRecorded": 1,
+        "linksDiscovered": 1,
+        "outboundDiscovered": 2,
+        "stoppedEarly": false,
+        "runtimeMs": 6007,
+        "skippedByReason": {},
+        "meaningfulCount": 1
+      },
+      "crawledAt": "2026-06-01T06:04:48.984Z"
+    }
+  ],
+  "brokenLinks": [],
+  "summary": {
+    "healthScore": 95,
+    "avgLighthousePerformance": 100,
+    "avgAxeIssuesPerPage": 2,
+    "totalConsoleErrors": 0,
+    "totalFailedRequests": 0,
+    "mobileWarnings": [],
+    "categoryScores": {
+      "performance": 100,
+      "accessibility": 95,
+      "seo": 80,
+      "ux": 100
+    },
+    "statusLabel": "Good",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 95,
+      "penaltyTotal": 0,
+      "contributions": [
+        {
+          "category": "performance",
+          "label": "성능",
+          "score": 100,
+          "weight": 0.3,
+          "weightedPoints": 30
+        },
+        {
+          "category": "accessibility",
+          "label": "접근성",
+          "score": 95,
+          "weight": 0.25,
+          "weightedPoints": 23.8
+        },
+        {
+          "category": "ux",
+          "label": "사용성",
+          "score": 100,
+          "weight": 0.25,
+          "weightedPoints": 25
+        },
+        {
+          "category": "seo",
+          "label": "검색·공유",
+          "score": 80,
+          "weight": 0.2,
+          "weightedPoints": 16
+        }
+      ],
+      "penalties": [],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점"
+      ]
+    },
+    "topImprovements": [
+      "전반적으로 양호합니다. 세부 항목을 점검해 보세요."
+    ]
+  },
+  "crawlMeta": {
+    "interactions": [
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://example.com/",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 5개, 클릭 후보 1개",
+        "candidateCount": 1,
+        "success": true
+      },
+      {
+        "action": "external_navigation",
+        "label": "Learn more",
+        "targetHint": "generic",
+        "urlBefore": "https://example.com/",
+        "urlAfter": "https://www.iana.org/help/example-domains",
+        "routeBefore": "/",
+        "routeAfter": "/help/example-domains",
+        "outbound": true,
+        "success": true,
+        "meaningful": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://example.com/",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 5개, 클릭 후보 1개",
+        "candidateCount": 1,
+        "success": true
+      },
+      {
+        "action": "external_navigation",
+        "label": "Learn more",
+        "targetHint": "generic",
+        "urlBefore": "https://example.com/",
+        "urlAfter": "https://www.iana.org/help/example-domains",
+        "routeBefore": "/",
+        "routeAfter": "/help/example-domains",
+        "outbound": true,
+        "success": true,
+        "meaningful": true
+      }
+    ],
+    "mode": "homepage_rich_subpage_light",
+    "seedScope": {
+      "origin": "https://example.com",
+      "pathPrefix": null,
+      "mode": "origin"
+    },
+    "deviceProfile": "mobile",
+    "discoveryStats": {
+      "candidatesFound": 1,
+      "clicksRecorded": 3,
+      "linksDiscovered": 1,
+      "outboundDiscovered": 2,
+      "runtimeRoutes": 1,
+      "profile": "homepage",
+      "deviceProfile": "mobile",
+      "outboundRoutes": 2,
+      "clicksAttempted": 1,
+      "stoppedEarly": false,
+      "runtimeMs": 6007,
+      "skippedByReason": {},
+      "meaningfulCount": 1
+    },
+    "outboundLinks": [
+      "https://iana.org/domains/example",
+      "https://www.iana.org/help/example-domains"
+    ],
+    "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ Learn more — 외부 이동 (크롤 제외)\n   └─ 외부 → www.iana.org"
+  },
+  "timing": {
+    "phases": {
+      "browser_launch": 0.188,
+      "quick_scan": 10.14,
+      "crawl": 6.482,
+      "page_analysis": 35.418
+    },
+    "pages": [
+      {
+        "url": "https://example.com/",
+        "phases": {
+          "initial_load": 0.12,
+          "hydration_wait": 0.63,
+          "interaction_crawl": 6.007,
+          "ui_signals_mobile": 0.22,
+          "screenshots": 1.019,
+          "axe": 1.389,
+          "lighthouse": 25.834
+        }
+      }
+    ],
+    "summary": [
+      "Page analysis (total): 35.4s",
+      "Lighthouse (pages): 25.8s",
+      "Quick scan: 10.1s",
+      "URL crawl: 6.5s",
+      "Interaction crawl (pages): 6.0s",
+      "Accessibility scan (pages): 1.4s",
+      "Screenshots (pages): 1.0s",
+      "Hydration wait (pages): 0.6s",
+      "ui_signals_mobile (pages): 0.2s",
+      "Browser launch: 0.2s"
+    ],
+    "totalSeconds": 52.228
+  },
+  "crawlLimits": {
+    "requested": {
+      "maxPages": 99,
+      "maxDepth": null,
+      "traceMode": "all"
+    },
+    "applied": {
+      "maxPages": 20,
+      "maxDepth": 2,
+      "traceMode": "all"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cardId": "814a17e3-449d-4677-a38c-146d32c94468",
+  "overallScore": 91,
+  "categoryScores": {
+    "performance": 85,
+    "accessibility": 90,
+    "seo": null,
+    "ux": 100
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-01T05:55:10.648Z",
+  "topImprovements": [
+    "1개 페이지에서 상세 성능 점수를 가져오지 못해 로딩 시간 기준으로 추정했습니다."
+  ]
+}

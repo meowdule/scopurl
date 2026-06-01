@@ -1,0 +1,154 @@
+name: SiteScope QA (Phase 11)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      run_getcha:
+        description: "Run getcha.kr mobile smoke (slow)"
+        type: boolean
+        default: false
+      getcha_strict:
+        description: "Fail if getcha pages < 2"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sitescope-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Error code unit tests
+        run: npm run qa:errors
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build static site
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sitescope-out
+          path: out
+          retention-days: 3
+
+  analysis-smoke:
+    runs-on: ubuntu-latest
+    needs: unit-and-build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Analysis smoke (example.com)
+        run: npm run qa:smoke
+        env:
+          SITE_SCOPE_FAST: "1"
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: unit-and-build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npm run test:e2e:install
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: sitescope-out
+          path: out
+
+      - name: Playwright E2E
+        run: npm run test:e2e
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    needs: unit-and-build
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: sitescope-out
+          path: out
+
+      - name: Lighthouse CI (home)
+        run: |
+          npx serve out -l 3457 &
+          sleep 2
+          npx lighthouse http://127.0.0.1:3457/ \
+            --only-categories=performance,accessibility,best-practices \
+            --chrome-flags="--headless --no-sandbox" \
+            --output=json --output-path=./lighthouse-home.json \
+            --quiet
+          node -e "
+            const r=require('./lighthouse-home.json');
+            const s=r.categories;
+            console.log('Performance', Math.round((s.performance?.score||0)*100));
+            console.log('Accessibility', Math.round((s.accessibility?.score||0)*100));
+            if ((s.performance?.score||0)<0.5) process.exit(1);
+          "
+
+  getcha-smoke:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_getcha == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: getcha mobile smoke
+        run: npm run qa:getcha
+        env:
+          QA_GETCHA_STRICT: ${{ inputs.getcha_strict && '1' || '0' }}

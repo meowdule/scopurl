@@ -1,0 +1,22 @@
+{
+  "reportId": "phase0-smoke",
+  "updatedAt": "2026-05-29T07:58:30.212Z",
+  "targetUrl": "https://example.com",
+  "phase": "complete",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://example.com/",
+    "redirectChain": [
+      "https://example.com"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 124,
+    "internalLinkCount": 1,
+    "screenshotRelativePath": "reports/phase0-smoke/screenshots/quick-home.jpg"
+  }
+}

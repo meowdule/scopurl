@@ -1,0 +1,22 @@
+{
+  "reportId": "phase1-cap",
+  "updatedAt": "2026-05-31T22:49:49.263Z",
+  "targetUrl": "https://example.com",
+  "phase": "complete",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://example.com/",
+    "redirectChain": [
+      "https://example.com"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 195,
+    "internalLinkCount": 1,
+    "screenshotRelativePath": "reports/phase1-cap/screenshots/quick-home.jpg"
+  }
+}

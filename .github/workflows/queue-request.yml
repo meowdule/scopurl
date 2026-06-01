@@ -1,0 +1,114 @@
+name: Queue SiteScope analysis
+
+on:
+  repository_dispatch:
+    types: [sitescope-analyze]
+  workflow_dispatch:
+    inputs:
+      report_id:
+        description: Report UUID
+        required: true
+        type: string
+      target_url:
+        description: URL to analyze
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || github.token }}
+
+      - name: Resolve report metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            REPORT_ID="${{ github.event.inputs.report_id }}"
+            TARGET_URL="${{ github.event.inputs.target_url }}"
+            DEVICE_PROFILE="desktop"
+            MAX_PAGES="20"
+            MAX_DEPTH="2"
+            TRACE_MODE="failure"
+          else
+            REPORT_ID="${{ github.event.client_payload.reportId }}"
+            TARGET_URL="${{ github.event.client_payload.targetUrl }}"
+            DEVICE_PROFILE="${{ github.event.client_payload.deviceProfile }}"
+            MAX_PAGES="${{ github.event.client_payload.maxPages }}"
+            MAX_DEPTH="${{ github.event.client_payload.maxDepth }}"
+            TRACE_MODE="${{ github.event.client_payload.traceMode }}"
+          fi
+
+          if [[ "${DEVICE_PROFILE}" != "mobile" ]]; then
+            DEVICE_PROFILE="desktop"
+          fi
+          if [[ -z "${MAX_PAGES}" ]]; then MAX_PAGES="20"; fi
+          if [[ -z "${MAX_DEPTH}" ]]; then MAX_DEPTH="2"; fi
+          if [[ -z "${TRACE_MODE}" ]]; then TRACE_MODE="failure"; fi
+          if [[ "${TRACE_MODE}" != "all" && "${TRACE_MODE}" != "off" ]]; then
+            TRACE_MODE="failure"
+          fi
+          if [[ "${REPORT_ID}" == "" || "${TARGET_URL}" == "" ]]; then
+            echo "Missing reportId or targetUrl in dispatch payload."
+            exit 1
+          fi
+
+          echo "report_id=${REPORT_ID}" >> "$GITHUB_OUTPUT"
+          echo "target_url=${TARGET_URL}" >> "$GITHUB_OUTPUT"
+          echo "device_profile=${DEVICE_PROFILE}" >> "$GITHUB_OUTPUT"
+          echo "max_pages=${MAX_PAGES}" >> "$GITHUB_OUTPUT"
+          echo "max_depth=${MAX_DEPTH}" >> "$GITHUB_OUTPUT"
+          echo "trace_mode=${TRACE_MODE}" >> "$GITHUB_OUTPUT"
+
+      - name: Create request and initial status
+        shell: bash
+        env:
+          REPORT_ID: ${{ steps.meta.outputs.report_id }}
+          TARGET_URL: ${{ steps.meta.outputs.target_url }}
+          DEVICE_PROFILE: ${{ steps.meta.outputs.device_profile }}
+          MAX_PAGES: ${{ steps.meta.outputs.max_pages }}
+          MAX_DEPTH: ${{ steps.meta.outputs.max_depth }}
+          TRACE_MODE: ${{ steps.meta.outputs.trace_mode }}
+        run: |
+          set -euo pipefail
+          NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          mkdir -p "requests" "public/reports/${REPORT_ID}/screenshots"
+          printf '%s\n' "{" \
+            "  \"reportId\": \"${REPORT_ID}\"," \
+            "  \"targetUrl\": \"${TARGET_URL}\"," \
+            "  \"deviceProfile\": \"${DEVICE_PROFILE}\"," \
+            "  \"maxPages\": ${MAX_PAGES}," \
+            "  \"maxDepth\": ${MAX_DEPTH}," \
+            "  \"traceMode\": \"${TRACE_MODE}\"," \
+            "  \"schemaVersion\": 3," \
+            "  \"createdAt\": \"${NOW}\"" \
+            "}" > "requests/${REPORT_ID}.json"
+
+          printf '%s\n' "{" \
+            "  \"reportId\": \"${REPORT_ID}\"," \
+            "  \"targetUrl\": \"${TARGET_URL}\"," \
+            "  \"phase\": \"queued\"," \
+            "  \"updatedAt\": \"${NOW}\"" \
+            "}" > "public/reports/${REPORT_ID}/status.json"
+
+      - name: Commit and push queue files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "requests/${{ steps.meta.outputs.report_id }}.json" \
+            "public/reports/${{ steps.meta.outputs.report_id }}/status.json"
+          if git diff --staged --quiet; then
+            echo "Queue files already exist; skipping commit."
+            exit 0
+          fi
+          git commit --trailer "Co-authored-by: Cursor <cursoragent@cursor.com>" -m "chore: queue SiteScope analysis ${{ steps.meta.outputs.report_id }}"
+          git push
