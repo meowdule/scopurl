@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { QuickCheckResult, ReportPhase } from "@/lib/types";
 import { assetUrl } from "@/lib/paths";
 import {
@@ -35,6 +36,7 @@ type Props = {
   quick: Partial<QuickCheckResult> | null;
   estimatedWaitLabel?: string | null;
   failed?: boolean;
+  pollStartedAt?: number;
 };
 
 export function AnalysisStatusPanel({
@@ -42,13 +44,24 @@ export function AnalysisStatusPanel({
   quick,
   estimatedWaitLabel,
   failed,
+  pollStartedAt,
 }: Props) {
+  const [, setTick] = useState(0);
+
+  useEffect(() => {
+    if (!pollStartedAt) return;
+    const id = setInterval(() => setTick((t) => t + 1), 5000);
+    return () => clearInterval(id);
+  }, [pollStartedAt]);
+
   if (!phase && !quick) return null;
 
   const phaseIndex = phase
     ? PHASES.findIndex((p) => p.id === phase)
     : 0;
   const activeStep = phase === "failed" ? -1 : Math.max(0, phaseIndex);
+  const waitingMs = pollStartedAt ? Date.now() - pollStartedAt : 0;
+  const stuckQueued = phase === "queued" && waitingMs > 90_000;
 
   return (
     <div className="panel relative overflow-hidden">
@@ -113,6 +126,15 @@ export function AnalysisStatusPanel({
         아래 신호는 분석 서버가 업데이트하는 즉시 반영됩니다. 크롤이 끝나면
         상세 리포트가 이 페이지 아래에 표시됩니다.
       </p>
+
+      {stuckQueued && (
+        <p className="relative mt-3 rounded-lg border border-amber-400/40 bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-900">
+          분석 서버가 아직 시작 중이거나 대기 중입니다. GitHub Actions에서
+          분석이 돌아가면 상태가 바뀝니다. 5–10분 이상 변화가 없으면 저장소
+          Actions 탭에서 <strong>SiteScope analyze and publish</strong> 실행
+          여부를 확인해 주세요.
+        </p>
+      )}
 
       <div className="relative mt-5 grid gap-3 sm:grid-cols-2">
         <QuickRow

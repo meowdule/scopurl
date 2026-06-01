@@ -48,6 +48,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
     null,
   );
   const waitSectionRef = useRef<HTMLDivElement>(null);
+  const [pollStartedAt, setPollStartedAt] = useState<number | null>(null);
 
   const reset = useCallback(() => {
     setError(null);
@@ -55,6 +56,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
     setEstimatedWaitLabel(null);
     setPhase(null);
     setQuick(null);
+    setPollStartedAt(null);
   }, []);
 
   const runInstantChecks = useCallback(async (normalizedUrl: string) => {
@@ -126,6 +128,8 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
     setPhase("queued");
     setQuick({ validUrl: true });
     setEstimatedWaitLabel(t.waitEstimate);
+
+    setPollStartedAt(Date.now());
 
     requestAnimationFrame(() => {
       waitSectionRef.current?.scrollIntoView({
@@ -275,14 +279,15 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
       )}
 
       {showStatus && (
-        <div ref={waitSectionRef} className="wait-panel relative space-y-5 rounded-panel p-1 pt-2">
-          {busy && !failed && <AnalysisWaitExperience active={busy} />}
+        <div ref={waitSectionRef} className="wait-panel relative space-y-5 rounded-panel p-4 pt-5">
           <AnalysisStatusPanel
             phase={phase}
             quick={quick}
             estimatedWaitLabel={estimatedWaitLabel}
             failed={failed}
+            pollStartedAt={pollStartedAt ?? undefined}
           />
+          {busy && !failed && <AnalysisWaitExperience active={busy} />}
         </div>
       )}
 
