@@ -1,0 +1,154 @@
+{
+  "reportId": "d42676fa-a123-43ef-929a-9470ed37f9aa",
+  "targetUrl": "https://httpsl//example.com",
+  "deviceProfile": "desktop",
+  "createdAt": "2026-06-01T23:47:11.363Z",
+  "completedAt": "2026-06-01T23:47:11.799Z",
+  "expiresAt": "2026-07-01T23:47:11.799Z",
+  "cardId": "11912e5b-a1b9-4106-9344-e6254d89a785",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": false,
+    "dnsMessage": "getaddrinfo EAI_AGAIN httpsl",
+    "httpOk": false,
+    "redirectChain": [],
+    "sslOk": false,
+    "sslMessage": "",
+    "internalLinkCount": 0,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://httpsl//example.com\nCall log:\n  - navigating to \"https://httpsl//example.com\", waiting until \"domcontentloaded\"\n"
+  },
+  "pages": [
+    {
+      "url": "https://httpsl//example.com",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: net::ERR_NAME_NOT_RESOLVED at https://httpsl//example.com\nCall log:\n  - navigating to \"https://httpsl//example.com\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://httpsl//example.com",
+          "failure": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-01T23:47:11.799Z"
+    }
+  ],
+  "brokenLinks": [],
+  "summary": {
+    "healthScore": 99,
+    "avgLighthousePerformance": null,
+    "avgAxeIssuesPerPage": 0,
+    "totalConsoleErrors": 0,
+    "totalFailedRequests": 1,
+    "mobileWarnings": [],
+    "categoryScores": {
+      "performance": null,
+      "accessibility": 100,
+      "seo": null,
+      "ux": 100
+    },
+    "statusLabel": "Good",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 100,
+      "penaltyTotal": 1,
+      "contributions": [
+        {
+          "category": "accessibility",
+          "label": "접근성",
+          "score": 100,
+          "weight": 0.25,
+          "weightedPoints": 25
+        },
+        {
+          "category": "ux",
+          "label": "사용성",
+          "score": 100,
+          "weight": 0.25,
+          "weightedPoints": 25
+        }
+      ],
+      "penalties": [
+        {
+          "id": "failed_requests",
+          "label": "로딩 실패",
+          "points": 1,
+          "message": "이미지·API 등 로딩 실패 1건으로 1점 감점되었습니다."
+        }
+      ],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점",
+        "이미지·API 등 로딩 실패 1건으로 1점 감점되었습니다."
+      ]
+    },
+    "topImprovements": [
+      "이미지·API 등 로딩 실패 1건으로 1점 감점되었습니다."
+    ]
+  },
+  "crawlMeta": {
+    "interactions": [],
+    "mode": "homepage_rich_subpage_light",
+    "seedScope": {
+      "origin": "https://httpsl",
+      "pathPrefix": "//example.com",
+      "mode": "origin"
+    },
+    "deviceProfile": "desktop",
+    "discoveryStats": {
+      "candidatesFound": 0,
+      "clicksRecorded": 0,
+      "linksDiscovered": 0,
+      "outboundDiscovered": 0
+    },
+    "outboundLinks": [],
+    "interactionFlow": ""
+  },
+  "timing": {
+    "phases": {
+      "browser_launch": 0.198,
+      "quick_scan": 0.085,
+      "crawl": 0.052,
+      "page_analysis": 0.094
+    },
+    "pages": [
+      {
+        "url": "https://httpsl//example.com",
+        "phases": {
+          "initial_load": 0.034
+        }
+      }
+    ],
+    "summary": [
+      "Browser launch: 0.2s",
+      "Page analysis (total): 0.1s",
+      "Quick scan: 0.1s",
+      "URL crawl: 0.1s"
+    ],
+    "totalSeconds": 0.429
+  },
+  "crawlLimits": {
+    "requested": {
+      "maxPages": null,
+      "maxDepth": null,
+      "traceMode": null
+    },
+    "applied": {
+      "maxPages": 20,
+      "maxDepth": 2,
+      "traceMode": "failure"
+    }
+  }
+}

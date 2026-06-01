@@ -1,0 +1,15 @@
+{
+  "cardId": "11912e5b-a1b9-4106-9344-e6254d89a785",
+  "overallScore": 99,
+  "categoryScores": {
+    "performance": null,
+    "accessibility": 100,
+    "seo": null,
+    "ux": 100
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-01T23:47:11.799Z",
+  "topImprovements": [
+    "이미지·API 등 로딩 실패 1건으로 1점 감점되었습니다."
+  ]
+}

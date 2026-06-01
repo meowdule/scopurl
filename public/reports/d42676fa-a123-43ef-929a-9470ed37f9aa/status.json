@@ -1,6 +1,18 @@
 {
   "reportId": "d42676fa-a123-43ef-929a-9470ed37f9aa",
+  "updatedAt": "2026-06-01T23:47:11.802Z",
   "targetUrl": "https://httpsl//example.com",
-  "phase": "queued",
-  "updatedAt": "2026-06-01T23:46:06Z"
+  "phase": "complete",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": false,
+    "dnsMessage": "getaddrinfo EAI_AGAIN httpsl",
+    "httpOk": false,
+    "redirectChain": [],
+    "sslOk": false,
+    "sslMessage": "",
+    "internalLinkCount": 0,
+    "error": "page.goto: net::ERR_NAME_NOT_RESOLVED at https://httpsl//example.com\nCall log:\n  - navigating to \"https://httpsl//example.com\", waiting until \"domcontentloaded\"\n"
+  },
+  "expiresAt": "2026-07-01T23:47:11.799Z"
 }
