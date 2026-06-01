@@ -1,6 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  Globe,
+  Link2,
+  Rabbit,
+  Server,
+  Sparkles,
+  Trophy,
+} from "lucide-react";
 
 const TICKER_MESSAGES = [
   "DNS 확인 중…",
@@ -13,14 +21,49 @@ const TICKER_MESSAGES = [
   "리포트 생성 중…",
 ];
 
+const OBSTACLE_KINDS = [Globe, Link2, Server] as const;
+const RUNNER_X = 56;
+const GAME_H = 200;
+
+type Obstacle = {
+  id: number;
+  x: number;
+  kind: number;
+  w: number;
+  scored: boolean;
+};
+
 type Props = {
   active: boolean;
 };
 
 export function AnalysisWaitExperience({ active }: Props) {
   const [msgIndex, setMsgIndex] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef = useRef<number>(0);
+  const [score, setScore] = useState(0);
+  const [best, setBest] = useState(0);
+  const [runnerY, setRunnerY] = useState(0);
+  const [obstacles, setObstacles] = useState<Obstacle[]>([]);
+  const [running, setRunning] = useState(true);
+
+  const areaRef = useRef<HTMLDivElement>(null);
+  const gameRef = useRef({
+    frame: 0,
+    runnerY: 0,
+    runnerVy: 0,
+    jumping: false,
+    speed: 4,
+    obstacles: [] as Obstacle[],
+    nextId: 0,
+    score: 0,
+    width: 480,
+  });
+  const rafRef = useRef(0);
+
+  useEffect(() => {
+    if (!active) return;
+    const stored = localStorage.getItem("scopurl-runner-best");
+    if (stored) setBest(Number(stored) || 0);
+  }, [active]);
 
   useEffect(() => {
     if (!active) return;
@@ -32,118 +75,216 @@ export function AnalysisWaitExperience({ active }: Props) {
 
   useEffect(() => {
     if (!active) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
 
-    const W = canvas.width;
-    const H = canvas.height;
-    let frame = 0;
-    let dinoY = H - 24;
-    let dinoVy = 0;
-    let jumping = false;
-    const groundY = H - 16;
-    const obstacles: { x: number; w: number; h: number }[] = [];
-    let speed = 3;
+    const jump = () => {
+      const g = gameRef.current;
+      if (!g.jumping) {
+        g.runnerVy = -11;
+        g.jumping = true;
+      }
+    };
 
     const onKey = (e: KeyboardEvent) => {
       if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
-        if (!jumping) {
-          dinoVy = -9;
-          jumping = true;
-        }
+        jump();
       }
     };
-    const onTap = () => {
-      if (!jumping) {
-        dinoVy = -9;
-        jumping = true;
-      }
-    };
+
     window.addEventListener("keydown", onKey);
-    canvas.addEventListener("click", onTap);
+    areaRef.current?.addEventListener("click", jump);
 
     const loop = () => {
-      frame++;
-      if (frame % 90 === 0) {
-        obstacles.push({ x: W + 10, w: 12 + Math.random() * 16, h: 16 + Math.random() * 12 });
+      const g = gameRef.current;
+      const el = areaRef.current;
+      if (el) g.width = el.clientWidth;
+
+      g.frame++;
+      g.speed = Math.min(9, 4 + g.frame / 900);
+
+      g.runnerVy += 0.52;
+      g.runnerY += g.runnerVy;
+      const ground = GAME_H - 44;
+      const runnerH = 36;
+      if (g.runnerY >= 0) {
+        g.runnerY = 0;
+        g.runnerVy = 0;
+        g.jumping = false;
       }
-      speed = Math.min(6, 3 + frame / 1200);
 
-      dinoVy += 0.45;
-      dinoY += dinoVy;
-      if (dinoY >= groundY - 14) {
-        dinoY = groundY - 14;
-        dinoVy = 0;
-        jumping = false;
+      if (g.frame % 85 === 0) {
+        const kind = Math.floor(Math.random() * OBSTACLE_KINDS.length);
+        g.obstacles.push({
+          id: g.nextId++,
+          x: g.width + 20,
+          kind,
+          w: 28 + Math.random() * 10,
+          scored: false,
+        });
       }
 
-      ctx.fillStyle = "#0f172a";
-      ctx.fillRect(0, 0, W, H);
-      ctx.strokeStyle = "#334155";
-      ctx.beginPath();
-      ctx.moveTo(0, groundY);
-      ctx.lineTo(W, groundY);
-      ctx.stroke();
+      for (let i = g.obstacles.length - 1; i >= 0; i--) {
+        const o = g.obstacles[i];
+        o.x -= g.speed;
 
-      ctx.fillStyle = "#38bdf8";
-      ctx.fillRect(24, dinoY, 18, 14);
-
-      for (let i = obstacles.length - 1; i >= 0; i--) {
-        const o = obstacles[i];
-        o.x -= speed;
-        ctx.fillStyle = "#64748b";
-        ctx.fillRect(o.x, groundY - o.h, o.w, o.h);
-        if (
-          o.x < 24 + 18 &&
-          o.x + o.w > 24 &&
-          dinoY + 14 > groundY - o.h
-        ) {
-          obstacles.length = 0;
-          frame = 0;
-          speed = 3;
+        if (!o.scored && o.x + o.w < RUNNER_X) {
+          o.scored = true;
+          g.score += 10;
+          setScore(g.score);
+          const prevBest = Number(
+            localStorage.getItem("scopurl-runner-best") || "0",
+          );
+          if (g.score > prevBest) {
+            localStorage.setItem("scopurl-runner-best", String(g.score));
+            setBest(g.score);
+          }
         }
-        if (o.x + o.w < 0) obstacles.splice(i, 1);
+
+        const hit =
+          o.x < RUNNER_X + 28 &&
+          o.x + o.w > RUNNER_X - 4 &&
+          g.runnerY > -runnerH + 8;
+
+        if (hit) {
+          g.obstacles = [];
+          g.speed = 4;
+          g.frame = 0;
+          break;
+        }
+
+        if (o.x + o.w < -20) g.obstacles.splice(i, 1);
       }
 
-      ctx.fillStyle = "#94a3b8";
-      ctx.font = "10px sans-serif";
-      ctx.fillText("Space / 클릭으로 점프", 8, 12);
+      setRunnerY(g.runnerY);
+      setObstacles([...g.obstacles]);
+      setRunning(!g.jumping);
 
       rafRef.current = requestAnimationFrame(loop);
     };
+
     rafRef.current = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("keydown", onKey);
-      canvas.removeEventListener("click", onTap);
+      areaRef.current?.removeEventListener("click", jump);
+      gameRef.current = {
+        frame: 0,
+        runnerY: 0,
+        runnerVy: 0,
+        jumping: false,
+        speed: 4,
+        obstacles: [],
+        nextId: 0,
+        score: 0,
+        width: 480,
+      };
+      setScore(0);
+      setRunnerY(0);
+      setObstacles([]);
     };
   }, [active]);
 
   if (!active) return null;
 
+  const groundY = GAME_H - 36;
+
   return (
-    <div className="overflow-hidden rounded-lg border border-surface-border/60 bg-surface/40">
-      <div className="relative flex items-center border-b border-surface-border/40 bg-black/20 py-2">
-        <div className="animate-marquee whitespace-nowrap text-xs text-slate-400">
-          {TICKER_MESSAGES.map((m, i) => (
-            <span key={m} className={i === msgIndex ? "text-accent" : ""}>
+    <section
+      className="overflow-hidden rounded-panel border-2 border-accent-dim/40 bg-gradient-to-b from-accent-soft/30 to-card shadow-cardSm"
+      aria-label="분석 대기 미니 게임"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-card-border bg-accent-soft/40 px-4 py-3">
+        <div className="flex items-center gap-2 text-sm font-semibold text-fg">
+          <Sparkles className="h-4 w-4 text-accent-dim" aria-hidden />
+          분석이 진행되는 동안 잠깐 즐겨 보세요
+        </div>
+        <div className="flex items-center gap-4 text-sm">
+          <span className="font-mono font-bold tabular-nums text-accent-dim">
+            {String(score).padStart(4, "0")}
+          </span>
+          <span className="flex items-center gap-1 text-fg-muted">
+            <Trophy className="h-3.5 w-3.5 text-amber-500" aria-hidden />
+            BEST {String(best).padStart(4, "0")}
+          </span>
+        </div>
+      </div>
+
+      <div className="relative flex items-center overflow-hidden border-b border-card-border bg-page-alt/60 py-2.5">
+        <div className="animate-marquee whitespace-nowrap px-4 text-sm font-medium">
+          {[...TICKER_MESSAGES, ...TICKER_MESSAGES].map((m, i) => (
+            <span
+              key={`${m}-${i}`}
+              className={
+                i % TICKER_MESSAGES.length === msgIndex
+                  ? "text-accent-dim"
+                  : "text-fg-muted"
+              }
+            >
               {m}
-              <span className="mx-6 text-slate-600">·</span>
+              <span className="mx-5 text-card-border">·</span>
             </span>
           ))}
         </div>
       </div>
-      <canvas
-        ref={canvasRef}
-        width={360}
-        height={80}
-        className="mx-auto block w-full max-w-md cursor-pointer"
-        aria-label="분석 대기 미니 게임"
-      />
-    </div>
+
+      <div
+        ref={areaRef}
+        className="relative mx-auto w-full max-w-2xl cursor-pointer select-none"
+        style={{ height: GAME_H }}
+        role="button"
+        tabIndex={0}
+        aria-label="Space 또는 클릭으로 점프"
+      >
+        <div
+          className="pointer-events-none absolute inset-x-0 top-8 h-24 rounded-full bg-accent/5 blur-2xl"
+          aria-hidden
+        />
+
+        <div
+          className="absolute inset-x-0 border-t-2 border-dashed border-accent-dim/25"
+          style={{ top: groundY }}
+        />
+
+        <div
+          className="absolute transition-none"
+          style={{
+            left: RUNNER_X,
+            bottom: groundY - 4 + runnerY,
+          }}
+        >
+          <Rabbit
+            className={`h-9 w-9 text-accent-dim drop-shadow-sm ${running ? "animate-bounceRun" : ""}`}
+            strokeWidth={2.25}
+            aria-hidden
+          />
+        </div>
+
+        {obstacles.map((o) => {
+          const Icon = OBSTACLE_KINDS[o.kind] ?? Globe;
+          return (
+            <div
+              key={o.id}
+              className="absolute flex items-end justify-center"
+              style={{
+                left: o.x,
+                bottom: groundY - 2,
+                width: o.w,
+              }}
+            >
+              <Icon
+                className="h-8 w-8 text-fg-muted/80"
+                strokeWidth={2}
+                aria-hidden
+              />
+            </div>
+          );
+        })}
+
+        <p className="absolute bottom-2 left-3 text-xs font-medium text-fg-muted">
+          Space / 클릭 — 장애물을 넘기면 +10점
+        </p>
+      </div>
+    </section>
   );
 }

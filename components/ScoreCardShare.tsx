@@ -73,7 +73,7 @@ export function ScoreCardShare({ report }: Props) {
         className="mt-4 rounded-xl border border-surface-border bg-surface p-6"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-          SnapIt SiteScope
+          scopurl
         </p>
         <div className="mt-4 flex items-center gap-4">
           <DonutChart value={summary.healthScore} label="종합" size={80} />

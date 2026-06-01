@@ -37,6 +37,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify QUEUE_DISPATCH_TOKEN secret
+        run: |
+          if [[ -z "${{ secrets.QUEUE_DISPATCH_TOKEN }}" ]]; then
+            echo "::error::QUEUE_DISPATCH_TOKEN secret is required. Users must never see a GitHub Issue fallback — configure the secret before deploying Pages."
+            exit 1
+          fi
+
       - name: Build static site
         run: npm run build
 

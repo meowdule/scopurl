@@ -12,10 +12,16 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-geist-mono",
 });
 
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/$/, "");
+
 export const metadata: Metadata = {
-  title: "SnapIt SiteScope — 웹사이트 품질 분석",
+  title: "scopurl — URL 품질 분석",
   description:
-    "URL 한 번으로 성능·접근성·사용성·SEO를 분석하는 SnapIt SiteScope.",
+    "URL 한 번으로 성능·접근성·사용성·SEO를 분석하는 scopurl.",
+  icons: {
+    icon: [{ url: `${basePath}/icon.svg`, type: "image/svg+xml" }],
+    apple: [{ url: `${basePath}/icon.svg`, type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

@@ -8,18 +8,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        surface: {
-          DEFAULT: "#0f1419",
-          raised: "#161d27",
-          border: "#243041",
+        page: {
+          DEFAULT: "var(--bg-page)",
+          alt: "var(--bg-page-2)",
+        },
+        fg: {
+          DEFAULT: "var(--fg)",
+          muted: "var(--fg-muted)",
         },
         accent: {
-          DEFAULT: "#3b82f6",
-          muted: "#2563eb",
+          DEFAULT: "var(--accent)",
+          dim: "var(--accent-dim)",
+          soft: "var(--accent-soft)",
+        },
+        card: {
+          DEFAULT: "var(--card)",
+          border: "var(--card-border)",
+        },
+        /* legacy aliases used across components */
+        surface: {
+          DEFAULT: "var(--card)",
+          raised: "var(--card)",
+          border: "var(--card-border)",
         },
       },
+      boxShadow: {
+        card: "var(--shadow)",
+        cardSm: "var(--shadow-sm)",
+      },
+      borderRadius: {
+        panel: "16px",
+      },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        sans: ["Pretendard", "var(--font-geist-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
@@ -32,10 +53,15 @@ const config: Config = {
           "25%": { transform: "rotate(-12deg)" },
           "75%": { transform: "rotate(12deg)" },
         },
+        bounceRun: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-2px)" },
+        },
       },
       animation: {
-        marquee: "marquee 20s linear infinite",
+        marquee: "marquee 24s linear infinite",
         shake: "shake 0.4s ease-in-out infinite",
+        bounceRun: "bounceRun 0.35s ease-in-out infinite",
       },
     },
   },

@@ -29,6 +29,7 @@ export type ReportStatusErrorCode =
   | "timeout"
   | "http_403"
   | "cloudflare"
+  | "service_unconfigured"
   | "unknown";
 
 export type ReportStatusFile = {

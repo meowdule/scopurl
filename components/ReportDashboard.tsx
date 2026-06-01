@@ -68,7 +68,7 @@ export function ReportDashboard({
 
   if (!report) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center text-slate-400">
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center text-fg-muted">
         Loading report…
       </div>
     );
@@ -100,15 +100,15 @@ export function ReportDashboard({
 
       <header className="mt-4 border-b border-surface-border pb-8">
         <p className="text-xs uppercase tracking-widest text-accent">
-          SnapIt SiteScope 리포트
+          scopurl 리포트
         </p>
-        <h1 className="mt-2 break-all text-2xl font-semibold text-white sm:text-3xl">
+        <h1 className="mt-2 break-all text-2xl font-semibold text-fg sm:text-3xl">
           {targetUrl}
         </h1>
         <div className="mt-4 flex flex-wrap gap-3 print:hidden">
           <PdfDownloadButton reportId={rid} targetUrl={targetUrl} />
           {(report.deviceProfile || crawlMeta?.deviceProfile) && (
-            <span className="rounded-full border border-surface-border px-3 py-1 text-xs text-slate-300">
+            <span className="rounded-full border border-surface-border px-3 py-1 text-xs text-fg-muted">
               {(report.deviceProfile || crawlMeta?.deviceProfile) === "mobile"
                 ? "모바일 분석"
                 : "데스크톱 분석"}
@@ -122,7 +122,7 @@ export function ReportDashboard({
       {cats && (
         <section className="mt-8 grid gap-6 lg:grid-cols-2">
           <div className="rounded-xl border border-surface-border bg-surface-raised p-5">
-            <h2 className="text-sm font-semibold text-white">카테고리별 점수</h2>
+            <h2 className="text-sm font-semibold text-fg">카테고리별 점수</h2>
             <div className="mt-4 grid gap-4">
               <ProgressBar value={cats.performance} label="성능 · 로딩 속도" />
               <ProgressBar
@@ -174,7 +174,7 @@ export function ReportDashboard({
         onCta={() => setSolutionOpen(true)}
       >
         {crawlMeta?.interactionFlow && (
-          <pre className="font-mono text-xs text-slate-300">
+          <pre className="font-mono text-xs text-fg-muted">
             {crawlMeta.interactionFlow}
           </pre>
         )}
@@ -190,7 +190,7 @@ export function ReportDashboard({
       {timing && <TimingSection timing={timing} />}
 
       <section className="mt-10 print:hidden">
-        <h2 className="text-lg font-semibold text-white">Quick signals</h2>
+        <h2 className="text-lg font-semibold text-fg">Quick signals</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <Signal label="DNS" ok={quick.dnsOk} detail={quick.dnsMessage} />
           <Signal
@@ -205,10 +205,10 @@ export function ReportDashboard({
       </section>
 
       <section className="mt-12 overflow-x-auto">
-        <h2 className="text-lg font-semibold text-white">Pages crawled</h2>
+        <h2 className="text-lg font-semibold text-fg">Pages crawled</h2>
         <table className="mt-4 w-full min-w-[640px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-surface-border text-slate-400">
+            <tr className="border-b border-surface-border text-fg-muted">
               <th className="py-2 pr-4">URL</th>
               <th className="py-2 pr-4">Status</th>
               <th className="py-2 pr-4">성능</th>
@@ -239,14 +239,14 @@ export function ReportDashboard({
 
       {brokenLinks.length > 0 && (
         <section className="mt-12">
-          <h2 className="text-lg font-semibold text-white">Broken links</h2>
-          <ul className="mt-4 space-y-2 text-sm text-slate-300">
+          <h2 className="text-lg font-semibold text-fg">Broken links</h2>
+          <ul className="mt-4 space-y-2 text-sm text-fg-muted">
             {brokenLinks.slice(0, 20).map((b) => (
               <li
                 key={`${b.from}-${b.to}`}
                 className="rounded-lg border border-surface-border bg-surface-raised px-4 py-3"
               >
-                <span className="font-mono text-xs text-slate-500">{b.from}</span>
+                <span className="font-mono text-xs text-fg-muted">{b.from}</span>
                 <span className="mx-2">→</span>
                 <span className="font-mono text-xs">{b.to}</span>
               </li>
@@ -279,8 +279,8 @@ export function ReportDashboard({
 function MetricTile({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-surface-border bg-surface-raised p-5">
-      <p className="text-xs uppercase tracking-wide text-slate-400">{label}</p>
-      <p className="mt-2 text-3xl font-semibold text-white">{value}</p>
+      <p className="text-xs uppercase tracking-wide text-fg-muted">{label}</p>
+      <p className="mt-2 text-3xl font-semibold text-fg">{value}</p>
     </div>
   );
 }
@@ -299,14 +299,14 @@ function Signal({
       <div className="flex justify-between gap-2">
         <span className="text-sm text-slate-200">{label}</span>
         {ok === undefined ? (
-          <span className="text-xs text-slate-500">—</span>
+          <span className="text-xs text-fg-muted">—</span>
         ) : ok ? (
           <span className="text-xs text-emerald-400">OK</span>
         ) : (
           <span className="text-xs text-amber-300">Issue</span>
         )}
       </div>
-      {detail && <p className="mt-1 text-xs text-slate-400">{detail}</p>}
+      {detail && <p className="mt-1 text-xs text-fg-muted">{detail}</p>}
     </div>
   );
 }

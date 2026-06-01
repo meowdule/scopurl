@@ -1,4 +1,5 @@
 import { getConfiguredRepo } from "@/lib/config";
+import { formatStatusError } from "@/lib/analysisErrors";
 import {
   buildAnalysisOptions,
   type AnalysisStartOptions,
@@ -6,7 +7,6 @@ import {
   type TraceMode,
 } from "@/lib/analysisOptions";
 
-export type StartMode = "dispatch" | "issue";
 export type { AnalysisStartOptions, DeviceProfile, TraceMode };
 
 function buildPayload(
@@ -60,53 +60,15 @@ async function dispatchAnalysis(
   }
 }
 
-export function openAnalysisIssue(
-  reportId: string,
-  targetUrl: string,
-  options: AnalysisStartOptions,
-): void {
-  const repo = getConfiguredRepo();
-  const [owner, name] = repo.split("/");
-  if (!owner || !name) {
-    throw new Error("Invalid repository configuration.");
-  }
-
-  const payload = JSON.stringify(
-    buildPayload(reportId, targetUrl, options),
-    null,
-    2,
-  );
-
-  const params = new URLSearchParams({
-    title: `[SiteScope] ${reportId}`,
-    body: [
-      "SiteScope analysis request (auto-processed).",
-      "",
-      "```json",
-      payload,
-      "```",
-    ].join("\n"),
-  });
-
-  const url = `https://github.com/${owner}/${name}/issues/new?${params.toString()}`;
-  window.open(url, "_blank", "noopener,noreferrer");
-}
-
 export async function startAnalysis(
   reportId: string,
   targetUrl: string,
   options: AnalysisStartOptions,
-): Promise<StartMode> {
+): Promise<void> {
   const normalized = buildAnalysisOptions(options);
   const token = process.env.NEXT_PUBLIC_QUEUE_DISPATCH_TOKEN?.trim();
-  if (token) {
-    await dispatchAnalysis(reportId, targetUrl, normalized, token);
-    return "dispatch";
+  if (!token) {
+    throw new Error(formatStatusError("service_unconfigured"));
   }
-  openAnalysisIssue(reportId, targetUrl, normalized);
-  return "issue";
-}
-
-export function hasDispatchToken(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_QUEUE_DISPATCH_TOKEN?.trim());
+  await dispatchAnalysis(reportId, targetUrl, normalized, token);
 }

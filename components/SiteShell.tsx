@@ -23,35 +23,36 @@ export function SiteShell() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
-      <header className="border-b border-surface-border pb-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          SnapIt SiteScope
-        </p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          웹사이트 품질 분석
+    <div className="shell mx-auto max-w-3xl px-5 pb-16 pt-9 sm:px-6">
+      <header className="hero pb-8 text-center">
+        <p className="hero-eyebrow">scopurl</p>
+        <h1 className="text-3xl font-bold tracking-tight text-fg sm:text-4xl">
+          URL 품질 분석
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
+        <p className="lede mx-auto mt-3 max-w-xl text-base leading-relaxed text-fg-muted">
           URL을 입력하면 빠른 연결 점검 후, 실제 브라우저로 페이지를 탐색하고
           성능·접근성·사용성·검색 품질을 한국어 리포트로 보여 드립니다.
         </p>
       </header>
 
-      <main className="mt-10">
+      <main>
         <AnalyzeForm onReportReady={onReportReady} />
       </main>
 
       {report && (
-        <div ref={reportRef} className="mt-12 border-t border-surface-border pt-10">
+        <div
+          ref={reportRef}
+          className="mt-12 border-t border-card-border pt-10"
+        >
           <ReportDashboard report={report} onNewAnalysis={onNewAnalysis} />
         </div>
       )}
 
       {report && <FloatingLeadButton shake />}
 
-      <footer className="mt-16 border-t border-surface-border/60 pt-8 text-xs leading-relaxed text-slate-500">
-        <p className="font-medium text-slate-400">데이터 보관 안내</p>
-        <ul className="mt-2 list-inside list-disc space-y-1">
+      <footer className="footer mt-14 border-t border-card-border pt-8 text-center text-xs leading-relaxed text-fg-muted">
+        <p className="font-medium text-fg">데이터 보관 안내</p>
+        <ul className="mt-2 list-inside list-disc space-y-1 text-left sm:text-center">
           <li>
             분석 결과는 리포트 제공 목적으로만 사용하며, 마케팅·외부 공개에
             활용하지 않습니다.

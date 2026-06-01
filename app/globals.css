@@ -2,14 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SnapIt / prompt_test_v2 job-spa-snapshot theme */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+  --font: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --bg-page: #e8ecf4;
+  --bg-page-2: #f4f6fb;
+  --fg: #1a1d24;
+  --fg-muted: #5c6473;
+  --accent: #00c471;
+  --accent-dim: #00a85f;
+  --accent-soft: rgba(0, 196, 113, 0.12);
+  --card: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.05);
+  --radius: 16px;
+  line-height: 1.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-page: #12151c;
+    --bg-page-2: #1a1f2a;
+    --fg: #f1f3f7;
+    --fg-muted: #9aa3b2;
+    --accent: #3ddc9a;
+    --accent-dim: #2ec88a;
+    --accent-soft: rgba(61, 220, 154, 0.15);
+    --card: #1e2430;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply min-h-screen bg-surface text-slate-100 antialiased;
+  min-height: 100vh;
+  background: linear-gradient(
+    165deg,
+    var(--bg-page) 0%,
+    var(--bg-page-2) 45%,
+    var(--bg-page) 100%
+  );
+  color: var(--fg);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .panel {
+    padding: 1.35rem 1.5rem;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    margin: 0 0 0.6rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent-dim);
+    background: var(--accent-soft);
+    border-radius: 999px;
+  }
+
+  .wait-panel {
+    border: 2px solid var(--accent-dim);
+    box-shadow: var(--shadow), 0 0 0 4px var(--accent-soft);
+  }
+
+  @keyframes shimmer {
+    0% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.45;
+    }
+  }
+
+  .panel-loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 196, 113, 0.07),
+      transparent
+    );
+    animation: shimmer 1.2s ease-in-out infinite;
+    pointer-events: none;
+  }
 }

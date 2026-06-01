@@ -1,11 +1,10 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { validateHttpUrl } from "@/lib/validateUrl";
 import { checkDns } from "@/lib/dnsCheck";
 import type { QuickCheckResult, ReportPhase, ReportJson } from "@/lib/types";
 import {
-  hasDispatchToken,
   startAnalysis,
   type DeviceProfile,
   type TraceMode,
@@ -48,6 +47,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
   const [estimatedWaitLabel, setEstimatedWaitLabel] = useState<string | null>(
     null,
   );
+  const waitSectionRef = useRef<HTMLDivElement>(null);
 
   const reset = useCallback(() => {
     setError(null);
@@ -127,6 +127,13 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
     setQuick({ validUrl: true });
     setEstimatedWaitLabel(t.waitEstimate);
 
+    requestAnimationFrame(() => {
+      waitSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
     await runInstantChecks(v.normalized);
 
     try {
@@ -161,12 +168,13 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
 
   return (
     <div className="space-y-6">
+      <div className="panel space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
           type="url"
           inputMode="url"
           placeholder="https://example.com"
-          className="w-full flex-1 rounded-lg border border-surface-border bg-surface-raised px-4 py-3 text-sm text-slate-100 outline-none ring-accent/40 placeholder:text-slate-500 focus:ring-2"
+          className="w-full flex-1 rounded-xl border border-card-border bg-page px-4 py-3.5 text-sm text-fg outline-none ring-accent/30 placeholder:text-fg-muted/70 focus:ring-2"
           value={urlInput}
           disabled={busy}
           onChange={(e) => setUrlInput(e.target.value)}
@@ -178,14 +186,14 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
           type="button"
           onClick={() => void onAnalyze()}
           disabled={busy}
-          className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition hover:bg-accent-muted disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-xl bg-accent px-6 py-3.5 text-sm font-semibold text-white shadow-cardSm transition hover:bg-accent-dim disabled:cursor-not-allowed disabled:opacity-60"
         >
           {busy ? t.analyzing : "Analyze"}
         </button>
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300">
-        <span className="text-slate-400">{t.deviceSize}</span>
+      <div className="flex flex-wrap items-center gap-4 text-sm text-fg">
+        <span className="text-fg-muted">{t.deviceSize}</span>
         <label className="flex cursor-pointer items-center gap-2">
           <input
             type="radio"
@@ -212,13 +220,13 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
         </label>
       </div>
 
-      <details className="rounded-lg border border-surface-border bg-surface-raised/50 px-4 py-3 text-sm">
-        <summary className="cursor-pointer select-none text-slate-300">
+      <details className="rounded-xl border border-card-border bg-page-alt/60 px-4 py-3 text-sm">
+        <summary className="cursor-pointer select-none font-medium text-fg">
           {t.advancedOptions}
         </summary>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <label className="block">
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-fg-muted">
               {t.maxPages(FREE_MAX_PAGES)}
             </span>
             <input
@@ -228,11 +236,11 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
               value={maxPages}
               disabled={busy}
               onChange={(e) => setMaxPages(Number(e.target.value))}
-              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             />
           </label>
           <label className="block">
-            <span className="text-xs text-slate-400">{t.maxDepth}</span>
+            <span className="text-xs text-fg-muted">{t.maxDepth}</span>
             <input
               type="number"
               min={0}
@@ -240,16 +248,16 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
               value={maxDepth}
               disabled={busy}
               onChange={(e) => setMaxDepth(Number(e.target.value))}
-              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             />
           </label>
           <label className="block sm:col-span-2">
-            <span className="text-xs text-slate-400">{t.traceLabel}</span>
+            <span className="text-xs text-fg-muted">{t.traceLabel}</span>
             <select
               value={traceMode}
               disabled={busy}
               onChange={(e) => setTraceMode(e.target.value as TraceMode)}
-              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-slate-100"
+              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             >
               <option value="failure">{t.traceFailure}</option>
               <option value="all">{t.traceAll}</option>
@@ -258,30 +266,23 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
           </label>
         </div>
       </details>
-
-      {!hasDispatchToken() && (
-        <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
-          A GitHub tab may open - click <strong>Submit new issue</strong> once
-          to start analysis. For one-click Analyze, add the{" "}
-          <code className="font-mono text-xs">QUEUE_DISPATCH_TOKEN</code> secret.
-        </p>
-      )}
+      </div>
 
       {error && (
-        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+        <div className="rounded-xl border border-red-400/40 bg-red-50 px-4 py-3 text-sm text-red-800 dark:bg-red-950/30 dark:text-red-200">
           {error}
         </div>
       )}
 
       {showStatus && (
-        <div className="space-y-4">
+        <div ref={waitSectionRef} className="wait-panel relative space-y-5 rounded-panel p-1 pt-2">
+          {busy && !failed && <AnalysisWaitExperience active={busy} />}
           <AnalysisStatusPanel
             phase={phase}
             quick={quick}
             estimatedWaitLabel={estimatedWaitLabel}
             failed={failed}
           />
-          {busy && !failed && <AnalysisWaitExperience active={busy} />}
         </div>
       )}
 

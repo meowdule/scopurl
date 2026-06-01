@@ -47,19 +47,19 @@ export function CardPageClient({ cardId }: { cardId: string }) {
     <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4 py-16">
       <div className="rounded-xl border border-surface-border bg-surface-raised p-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-          SnapIt SiteScope
+          scopurl
         </p>
         <div className="mt-6 flex items-center gap-4">
           <DonutChart value={card.overallScore} label="종합" size={96} />
           <div>
             {card.statusLabel && <StatusBadge status={card.statusLabel} />}
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-fg-muted">
               {new Date(card.generatedAt).toLocaleString("ko-KR")}
             </p>
           </div>
         </div>
         {card.categoryScores && (
-          <div className="mt-6 grid grid-cols-2 gap-2 text-sm text-slate-300">
+          <div className="mt-6 grid grid-cols-2 gap-2 text-sm text-fg-muted">
             <span>성능 {card.categoryScores.performance ?? "—"}</span>
             <span>접근성 {card.categoryScores.accessibility ?? "—"}</span>
             <span>사용성 {card.categoryScores.ux ?? "—"}</span>
@@ -68,8 +68,8 @@ export function CardPageClient({ cardId }: { cardId: string }) {
         )}
         {(card.topImprovements?.length ?? 0) > 0 && (
           <div className="mt-6">
-            <p className="text-xs font-medium text-slate-400">주요 개선 포인트</p>
-            <ul className="mt-2 list-inside list-disc text-sm text-slate-300">
+            <p className="text-xs font-medium text-fg-muted">주요 개선 포인트</p>
+            <ul className="mt-2 list-inside list-disc text-sm text-fg">
               {card.topImprovements!.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -81,7 +81,7 @@ export function CardPageClient({ cardId }: { cardId: string }) {
         href={assetUrl("/")}
         className="mt-8 text-center text-sm text-accent hover:underline"
       >
-        SnapIt SiteScope에서 분석하기
+        scopurl에서 분석하기
       </Link>
     </div>
   );
