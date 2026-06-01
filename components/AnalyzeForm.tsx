@@ -280,6 +280,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
 
       {showStatus && (
         <div ref={waitSectionRef} className="wait-panel relative space-y-5 rounded-panel p-4 pt-5">
+          {busy && !failed && <AnalysisWaitExperience active={busy} />}
           <AnalysisStatusPanel
             phase={phase}
             quick={quick}
@@ -287,7 +288,6 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
             failed={failed}
             pollStartedAt={pollStartedAt ?? undefined}
           />
-          {busy && !failed && <AnalysisWaitExperience active={busy} />}
         </div>
       )}
 

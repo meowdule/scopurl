@@ -1,7 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Rabbit, Sparkles, Trophy, Zap } from "lucide-react";
+import {
+  Bird,
+  Box,
+  Cloud,
+  Globe,
+  Link2,
+  Rabbit,
+  Radio,
+  Server,
+  Sparkles,
+  Star,
+  Trophy,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 
 const TICKER_MESSAGES = [
   "DNS 확인 중…",
@@ -14,36 +28,73 @@ const TICKER_MESSAGES = [
   "리포트 생성 중…",
 ];
 
-/** Ground + flying obstacle emoji pools */
-const GROUND_EMOJIS = ["🌐", "🔗", "🖥️", "📦", "☁️", "🧱"];
-const FLYING_EMOJIS = ["🦅", "🐦", "🪁", "📡"];
-const POWER_EMOJI = "⭐";
+const GROUND_ICONS = [Globe, Link2, Server, Box, Cloud] as const;
+const FLYING_ICONS = [Bird, Radio, Cloud] as const;
+const POWER_ICON = Star;
 
 const RUNNER_X = 56;
-const RUNNER_W = 34;
-const RUNNER_H = 34;
-const GAME_H = 220;
+const RUNNER_W = 36;
+const RUNNER_H = 36;
+const ICON_SIZE = 28;
+const GAME_H = 200;
+/** Distance from container bottom to ground line (px) */
+const GROUND_BOTTOM = 40;
+const FLY_LANE = 78;
 
 type Obstacle = {
   id: number;
   x: number;
-  emojis: string[];
+  icons: LucideIcon[];
   w: number;
   scored: boolean;
   flying: boolean;
-  stack: number;
+  power: boolean;
 };
 
 type Props = {
   active: boolean;
 };
 
+function pickIcons(count: number, pool: readonly LucideIcon[]): LucideIcon[] {
+  const out: LucideIcon[] = [];
+  for (let i = 0; i < count; i++) {
+    out.push(pool[Math.floor(Math.random() * pool.length)]);
+  }
+  return out;
+}
+
+function ObstacleStack({
+  icons,
+  power,
+}: {
+  icons: LucideIcon[];
+  power?: boolean;
+}) {
+  return (
+    <div className="flex flex-col-reverse items-center">
+      {icons.map((Icon, idx) => (
+        <Icon
+          key={idx}
+          className={`shrink-0 drop-shadow-sm ${
+            power
+              ? "h-7 w-7 text-amber-500"
+              : "h-7 w-7 text-fg-muted/85"
+          }`}
+          strokeWidth={2.1}
+          aria-hidden
+        />
+      ))}
+    </div>
+  );
+}
+
 export function AnalysisWaitExperience({ active }: Props) {
   const [msgIndex, setMsgIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [best, setBest] = useState(0);
-  const [runnerY, setRunnerY] = useState(0);
+  /** Pixels above ground (0 = standing on ground) */
+  const [airHeight, setAirHeight] = useState(0);
   const [obstacles, setObstacles] = useState<Obstacle[]>([]);
   const [running, setRunning] = useState(true);
   const [hitFlash, setHitFlash] = useState(false);
@@ -51,9 +102,9 @@ export function AnalysisWaitExperience({ active }: Props) {
   const areaRef = useRef<HTMLDivElement>(null);
   const gameRef = useRef({
     frame: 0,
-    runnerY: 0,
-    runnerVy: 0,
-    jumping: false,
+    airHeight: 0,
+    vy: 0,
+    onGround: true,
     speed: 4,
     obstacles: [] as Obstacle[],
     nextId: 0,
@@ -82,9 +133,9 @@ export function AnalysisWaitExperience({ active }: Props) {
 
     const jump = () => {
       const g = gameRef.current;
-      if (!g.jumping) {
-        g.runnerVy = -12;
-        g.jumping = true;
+      if (g.onGround) {
+        g.vy = 13;
+        g.onGround = false;
       }
     };
 
@@ -95,29 +146,21 @@ export function AnalysisWaitExperience({ active }: Props) {
       }
     };
 
+    const area = areaRef.current;
     window.addEventListener("keydown", onKey);
-    areaRef.current?.addEventListener("click", jump);
-
-    const pickEmojis = (stack: number, pool: string[]) => {
-      const out: string[] = [];
-      for (let i = 0; i < stack; i++) {
-        out.push(pool[Math.floor(Math.random() * pool.length)]);
-      }
-      return out;
-    };
+    area?.addEventListener("click", jump);
 
     const spawnObstacle = (g: typeof gameRef.current) => {
       const flying = Math.random() < 0.22;
       const stack = flying ? 1 : 1 + Math.floor(Math.random() * 3);
-      const pool = flying ? FLYING_EMOJIS : GROUND_EMOJIS;
       g.obstacles.push({
         id: g.nextId++,
         x: g.width + 24,
-        emojis: pickEmojis(stack, pool),
-        w: 30 + stack * 4,
+        icons: pickIcons(stack, flying ? FLYING_ICONS : GROUND_ICONS),
+        w: 32 + stack * 6,
         scored: false,
         flying,
-        stack,
+        power: false,
       });
     };
 
@@ -129,12 +172,14 @@ export function AnalysisWaitExperience({ active }: Props) {
       g.frame++;
       g.speed = Math.min(10, 4 + g.frame / 750);
 
-      g.runnerVy += 0.55;
-      g.runnerY += g.runnerVy;
-      if (g.runnerY >= 0) {
-        g.runnerY = 0;
-        g.runnerVy = 0;
-        g.jumping = false;
+      if (!g.onGround) {
+        g.vy -= 0.62;
+        g.airHeight += g.vy;
+        if (g.airHeight <= 0) {
+          g.airHeight = 0;
+          g.vy = 0;
+          g.onGround = true;
+        }
       }
 
       if (g.frame % 78 === 0) spawnObstacle(g);
@@ -142,15 +187,16 @@ export function AnalysisWaitExperience({ active }: Props) {
         g.obstacles.push({
           id: g.nextId++,
           x: g.width + 40,
-          emojis: [POWER_EMOJI],
-          w: 28,
+          icons: [POWER_ICON],
+          w: 30,
           scored: false,
           flying: false,
-          stack: 1,
+          power: true,
         });
       }
 
-      const groundLine = GAME_H - 44;
+      const runnerBottom = GROUND_BOTTOM + g.airHeight;
+      const runnerTop = runnerBottom + RUNNER_H;
 
       for (let i = g.obstacles.length - 1; i >= 0; i--) {
         const o = g.obstacles[i];
@@ -158,13 +204,13 @@ export function AnalysisWaitExperience({ active }: Props) {
 
         if (!o.scored && o.x + o.w < RUNNER_X) {
           o.scored = true;
-          if (o.emojis[0] === POWER_EMOJI) {
+          if (o.power) {
             g.score += 50;
             g.combo += 2;
           } else {
             g.combo += 1;
             const mult = Math.min(5, 1 + Math.floor(g.combo / 3));
-            g.score += 10 * mult + (o.stack > 1 ? o.stack * 5 : 0);
+            g.score += 10 * mult + (o.icons.length > 1 ? o.icons.length * 5 : 0);
           }
           setScore(g.score);
           setCombo(g.combo);
@@ -177,18 +223,17 @@ export function AnalysisWaitExperience({ active }: Props) {
           }
         }
 
-        const obsBottom = o.flying ? groundLine - 72 : groundLine - 2;
-        const obsTop = obsBottom - o.stack * 26;
-        const runnerBottom = groundLine - 4 + g.runnerY;
-        const runnerTop = runnerBottom - RUNNER_H;
+        const stackH = o.icons.length * (ICON_SIZE - 4);
+        const obsBottom = o.flying ? GROUND_BOTTOM + FLY_LANE : GROUND_BOTTOM;
+        const obsTop = obsBottom + stackH;
 
         const hit =
-          o.x < RUNNER_X + RUNNER_W - 6 &&
-          o.x + o.w > RUNNER_X + 4 &&
-          runnerBottom > obsTop + 4 &&
-          runnerTop < obsBottom - 2;
+          o.x < RUNNER_X + RUNNER_W - 4 &&
+          o.x + o.w > RUNNER_X + 2 &&
+          runnerBottom < obsTop - 2 &&
+          runnerTop > obsBottom + 2;
 
-        if (hit && o.emojis[0] === POWER_EMOJI) {
+        if (hit && o.power) {
           g.score += 30;
           setScore(g.score);
           g.obstacles.splice(i, 1);
@@ -211,9 +256,9 @@ export function AnalysisWaitExperience({ active }: Props) {
         if (o.x + o.w < -24) g.obstacles.splice(i, 1);
       }
 
-      setRunnerY(g.runnerY);
+      setAirHeight(g.airHeight);
       setObstacles([...g.obstacles]);
-      setRunning(!g.jumping);
+      setRunning(g.onGround && g.airHeight === 0);
 
       rafRef.current = requestAnimationFrame(loop);
     };
@@ -223,12 +268,12 @@ export function AnalysisWaitExperience({ active }: Props) {
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("keydown", onKey);
-      areaRef.current?.removeEventListener("click", jump);
+      area?.removeEventListener("click", jump);
       gameRef.current = {
         frame: 0,
-        runnerY: 0,
-        runnerVy: 0,
-        jumping: false,
+        airHeight: 0,
+        vy: 0,
+        onGround: true,
         speed: 4,
         obstacles: [],
         nextId: 0,
@@ -238,18 +283,16 @@ export function AnalysisWaitExperience({ active }: Props) {
       };
       setScore(0);
       setCombo(0);
-      setRunnerY(0);
+      setAirHeight(0);
       setObstacles([]);
     };
   }, [active]);
 
   if (!active) return null;
 
-  const groundY = GAME_H - 40;
-
   return (
     <section
-      className={`mt-6 overflow-hidden rounded-panel border-2 border-accent-dim/40 bg-gradient-to-b from-accent-soft/30 to-card shadow-cardSm transition ${hitFlash ? "ring-2 ring-red-400/70" : ""}`}
+      className={`mb-5 overflow-hidden rounded-panel border-2 border-accent-dim/40 bg-gradient-to-b from-sky-50/80 via-card to-card shadow-cardSm transition dark:from-slate-800/40 ${hitFlash ? "ring-2 ring-red-400/70" : ""}`}
       aria-label="분석 대기 미니 게임"
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-card-border bg-accent-soft/40 px-4 py-3">
@@ -294,69 +337,56 @@ export function AnalysisWaitExperience({ active }: Props) {
 
       <div
         ref={areaRef}
-        className="relative mx-auto w-full max-w-2xl cursor-pointer select-none px-2 pb-3 pt-4"
+        className="relative mx-auto w-full max-w-2xl cursor-pointer select-none overflow-hidden"
         style={{ height: GAME_H }}
         role="button"
         tabIndex={0}
         aria-label="Space 또는 클릭으로 점프"
       >
         <div
-          className="pointer-events-none absolute inset-x-4 top-10 h-24 rounded-full bg-accent/5 blur-2xl"
+          className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-t from-accent-soft/20 to-transparent"
+          style={{ bottom: GROUND_BOTTOM }}
           aria-hidden
         />
 
         <div
-          className="absolute inset-x-2 border-t-2 border-dashed border-accent-dim/30"
-          style={{ top: groundY }}
+          className="absolute inset-x-3 border-t-2 border-dashed border-accent-dim/35"
+          style={{ bottom: GROUND_BOTTOM }}
         />
 
         <div
-          className="absolute transition-none"
+          className="absolute will-change-transform"
           style={{
             left: RUNNER_X,
-            bottom: groundY - 6 + runnerY,
+            bottom: GROUND_BOTTOM + airHeight,
+            width: RUNNER_W,
+            height: RUNNER_H,
           }}
         >
-          <div className="relative">
-            <Rabbit
-              className={`h-9 w-9 text-accent-dim drop-shadow-md ${running ? "animate-bounceRun" : ""}`}
-              strokeWidth={2.25}
-              aria-hidden
-            />
-            <span className="absolute -right-1 -top-1 text-base" aria-hidden>
-              🐰
-            </span>
-          </div>
+          <Rabbit
+            className={`h-9 w-9 text-accent-dim drop-shadow-md ${running ? "animate-bounceRun" : ""}`}
+            strokeWidth={2.25}
+            aria-hidden
+          />
         </div>
 
-        {obstacles.map((o) => {
-          const bottom = o.flying ? groundY - 78 : groundY - 4;
-          return (
-            <div
-              key={o.id}
-              className="absolute flex flex-col-reverse items-center justify-end leading-none"
-              style={{
-                left: o.x,
-                bottom,
-                width: o.w,
-              }}
-            >
-              {o.emojis.map((emoji, idx) => (
-                <span
-                  key={`${o.id}-${idx}`}
-                  className="block text-2xl drop-shadow-sm"
-                  style={{ marginBottom: idx > 0 ? -6 : 0 }}
-                  aria-hidden
-                >
-                  {emoji}
-                </span>
-              ))}
-            </div>
-          );
-        })}
+        {obstacles.map((o) => (
+          <div
+            key={o.id}
+            className="absolute flex items-end justify-center"
+            style={{
+              left: o.x,
+              bottom: o.flying ? GROUND_BOTTOM + FLY_LANE : GROUND_BOTTOM,
+              width: o.w,
+            }}
+          >
+            <ObstacleStack icons={o.icons} power={o.power} />
+          </div>
+        ))}
 
-        <p className="absolute bottom-2 left-4 text-xs font-medium text-fg-muted">
-          Space / 클릭 점프 · 쌓인 이모지는 높이 점프 · ⭐ 보너스 · 충돌 시 점수 0
+        <p className="absolute bottom-1.5 left-3 right-3 text-center text-[11px] font-medium text-fg-muted">
+          Space / 클릭 — 바닥에서 점프 · 쌓인 장애물은 높게 · Star 보너스 · 충돌
+          시 점수 0
         </p>
       </div>
     </section>
