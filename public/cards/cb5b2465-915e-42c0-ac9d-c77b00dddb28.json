@@ -1,0 +1,15 @@
+{
+  "cardId": "cb5b2465-915e-42c0-ac9d-c77b00dddb28",
+  "overallScore": 91,
+  "categoryScores": {
+    "performance": 88,
+    "accessibility": 95,
+    "seo": 80,
+    "ux": 100
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-02T01:50:18.495Z",
+  "topImprovements": [
+    "전반적으로 양호합니다. 세부 항목을 점검해 보세요."
+  ]
+}
