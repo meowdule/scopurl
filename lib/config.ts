@@ -4,6 +4,9 @@ export const DEFAULT_GITHUB_REPO = "meowdule/scopurl";
 /** GitHub Pages project-site path for meowdule/scopurl */
 export const DEFAULT_BASE_PATH = "/scopurl";
 
+/** Used when Analyze is clicked with an empty URL field */
+export const DEFAULT_ANALYZE_URL = "https://example.com";
+
 export function getConfiguredRepo(): string {
   const fromEnv = process.env.NEXT_PUBLIC_GITHUB_REPO?.trim();
   if (fromEnv) return fromEnv;

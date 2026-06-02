@@ -48,7 +48,7 @@ export function SiteShell() {
         </div>
       )}
 
-      {report && <FloatingLeadButton shake />}
+      <FloatingLeadButton shake={Boolean(report)} />
 
       <footer className="footer mt-14 border-t border-card-border pt-8 text-center text-xs leading-relaxed text-fg-muted">
         <p className="font-medium text-fg">데이터 보관 안내</p>

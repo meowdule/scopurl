@@ -20,6 +20,7 @@ import { fetchReport, fetchStatus } from "@/lib/pollReport";
 import { formatStatusError } from "@/lib/analysisErrors";
 import { AnalysisStatusPanel } from "@/components/AnalysisStatusPanel";
 import { AnalysisWaitExperience } from "@/components/AnalysisWaitExperience";
+import { DEFAULT_ANALYZE_URL } from "@/lib/config";
 import { analyzeFormStrings as t } from "@/lib/uiStrings";
 
 function newReportId(): string {
@@ -116,7 +117,12 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
 
   const onAnalyze = useCallback(async () => {
     setError(null);
-    const v = validateHttpUrl(urlInput);
+    const trimmed = urlInput.trim();
+    const targetInput = trimmed || DEFAULT_ANALYZE_URL;
+    if (!trimmed) {
+      setUrlInput(DEFAULT_ANALYZE_URL);
+    }
+    const v = validateHttpUrl(targetInput);
     if (!v.ok || !v.normalized) {
       setError(v.error || "Invalid URL");
       return;
