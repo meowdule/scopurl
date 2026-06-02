@@ -1,0 +1,17 @@
+{
+  "cardId": "92f21f48-62db-43f5-91f6-9ccb264a08dc",
+  "overallScore": 61,
+  "categoryScores": {
+    "performance": 66,
+    "accessibility": 55,
+    "seo": 100,
+    "ux": 100
+  },
+  "statusLabel": "Warning",
+  "generatedAt": "2026-06-02T00:45:12.973Z",
+  "topImprovements": [
+    "접근성 점수(55점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+    "페이지당 접근성 이슈가 평균 32.9건 있어 8점 감점되었습니다.",
+    "이미지·API 등 로딩 실패 120건으로 8점 감점되었습니다."
+  ]
+}
