@@ -1,6 +1,23 @@
 {
   "reportId": "186b12b4-900f-47cf-89c6-2f5053ecbdeb",
+  "updatedAt": "2026-06-02T00:23:37.424Z",
   "targetUrl": "https://example.com/",
-  "phase": "queued",
-  "updatedAt": "2026-06-02T00:22:06Z"
+  "phase": "complete",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://example.com/",
+    "redirectChain": [
+      "https://example.com/"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 59,
+    "internalLinkCount": 1,
+    "screenshotRelativePath": "reports/186b12b4-900f-47cf-89c6-2f5053ecbdeb/screenshots/quick-home.jpg"
+  },
+  "expiresAt": "2026-07-02T00:23:37.420Z"
 }
