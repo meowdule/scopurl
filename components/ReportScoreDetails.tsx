@@ -1,7 +1,9 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
 import { buildQualityProfile } from "@/lib/qualityProfile";
+import { ScoreTierBadge } from "@/components/ReportCharts";
 
 type Props = {
   report: ReportJson;
@@ -13,35 +15,43 @@ export function ReportScoreDetails({ report }: Props) {
   const bd = summary.healthBreakdown;
 
   return (
-    <section className="panel mt-8">
+    <section className="panel mt-5">
       <h2 className="text-sm font-semibold text-fg">상세 분석</h2>
-      <p className="mt-1 text-sm text-fg-muted">
-        각 영역에서 확인된 내용과 개선 방향입니다.
+      <p className="mt-1 text-xs text-fg-muted">
+        필요한 영역만 펼쳐서 확인하세요.
       </p>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-3 divide-y divide-card-border">
         {axes.map((axis) => (
-          <div
-            key={axis.key}
-            className="border-b border-card-border pb-5 last:border-0 last:pb-0"
-          >
-            <h3 className="text-sm font-semibold text-fg">{axis.label}</h3>
-            <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-fg-muted">
+          <details key={axis.key} className="group py-0.5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-3 [&::-webkit-details-marker]:hidden">
+              <span className="flex items-center gap-2 text-sm font-medium text-fg">
+                <ChevronRight
+                  className="h-4 w-4 text-fg-muted transition group-open:rotate-90"
+                  aria-hidden
+                />
+                {axis.label}
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="text-sm font-bold tabular-nums text-fg">
+                  {axis.score}점
+                </span>
+                <ScoreTierBadge tier={axis.tier} label={axis.tierLabel} />
+              </span>
+            </summary>
+            <ul className="mb-3 space-y-1.5 pb-1 pl-6 text-sm leading-relaxed text-fg-muted">
               {axis.detailBullets.map((line) => (
-                <li key={line} className="flex gap-2">
-                  <span className="text-fg-muted/60">·</span>
-                  <span>{line}</span>
-                </li>
+                <li key={line}>· {line}</li>
               ))}
             </ul>
-          </div>
+          </details>
         ))}
       </div>
 
       {bd && bd.penalties.length > 0 && (
-        <div className="mt-6 rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+        <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-950">
           <p className="font-semibold">추가 감점 −{bd.penaltyTotal}점</p>
-          <ul className="mt-2 space-y-1 text-xs leading-relaxed">
+          <ul className="mt-1 space-y-0.5 text-xs">
             {bd.penalties.map((p) => (
               <li key={p.id}>· {p.message}</li>
             ))}

@@ -9,7 +9,6 @@ import { QualityDashboard } from "@/components/QualityDashboard";
 import { ReportScoreDetails } from "@/components/ReportScoreDetails";
 import { TimingSection } from "@/components/TimingSection";
 import { ExtendedReportCta } from "@/components/ExtendedReportCta";
-import { ScoreCardShare } from "@/components/ScoreCardShare";
 
 type Props =
   | { report: ReportJson; reportId?: never; onNewAnalysis?: () => void }
@@ -71,7 +70,7 @@ export function ReportDashboard({
   const { pages, targetUrl, brokenLinks, timing } = report;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 print:text-black">
+    <div className="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 print:text-black">
       {onNewAnalysis ? (
         <button
           type="button"
@@ -91,40 +90,37 @@ export function ReportDashboard({
 
       <QualityDashboard report={report} />
 
+      <ExtendedReportCta defaultSiteUrl={targetUrl} />
+
       <ReportScoreDetails report={report} />
 
-      {timing && <TimingSection timing={timing} report={report} />}
-
-      <section className="panel mt-8 overflow-x-auto">
+      <section className="panel mt-5 overflow-x-auto">
         <h2 className="text-sm font-semibold text-fg">분석한 페이지</h2>
-        <p className="mt-1 text-sm text-fg-muted">
-          각 페이지의 접속 상태와 품질 점수 요약입니다.
-        </p>
-        <table className="mt-4 w-full min-w-[640px] border-collapse text-left text-sm">
+        <table className="mt-3 w-full min-w-[560px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-card-border text-fg-muted">
-              <th className="py-2 pr-4 font-medium">주소</th>
-              <th className="py-2 pr-4 font-medium">접속</th>
-              <th className="py-2 pr-4 font-medium">성능</th>
-              <th className="py-2 pr-4 font-medium">접근성 이슈</th>
+            <tr className="border-b border-card-border text-xs text-fg-muted">
+              <th className="py-2 pr-3 font-medium">주소</th>
+              <th className="py-2 pr-3 font-medium">접속</th>
+              <th className="py-2 pr-3 font-medium">성능</th>
+              <th className="py-2 font-medium">접근성</th>
             </tr>
           </thead>
           <tbody>
             {pages.map((p) => (
               <tr
                 key={p.url}
-                className="border-b border-card-border/80 text-fg"
+                className="border-b border-card-border/60 text-fg"
               >
-                <td className="max-w-xs truncate py-3 pr-4 text-xs text-fg-muted">
+                <td className="max-w-[200px] truncate py-2 pr-3 text-xs text-fg-muted">
                   {p.url}
                 </td>
-                <td className="py-3 pr-4 tabular-nums">
+                <td className="py-2 pr-3 tabular-nums text-xs">
                   {p.statusCode ?? "—"}
                 </td>
-                <td className="py-3 pr-4 tabular-nums">
+                <td className="py-2 pr-3 tabular-nums text-xs">
                   {p.lighthouse?.performance ?? "—"}
                 </td>
-                <td className="py-3 pr-4 tabular-nums">
+                <td className="py-2 tabular-nums text-xs">
                   {(p.axeViolations || []).reduce((s, v) => s + v.nodes, 0)}
                 </td>
               </tr>
@@ -134,26 +130,22 @@ export function ReportDashboard({
       </section>
 
       {brokenLinks.length > 0 && (
-        <section className="panel mt-8">
+        <section className="panel mt-5">
           <h2 className="text-sm font-semibold text-fg">깨진 링크</h2>
-          <ul className="mt-4 space-y-2 text-sm text-fg-muted">
-            {brokenLinks.slice(0, 20).map((b) => (
+          <ul className="mt-2 space-y-1.5 text-xs text-fg-muted">
+            {brokenLinks.slice(0, 10).map((b) => (
               <li
                 key={`${b.from}-${b.to}`}
-                className="rounded-lg border border-card-border bg-page px-4 py-3"
+                className="rounded-md border border-card-border px-3 py-2"
               >
-                <span className="text-xs text-fg-muted">{b.from}</span>
-                <span className="mx-2 text-fg">→</span>
-                <span className="text-xs text-fg">{b.to}</span>
+                {b.from} → {b.to}
               </li>
             ))}
           </ul>
         </section>
       )}
 
-      <ScoreCardShare report={report} />
-
-      <ExtendedReportCta defaultSiteUrl={targetUrl} />
+      {timing && <TimingSection timing={timing} report={report} />}
     </div>
   );
 }

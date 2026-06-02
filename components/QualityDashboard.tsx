@@ -1,7 +1,10 @@
 "use client";
 
-import { AlertOctagon, AlertTriangle } from "lucide-react";
+import { useRef, useState } from "react";
+import { Check, Download, Share2 } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
+import { assetUrl } from "@/lib/paths";
+import { captureElementPng } from "@/lib/shareCardImage";
 import {
   buildPriorityImprovements,
   buildQualityProfile,
@@ -10,6 +13,7 @@ import {
 } from "@/lib/qualityProfile";
 import { ScoreTierBadge, StatusBadge } from "@/components/ReportCharts";
 import { RadarChart } from "@/components/RadarChart";
+import { PriorityTop3 } from "@/components/PriorityTop3";
 import { PdfDownloadButton } from "@/components/PdfDownloadButton";
 
 type Props = {
@@ -17,50 +21,100 @@ type Props = {
 };
 
 export function QualityDashboard({ report }: Props) {
-  const { summary, targetUrl, completedAt, crawlMeta, deviceProfile } = report;
+  const shareRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+  const { summary, targetUrl, completedAt, crawlMeta, deviceProfile, cardId } =
+    report;
   const axes = buildQualityProfile(report);
   const priorities = buildPriorityImprovements(axes);
   const kpi = buildReportKpi(report);
   const profile = deviceProfile || crawlMeta?.deviceProfile;
+  const cardPath = cardId ? assetUrl(`/card/${cardId}`) : null;
+  const topImprovements = summary.topImprovements?.slice(0, 3) ?? [];
+
+  const downloadPng = async () => {
+    const el = shareRef.current;
+    if (!el) return;
+    await captureElementPng(el, "scopurl-score-card.png");
+  };
+
+  const copyShareUrl = async () => {
+    if (!cardPath) return;
+    const full =
+      typeof window !== "undefined"
+        ? `${window.location.origin}${cardPath}`
+        : cardPath;
+    await navigator.clipboard.writeText(full);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section className="mt-4 space-y-8">
-      <div className="border-b border-card-border pb-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
-          scopurl 품질 리포트
-        </p>
-        <p className="mt-2 break-all text-lg font-semibold text-fg sm:text-xl">
-          {targetUrl}
-        </p>
-        <div className="mt-3 flex flex-wrap gap-3 print:hidden">
+    <section className="mt-4 space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-card-border pb-4 print:hidden">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
+            scopurl 품질 리포트
+          </p>
+          <p className="mt-1 break-all text-base font-semibold text-fg sm:text-lg">
+            {targetUrl}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
           <PdfDownloadButton reportId={report.reportId} targetUrl={targetUrl} />
           {profile && (
-            <span className="rounded-full border border-card-border bg-page px-3 py-1 text-xs font-medium text-fg">
-              {profile === "mobile"
-                ? "모바일 화면 (390px) 분석"
-                : "데스크톱 화면 (1440px) 분석"}
+            <span className="rounded-full border border-card-border bg-page px-2.5 py-0.5 text-xs text-fg">
+              {profile === "mobile" ? "모바일" : "데스크톱"}
             </span>
           )}
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
-        <div className="panel flex flex-col justify-center p-6 sm:p-8">
-          <div className="flex flex-wrap items-end gap-4">
-            <p className="text-6xl font-bold tabular-nums leading-none text-fg sm:text-7xl">
+      <div className="panel relative overflow-hidden p-4 sm:p-5">
+        <div className="absolute right-3 top-3 flex gap-1.5 print:hidden">
+          <button
+            type="button"
+            onClick={() => void downloadPng()}
+            aria-label="PNG 다운로드"
+            title="PNG 다운로드"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-card-border bg-card text-fg hover:border-accent-dim/40"
+          >
+            <Download className="h-4 w-4" aria-hidden />
+          </button>
+          {cardPath && (
+            <button
+              type="button"
+              onClick={() => void copyShareUrl()}
+              aria-label="공유 페이지 주소 복사"
+              title="공유 페이지 주소 복사"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-card-border bg-card text-fg hover:border-accent-dim/40"
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-accent-dim" aria-hidden />
+              ) : (
+                <Share2 className="h-4 w-4" aria-hidden />
+              )}
+            </button>
+          )}
+        </div>
+
+        <div ref={shareRef} className="rounded-lg bg-page-alt/30 p-4 pr-20 sm:pr-24">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-accent-dim">
+            scopurl
+          </p>
+          <div className="mt-2 flex flex-wrap items-end gap-3">
+            <p className="text-5xl font-bold tabular-nums leading-none text-fg sm:text-6xl">
               {summary.healthScore}
             </p>
-            <div className="pb-1">
-              {summary.statusLabel && (
-                <StatusBadge status={summary.statusLabel} />
-              )}
-            </div>
+            {summary.statusLabel && (
+              <StatusBadge status={summary.statusLabel} />
+            )}
           </div>
-          <p className="mt-4 text-base leading-relaxed text-fg">
+          <p className="mt-2 text-sm leading-relaxed text-fg">
             {dashboardSummaryText(summary.statusLabel)}
           </p>
           {completedAt && (
-            <p className="mt-2 text-sm text-fg-muted">
+            <p className="mt-1 text-xs text-fg-muted">
               {new Date(completedAt).toLocaleString("ko-KR", {
                 year: "numeric",
                 month: "2-digit",
@@ -70,133 +124,78 @@ export function QualityDashboard({ report }: Props) {
               })}
             </p>
           )}
-        </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 lg:gap-3">
-          <KpiCard label="분석 페이지" value={String(kpi.pageCount)} unit="개" />
-          <KpiCard label="발견 링크" value={String(kpi.linkCount)} unit="개" />
-          <KpiCard label="발견 이슈" value={String(kpi.issueCount)} unit="건" />
-          <KpiCard
-            label="분석 시간"
-            value={
-              kpi.analysisSeconds != null
-                ? String(Math.round(kpi.analysisSeconds))
-                : "—"
-            }
-            unit={kpi.analysisSeconds != null ? "초" : ""}
-          />
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <KpiInline label="분석 페이지" value={`${kpi.pageCount}개`} />
+            <KpiInline label="발견 링크" value={`${kpi.linkCount}개`} />
+            <KpiInline label="발견 이슈" value={`${kpi.issueCount}건`} />
+            <KpiInline
+              label="분석 시간"
+              value={
+                kpi.analysisSeconds != null
+                  ? `${Math.round(kpi.analysisSeconds)}초`
+                  : "—"
+              }
+            />
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {axes.map((axis) => (
+              <div
+                key={axis.key}
+                className="flex items-center justify-between rounded-md border border-card-border/80 bg-card px-2.5 py-1.5"
+              >
+                <span className="text-xs text-fg-muted">{axis.label}</span>
+                <span className="text-sm font-bold tabular-nums text-fg">
+                  {axis.score}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {topImprovements.length > 0 && (
+            <ul className="mt-4 space-y-1 border-t border-card-border/80 pt-3 text-xs leading-relaxed text-fg-muted">
+              {topImprovements.map((line) => (
+                <li key={line}>· {line}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 
-      <div className="panel p-6">
+      <div className="panel p-4 sm:p-5">
         <h2 className="text-sm font-semibold text-fg">품질 프로필</h2>
-        <p className="mt-1 text-sm text-fg-muted">
-          7개 영역의 균형을 한눈에 확인할 수 있습니다.
-        </p>
-        <div className="mt-6">
+        <div className="mt-3 flex justify-center">
           <RadarChart axes={axes} />
         </div>
-      </div>
-
-      <div>
-        <h2 className="text-sm font-semibold text-fg">영역별 진단</h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {axes.map((axis) => (
             <div
               key={axis.key}
-              className="rounded-xl border border-card-border bg-card p-4 shadow-cardSm"
+              className="flex items-center justify-between rounded-lg border border-card-border bg-page-alt/40 px-2.5 py-2"
             >
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-sm font-semibold text-fg">{axis.label}</p>
-                <ScoreTierBadge tier={axis.tier} label={axis.tierLabel} />
+              <div className="min-w-0">
+                <p className="text-xs font-medium text-fg">{axis.label}</p>
+                <p className="text-lg font-bold tabular-nums leading-tight text-fg">
+                  {axis.score}
+                </p>
               </div>
-              <p className="mt-2 text-3xl font-bold tabular-nums text-fg">
-                {axis.score}
-                <span className="ml-0.5 text-base font-medium text-fg-muted">
-                  점
-                </span>
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-fg-muted">
-                {axis.summary}
-              </p>
+              <ScoreTierBadge tier={axis.tier} label={axis.tierLabel} />
             </div>
           ))}
         </div>
       </div>
 
-      {priorities.length > 0 && (
-        <div>
-          <h2 className="text-sm font-semibold text-fg">우선 개선 항목</h2>
-          <p className="mt-1 text-sm text-fg-muted">
-            점수가 낮은 영역부터 개선하면 효과가 큽니다.
-          </p>
-          <div className="mt-4 space-y-3">
-            {priorities.map((item) => (
-              <div
-                key={item.axis.key}
-                className="rounded-xl border border-card-border bg-page-alt/40 p-5"
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  {item.urgency === "high" ? (
-                    <AlertOctagon
-                      className="h-4 w-4 shrink-0 text-red-600"
-                      aria-hidden
-                    />
-                  ) : (
-                    <AlertTriangle
-                      className="h-4 w-4 shrink-0 text-amber-600"
-                      aria-hidden
-                    />
-                  )}
-                  <span className="text-sm font-semibold text-fg">
-                    {item.axis.label}
-                  </span>
-                  <span className="text-sm tabular-nums text-fg-muted">
-                    {item.axis.score}점
-                  </span>
-                  <ScoreTierBadge
-                    tier={item.axis.tier}
-                    label={item.axis.tierLabel}
-                  />
-                </div>
-                <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-fg">
-                  {item.actions.map((action) => (
-                    <li key={action} className="flex gap-2">
-                      <span className="text-fg-muted">·</span>
-                      <span>{action}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-3 text-xs font-medium text-accent-dim">
-                  예상 개선 효과 +{item.expectedGain}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {priorities.length > 0 && <PriorityTop3 items={priorities} />}
     </section>
   );
 }
 
-function KpiCard({
-  label,
-  value,
-  unit,
-}: {
-  label: string;
-  value: string;
-  unit: string;
-}) {
+function KpiInline({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-card-border bg-card p-4 shadow-cardSm">
-      <p className="text-xs font-medium text-fg-muted">{label}</p>
-      <p className="mt-2 flex items-baseline gap-0.5">
-        <span className="text-2xl font-bold tabular-nums text-fg">{value}</span>
-        {unit && (
-          <span className="text-xs font-medium text-fg-muted">{unit}</span>
-        )}
-      </p>
+    <div className="rounded-md border border-card-border/80 bg-card px-2.5 py-2">
+      <p className="text-[10px] text-fg-muted">{label}</p>
+      <p className="mt-0.5 text-sm font-semibold tabular-nums text-fg">{value}</p>
     </div>
   );
 }
