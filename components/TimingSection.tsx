@@ -7,6 +7,7 @@ import {
   humanizeTimingSummaryLine,
 } from "@/lib/reportCopy";
 import { buildReportKpi } from "@/lib/qualityProfile";
+import { REPORT_SECTION } from "@/lib/reportSections";
 
 type Props = {
   timing: TimingReport;
@@ -60,7 +61,11 @@ export function TimingSection({ timing, report }: Props) {
     timing.phases && Object.keys(timing.phases).length > 0;
 
   return (
-    <section className="panel mt-5">
+    <section
+      id={REPORT_SECTION.analysisProcess}
+      data-report-section={REPORT_SECTION.analysisProcess}
+      className="panel mt-5"
+    >
       <h2 className="text-sm font-semibold text-fg">분석 과정</h2>
       <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
         <SummaryChip

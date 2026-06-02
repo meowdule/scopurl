@@ -5,12 +5,19 @@ import type { QualityAxis } from "@/lib/qualityProfile";
 type Props = {
   axes: QualityAxis[];
   size?: number;
+  showScores?: boolean;
+  className?: string;
 };
 
-export function RadarChart({ axes, size = 240 }: Props) {
+export function RadarChart({
+  axes,
+  size = 240,
+  showScores = false,
+  className,
+}: Props) {
   const cx = size / 2;
   const cy = size / 2;
-  const maxR = size * 0.34;
+  const maxR = size * 0.32;
   const n = axes.length;
   const angleStep = (Math.PI * 2) / n;
   const startAngle = -Math.PI / 2;
@@ -21,8 +28,8 @@ export function RadarChart({ axes, size = 240 }: Props) {
     return {
       x: cx + r * Math.cos(angle),
       y: cy + r * Math.sin(angle),
-      lx: cx + (maxR + 18) * Math.cos(angle),
-      ly: cy + (maxR + 18) * Math.sin(angle),
+      lx: cx + (maxR + (showScores ? 22 : 16)) * Math.cos(angle),
+      ly: cy + (maxR + (showScores ? 22 : 16)) * Math.sin(angle),
     };
   };
 
@@ -33,7 +40,7 @@ export function RadarChart({ axes, size = 240 }: Props) {
   return (
     <svg
       viewBox={`0 0 ${size} ${size}`}
-      className="mx-auto w-full max-w-[260px]"
+      className={className ?? "mx-auto w-full max-w-[260px]"}
       role="img"
       aria-label="7축 품질 프로필 레이더 차트"
     >
@@ -72,7 +79,7 @@ export function RadarChart({ axes, size = 240 }: Props) {
 
       <polygon
         points={polygon}
-        fill="rgba(0, 196, 113, 0.18)"
+        fill="rgba(0, 196, 113, 0.2)"
         stroke="#00a85f"
         strokeWidth={2}
       />
@@ -84,17 +91,31 @@ export function RadarChart({ axes, size = 240 }: Props) {
       {axes.map((axis, i) => {
         const p = pointAt(i, 100);
         return (
-          <text
-            key={axis.key}
-            x={p.lx}
-            y={p.ly}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill="#64748b"
-            fontSize={9}
-          >
-            {axis.label}
-          </text>
+          <g key={axis.key}>
+            <text
+              x={p.lx}
+              y={p.ly - (showScores ? 5 : 0)}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="#64748b"
+              fontSize={showScores ? 8 : 9}
+            >
+              {axis.label}
+            </text>
+            {showScores && (
+              <text
+                x={p.lx}
+                y={p.ly + 8}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="#0f172a"
+                fontSize={9}
+                fontWeight="600"
+              >
+                {axis.score}
+              </text>
+            )}
+          </g>
         );
       })}
     </svg>

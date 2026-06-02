@@ -3,6 +3,7 @@
 import { ChevronRight } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
 import { buildQualityProfile } from "@/lib/qualityProfile";
+import { REPORT_SECTION } from "@/lib/reportSections";
 import { ScoreTierBadge } from "@/components/ReportCharts";
 
 type Props = {
@@ -15,7 +16,11 @@ export function ReportScoreDetails({ report }: Props) {
   const bd = summary.healthBreakdown;
 
   return (
-    <section className="panel mt-5">
+    <section
+      id={REPORT_SECTION.detailAccordion}
+      data-report-section={REPORT_SECTION.detailAccordion}
+      className="panel mt-5"
+    >
       <h2 className="text-sm font-semibold text-fg">상세 분석</h2>
       <p className="mt-1 text-xs text-fg-muted">
         필요한 영역만 펼쳐서 확인하세요.

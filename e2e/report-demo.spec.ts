@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("fixture report (/demo)", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/demo");
-    await expect(page.getByRole("heading", { name: "품질 프로필" })).toBeVisible({
+    await expect(page.getByRole("heading", { name: "상세 분석" })).toBeVisible({
       timeout: 15_000,
     });
   });
@@ -30,18 +30,16 @@ test.describe("fixture report (/demo)", () => {
     await expect(page.getByLabel("공유 페이지 주소 복사")).toBeVisible();
   });
 
-  test("analysis process collapsed by default", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: "분석 과정" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "분석 과정 보기" })).toBeVisible();
+  test("analysis process section is not rendered for minimal fixture", async ({ page }) => {
+    await expect(
+      page.getByRole("heading", { name: "분석 과정" }),
+    ).toHaveCount(0);
   });
 });
 
 test.describe("sample report (/report)", () => {
   test("loads compact report layout", async ({ page }) => {
     await page.goto("/report");
-    await expect(page.getByRole("heading", { name: "품질 프로필" })).toBeVisible({
-      timeout: 15_000,
-    });
     await expect(page.getByRole("heading", { name: "분석한 페이지" })).toBeVisible();
     await expect(page.getByLabel("PNG 다운로드")).toBeVisible();
   });

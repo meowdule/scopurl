@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { LeadModal } from "@/components/LeadModal";
 import { LeadSuccessDialog } from "@/components/LeadSuccessDialog";
+import { REPORT_SECTION } from "@/lib/reportSections";
 
 type Props = {
   defaultSiteUrl?: string;
@@ -14,7 +15,11 @@ export function ExtendedReportCta({ defaultSiteUrl }: Props) {
 
   return (
     <>
-      <div className="mt-5 rounded-xl border border-accent-dim/25 bg-accent-soft/25 px-4 py-4 print:hidden">
+      <div
+        id={REPORT_SECTION.extendedCta}
+        data-report-section={REPORT_SECTION.extendedCta}
+        className="mt-5 rounded-xl border border-accent-dim/25 bg-accent-soft/25 px-4 py-4 print:hidden"
+      >
         <p className="text-sm font-semibold text-fg">
           더 자세한 분석이 필요하신가요?
         </p>

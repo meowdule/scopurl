@@ -9,6 +9,7 @@ import { QualityDashboard } from "@/components/QualityDashboard";
 import { ReportScoreDetails } from "@/components/ReportScoreDetails";
 import { TimingSection } from "@/components/TimingSection";
 import { ExtendedReportCta } from "@/components/ExtendedReportCta";
+import { REPORT_SECTION } from "@/lib/reportSections";
 
 type Props =
   | { report: ReportJson; reportId?: never; onNewAnalysis?: () => void }
@@ -94,7 +95,11 @@ export function ReportDashboard({
 
       <ReportScoreDetails report={report} />
 
-      <section className="panel mt-5 overflow-x-auto">
+      <section
+        id={REPORT_SECTION.pagesTable}
+        data-report-section={REPORT_SECTION.pagesTable}
+        className="panel mt-5 overflow-x-auto"
+      >
         <h2 className="text-sm font-semibold text-fg">분석한 페이지</h2>
         <table className="mt-3 w-full min-w-[560px] border-collapse text-left text-sm">
           <thead>
@@ -130,7 +135,11 @@ export function ReportDashboard({
       </section>
 
       {brokenLinks.length > 0 && (
-        <section className="panel mt-5">
+        <section
+          id={REPORT_SECTION.brokenLinks}
+          data-report-section={REPORT_SECTION.brokenLinks}
+          className="panel mt-5"
+        >
           <h2 className="text-sm font-semibold text-fg">깨진 링크</h2>
           <ul className="mt-2 space-y-1.5 text-xs text-fg-muted">
             {brokenLinks.slice(0, 10).map((b) => (
