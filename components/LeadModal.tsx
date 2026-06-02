@@ -73,14 +73,14 @@ export function LeadModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <div
         role="dialog"
         aria-modal
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-surface-border bg-surface-raised p-6 shadow-xl"
+        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-card-border bg-card p-6 shadow-card"
       >
-        <h2 className="text-lg font-semibold text-white">{MODE_TITLES[mode]}</h2>
-        <p className="mt-1 text-xs text-slate-400">
+        <h2 className="text-lg font-semibold text-fg">{MODE_TITLES[mode]}</h2>
+        <p className="mt-1 text-sm text-fg-muted">
           {mode === "pdf"
             ? "이메일 제출 후 PDF를 바로 다운로드할 수 있습니다."
             : mode === "extended"
@@ -94,7 +94,7 @@ export function LeadModal({
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-slate-100"
+              className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"
             />
           </Field>
           {(mode === "solution" || mode === "extended" || mode === "general") && (
@@ -102,7 +102,7 @@ export function LeadModal({
               <input
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-slate-100"
+                className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"
               />
             </Field>
           )}
@@ -111,7 +111,7 @@ export function LeadModal({
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-slate-100"
+                className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"
               />
             </Field>
           )}
@@ -122,7 +122,7 @@ export function LeadModal({
                   type="url"
                   value={siteUrl}
                   onChange={(e) => setSiteUrl(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-slate-100"
+                  className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"
                 />
               </Field>
               <Field label="요청 내용 (선택)">
@@ -130,24 +130,24 @@ export function LeadModal({
                   rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-slate-100"
+                  className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"
                 />
               </Field>
             </>
           )}
-          {error && <p className="text-sm text-red-300">{error}</p>}
+          {error && <p className="text-sm text-red-700">{error}</p>}
           <div className="flex gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 rounded-lg border border-surface-border px-4 py-2 text-sm text-slate-300"
+              className="flex-1 rounded-lg border border-card-border px-4 py-2 text-sm font-medium text-fg"
             >
               취소
             </button>
             <button
               type="submit"
               disabled={busy}
-              className="flex-1 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+              className="flex-1 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
             >
               {busy ? "제출 중…" : "제출"}
             </button>
@@ -167,7 +167,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs text-slate-400">{label}</span>
+      <span className="text-xs font-medium text-fg-muted">{label}</span>
       <div className="mt-1">{children}</div>
     </label>
   );

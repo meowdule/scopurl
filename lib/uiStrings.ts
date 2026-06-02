@@ -3,8 +3,8 @@ export const analyzeFormStrings = {
   analyzing: "\uBD84\uC11D \uC911\u2026",
   waitEstimate: "\uC608\uC0C1 \uB300\uAE30 \uC2DC\uAC04 \uC57D 3-8\uBD84",
   deviceSize: "\uBD84\uC11D \uD654\uBA74 \uD06C\uAE30",
-  desktop: "\uB370\uC2A4\uD06C\uD0B1 (1440px)",
-  mobile: "\uBAA8\uBC14\uC77C (390px)",
+  desktop: "\uB370\uC2A4\uD06C\uD0B1 \u00B7 1440px",
+  mobile: "\uBAA8\uBC14\uC77C \u00B7 390px",
   advancedOptions: "\uACE0\uAE09 \uBD84\uC11D \uC635\uC158",
   maxPages: (max: number) =>
     `\uCD5C\uB300 \uD398\uC774\uC9C0 (\uBB34\uB8CC 1-${max})`,

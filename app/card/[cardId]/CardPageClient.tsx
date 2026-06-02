@@ -26,7 +26,7 @@ export function CardPageClient({ cardId }: { cardId: string }) {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-md px-4 py-20 text-center text-slate-400">
+      <div className="mx-auto max-w-md px-4 py-20 text-center text-fg-muted">
         <p>{error}</p>
         <Link href={assetUrl("/")} className="mt-4 inline-block text-accent">
           홈으로
@@ -37,7 +37,7 @@ export function CardPageClient({ cardId }: { cardId: string }) {
 
   if (!card) {
     return (
-      <div className="mx-auto max-w-md px-4 py-20 text-center text-slate-400">
+      <div className="mx-auto max-w-md px-4 py-20 text-center text-fg-muted">
         로딩 중…
       </div>
     );
@@ -45,8 +45,8 @@ export function CardPageClient({ cardId }: { cardId: string }) {
 
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-4 py-16">
-      <div className="rounded-xl border border-surface-border bg-surface-raised p-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+      <div className="panel p-8">
+        <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
           scopurl
         </p>
         <div className="mt-6 flex items-center gap-4">

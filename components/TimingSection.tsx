@@ -1,20 +1,10 @@
 "use client";
 
 import type { TimingReport } from "@/lib/types";
-
-const PHASE_LABELS: Record<string, string> = {
-  browser_launch: "브라우저 시작",
-  quick_scan: "빠른 점검",
-  crawl: "URL·페이지 수집",
-  page_analysis: "페이지 분석 (전체)",
-  report_generation: "리포트 생성",
-  initial_load: "초기 로드",
-  lighthouse: "Lighthouse",
-  accessibility_scan: "접근성 스캔",
-  screenshots: "스크린샷",
-  hydration_wait: "SPA 대기",
-  ui_signals_mobile: "모바일 UI 점검",
-};
+import {
+  humanizePhaseKey,
+  humanizeTimingSummaryLine,
+} from "@/lib/reportCopy";
 
 type Props = {
   timing: TimingReport;
@@ -22,32 +12,57 @@ type Props = {
 
 export function TimingSection({ timing }: Props) {
   const total = timing.totalSeconds ?? 0;
+  const rows = timing.summary
+    .map(humanizeTimingSummaryLine)
+    .filter((r) => r.seconds > 0)
+    .sort((a, b) => b.seconds - a.seconds);
+
+  const top = rows.slice(0, 5);
 
   return (
-    <section className="mt-8 rounded-xl border border-surface-border bg-surface-raised p-5">
-      <h2 className="text-sm font-semibold text-white">분석 소요 시간</h2>
-      <p className="mt-1 text-xs text-slate-500">
-        총 {total > 0 ? `${total.toFixed(1)}초` : "—"} — 어느 단계에서 시간이
-        많이 쓰였는지 확인할 수 있습니다.
+    <section className="panel mt-8">
+      <h2 className="text-sm font-semibold text-fg">분석에 시간이 쓰인 부분</h2>
+      <p className="mt-1 text-sm text-fg-muted">
+        전체 약 {total > 0 ? `${total.toFixed(0)}초` : "—"} 동안 아래 작업을
+        수행했습니다. 숫자가 클수록 그 단계에 더 많은 시간이 사용된 것입니다.
       </p>
-      <ul className="mt-4 space-y-2">
-        {timing.summary.map((line) => (
-          <li key={line} className="font-mono text-xs text-slate-300">
-            {humanizeTimingLine(line)}
-          </li>
-        ))}
-      </ul>
+
+      {top.length > 0 && total > 0 && (
+        <ul className="mt-5 space-y-3">
+          {top.map((row) => {
+            const pct = Math.min(100, (row.seconds / total) * 100);
+            return (
+              <li key={row.label}>
+                <div className="mb-1 flex justify-between gap-2 text-sm">
+                  <span className="font-medium text-fg">{row.label}</span>
+                  <span className="shrink-0 tabular-nums text-fg-muted">
+                    {row.seconds.toFixed(1)}초
+                  </span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-page">
+                  <div
+                    className="h-full rounded-full bg-accent-dim"
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
       {timing.phases && Object.keys(timing.phases).length > 0 && (
-        <details className="mt-4 border-t border-surface-border pt-4">
-          <summary className="cursor-pointer text-xs text-slate-400">
-            단계별 상세 (개발자용)
+        <details className="mt-5 border-t border-card-border pt-4">
+          <summary className="cursor-pointer text-xs font-medium text-fg-muted">
+            기술 상세 (선택)
           </summary>
-          <ul className="mt-2 space-y-1 font-mono text-xs text-slate-500">
+          <ul className="mt-3 space-y-1 text-xs text-fg-muted">
             {Object.entries(timing.phases)
               .sort(([, a], [, b]) => b - a)
               .map(([key, sec]) => (
-                <li key={key}>
-                  {PHASE_LABELS[key] || key}: {sec.toFixed(1)}s
+                <li key={key} className="flex justify-between gap-4">
+                  <span>{humanizePhaseKey(key)}</span>
+                  <span className="tabular-nums">{sec.toFixed(1)}초</span>
                 </li>
               ))}
           </ul>
@@ -55,13 +70,4 @@ export function TimingSection({ timing }: Props) {
       )}
     </section>
   );
-}
-
-function humanizeTimingLine(line: string): string {
-  for (const [key, label] of Object.entries(PHASE_LABELS)) {
-    if (line.toLowerCase().includes(key.replace(/_/g, " ")) || line.includes(key)) {
-      return line.replace(new RegExp(key, "gi"), label);
-    }
-  }
-  return line;
 }

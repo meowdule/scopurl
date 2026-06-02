@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { BellRing } from "lucide-react";
 import { LeadModal } from "@/components/LeadModal";
 import { LeadSuccessDialog } from "@/components/LeadSuccessDialog";
 
@@ -26,12 +27,13 @@ export function FloatingLeadButton({ shake }: Props) {
         id="fab-lead"
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="구독 및 문의"
-        className={`fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-2xl shadow-lg transition hover:bg-accent-muted ${
+        aria-label="업데이트 구독"
+        title="업데이트 구독"
+        className={`fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-card hover:bg-accent-dim ${
           shake ? "animate-shake" : ""
         }`}
       >
-        ✈️
+        <BellRing className="h-6 w-6" strokeWidth={2.25} aria-hidden />
       </button>
       <LeadModal
         open={open}

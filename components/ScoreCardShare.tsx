@@ -1,8 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
 import { assetUrl } from "@/lib/paths";
+import { statusSummaryText } from "@/lib/reportCopy";
 import { DonutChart, StatusBadge } from "@/components/ReportCharts";
 
 type Props = {
@@ -11,9 +13,12 @@ type Props = {
 
 export function ScoreCardShare({ report }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
   const { summary, cardId, completedAt } = report;
   const improvements =
     (summary as { topImprovements?: string[] }).topImprovements || [];
+
+  const cardPath = cardId ? assetUrl(`/card/${cardId}`) : null;
 
   const downloadPng = async () => {
     const el = cardRef.current;
@@ -26,7 +31,7 @@ export function ScoreCardShare({ report }: Props) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.scale(scale, scale);
-    ctx.fillStyle = "#161d27";
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, width, height);
 
     const data = new XMLSerializer().serializeToString(
@@ -50,7 +55,7 @@ export function ScoreCardShare({ report }: Props) {
           if (!b) return reject();
           const a = document.createElement("a");
           a.href = URL.createObjectURL(b);
-          a.download = "snapit-score-card.png";
+          a.download = "scopurl-score-card.png";
           a.click();
           resolve();
         }, "image/png");
@@ -60,19 +65,28 @@ export function ScoreCardShare({ report }: Props) {
     });
   };
 
-  const cardUrl = cardId ? assetUrl(`/card/${cardId}`) : null;
+  const copyShareUrl = async () => {
+    if (!cardPath) return;
+    const full =
+      typeof window !== "undefined"
+        ? `${window.location.origin}${cardPath}`
+        : cardPath;
+    await navigator.clipboard.writeText(full);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section className="mt-8 rounded-xl border border-surface-border bg-surface-raised p-5">
-      <h2 className="text-sm font-semibold text-white">점수 카드 공유</h2>
-      <p className="mt-1 text-xs text-slate-500">
-        사이트 주소 없이 점수와 개선 포인트만 공유합니다.
+    <section className="panel mt-8">
+      <h2 className="text-sm font-semibold text-fg">점수 카드 공유</h2>
+      <p className="mt-1 text-sm text-fg-muted">
+        사이트 주소 없이 점수와 개선 포인트만 공유할 수 있습니다.
       </p>
       <div
         ref={cardRef}
-        className="mt-4 rounded-xl border border-surface-border bg-surface p-6"
+        className="mt-4 rounded-xl border border-card-border bg-page-alt/50 p-6"
       >
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+        <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
           scopurl
         </p>
         <div className="mt-4 flex items-center gap-4">
@@ -81,15 +95,18 @@ export function ScoreCardShare({ report }: Props) {
             {summary.statusLabel && (
               <StatusBadge status={summary.statusLabel} />
             )}
+            <p className="mt-2 text-sm leading-relaxed text-fg">
+              {statusSummaryText(summary.statusLabel, summary.healthScore)}
+            </p>
             {completedAt && (
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-fg-muted">
                 {new Date(completedAt).toLocaleString("ko-KR")}
               </p>
             )}
           </div>
         </div>
         {summary.categoryScores && (
-          <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-slate-300">
+          <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-fg">
             <span>성능 {summary.categoryScores.performance ?? "—"}</span>
             <span>접근성 {summary.categoryScores.accessibility ?? "—"}</span>
             <span>사용성 {summary.categoryScores.ux ?? "—"}</span>
@@ -97,7 +114,7 @@ export function ScoreCardShare({ report }: Props) {
           </div>
         )}
         {improvements.length > 0 && (
-          <ul className="mt-4 list-inside list-disc text-xs text-slate-400">
+          <ul className="mt-4 list-inside list-disc text-sm leading-relaxed text-fg-muted">
             {improvements.slice(0, 3).map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -108,19 +125,28 @@ export function ScoreCardShare({ report }: Props) {
         <button
           type="button"
           onClick={() => void downloadPng()}
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white"
+          className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-cardSm hover:bg-accent-dim"
         >
           PNG 다운로드
         </button>
-        {cardUrl && (
-          <a
-            href={cardUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg border border-surface-border px-4 py-2 text-sm text-slate-300"
+        {cardPath && (
+          <button
+            type="button"
+            onClick={() => void copyShareUrl()}
+            className="inline-flex items-center gap-2 rounded-lg border border-card-border bg-card px-4 py-2 text-sm font-medium text-fg hover:border-accent-dim/40"
           >
-            공유 페이지 열기
-          </a>
+            {copied ? (
+              <>
+                <Check className="h-4 w-4 text-accent-dim" aria-hidden />
+                복사됨
+              </>
+            ) : (
+              <>
+                <Copy className="h-4 w-4 text-fg-muted" aria-hidden />
+                공유 페이지 주소 복사
+              </>
+            )}
+          </button>
         )}
       </div>
     </section>

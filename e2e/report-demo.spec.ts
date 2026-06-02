@@ -7,14 +7,14 @@ test.describe("fixture report (/demo)", () => {
   });
 
   test("shows executive summary and categories", async ({ page }) => {
-    await expect(page.getByText("카테고리별 점수")).toBeVisible();
+    await expect(page.getByText("영역별 점수")).toBeVisible();
     await expect(
       page.getByRole("heading", { name: "https://example.com" }),
     ).toBeVisible();
   });
 
   test("gated sections show solution CTA", async ({ page }) => {
-    await expect(page.getByText("주요 흐름")).toBeVisible();
+    await expect(page.getByText("주요 이용 흐름")).toBeVisible();
     await expect(page.getByRole("button", { name: "솔루션 문의" }).first()).toBeVisible();
   });
 
@@ -27,6 +27,9 @@ test.describe("fixture report (/demo)", () => {
   test("score card share section", async ({ page }) => {
     await expect(page.getByText("점수 카드 공유")).toBeVisible();
     await expect(page.getByRole("button", { name: "PNG 다운로드" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "공유 페이지 주소 복사" }),
+    ).toBeVisible();
   });
 
   test("extended report CTA", async ({ page }) => {
