@@ -71,3 +71,26 @@ export function StatusBadge({
     </span>
   );
 }
+
+const TIER_STYLES = {
+  excellent: "border-emerald-300 bg-emerald-50 text-emerald-800",
+  good: "border-sky-300 bg-sky-50 text-sky-900",
+  "needs-work": "border-amber-300 bg-amber-50 text-amber-900",
+  critical: "border-red-300 bg-red-50 text-red-800",
+} as const;
+
+export function ScoreTierBadge({
+  tier,
+  label,
+}: {
+  tier: keyof typeof TIER_STYLES;
+  label: string;
+}) {
+  return (
+    <span
+      className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${TIER_STYLES[tier]}`}
+    >
+      {label}
+    </span>
+  );
+}

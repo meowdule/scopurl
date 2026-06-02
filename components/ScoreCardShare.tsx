@@ -4,8 +4,11 @@ import { useRef, useState } from "react";
 import { Check, Download, Share2 } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
 import { assetUrl } from "@/lib/paths";
-import { statusSummaryText } from "@/lib/reportCopy";
-import { DonutChart, StatusBadge } from "@/components/ReportCharts";
+import {
+  buildQualityProfile,
+  dashboardSummaryText,
+} from "@/lib/qualityProfile";
+import { StatusBadge } from "@/components/ReportCharts";
 
 type Props = {
   report: ReportJson;
@@ -15,8 +18,7 @@ export function ScoreCardShare({ report }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
   const { summary, cardId, completedAt } = report;
-  const improvements =
-    (summary as { topImprovements?: string[] }).topImprovements || [];
+  const axes = buildQualityProfile(report).slice(0, 4);
 
   const cardPath = cardId ? assetUrl(`/card/${cardId}`) : null;
 
@@ -77,10 +79,10 @@ export function ScoreCardShare({ report }: Props) {
   };
 
   return (
-    <section className="panel mt-4 print:hidden">
+    <section className="panel mt-8 print:hidden">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-sm font-semibold text-fg">품질 점수</h2>
+          <h2 className="text-sm font-semibold text-fg">점수 카드 공유</h2>
           <p className="mt-1 text-sm text-fg-muted">
             사이트 주소 없이 점수와 개선 포인트만 공유할 수 있습니다.
           </p>
@@ -120,48 +122,39 @@ export function ScoreCardShare({ report }: Props) {
         <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
           scopurl
         </p>
-        <div className="mt-4 flex flex-wrap items-start gap-6">
-          <DonutChart value={summary.healthScore} label="종합" size={112} />
-          <div className="min-w-[200px] flex-1">
-            {summary.statusLabel && (
-              <StatusBadge status={summary.statusLabel} />
-            )}
-            <p className="mt-2 text-sm leading-relaxed text-fg">
-              {statusSummaryText(summary.statusLabel, summary.healthScore)}
-            </p>
-            {completedAt && (
-              <p className="mt-1 text-xs text-fg-muted">
-                {new Date(completedAt).toLocaleString("ko-KR")}
-              </p>
-            )}
-          </div>
+        <div className="mt-4 flex flex-wrap items-end gap-4">
+          <p className="text-5xl font-bold tabular-nums text-fg">
+            {summary.healthScore}
+          </p>
+          {summary.statusLabel && <StatusBadge status={summary.statusLabel} />}
         </div>
-        {summary.categoryScores && (
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <DonutChart
-              value={summary.categoryScores.performance}
-              label="성능"
-              size={72}
-            />
-            <DonutChart
-              value={summary.categoryScores.accessibility}
-              label="접근성"
-              size={72}
-            />
-            <DonutChart value={summary.categoryScores.ux} label="사용성" size={72} />
-            <DonutChart
-              value={summary.categoryScores.seo}
-              label="검색·공유"
-              size={72}
-            />
-          </div>
+        <p className="mt-3 text-sm leading-relaxed text-fg">
+          {dashboardSummaryText(summary.statusLabel)}
+        </p>
+        {completedAt && (
+          <p className="mt-1 text-xs text-fg-muted">
+            {new Date(completedAt).toLocaleString("ko-KR")}
+          </p>
         )}
-        {improvements.length > 0 && (
-          <div className="mt-6">
+        <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {axes.map((axis) => (
+            <div
+              key={axis.key}
+              className="rounded-lg border border-card-border bg-card px-3 py-2"
+            >
+              <p className="text-xs text-fg-muted">{axis.label}</p>
+              <p className="mt-0.5 text-lg font-bold tabular-nums text-fg">
+                {axis.score}
+              </p>
+            </div>
+          ))}
+        </div>
+        {(summary.topImprovements?.length ?? 0) > 0 && (
+          <div className="mt-5">
             <p className="text-xs font-medium text-fg-muted">주요 개선 포인트</p>
-            <ul className="mt-2 list-inside list-disc text-sm leading-relaxed text-fg-muted">
-              {improvements.slice(0, 3).map((item) => (
-                <li key={item}>{item}</li>
+            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-fg-muted">
+              {summary.topImprovements!.slice(0, 3).map((item) => (
+                <li key={item}>· {item}</li>
               ))}
             </ul>
           </div>

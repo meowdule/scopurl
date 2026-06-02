@@ -3,22 +3,20 @@ import { test, expect } from "@playwright/test";
 test.describe("fixture report (/demo)", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/demo");
-    await expect(page.getByRole("heading", { name: "품질 점수" })).toBeVisible({
+    await expect(page.getByRole("heading", { name: "품질 프로필" })).toBeVisible({
       timeout: 15_000,
     });
   });
 
-  test("shows score dashboard and detail section", async ({ page }) => {
+  test("shows quality dashboard and detail section", async ({ page }) => {
     await expect(page.getByRole("heading", { name: "상세 분석" })).toBeVisible();
-    await expect(
-      page.getByText("https://example.com", { exact: true }),
-    ).toBeVisible();
-    await expect(page.getByText("성능 · 페이지 로딩")).toBeVisible();
+    await expect(page.getByText("scopurl 품질 리포트")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "영역별 진단" })).toBeVisible();
+    await expect(page.getByText("성능", { exact: true }).first()).toBeVisible();
   });
 
-  test("gated sections show solution CTA", async ({ page }) => {
-    await expect(page.getByText("주요 이용 흐름")).toBeVisible();
-    await expect(page.getByRole("button", { name: "솔루션 문의" }).first()).toBeVisible();
+  test("shows priority improvements", async ({ page }) => {
+    await expect(page.getByRole("heading", { name: "우선 개선 항목" })).toBeVisible();
   });
 
   test("PDF download opens lead modal", async ({ page }) => {
@@ -33,17 +31,18 @@ test.describe("fixture report (/demo)", () => {
   });
 
   test("extended report CTA", async ({ page }) => {
-    await expect(page.getByText("확장 분석 요청")).toBeVisible();
+    await expect(page.getByText("더 자세한 결과가 필요하신가요?")).toBeVisible();
+    await expect(page.getByRole("button", { name: "확장 분석 요청" })).toBeVisible();
   });
 });
 
 test.describe("sample report (/report)", () => {
   test("loads example report without redirect", async ({ page }) => {
     await page.goto("/report");
-    await expect(page.getByRole("heading", { name: "품질 점수" })).toBeVisible({
+    await expect(page.getByRole("heading", { name: "품질 프로필" })).toBeVisible({
       timeout: 15_000,
     });
     await expect(page.getByRole("heading", { name: "상세 분석" })).toBeVisible();
-    await expect(page.getByText("분석에 시간이 쓰인 부분")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "분석 과정" })).toBeVisible();
   });
 });
