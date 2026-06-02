@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Download, Share2 } from "lucide-react";
 import type { ReportJson } from "@/lib/types";
 import { assetUrl } from "@/lib/paths";
 import { statusSummaryText } from "@/lib/reportCopy";
@@ -77,11 +77,42 @@ export function ScoreCardShare({ report }: Props) {
   };
 
   return (
-    <section className="panel mt-8">
-      <h2 className="text-sm font-semibold text-fg">점수 카드 공유</h2>
-      <p className="mt-1 text-sm text-fg-muted">
-        사이트 주소 없이 점수와 개선 포인트만 공유할 수 있습니다.
-      </p>
+    <section className="panel mt-4 print:hidden">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-sm font-semibold text-fg">품질 점수</h2>
+          <p className="mt-1 text-sm text-fg-muted">
+            사이트 주소 없이 점수와 개선 포인트만 공유할 수 있습니다.
+          </p>
+        </div>
+        <div className="flex shrink-0 gap-2">
+          <button
+            type="button"
+            onClick={() => void downloadPng()}
+            aria-label="PNG 다운로드"
+            title="PNG 다운로드"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-card-border bg-card text-fg transition hover:border-accent-dim/40 hover:text-accent-dim"
+          >
+            <Download className="h-4 w-4" aria-hidden />
+          </button>
+          {cardPath && (
+            <button
+              type="button"
+              onClick={() => void copyShareUrl()}
+              aria-label="공유 페이지 주소 복사"
+              title="공유 페이지 주소 복사"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-card-border bg-card text-fg transition hover:border-accent-dim/40 hover:text-accent-dim"
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-accent-dim" aria-hidden />
+              ) : (
+                <Share2 className="h-4 w-4" aria-hidden />
+              )}
+            </button>
+          )}
+        </div>
+      </div>
+
       <div
         ref={cardRef}
         className="mt-4 rounded-xl border border-card-border bg-page-alt/50 p-6"
@@ -89,9 +120,9 @@ export function ScoreCardShare({ report }: Props) {
         <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
           scopurl
         </p>
-        <div className="mt-4 flex items-center gap-4">
-          <DonutChart value={summary.healthScore} label="종합" size={80} />
-          <div>
+        <div className="mt-4 flex flex-wrap items-start gap-6">
+          <DonutChart value={summary.healthScore} label="종합" size={112} />
+          <div className="min-w-[200px] flex-1">
             {summary.statusLabel && (
               <StatusBadge status={summary.statusLabel} />
             )}
@@ -106,47 +137,34 @@ export function ScoreCardShare({ report }: Props) {
           </div>
         </div>
         {summary.categoryScores && (
-          <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-fg">
-            <span>성능 {summary.categoryScores.performance ?? "—"}</span>
-            <span>접근성 {summary.categoryScores.accessibility ?? "—"}</span>
-            <span>사용성 {summary.categoryScores.ux ?? "—"}</span>
-            <span>검색·공유 {summary.categoryScores.seo ?? "—"}</span>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <DonutChart
+              value={summary.categoryScores.performance}
+              label="성능"
+              size={72}
+            />
+            <DonutChart
+              value={summary.categoryScores.accessibility}
+              label="접근성"
+              size={72}
+            />
+            <DonutChart value={summary.categoryScores.ux} label="사용성" size={72} />
+            <DonutChart
+              value={summary.categoryScores.seo}
+              label="검색·공유"
+              size={72}
+            />
           </div>
         )}
         {improvements.length > 0 && (
-          <ul className="mt-4 list-inside list-disc text-sm leading-relaxed text-fg-muted">
-            {improvements.slice(0, 3).map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div className="mt-4 flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={() => void downloadPng()}
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-cardSm hover:bg-accent-dim"
-        >
-          PNG 다운로드
-        </button>
-        {cardPath && (
-          <button
-            type="button"
-            onClick={() => void copyShareUrl()}
-            className="inline-flex items-center gap-2 rounded-lg border border-card-border bg-card px-4 py-2 text-sm font-medium text-fg hover:border-accent-dim/40"
-          >
-            {copied ? (
-              <>
-                <Check className="h-4 w-4 text-accent-dim" aria-hidden />
-                복사됨
-              </>
-            ) : (
-              <>
-                <Copy className="h-4 w-4 text-fg-muted" aria-hidden />
-                공유 페이지 주소 복사
-              </>
-            )}
-          </button>
+          <div className="mt-6">
+            <p className="text-xs font-medium text-fg-muted">주요 개선 포인트</p>
+            <ul className="mt-2 list-inside list-disc text-sm leading-relaxed text-fg-muted">
+              {improvements.slice(0, 3).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </section>

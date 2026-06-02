@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
-import { assetUrl } from "@/lib/paths";
+import { ReportDashboard } from "@/components/ReportDashboard";
+import { FloatingLeadButton } from "@/components/FloatingLeadButton";
 
-/** v0.1: 상세 리포트는 홈에서만 표시. /report 딥링크는 홈으로 이동 */
-export default function ReportRedirectPage() {
-  useEffect(() => {
-    window.location.replace(assetUrl("/"));
-  }, []);
-
+/** CSS/레이아웃 확인용 예시 리포트 — 분석 없이 바로 볼 수 있습니다. */
+export default function SampleReportPage() {
   return (
-    <div className="px-4 py-20 text-center text-slate-400">
-      리포트 화면으로 이동 중…
-    </div>
+    <>
+      <ReportDashboard reportId="report-sample" />
+      <FloatingLeadButton shake />
+    </>
   );
 }

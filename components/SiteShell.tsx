@@ -8,6 +8,7 @@ import type { ReportJson } from "@/lib/types";
 
 export function SiteShell() {
   const [report, setReport] = useState<ReportJson | null>(null);
+  const [analyzing, setAnalyzing] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
 
   const onReportReady = useCallback((data: ReportJson) => {
@@ -36,10 +37,13 @@ export function SiteShell() {
       </header>
 
       <main>
-        <AnalyzeForm onReportReady={onReportReady} />
+        <AnalyzeForm
+          onReportReady={onReportReady}
+          onAnalyzingChange={setAnalyzing}
+        />
       </main>
 
-      {report && (
+      {report && !analyzing && (
         <div
           ref={reportRef}
           className="mt-12 border-t border-card-border pt-10"

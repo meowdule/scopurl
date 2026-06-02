@@ -6,11 +6,9 @@ import type { ReportJson } from "@/lib/types";
 import { fetchReport } from "@/lib/pollReport";
 import { assetUrl } from "@/lib/paths";
 import Link from "next/link";
-import { DonutChart, ProgressBar } from "@/components/ReportCharts";
-import { ExecutiveSummary } from "@/components/ExecutiveSummary";
+import { ReportScoreDetails } from "@/components/ReportScoreDetails";
 import { TimingSection } from "@/components/TimingSection";
 import { GatedSection } from "@/components/GatedSection";
-import { PdfDownloadButton } from "@/components/PdfDownloadButton";
 import { ExtendedReportCta } from "@/components/ExtendedReportCta";
 import { ScoreCardShare } from "@/components/ScoreCardShare";
 import { LeadModal } from "@/components/LeadModal";
@@ -80,9 +78,7 @@ export function ReportDashboard({
   }
 
   const rid = report.reportId;
-  const { summary, pages, quick, targetUrl, brokenLinks, crawlMeta, timing } =
-    report;
-  const cats = summary.categoryScores;
+  const { pages, quick, targetUrl, brokenLinks, crawlMeta, timing } = report;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6 print:text-black">
@@ -103,52 +99,11 @@ export function ReportDashboard({
         </Link>
       )}
 
-      <header className="mt-4 border-b border-card-border pb-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-accent-dim">
-          scopurl 리포트
-        </p>
-        <h1 className="mt-2 break-all text-2xl font-bold text-fg sm:text-3xl">
-          {targetUrl}
-        </h1>
-        <div className="mt-4 flex flex-wrap gap-3 print:hidden">
-          <PdfDownloadButton reportId={rid} targetUrl={targetUrl} />
-          {(report.deviceProfile || crawlMeta?.deviceProfile) && (
-            <span className="rounded-full border border-card-border bg-page px-3 py-1 text-xs font-medium text-fg">
-              {(report.deviceProfile || crawlMeta?.deviceProfile) === "mobile"
-                ? "모바일 화면 (390px) 분석"
-                : "데스크톱 화면 (1440px) 분석"}
-            </span>
-          )}
-        </div>
-      </header>
+      <div className="print:hidden">
+        <ScoreCardShare report={report} />
+      </div>
 
-      <ExecutiveSummary report={report} />
-
-      {cats && (
-        <section className="panel mt-8 grid gap-6 lg:grid-cols-2">
-          <div>
-            <h2 className="text-sm font-semibold text-fg">영역별 점수</h2>
-            <div className="mt-4 grid gap-4">
-              <ProgressBar value={cats.performance} label="성능 · 페이지 로딩" />
-              <ProgressBar
-                value={cats.accessibility}
-                label="접근성 · 누구나 쓰기 쉬운지"
-              />
-              <ProgressBar value={cats.ux} label="사용성 · 버튼·화면 배치" />
-              <ProgressBar
-                value={cats.seo}
-                label="검색·공유 · 검색·미리보기"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2">
-            <DonutChart value={cats.performance} label="성능" />
-            <DonutChart value={cats.accessibility} label="접근성" />
-            <DonutChart value={cats.ux} label="사용성" />
-            <DonutChart value={cats.seo} label="검색·공유" />
-          </div>
-        </section>
-      )}
+      <ReportScoreDetails report={report} />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <MetricTile label="분석한 페이지" value={String(pages.length)} />
@@ -285,7 +240,6 @@ export function ReportDashboard({
       )}
 
       <div className="print:hidden">
-        <ScoreCardShare report={report} />
         <ExtendedReportCta defaultSiteUrl={targetUrl} />
       </div>
 

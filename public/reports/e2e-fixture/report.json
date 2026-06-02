@@ -47,6 +47,22 @@
       "seo": 75
     },
     "statusLabel": "Good",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 82,
+      "penaltyTotal": 0,
+      "contributions": [],
+      "penalties": [],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점"
+      ]
+    },
     "topImprovements": [
       "접근성 라벨을 보강하면 좋습니다",
       "모바일 가로 스크롤을 점검해 보세요",

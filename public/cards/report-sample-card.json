@@ -1,0 +1,17 @@
+{
+  "cardId": "report-sample-card",
+  "overallScore": 82,
+  "categoryScores": {
+    "performance": 85,
+    "accessibility": 90,
+    "ux": 80,
+    "seo": 75
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-01T12:01:30.000Z",
+  "topImprovements": [
+    "접근성 라벨을 보강하면 좋습니다",
+    "모바일 가로 스크롤을 점검해 보세요",
+    "이미지 최적화 여지가 있습니다"
+  ]
+}

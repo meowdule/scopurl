@@ -1,0 +1,176 @@
+{
+  "reportId": "report-sample",
+  "targetUrl": "https://example.com",
+  "deviceProfile": "desktop",
+  "createdAt": "2026-06-01T12:00:00.000Z",
+  "completedAt": "2026-06-01T12:01:30.000Z",
+  "expiresAt": "2026-07-01T12:01:30.000Z",
+  "cardId": "report-sample-card",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 95,
+    "internalLinkCount": 5
+  },
+  "pages": [
+    {
+      "url": "https://example.com/",
+      "statusCode": 200,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [],
+      "lighthouse": {
+        "performance": 88,
+        "accessibility": 92,
+        "bestPractices": 90,
+        "seo": 78,
+        "collected": true,
+        "mode": "full"
+      },
+      "axeViolations": [
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "crawledAt": "2026-06-01T12:01:30.000Z"
+    },
+    {
+      "url": "https://example.com/about",
+      "statusCode": 200,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [],
+      "lighthouse": {
+        "performance": 82,
+        "accessibility": 88,
+        "bestPractices": 88,
+        "seo": 72,
+        "collected": true,
+        "mode": "full"
+      },
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "crawledAt": "2026-06-01T12:01:28.000Z"
+    }
+  ],
+  "brokenLinks": [],
+  "summary": {
+    "healthScore": 82,
+    "avgLighthousePerformance": 85,
+    "avgAxeIssuesPerPage": 0.5,
+    "totalConsoleErrors": 0,
+    "totalFailedRequests": 0,
+    "mobileWarnings": [],
+    "categoryScores": {
+      "performance": 85,
+      "accessibility": 90,
+      "ux": 80,
+      "seo": 75
+    },
+    "statusLabel": "Good",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 82,
+      "penaltyTotal": 0,
+      "contributions": [
+        {
+          "category": "performance",
+          "label": "성능",
+          "score": 85,
+          "weight": 0.3,
+          "weightedPoints": 25.5
+        },
+        {
+          "category": "accessibility",
+          "label": "접근성",
+          "score": 90,
+          "weight": 0.25,
+          "weightedPoints": 22.5
+        },
+        {
+          "category": "ux",
+          "label": "사용성",
+          "score": 80,
+          "weight": 0.25,
+          "weightedPoints": 20
+        },
+        {
+          "category": "seo",
+          "label": "검색·공유",
+          "score": 75,
+          "weight": 0.2,
+          "weightedPoints": 15
+        }
+      ],
+      "penalties": [],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점",
+        "2개 페이지를 분석했으며, 평균 성능 점수는 85점입니다."
+      ]
+    },
+    "topImprovements": [
+      "접근성 라벨을 보강하면 좋습니다",
+      "모바일 가로 스크롤을 점검해 보세요",
+      "이미지 최적화 여지가 있습니다"
+    ]
+  },
+  "crawlMeta": {
+    "deviceProfile": "desktop",
+    "discoveryStats": {
+      "linksDiscovered": 5,
+      "clicksRecorded": 3
+    },
+    "interactionFlow": "Home\n├─ 페이지 로드·스캔\n└─ About — 내부 이동"
+  },
+  "timing": {
+    "phases": {
+      "browser_launch": 0.3,
+      "quick_scan": 8.2,
+      "crawl": 5.1,
+      "page_analysis": 19.4
+    },
+    "pages": [
+      {
+        "url": "https://example.com/",
+        "phases": {
+          "initial_load": 0.2,
+          "lighthouse": 12.5,
+          "axe": 1.1
+        }
+      }
+    ],
+    "summary": [
+      "Page analysis (total): 19.4s",
+      "Lighthouse (pages): 12.5s",
+      "Quick scan: 8.2s",
+      "URL crawl: 5.1s",
+      "Browser launch: 0.3s"
+    ],
+    "totalSeconds": 28.5
+  },
+  "crawlLimits": {
+    "requested": { "maxPages": 20, "maxDepth": 2, "traceMode": "failure" },
+    "applied": { "maxPages": 20, "maxDepth": 2, "traceMode": "failure" }
+  }
+}

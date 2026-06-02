@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   description:
     "URL 한 번으로 성능·접근성·사용성·SEO를 분석하는 scopurl.",
   icons: {
-    icon: [{ url: `${basePath}/icon.svg`, type: "image/svg+xml" }],
-    apple: [{ url: `${basePath}/icon.svg`, type: "image/svg+xml" }],
+    icon: [{ url: `${basePath}/favicon.png`, type: "image/png" }],
+    apple: [{ url: `${basePath}/favicon.png`, type: "image/png" }],
   },
 };
 

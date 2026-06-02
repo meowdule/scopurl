@@ -32,9 +32,10 @@ function newReportId(): string {
 
 type AnalyzeFormProps = {
   onReportReady?: (report: ReportJson) => void;
+  onAnalyzingChange?: (analyzing: boolean) => void;
 };
 
-export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
+export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormProps) {
   const [urlInput, setUrlInput] = useState("");
   const [deviceProfile, setDeviceProfile] = useState<DeviceProfile>("desktop");
   const [maxPages, setMaxPages] = useState(DEFAULT_MAX_PAGES);
@@ -90,6 +91,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
               const report = await fetchReport(id);
               if (report) {
                 setBusy(false);
+                onAnalyzingChange?.(false);
                 setPhase(null);
                 setQuick(null);
                 setReportId(null);
@@ -101,6 +103,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
             if (status.phase === "failed") {
               setError(formatStatusError(status.errorCode, status.error));
               setBusy(false);
+              onAnalyzingChange?.(false);
               return;
             }
           }
@@ -111,8 +114,9 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
       }
       setError(formatStatusError("timeout", "Timed out waiting for the report."));
       setBusy(false);
+      onAnalyzingChange?.(false);
     },
-    [onReportReady],
+    [onReportReady, onAnalyzingChange],
   );
 
   const onAnalyze = useCallback(async () => {
@@ -131,6 +135,7 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
     const id = newReportId();
     setReportId(id);
     setBusy(true);
+    onAnalyzingChange?.(true);
     setPhase("queued");
     setQuick({ validUrl: true });
     setEstimatedWaitLabel(t.waitEstimate);
@@ -162,11 +167,13 @@ export function AnalyzeForm({ onReportReady }: AnalyzeFormProps) {
       const msg = e instanceof Error ? e.message : "Could not start analysis.";
       setError(msg);
       setBusy(false);
+      onAnalyzingChange?.(false);
     }
   }, [
     deviceProfile,
     maxDepth,
     maxPages,
+    onAnalyzingChange,
     pollLoop,
     runInstantChecks,
     traceMode,
