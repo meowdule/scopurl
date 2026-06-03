@@ -6,11 +6,20 @@ import { fetchReport } from "@/lib/pollReport";
 import { assetUrl } from "@/lib/paths";
 import Link from "next/link";
 import { QualityDashboard } from "@/components/QualityDashboard";
-import { ReportScoreDetails } from "@/components/ReportScoreDetails";
-import { TimingSection } from "@/components/TimingSection";
+import { AnalysisOverview } from "@/components/AnalysisOverview";
+import { PriorityTop3 } from "@/components/PriorityTop3";
+import { AxisDiagnosisGrid } from "@/components/AxisDiagnosisGrid";
+import { ReportIssuesSection } from "@/components/ReportIssuesSection";
+import { PagesDiagnosisTable } from "@/components/PagesDiagnosisTable";
+import { SeoChecklistSection } from "@/components/SeoChecklistSection";
+import { AnalysisScopeSection } from "@/components/AnalysisScopeSection";
 import { ExtendedReportCta } from "@/components/ExtendedReportCta";
 import { ReportPdfDocument } from "@/components/ReportPdfDocument";
 import { REPORT_SECTION } from "@/lib/reportSections";
+import {
+  buildPriorityImprovements,
+  buildQualityProfile,
+} from "@/lib/qualityProfile";
 
 type Props =
   | { report: ReportJson; reportId?: never; onNewAnalysis?: () => void }
@@ -69,99 +78,56 @@ export function ReportDashboard({
     );
   }
 
-  const { pages, targetUrl, brokenLinks, timing } = report;
+  const axes = buildQualityProfile(report);
+  const priorities = buildPriorityImprovements(axes);
+  const { targetUrl } = report;
 
   return (
     <>
-    <div className="report-screen mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6">
-      {onNewAnalysis ? (
-        <button
-          type="button"
-          onClick={onNewAnalysis}
-          className="text-sm font-medium text-accent-dim hover:underline print:hidden"
-        >
-          ← 새 분석
-        </button>
-      ) : (
-        <Link
-          href={assetUrl("/")}
-          className="text-sm font-medium text-accent-dim hover:underline print:hidden"
-        >
-          ← 새 분석
-        </Link>
-      )}
+      <div className="report-screen mx-auto max-w-[1140px] px-4 pb-20 pt-8 sm:px-6">
+        {onNewAnalysis ? (
+          <button
+            type="button"
+            onClick={onNewAnalysis}
+            className="mb-6 text-sm font-medium text-accent-dim hover:underline print:hidden"
+          >
+            ← 새 분석
+          </button>
+        ) : (
+          <Link
+            href={assetUrl("/")}
+            className="mb-6 inline-block text-sm font-medium text-accent-dim hover:underline print:hidden"
+          >
+            ← 새 분석
+          </Link>
+        )}
 
-      <QualityDashboard report={report} />
+        <QualityDashboard report={report} />
 
-      <ExtendedReportCta defaultSiteUrl={targetUrl} />
+        <div className="report-flow space-y-10 sm:space-y-12">
+          {priorities.length > 0 && (
+            <div
+              id={REPORT_SECTION.priorityTop3}
+              data-report-section={REPORT_SECTION.priorityTop3}
+            >
+              <PriorityTop3 items={priorities} />
+            </div>
+          )}
 
-      <ReportScoreDetails report={report} />
+          <AxisDiagnosisGrid report={report} />
+          <ReportIssuesSection report={report} />
+          <PagesDiagnosisTable report={report} />
+          <SeoChecklistSection report={report} />
 
-      <section
-        id={REPORT_SECTION.pagesTable}
-        data-report-section={REPORT_SECTION.pagesTable}
-        className="panel mt-5 overflow-x-auto"
-      >
-        <h2 className="text-sm font-semibold text-fg">분석한 페이지</h2>
-        <table className="mt-3 w-full min-w-[560px] border-collapse text-left text-sm">
-          <thead>
-            <tr className="border-b border-card-border text-xs text-fg-muted">
-              <th className="py-2 pr-3 font-medium">주소</th>
-              <th className="py-2 pr-3 font-medium">접속</th>
-              <th className="py-2 pr-3 font-medium">성능</th>
-              <th className="py-2 font-medium">접근성</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pages.map((p) => (
-              <tr
-                key={p.url}
-                className="border-b border-card-border/60 text-fg"
-              >
-                <td className="max-w-[200px] truncate py-2 pr-3 text-xs text-fg-muted">
-                  {p.url}
-                </td>
-                <td className="py-2 pr-3 tabular-nums text-xs">
-                  {p.statusCode ?? "—"}
-                </td>
-                <td className="py-2 pr-3 tabular-nums text-xs">
-                  {p.lighthouse?.performance ?? "—"}
-                </td>
-                <td className="py-2 tabular-nums text-xs">
-                  {(p.axeViolations || []).reduce((s, v) => s + v.nodes, 0)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+          <ExtendedReportCta defaultSiteUrl={targetUrl} />
+          <AnalysisOverview report={report} />
+          <AnalysisScopeSection report={report} />
+        </div>
+      </div>
 
-      {brokenLinks.length > 0 && (
-        <section
-          id={REPORT_SECTION.brokenLinks}
-          data-report-section={REPORT_SECTION.brokenLinks}
-          className="panel mt-5"
-        >
-          <h2 className="text-sm font-semibold text-fg">깨진 링크</h2>
-          <ul className="mt-2 space-y-1.5 text-xs text-fg-muted">
-            {brokenLinks.slice(0, 10).map((b) => (
-              <li
-                key={`${b.from}-${b.to}`}
-                className="rounded-md border border-card-border px-3 py-2"
-              >
-                {b.from} → {b.to}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {timing && <TimingSection timing={timing} report={report} />}
-    </div>
-
-    <div className="report-pdf-root hidden print:block">
-      <ReportPdfDocument report={report} />
-    </div>
+      <div className="report-pdf-root hidden print:block">
+        <ReportPdfDocument report={report} />
+      </div>
     </>
   );
 }

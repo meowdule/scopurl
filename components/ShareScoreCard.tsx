@@ -44,8 +44,8 @@ export function ShareScoreCard({ report, exportMode = false }: Props) {
       data-share-card-root
       className={
         exportMode
-          ? "relative overflow-hidden bg-white"
-          : "relative mx-auto w-full max-w-full overflow-hidden rounded-xl border border-card-border bg-white shadow-cardSm"
+          ? "share-card-root relative overflow-hidden bg-white"
+          : "share-card-root relative mx-auto w-full max-w-full overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white shadow-cardHero"
       }
       style={
         exportMode
@@ -79,8 +79,20 @@ export function ShareScoreCard({ report, exportMode = false }: Props) {
           </span>
         </header>
 
-        <div className="mt-4 flex min-h-0 flex-1 gap-6 lg:gap-10">
-          <div className="flex w-[58%] min-w-0 flex-col justify-center">
+        <div
+          className={
+            exportMode
+              ? "mt-4 flex min-h-0 flex-1 flex-row gap-8"
+              : "mt-4 flex min-h-0 flex-1 flex-col gap-4 md:flex-row md:gap-8 lg:gap-10"
+          }
+        >
+          <div
+            className={
+              exportMode
+                ? "flex w-[58%] min-w-0 flex-col justify-center"
+                : "flex min-w-0 flex-1 flex-col justify-center md:w-[58%]"
+            }
+          >
             <p
               className="font-bold tabular-nums leading-none text-[#0f172a]"
               style={
@@ -115,18 +127,24 @@ export function ShareScoreCard({ report, exportMode = false }: Props) {
             </p>
           </div>
 
-          <div className="flex w-[42%] items-center justify-center">
+          <div
+            className={
+              exportMode
+                ? "flex w-[42%] items-center justify-center"
+                : "flex w-full shrink-0 items-center justify-center md:w-[42%]"
+            }
+          >
             <ShareRadarChart
               axes={axes}
-              width={exportMode ? 400 : 280}
-              height={exportMode ? 400 : 280}
+              width={exportMode ? 400 : 260}
+              height={exportMode ? 400 : 260}
             />
           </div>
         </div>
 
         <footer
-          className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[#e8ecf4] pt-4 text-[#64748b]"
-          style={exportMode ? { fontSize: 13, paddingTop: 20 } : { fontSize: 11 }}
+          className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-[#e2e8f0] pt-5 text-[#64748b]"
+          style={exportMode ? { fontSize: 13, paddingTop: 22, marginTop: 8 } : { fontSize: 11 }}
         >
           <span>분석 페이지 {kpi.pageCount}개</span>
           <span className="text-[#cbd5e1]">·</span>

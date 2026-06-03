@@ -8,15 +8,17 @@ test.describe("fixture report (/demo)", () => {
     });
   });
 
-  test("shows share card and diagnostic summary", async ({ page }) => {
+  test("shows share card and report sections", async ({ page }) => {
     const shareCard = page.locator("#report-hero-share-card");
     await expect(shareCard.getByText("Website Health Score").first()).toBeVisible();
-    await expect(page.getByRole("heading", { name: "진단 요약" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "상세 분석" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "우선 개선 TOP3" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "영역별 진단" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "발견 이슈 상세" })).toBeVisible();
   });
 
-  test("shows priority improvements row", async ({ page }) => {
-    await expect(page.getByText("주요 개선 포인트")).toBeVisible();
+  test("shows analysis overview without duplicate score", async ({ page }) => {
+    await expect(page.getByRole("heading", { name: "분석 개요" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "진단 요약" })).toHaveCount(0);
   });
 
   test("PDF download opens lead modal", async ({ page }) => {

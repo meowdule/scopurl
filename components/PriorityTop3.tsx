@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import type { PriorityImprovement } from "@/lib/qualityProfile";
 
 type Props = {
@@ -9,59 +7,36 @@ type Props = {
 };
 
 export function PriorityTop3({ items }: Props) {
-  const [openKey, setOpenKey] = useState<string | null>(null);
-
   if (items.length === 0) return null;
 
   return (
     <div>
-      <p className="text-xs font-medium text-fg-muted">주요 개선 포인트</p>
-      <div className="mt-2 grid gap-2 sm:grid-cols-3">
-        {items.map((item) => {
-          const expanded = openKey === item.axis.key;
-          return (
-            <div
-              key={item.axis.key}
-              className="rounded-lg border border-card-border bg-card"
-            >
-              <button
-                type="button"
-                onClick={() =>
-                  setOpenKey(expanded ? null : item.axis.key)
-                }
-                className="flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left"
-                aria-expanded={expanded}
-              >
-                <div>
-                  <p className="text-sm font-semibold text-fg">
-                    {item.axis.label}
-                  </p>
-                  <p className="mt-0.5 flex items-baseline gap-2">
-                    <span className="text-xl font-bold tabular-nums text-fg">
-                      {item.axis.score}
-                    </span>
-                    <span className="text-xs font-medium text-accent-dim">
-                      +{item.expectedGain}
-                    </span>
-                  </p>
-                </div>
-                <ChevronDown
-                  className={`h-4 w-4 shrink-0 text-fg-muted transition ${expanded ? "rotate-180" : ""}`}
-                  aria-hidden
-                />
-              </button>
-              {expanded && (
-                <ul className="border-t border-card-border px-3 pb-3 pt-2 text-xs leading-relaxed text-fg-muted">
-                  {item.actions.map((action) => (
-                    <li key={action} className="mt-1">
-                      · {action}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          );
-        })}
+      <h2 className="report-section-title">우선 개선 TOP3</h2>
+      <p className="report-section-desc">
+        점수 향상 효과가 큰 순서로 정렬했습니다.
+      </p>
+      <div className="mt-5 grid gap-4 sm:grid-cols-3">
+        {items.map((item, index) => (
+          <article
+            key={item.axis.key}
+            className="flex min-h-[200px] flex-col rounded-[16px] border border-card-border bg-card p-5 shadow-cardSm"
+          >
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#eafbf3] text-xs font-bold text-accent-dim">
+              {index + 1}
+            </span>
+            <h3 className="mt-3 text-sm font-semibold text-fg">{item.axis.label}</h3>
+            <p className="mt-1 text-3xl font-bold tabular-nums text-fg">
+              {item.axis.score}
+              <span className="text-base font-medium text-fg-muted">점</span>
+            </p>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-fg-muted">
+              {item.problemSummary}
+            </p>
+            <p className="mt-4 text-sm font-semibold text-accent-dim">
+              예상 효과 +{item.expectedGain}점
+            </p>
+          </article>
+        ))}
       </div>
     </div>
   );

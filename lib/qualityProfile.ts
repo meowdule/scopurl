@@ -18,12 +18,14 @@ export type QualityAxis = {
   tier: ScoreTier;
   tierLabel: string;
   summary: string;
+  cardDescription: string;
   detailBullets: string[];
 };
 
 export type PriorityImprovement = {
   axis: QualityAxis;
   urgency: "high" | "medium";
+  problemSummary: string;
   actions: string[];
   expectedGain: number;
 };
@@ -41,6 +43,41 @@ export function scoreTier(score: number): { tier: ScoreTier; tierLabel: string }
   if (score >= 75) return { tier: "good", tierLabel: "양호" };
   if (score >= 60) return { tier: "needs-work", tierLabel: "개선 필요" };
   return { tier: "critical", tierLabel: "시급" };
+}
+
+function axisCardDescription(key: QualityAxisKey, score: number): string {
+  const copy: Record<QualityAxisKey, [string, string]> = {
+    performance: [
+      "페이지 로딩과 반응 속도가 안정적입니다.",
+      "로딩·리소스 최적화를 검토하면 좋습니다.",
+    ],
+    accessibility: [
+      "대부분의 사용자가 이용하기 쉬운 상태입니다.",
+      "접근성 기준 보완이 필요합니다.",
+    ],
+    ux: [
+      "화면 배치와 조작 흐름이 무난합니다.",
+      "화면 배치와 조작 흐름을 점검하면 좋습니다.",
+    ],
+    seo: [
+      "검색 노출을 위한 기본 설정이 갖춰져 있습니다.",
+      "검색 노출 및 공유 설정에 개선 여지가 있습니다.",
+    ],
+    shareability: [
+      "SNS·메신저 미리보기 설정이 양호합니다.",
+      "SNS 미리보기 정보 보완이 필요합니다.",
+    ],
+    security: [
+      "기본 보안 연결 상태가 안정적입니다.",
+      "HTTPS·보안 설정을 점검하세요.",
+    ],
+    stability: [
+      "연결·응답이 안정적으로 유지됩니다.",
+      "오류·깨진 링크 등 안정성 이슈가 있습니다.",
+    ],
+  };
+  const [good, weak] = copy[key];
+  return score >= 75 ? good : weak;
 }
 
 function num(v: number | null | undefined, fallback: number): number {
@@ -180,7 +217,7 @@ export function buildQualityProfile(report: ReportJson): QualityAxis[] {
   const security = deriveSecurity(report);
   const stability = deriveStability(report);
 
-  const axes: Omit<QualityAxis, "tier" | "tierLabel">[] = [
+  const axes: Omit<QualityAxis, "tier" | "tierLabel" | "cardDescription">[] = [
     {
       key: "performance",
       label: "성능",
@@ -234,7 +271,12 @@ export function buildQualityProfile(report: ReportJson): QualityAxis[] {
 
   return axes.map((axis) => {
     const { tier, tierLabel } = scoreTier(axis.score);
-    return { ...axis, tier, tierLabel };
+    return {
+      ...axis,
+      tier,
+      tierLabel,
+      cardDescription: axisCardDescription(axis.key, axis.score),
+    };
   });
 }
 
@@ -267,6 +309,7 @@ export function buildPriorityImprovements(
       return {
         axis,
         urgency: axis.score < 75 ? "high" : "medium",
+        problemSummary: axis.cardDescription,
         actions: actions.length > 0 ? actions : DEFAULT_ACTIONS[axis.key].slice(0, 2),
         expectedGain,
       };

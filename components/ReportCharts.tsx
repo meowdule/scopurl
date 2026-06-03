@@ -74,10 +74,101 @@ export function StatusBadge({
 
 const TIER_STYLES = {
   excellent: "border-emerald-300 bg-emerald-50 text-emerald-800",
-  good: "border-sky-300 bg-sky-50 text-sky-900",
+  good: "border-emerald-200 bg-[#eafbf3] text-emerald-800",
   "needs-work": "border-amber-300 bg-amber-50 text-amber-900",
   critical: "border-red-300 bg-red-50 text-red-800",
 } as const;
+
+const TIER_DOT = {
+  excellent: "bg-emerald-500",
+  good: "bg-emerald-500",
+  "needs-work": "bg-amber-500",
+  critical: "bg-red-500",
+} as const;
+
+export function TierIndicator({
+  tier,
+}: {
+  tier: keyof typeof TIER_DOT;
+}) {
+  return (
+    <span
+      className={`inline-block h-2 w-2 shrink-0 rounded-full ${TIER_DOT[tier]}`}
+      aria-hidden
+    />
+  );
+}
+
+const SEVERITY_STYLES = {
+  critical: "border-red-300 bg-red-50 text-red-800",
+  high: "border-orange-300 bg-orange-50 text-orange-900",
+  medium: "border-amber-300 bg-amber-50 text-amber-900",
+  low: "border-slate-300 bg-slate-50 text-slate-700",
+} as const;
+
+export function SeverityBadge({
+  severity,
+}: {
+  severity: keyof typeof SEVERITY_STYLES;
+}) {
+  const labels = {
+    critical: "Critical",
+    high: "High",
+    medium: "Medium",
+    low: "Low",
+  };
+  return (
+    <span
+      className={`inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${SEVERITY_STYLES[severity]}`}
+    >
+      {labels[severity]}
+    </span>
+  );
+}
+
+export function SeoStatusBadge({
+  status,
+}: {
+  status: "pass" | "warn" | "fail" | "unknown";
+}) {
+  const styles = {
+    pass: "border-emerald-300 bg-emerald-50 text-emerald-800",
+    warn: "border-amber-300 bg-amber-50 text-amber-900",
+    fail: "border-red-300 bg-red-50 text-red-800",
+    unknown: "border-slate-300 bg-slate-50 text-slate-600",
+  };
+  const labels = {
+    pass: "충족",
+    warn: "개선 권장",
+    fail: "누락",
+    unknown: "확인 필요",
+  };
+  return (
+    <span
+      className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${styles[status]}`}
+    >
+      {labels[status]}
+    </span>
+  );
+}
+
+export function HttpStatusBadge({ code }: { code: number | null | undefined }) {
+  if (code == null) {
+    return <span className="text-fg-muted">—</span>;
+  }
+  const ok = code >= 200 && code < 400;
+  return (
+    <span
+      className={`inline-block rounded-full border px-2 py-0.5 text-[11px] font-semibold tabular-nums ${
+        ok
+          ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+          : "border-amber-300 bg-amber-50 text-amber-900"
+      }`}
+    >
+      {code}
+    </span>
+  );
+}
 
 export function ScoreTierBadge({
   tier,
