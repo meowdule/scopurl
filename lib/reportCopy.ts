@@ -1,4 +1,4 @@
-/** Non-developer Korean copy for report UI. */
+/** Share card + PDF copy (non-developer Korean / brand English where noted). */
 
 export const QUICK_SIGNAL_LABELS = {
   dns: { title: "도메인 연결", ok: "정상", fail: "확인 필요" },
@@ -86,4 +86,35 @@ export function statusSummaryText(
   if (status === "Warning") return `${score}점 — 개선하면 좋을 부분이 있습니다.`;
   if (status === "Critical") return `${score}점 — 우선 조치가 필요한 항목이 있습니다.`;
   return `${score}점`;
+}
+
+/** 공유 인증 카드 한 줄 (한국어) */
+export function shareCardTagline(
+  status: "Good" | "Warning" | "Critical" | undefined,
+): string {
+  if (status === "Good") return "전반적으로 양호한 상태입니다.";
+  if (status === "Warning") return "기본 품질은 유지되나 일부 개선 여지가 있습니다.";
+  if (status === "Critical") return "우선 조치가 필요한 항목이 있습니다.";
+  return "사이트 품질 진단이 완료되었습니다.";
+}
+
+export function shareStatusLabelEn(
+  status: "Good" | "Warning" | "Critical" | undefined,
+): string {
+  if (status === "Good") return "GOOD";
+  if (status === "Warning") return "ATTENTION";
+  if (status === "Critical") return "ACTION NEEDED";
+  return "REPORT";
+}
+
+export function pdfExecutiveLine(
+  status: "Good" | "Warning" | "Critical" | undefined,
+): string {
+  if (status === "Good") {
+    return "대부분의 기본 품질 기준을 충족하고 있습니다. SEO 및 공유 설정을 개선하면 추가 점수 향상이 가능합니다.";
+  }
+  if (status === "Warning") {
+    return "핵심 품질은 유지되나, 일부 영역에서 개선 시 사용자 경험과 검색 노출을 높일 수 있습니다.";
+  }
+  return "우선순위가 높은 품질 이슈가 발견되었습니다. 아래 권장 조치를 참고해 주세요.";
 }

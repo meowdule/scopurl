@@ -3,7 +3,7 @@
 export const REPORT_SECTION = {
   /** URL, PDF, 디바이스 배지 */
   header: "report-header",
-  /** 총점 + KPI + 레이더 + 개선 TOP3 (PNG 공유 대상) */
+  /** SNS·메신저 공유용 인증 카드 1200×630 (PNG 캡처 대상) */
   heroShareCard: "report-hero-share-card",
   /** 7축 영역별 점수·등급 카드 */
   axisCards: "report-axis-cards",

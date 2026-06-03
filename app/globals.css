@@ -108,3 +108,183 @@ body {
     pointer-events: none;
   }
 }
+
+/* PDF 인쇄: 화면 리포트 숨기고 진단서만 출력 */
+@media print {
+  body {
+    background: #fff !important;
+    color: #0f172a !important;
+  }
+
+  .report-screen,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .report-pdf-root {
+    display: block !important;
+  }
+
+  .pdf-doc {
+    font-family: "Pretendard", system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .pdf-page {
+    page-break-after: always;
+    padding: 12mm 14mm;
+  }
+
+  .pdf-page:last-child {
+    page-break-after: auto;
+  }
+
+  .pdf-cover {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pdf-eyebrow {
+    font-size: 10pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #00a85f;
+  }
+
+  .pdf-cover-title {
+    margin: 0.5rem 0 0;
+    font-size: 28pt;
+    font-weight: 700;
+  }
+
+  .pdf-cover-url {
+    margin-top: 1rem;
+    font-size: 11pt;
+    word-break: break-all;
+    color: #475569;
+  }
+
+  .pdf-cover-meta {
+    margin-top: 0.5rem;
+    font-size: 10pt;
+    color: #64748b;
+  }
+
+  .pdf-cover-score-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .pdf-cover-score {
+    font-size: 56pt;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .pdf-cover-tagline {
+    margin-top: 1rem;
+    color: #64748b;
+  }
+
+  .pdf-h2 {
+    margin: 0 0 1rem;
+    font-size: 16pt;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.35rem;
+  }
+
+  .pdf-h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+
+  .pdf-lead {
+    font-size: 11pt;
+    color: #334155;
+    margin-bottom: 1.25rem;
+  }
+
+  .pdf-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pdf-kpi {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .pdf-radar-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  .pdf-priority-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .pdf-priority-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+
+  .pdf-axis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pdf-axis-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.65rem;
+  }
+
+  .pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+  }
+
+  .pdf-table th,
+  .pdf-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .pdf-table th {
+    background: #f8fafc;
+    font-weight: 600;
+  }
+
+  .pdf-issue-block {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .pdf-severity {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #b45309;
+  }
+}

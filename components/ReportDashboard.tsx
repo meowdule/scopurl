@@ -9,6 +9,7 @@ import { QualityDashboard } from "@/components/QualityDashboard";
 import { ReportScoreDetails } from "@/components/ReportScoreDetails";
 import { TimingSection } from "@/components/TimingSection";
 import { ExtendedReportCta } from "@/components/ExtendedReportCta";
+import { ReportPdfDocument } from "@/components/ReportPdfDocument";
 import { REPORT_SECTION } from "@/lib/reportSections";
 
 type Props =
@@ -71,7 +72,8 @@ export function ReportDashboard({
   const { pages, targetUrl, brokenLinks, timing } = report;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 print:text-black">
+    <>
+    <div className="report-screen mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6">
       {onNewAnalysis ? (
         <button
           type="button"
@@ -156,5 +158,10 @@ export function ReportDashboard({
 
       {timing && <TimingSection timing={timing} report={report} />}
     </div>
+
+    <div className="report-pdf-root hidden print:block">
+      <ReportPdfDocument report={report} />
+    </div>
+    </>
   );
 }
