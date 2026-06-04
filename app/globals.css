@@ -295,7 +295,7 @@ body {
   }
 }
 
-/* PDF 인쇄: 화면 리포트 숨기고 진단서만 출력 */
+/* PDF 인쇄: SCOPURL 브랜드 진단서 전용 스타일 */
 @media print {
   body {
     background: #fff !important;
@@ -303,7 +303,8 @@ body {
   }
 
   .report-screen,
-  .print\:hidden {
+  .print\:hidden,
+  .extended-cta-dock {
     display: none !important;
   }
 
@@ -313,17 +314,23 @@ body {
 
   .pdf-doc {
     font-family: "Pretendard", system-ui, sans-serif;
-    font-size: 11pt;
-    line-height: 1.5;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #0f172a;
   }
 
   .pdf-sheet {
     page-break-after: always;
-    padding: 36px 40px;
+    padding: 32px 40px;
+    background: #fff;
   }
 
   .pdf-sheet:last-child {
     page-break-after: auto;
+  }
+
+  .pdf-sheet-tint {
+    background: #f8fafb;
   }
 
   .pdf-avoid-break {
@@ -331,234 +338,341 @@ body {
     page-break-inside: avoid;
   }
 
-  .pdf-h2 {
-    break-after: avoid;
-  }
-
-  .pdf-cover {
+  /* ── 표지 (다크 브랜드) ── */
+  .pdf-cover-dark {
     position: relative;
-    min-height: 88vh;
+    min-height: 100vh;
+    padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: #072b22 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  .pdf-cover-watermark {
-    position: absolute;
-    right: 8%;
-    top: 18%;
-    opacity: 0.06;
+  .pdf-cover-watermark-lg {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 55vh !important;
+    height: auto !important;
+    max-width: none !important;
+    opacity: 0.05 !important;
     pointer-events: none;
   }
 
-  .pdf-cover-body {
+  .pdf-cover-body-dark {
     position: relative;
     z-index: 1;
     text-align: center;
     width: 100%;
+    padding: 2rem;
+    color: #fff;
   }
 
-  .pdf-cover-favicon {
-    margin: 0 auto 1rem;
+  .pdf-cover-favicon-lg {
+    margin: 0 auto 1.25rem;
     display: block;
+    border-radius: 14px;
   }
 
-  .pdf-cover-badge {
+  .pdf-cover-brand {
+    margin: 0;
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .pdf-cover-title-dark {
+    margin: 0.5rem 0 0;
+    font-size: 22pt;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .pdf-cover-url-dark {
+    margin: 1rem auto 0;
+    max-width: 90%;
+    font-size: 10pt;
+    word-break: break-all;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .pdf-cover-score-dark {
+    margin: 2rem 0 0;
+    font-size: 72pt;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.04em;
+  }
+
+  .pdf-cover-badge-premium {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
+    margin-top: 0.75rem;
+    padding: 0.35rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid rgba(167, 243, 208, 0.5);
+    background: rgba(16, 185, 129, 0.2);
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #a7f3d0;
+  }
+
+  .pdf-cover-date-dark {
+    margin-top: 1.5rem;
+    font-size: 9pt;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ── 섹션 헤더 ── */
+  .pdf-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.85rem;
+    padding: 0.55rem 0.85rem;
+    background: #f1f5f9;
+    border-left: 4px solid #00a66a;
+    border-radius: 0 8px 8px 0;
+    break-after: avoid;
+  }
+
+  .pdf-section-header-spaced {
+    margin-top: 1.1rem;
+  }
+
+  .pdf-section-header-icon {
+    color: #00a66a;
+  }
+
+  .pdf-section-header-title {
+    margin: 0;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .pdf-lead {
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #334155;
+    margin-bottom: 0.85rem;
+  }
+
+  .pdf-h3 {
+    margin: 0.65rem 0 0.35rem;
+    font-size: 10.5pt;
+    font-weight: 600;
+  }
+
+  .pdf-h3-accent {
+    margin: 1rem 0 0.5rem;
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* ── Executive ── */
+  .pdf-exec-split {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .pdf-exec-score-panel {
+    flex: 0 0 42%;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    text-align: center;
+  }
+
+  .pdf-exec-score-num {
+    margin: 0;
+    font-size: 48pt;
+    font-weight: 800;
+    line-height: 1;
+    color: #0f172a;
+  }
+
+  .pdf-exec-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.85rem;
     border-radius: 999px;
     border: 1px solid #a7f3d0;
     background: #ecfdf5;
     font-size: 10pt;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: #047857;
   }
 
-  .pdf-cover-footer {
-    margin-top: 2rem;
-    font-size: 9pt;
-    color: #94a3b8;
-  }
-
-  .pdf-eyebrow {
-    font-size: 10pt;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: #00a85f;
-  }
-
-  .pdf-cover-title {
+  .pdf-exec-score-caption {
     margin: 0.5rem 0 0;
-    font-size: 28pt;
-    font-weight: 700;
-  }
-
-  .pdf-cover-url {
-    margin-top: 1rem;
-    font-size: 11pt;
-    word-break: break-all;
-    color: #475569;
-  }
-
-  .pdf-cover-meta {
-    margin-top: 0.5rem;
-    font-size: 10pt;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: #64748b;
   }
 
-  .pdf-cover-score-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .pdf-cover-score {
-    font-size: 56pt;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .pdf-cover-tagline {
-    margin-top: 1rem;
-    color: #64748b;
-  }
-
-  .pdf-h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 0 0 0.75rem;
-    font-size: 14pt;
-    font-weight: 700;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 0.35rem;
-  }
-
-  .pdf-h2-spaced {
-    margin-top: 1.25rem;
-  }
-
-  .pdf-h2-icon {
-    color: #00a66a;
-  }
-
-  .pdf-h3 {
-    margin: 0.75rem 0 0.4rem;
-    font-size: 11pt;
-    font-weight: 600;
-  }
-
-  .pdf-lead {
-    font-size: 10.5pt;
-    line-height: 1.5;
-    color: #334155;
-    margin-bottom: 0.85rem;
-  }
-
-  .pdf-exec-grid {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    margin-top: 0.75rem;
-  }
-
-  .pdf-kpi-col {
+  .pdf-exec-radar-panel {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .pdf-kpi-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .pdf-kpi {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 0.5rem 0.65rem;
-  }
-
-  .pdf-radar-wrap {
-    flex-shrink: 0;
-    display: flex;
     justify-content: center;
+    padding: 0.5rem;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
   }
 
   .pdf-priority-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
   }
 
-  .pdf-priority-card {
+  .pdf-priority-card-accent {
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 0.55rem 0.65rem;
-    min-height: 0;
+    border-top-width: 4px;
+    border-radius: 10px;
+    padding: 0.6rem 0.7rem;
   }
 
-  .pdf-axis-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  .pdf-rank {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    text-align: center;
+    border-radius: 999px;
+    background: rgba(0, 166, 106, 0.15);
+    color: #00a66a;
+    font-size: 8pt;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
   }
 
-  .pdf-axis-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.35rem 1rem;
-    border-bottom: 1px solid #f1f5f9;
-    padding-bottom: 0.45rem;
-  }
-
-  .pdf-table {
-    width: 100%;
-    border-collapse: collapse;
+  .pdf-gain {
+    margin-top: 0.35rem;
     font-size: 9pt;
+    font-weight: 600;
+    color: #00a66a;
   }
 
-  .pdf-table th,
-  .pdf-table td {
+  .pdf-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .pdf-kpi-card {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    padding: 0.55rem 0.7rem;
     border: 1px solid #e2e8f0;
-    padding: 0.4rem 0.5rem;
-    text-align: left;
-    vertical-align: top;
+    border-radius: 10px;
+    background: #fff;
   }
 
-  .pdf-table th {
-    background: #f8fafc;
+  .pdf-kpi-label {
+    margin: 0;
+    font-size: 9pt;
+    color: #64748b;
+  }
+
+  .pdf-kpi-value {
+    margin: 0;
+    font-size: 12pt;
+    font-weight: 700;
+  }
+
+  /* ── 품질 프로필 그리드 ── */
+  .pdf-axis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .pdf-axis-card {
+    position: relative;
+    overflow: hidden;
+    padding: 0.65rem 0.75rem 0.75rem;
+    border: 1px solid;
+    border-radius: 10px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-axis-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .pdf-axis-card-icon {
+    color: #475569;
+    margin-bottom: 0.25rem;
+  }
+
+  .pdf-axis-card-label {
+    margin: 0;
+    font-size: 9.5pt;
     font-weight: 600;
   }
 
-  .pdf-rec-block {
-    margin-bottom: 1.25rem;
-    padding: 0.85rem 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+  .pdf-axis-card-score {
+    margin: 0.15rem 0 0;
+    font-size: 20pt;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .pdf-axis-card-desc {
+    margin: 0.35rem 0 0;
+    font-size: 8.5pt;
+    line-height: 1.45;
+    color: #475569;
+  }
+
+  /* ── 점수 산정 ── */
+  .pdf-breakdown-intro {
+    margin: 0 0 0.5rem;
+    font-size: 10pt;
+    line-height: 1.55;
+    color: #334155;
+  }
+
+  .pdf-breakdown-formula {
+    margin: 0 0 0.65rem;
+    font-size: 8.5pt;
+    color: #64748b;
   }
 
   .pdf-breakdown-row {
     display: grid;
     grid-template-columns: 5rem 1fr 3rem;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.45rem;
+    margin-bottom: 0.4rem;
     font-size: 9pt;
   }
 
   .pdf-breakdown-bar-track {
-    height: 6px;
-    background: #f1f5f9;
+    height: 7px;
+    background: #e2e8f0;
     border-radius: 999px;
     overflow: hidden;
   }
@@ -571,67 +685,234 @@ body {
 
   .pdf-breakdown-penalty {
     width: 12% !important;
-    background: #f59e0b;
+    background: #f59e0b !important;
   }
 
-  .pdf-breakdown-final {
+  .pdf-breakdown-final-hero {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 2px solid #e2e8f0;
-    font-weight: 700;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    background: #072b22;
+    color: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  .pdf-issue-card {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0.65rem;
+  .pdf-breakdown-final-label {
+    font-size: 11pt;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  .pdf-breakdown-final-num {
+    font-size: 36pt;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  /* ── 권장 · 이슈 ── */
+  .pdf-rec-block {
+    margin-bottom: 0.55rem;
+    padding: 0.6rem 0.8rem;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 10px;
+    background: #fff;
   }
 
-  .pdf-rec-box {
-    margin-top: 0.35rem;
-    padding: 0.5rem 0.65rem;
+  .pdf-issue-card-rich {
+    margin-bottom: 0.65rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .pdf-issue-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .pdf-issue-category {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 9pt;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .pdf-severity-pill {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+
+  .pdf-severity-pill.pdf-severity-critical {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  .pdf-severity-pill.pdf-severity-high {
+    color: #c2410c;
+    background: #fff7ed;
+    border-color: #fed7aa;
+  }
+
+  .pdf-severity-pill.pdf-severity-medium {
+    color: #b45309;
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+
+  .pdf-severity-pill.pdf-severity-low {
+    color: #64748b;
     background: #f8fafc;
-    border-radius: 6px;
+    border-color: #e2e8f0;
   }
 
-  .pdf-severity {
+  .pdf-issue-title {
+    margin: 0 0 0.35rem;
+    font-size: 10pt;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .pdf-issue-location {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin: 0 0 0.5rem;
+    font-size: 8pt;
+    font-family: ui-monospace, monospace;
+    color: #64748b;
+    word-break: break-all;
+  }
+
+  .pdf-issue-impact-box {
+    margin-bottom: 0.4rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 8px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    font-size: 9pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-issue-rec-box {
+    padding: 0.45rem 0.6rem;
+    border-radius: 8px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    font-size: 9pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-issue-box-label {
+    margin: 0 0 0.15rem;
     font-size: 8pt;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    color: #047857;
   }
 
-  .pdf-severity-critical {
-    color: #dc2626;
+  /* ── 테이블 · 배지 ── */
+  .pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
   }
 
-  .pdf-severity-high {
-    color: #ea580c;
+  .pdf-table-spaced tbody tr td {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 
-  .pdf-severity-medium {
-    color: #d97706;
+  .pdf-table th,
+  .pdf-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.45rem 0.55rem;
+    text-align: left;
+    vertical-align: middle;
   }
 
-  .pdf-severity-low {
+  .pdf-table th {
+    background: #f1f5f9;
+    font-weight: 600;
+    font-size: 8.5pt;
+    color: #475569;
+  }
+
+  .pdf-td-url {
+    max-width: 150px;
+    font-size: 8pt;
+    font-family: ui-monospace, monospace;
     color: #64748b;
+    word-break: break-all;
   }
 
+  .pdf-pill {
+    display: inline-block;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    font-size: 8pt;
+    font-weight: 600;
+    border: 1px solid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-pill-ok {
+    color: #047857;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+
+  .pdf-pill-warn {
+    color: #b45309;
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+
+  .pdf-pill-bad {
+    color: #b91c1c;
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  .pdf-pill-muted {
+    color: #94a3b8;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+  }
+
+  /* ── SEO ── */
   .pdf-seo-checklist {
     list-style: none;
     margin: 0;
     padding: 0;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
+    background: #fff;
   }
 
   .pdf-seo-item {
     display: flex;
-    gap: 0.75rem;
-    padding: 0.65rem 0.85rem;
+    gap: 0.85rem;
+    padding: 0.7rem 0.9rem;
     border-bottom: 1px solid #f1f5f9;
   }
 
@@ -639,13 +920,18 @@ body {
     border-bottom: none;
   }
 
-  .pdf-seo-status {
+  .pdf-seo-status-lg {
     flex-shrink: 0;
-    font-size: 8pt;
-    font-weight: 600;
-    padding: 0.15rem 0.5rem;
+    align-self: flex-start;
+    font-size: 10.5pt;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
     border-radius: 999px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid;
+    min-width: 4.5rem;
+    text-align: center;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .pdf-seo-pass {
@@ -669,13 +955,29 @@ body {
   .pdf-seo-unknown {
     background: #f8fafc;
     color: #64748b;
+    border-color: #e2e8f0;
   }
 
+  .pdf-seo-why {
+    margin: 0.35rem 0 0;
+    font-size: 8.5pt;
+    line-height: 1.45;
+    color: #475569;
+  }
+
+  /* ── 부록 ── */
   .pdf-dl {
     display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 0.35rem 1rem;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0.3rem 0.85rem;
     font-size: 9pt;
+  }
+
+  .pdf-dl-box {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
   }
 
   .pdf-dl dt {
@@ -691,7 +993,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 1rem;
+    margin-top: 0.85rem;
     font-size: 8pt;
     color: #94a3b8;
   }

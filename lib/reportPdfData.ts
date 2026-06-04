@@ -1,6 +1,7 @@
 import type { PageReport, ReportJson } from "@/lib/types";
 import type { QualityAxis } from "@/lib/qualityProfile";
 import { buildQualityProfile, buildPriorityImprovements } from "@/lib/qualityProfile";
+import { SEO_WHY_IMPORTANT } from "@/lib/pdfTheme";
 
 export type IssueSeverity = "critical" | "high" | "medium" | "low";
 
@@ -104,6 +105,7 @@ export type SeoCheckItem = {
   label: string;
   status: "pass" | "warn" | "fail" | "unknown";
   note: string;
+  whyImportant: string;
 };
 
 export function buildSeoChecklist(report: ReportJson, seoScore: number): SeoCheckItem[] {
@@ -118,7 +120,7 @@ export function buildSeoChecklist(report: ReportJson, seoScore: number): SeoChec
   const tier = (n: number): SeoCheckItem["status"] =>
     n >= 80 ? "pass" : n >= 60 ? "warn" : "fail";
 
-  return [
+  const items: Omit<SeoCheckItem, "whyImportant">[] = [
     {
       id: "title",
       label: "페이지 제목 (Title)",
@@ -156,6 +158,10 @@ export function buildSeoChecklist(report: ReportJson, seoScore: number): SeoChec
       note: "리치 결과·검색 이해에 도움이 됩니다.",
     },
   ];
+  return items.map((item) => ({
+    ...item,
+    whyImportant: SEO_WHY_IMPORTANT[item.id] ?? item.note,
+  }));
 }
 
 export function pageAxeCount(p: PageReport): number {
