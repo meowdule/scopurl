@@ -5,6 +5,7 @@ import { Compass, Sparkles } from "lucide-react";
 import {
   ExplorationGame,
   TOTAL_FRAGMENTS,
+  type PickupToast,
 } from "@/lib/waitGame/ExplorationGame";
 import type { InfoEntry } from "@/lib/waitGame/InfoPanel";
 
@@ -30,6 +31,7 @@ export function AnalysisWaitExperience({ active }: Props) {
   const [collected, setCollected] = useState(0);
   const [complete, setComplete] = useState(false);
   const [entries, setEntries] = useState<readonly InfoEntry[]>([]);
+  const [pickups, setPickups] = useState<readonly PickupToast[]>([]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -120,7 +122,7 @@ export function AnalysisWaitExperience({ active }: Props) {
       }
 
       uiTickRef.current += dt;
-      if (uiTickRef.current >= 0.12) {
+      if (uiTickRef.current >= 0.05) {
         uiTickRef.current = 0;
         syncUi();
       }
@@ -141,6 +143,7 @@ export function AnalysisWaitExperience({ active }: Props) {
       setCollected(0);
       setComplete(false);
       setEntries([]);
+      setPickups([]);
     };
   }, [active, syncUi]);
 
@@ -192,6 +195,33 @@ export function AnalysisWaitExperience({ active }: Props) {
           aria-label="WASD 또는 방향키로 이동"
         >
           <canvas ref={canvasRef} className="block w-full" />
+          <div className="pointer-events-none absolute bottom-10 right-3 z-10 flex w-[min(100%,220px)] flex-col items-end gap-2">
+            {pickups.map((p) => {
+              const fade = Math.max(0, 1 - p.age / 2.8);
+              return (
+                <div
+                  key={p.id}
+                  className="flex items-center gap-2 rounded-lg border border-[#00c471]/35 bg-[#072b22]/95 px-3 py-2 shadow-lg backdrop-blur-sm transition"
+                  style={{
+                    opacity: fade,
+                    transform: `translateY(${(1 - fade) * 12}px) scale(${0.92 + fade * 0.08})`,
+                  }}
+                >
+                  <span className="text-xl leading-none" aria-hidden>
+                    {p.emoji}
+                  </span>
+                  <div className="min-w-0 text-left">
+                    <p className="text-[11px] font-bold text-[#a7f3d0]">
+                      {p.title}
+                    </p>
+                    <p className="truncate text-[10px] text-slate-400">
+                      {p.subtitle}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
           {complete && (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#0c1220]/60">
               <p className="rounded-xl border border-[#00c471]/40 bg-[#072b22]/95 px-5 py-3 text-sm font-semibold text-[#a7f3d0] shadow-lg">
@@ -200,7 +230,7 @@ export function AnalysisWaitExperience({ active }: Props) {
             </div>
           )}
           <p className="absolute bottom-2 left-3 right-3 text-center text-[10px] font-medium text-slate-500">
-            WASD / 방향키 — 데이터 조각에 닿으면 수집 · 분석 진행과 무관한 미니게임
+            WASD / 방향키 — 시야 안의 데이터 조각만 수집 · 벽·복도로 탐험
           </p>
         </div>
 
@@ -213,8 +243,8 @@ export function AnalysisWaitExperience({ active }: Props) {
           <ul className="max-h-[200px] flex-1 space-y-2 overflow-y-auto p-3 lg:max-h-[280px]">
             {entries.length === 0 ? (
               <li className="text-xs leading-relaxed text-slate-500">
-                맵을 돌아다니며 빛나는 데이터 조각을 수집하면 웹 이야기가
-                표시됩니다.
+                시야 안으로 들어온 데이터 조각만 보이며, 가까이 가면 수집됩니다.
+                건물·복도를 탐험해 보세요.
               </li>
             ) : (
               entries.map((e) => (
