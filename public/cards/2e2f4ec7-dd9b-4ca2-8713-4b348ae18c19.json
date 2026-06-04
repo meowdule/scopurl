@@ -1,0 +1,56 @@
+{
+  "cardId": "2e2f4ec7-dd9b-4ca2-8713-4b348ae18c19",
+  "reportId": "1aa9e36b-4a8b-493e-9856-ea3acb3dfa59",
+  "overallScore": 95,
+  "categoryScores": {
+    "performance": 100,
+    "accessibility": 95,
+    "seo": 80,
+    "ux": 100
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-04T22:57:10.508Z",
+  "topImprovements": [
+    "전반적으로 양호합니다. 세부 항목을 점검해 보세요."
+  ],
+  "pageCount": 1,
+  "issueCount": 2,
+  "analysisSeconds": 34.346,
+  "axisScores": [
+    {
+      "key": "performance",
+      "label": "??",
+      "score": 100
+    },
+    {
+      "key": "accessibility",
+      "label": "???",
+      "score": 95
+    },
+    {
+      "key": "ux",
+      "label": "???",
+      "score": 100
+    },
+    {
+      "key": "seo",
+      "label": "SEO",
+      "score": 80
+    },
+    {
+      "key": "shareability",
+      "label": "???",
+      "score": 82
+    },
+    {
+      "key": "security",
+      "label": "??",
+      "score": 92
+    },
+    {
+      "key": "stability",
+      "label": "???",
+      "score": 88
+    }
+  ]
+}
