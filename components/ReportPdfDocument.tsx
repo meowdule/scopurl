@@ -10,9 +10,12 @@ import {
 } from "@/lib/qualityProfile";
 import { buildPdfContext, pageAxeCount, type ReportIssue } from "@/lib/reportPdfData";
 import { pdfExecutiveLine, shareStatusLabelEn } from "@/lib/reportCopy";
-import { PDF_AXIS_TINT, PDF_PRIORITY_ACCENT } from "@/lib/pdfTheme";
+import {
+  buildImprovementSummary,
+  priorityShortLine,
+} from "@/lib/improvementHint";
 import { RadarChart } from "@/components/RadarChart";
-import { ScoreTierBadge } from "@/components/ReportCharts";
+import { ScoreTierBadge, SeoStatusBadge } from "@/components/ReportCharts";
 import {
   ReportIcon,
   axisIcon,
@@ -25,8 +28,6 @@ import {
   Search,
   Globe,
   Wrench,
-  MapPin,
-  Accessibility,
 } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
@@ -41,6 +42,15 @@ export function ReportPdfDocument({ report }: Props) {
   const profile = report.deviceProfile || crawlMeta?.deviceProfile;
   const applied = report.crawlLimits?.applied;
 
+  const improvementHint = buildImprovementSummary(
+    priorities.map((p) => ({
+      label: p.axis.label,
+      key: p.axis.key,
+      expectedGain: p.expectedGain,
+    })),
+    summary.healthScore,
+  );
+
   const dateShort = completedAt
     ? new Date(completedAt).toLocaleDateString("ko-KR", {
         year: "numeric",
@@ -52,7 +62,6 @@ export function ReportPdfDocument({ report }: Props) {
 
   return (
     <article className="pdf-doc">
-      {/* ── 표지 ── */}
       <section className="pdf-sheet pdf-cover-dark">
         <Image
           src={assetUrl("/favicon.png")}
@@ -80,8 +89,7 @@ export function ReportPdfDocument({ report }: Props) {
         </div>
       </section>
 
-      {/* ── Executive Summary ── */}
-      <section className="pdf-sheet pdf-sheet-tint">
+      <section className="pdf-sheet">
         <PdfSectionHeader icon={FileText} title="Executive Summary" />
         <p className="pdf-lead">{pdfExecutiveLine(summary.statusLabel)}</p>
 
@@ -90,9 +98,13 @@ export function ReportPdfDocument({ report }: Props) {
             <p className="pdf-exec-score-num">{summary.healthScore}</p>
             <span className="pdf-exec-badge">{statusEn}</span>
             <p className="pdf-exec-score-caption">Website Health Score</p>
+            <p className="pdf-exec-tagline">{shareCardTagline(summary.statusLabel)}</p>
+            {improvementHint && (
+              <p className="pdf-exec-hint">{improvementHint}</p>
+            )}
           </div>
           <div className="pdf-exec-radar-panel pdf-avoid-break">
-            <RadarChart axes={axes} size={220} />
+            <RadarChart axes={axes} size={200} />
           </div>
         </div>
 
@@ -100,27 +112,9 @@ export function ReportPdfDocument({ report }: Props) {
           <>
             <h3 className="pdf-h3-accent">우선 개선 TOP3</h3>
             <div className="pdf-priority-row">
-              {priorities.map((p, i) => {
-                const accent = PDF_PRIORITY_ACCENT[p.axis.key];
-                return (
-                  <div
-                    key={p.axis.key}
-                    className="pdf-priority-card-accent pdf-avoid-break"
-                    style={{
-                      borderTopColor: accent.bar,
-                      background: accent.bg,
-                    }}
-                  >
-                    <span className="pdf-rank">{i + 1}</span>
-                    <p className="font-semibold">{p.axis.label}</p>
-                    <p className="text-2xl font-bold">{p.axis.score}점</p>
-                    <p className="text-[10px] leading-snug text-[#475569]">
-                      {p.problemSummary}
-                    </p>
-                    <p className="pdf-gain">예상 +{p.expectedGain}점</p>
-                  </div>
-                );
-              })}
+              {priorities.map((p, i) => (
+                <PdfPriorityCard key={p.axis.key} item={p} rank={i + 1} />
+              ))}
             </div>
           </>
         )}
@@ -140,38 +134,25 @@ export function ReportPdfDocument({ report }: Props) {
         </div>
       </section>
 
-      {/* ── 품질 프로필 + 점수 산정 ── */}
       <section className="pdf-sheet">
         <PdfSectionHeader icon={Gauge} title="품질 프로필 상세" />
-        <div className="pdf-axis-grid">
-          {axes.map((axis) => {
-            const tint = PDF_AXIS_TINT[axis.key];
-            return (
-              <div
-                key={axis.key}
-                className="pdf-axis-card pdf-avoid-break"
-                style={{
-                  background: tint.bg,
-                  borderColor: tint.border,
-                }}
-              >
-                <div
-                  className="pdf-axis-card-accent"
-                  style={{ background: tint.accent }}
-                />
-                <ReportIcon
-                  icon={axisIcon(axis.key)}
-                  size={18}
-                  className="pdf-axis-card-icon"
-                  strokeWidth={2}
-                />
-                <p className="pdf-axis-card-label">{axis.label}</p>
-                <p className="pdf-axis-card-score">{axis.score}</p>
-                <ScoreTierBadge tier={axis.tier} label={axis.tierLabel} />
-                <p className="pdf-axis-card-desc">{axis.cardDescription}</p>
+        <div className="pdf-audit-panel">
+          {axes.map((axis, i) => (
+            <div
+              key={axis.key}
+              className={`pdf-audit-row pdf-avoid-break ${i < axes.length - 1 ? "pdf-audit-row-border" : ""}`}
+            >
+              <div className="pdf-audit-left">
+                <ReportIcon icon={axisIcon(axis.key)} size={16} className="text-[#64748b]" />
+                <span className="font-semibold">{axis.label}</span>
               </div>
-            );
-          })}
+              <p className="pdf-audit-desc">{axis.cardDescription}</p>
+              <div className="pdf-audit-right">
+                <span className="pdf-audit-score">{axis.score}점</span>
+                <ScoreTierBadge tier={axis.tier} label={axis.tierLabel} />
+              </div>
+            </div>
+          ))}
         </div>
 
         {bd && (
@@ -182,9 +163,6 @@ export function ReportPdfDocument({ report }: Props) {
               가중치 기반으로 계산되었습니다.
               {bd.penaltyTotal > 0 && ` (감점 −${bd.penaltyTotal}점 포함)`}
             </p>
-            {bd.formula && (
-              <p className="pdf-breakdown-formula">{bd.formula}</p>
-            )}
             <div className="pdf-breakdown">
               {bd.contributions.map((c) => (
                 <div key={c.category} className="pdf-breakdown-row">
@@ -218,21 +196,15 @@ export function ReportPdfDocument({ report }: Props) {
         )}
       </section>
 
-      {/* ── 개선 권장 + 이슈 ── */}
-      <section className="pdf-sheet pdf-sheet-tint">
+      <section className="pdf-sheet">
         {priorities.length > 0 && (
           <>
             <PdfSectionHeader icon={Wrench} title="우선 개선 권장 사항" />
             {priorities.map((p) => (
               <div key={p.axis.key} className="pdf-rec-block pdf-avoid-break">
                 <h3 className="pdf-h3">{p.axis.label}</h3>
-                <p className="text-sm">
-                  <strong>문제</strong> — {p.problemSummary}
-                </p>
-                <p className="text-sm">
-                  <strong>권장</strong> — {p.actions.join(" · ")}
-                </p>
-                <p className="pdf-gain">예상 +{p.expectedGain}점</p>
+                <p className="text-sm text-[#475569]">{p.problemSummary}</p>
+                <p className="mt-1 text-sm">{p.actions.join(" · ")}</p>
               </div>
             ))}
           </>
@@ -248,7 +220,6 @@ export function ReportPdfDocument({ report }: Props) {
         )}
       </section>
 
-      {/* ── 페이지 · SEO · 부록 ── */}
       <section className="pdf-sheet">
         <PdfSectionHeader icon={Globe} title="페이지별 진단" />
         <table className="pdf-table pdf-table-spaced">
@@ -267,8 +238,6 @@ export function ReportPdfDocument({ report }: Props) {
               const issueN =
                 pageAxeCount(p) +
                 (p.uiIssues?.filter((i) => i.severity !== "info").length ?? 0);
-              const perf = p.lighthouse?.performance;
-              const seo = p.lighthouse?.seo;
               return (
                 <tr key={p.url}>
                   <td className="pdf-td-url">{p.url}</td>
@@ -276,11 +245,11 @@ export function ReportPdfDocument({ report }: Props) {
                     <PdfHttpBadge code={p.statusCode} />
                   </td>
                   <td>
-                    <PdfScorePill score={perf} />
+                    <PdfScorePill score={p.lighthouse?.performance} />
                   </td>
                   <td className="tabular-nums">{pageAxeCount(p)}</td>
                   <td>
-                    <PdfScorePill score={seo} />
+                    <PdfScorePill score={p.lighthouse?.seo} />
                   </td>
                   <td>
                     <PdfIssuePill count={issueN} />
@@ -292,22 +261,23 @@ export function ReportPdfDocument({ report }: Props) {
         </table>
 
         <PdfSectionHeader icon={Search} title="SEO 분석" spaced />
-        <ul className="pdf-seo-checklist">
-          {seoChecklist.map((item) => (
-            <li key={item.id} className="pdf-seo-item pdf-avoid-break">
-              <span className={`pdf-seo-status-lg pdf-seo-${item.status}`}>
-                {seoStatusLabel(item.status)}
-              </span>
-              <div className="pdf-seo-item-body">
-                <p className="font-semibold">{item.label}</p>
-                <p className="text-[10px] text-[#64748b]">{item.note}</p>
-                <p className="pdf-seo-why">
-                  <strong>왜 중요한가</strong> — {item.whyImportant}
-                </p>
+        <div className="pdf-audit-panel">
+          {seoChecklist.map((item, i) => (
+            <div
+              key={item.id}
+              className={`pdf-audit-row pdf-avoid-break ${i < seoChecklist.length - 1 ? "pdf-audit-row-border" : ""}`}
+            >
+              <div className="pdf-audit-left">
+                <ReportIcon icon={Search} size={14} className="text-[#64748b]" />
+                <span className="font-semibold text-sm">{item.label}</span>
               </div>
-            </li>
+              <p className="pdf-audit-desc text-[10px]">{item.whyImportant}</p>
+              <div className="pdf-audit-right">
+                <SeoStatusBadge status={item.status} />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
 
         <PdfSectionHeader icon={Layers} title="분석 범위" spaced />
         <dl className="pdf-dl pdf-dl-box">
@@ -346,6 +316,13 @@ export function ReportPdfDocument({ report }: Props) {
   );
 }
 
+function shareCardTagline(status: "Good" | "Warning" | "Critical" | undefined) {
+  if (status === "Good") return "전반적으로 양호한 상태입니다.";
+  if (status === "Warning") return "개선하면 좋을 부분이 있습니다.";
+  if (status === "Critical") return "우선 조치가 필요한 항목이 있습니다.";
+  return "품질 진단 결과입니다.";
+}
+
 function PdfSectionHeader({
   icon: Icon,
   title,
@@ -363,34 +340,48 @@ function PdfSectionHeader({
   );
 }
 
-function PdfIssueCard({ issue }: { issue: ReportIssue }) {
-  const category =
-    issue.source.includes("접근성") ? "접근성 이슈" : issue.source;
-  const CatIcon = issue.source.includes("접근성") ? Accessibility : AlertTriangle;
-
+function PdfPriorityCard({
+  item,
+  rank,
+}: {
+  item: ReturnType<typeof buildPriorityImprovements>[number];
+  rank: number;
+}) {
   return (
-    <div className="pdf-issue-card-rich pdf-avoid-break">
-      <div className="pdf-issue-card-head">
-        <span className="pdf-issue-category">
-          <ReportIcon icon={CatIcon} size={14} />
-          {category}
+    <div className="pdf-priority-card-neutral pdf-avoid-break">
+      <div className="pdf-priority-top">
+        <span>
+          <span className="text-[#64748b]">{rank} </span>
+          {item.axis.label}
         </span>
+        <span className="pdf-gain-badge">예상 +{item.expectedGain}점</span>
+      </div>
+      <div className="pdf-priority-mid">
+        <span className="pdf-priority-score">{item.axis.score}점</span>
+        <span className="text-[10px] text-[#64748b]">개선 우선</span>
+      </div>
+      <p className="pdf-priority-desc">{priorityShortLine(item.axis.key)}</p>
+    </div>
+  );
+}
+
+function PdfIssueCard({ issue }: { issue: ReportIssue }) {
+  return (
+    <div className="pdf-issue-card-neutral pdf-avoid-break">
+      <div className="pdf-issue-head">
+        <p className="pdf-issue-title">{issue.title}</p>
         <span className={`pdf-severity-pill pdf-severity-${issue.severity}`}>
           {issue.severity.toUpperCase()}
         </span>
       </div>
-      <p className="pdf-issue-title">{issue.title}</p>
-      <p className="pdf-issue-location">
-        <ReportIcon icon={MapPin} size={12} />
-        {issue.location}
-      </p>
-      <div className="pdf-issue-impact-box">
-        <p className="pdf-issue-box-label">영향</p>
-        <p>{issue.impact}</p>
+      <div className="pdf-issue-zone">
+        <p className="pdf-issue-zone-label">영향</p>
+        <p className="pdf-issue-zone-body">{issue.impact}</p>
       </div>
-      <div className="pdf-issue-rec-box">
-        <p className="pdf-issue-box-label">권장 조치</p>
-        <p>{issue.recommendation}</p>
+      <div className="pdf-issue-zone">
+        <p className="pdf-issue-zone-label">권장 조치</p>
+        <p className="pdf-issue-zone-body">{issue.recommendation}</p>
+        <p className="pdf-issue-loc">{issue.location}</p>
       </div>
     </div>
   );
@@ -407,7 +398,7 @@ function PdfKpi({
 }) {
   return (
     <div className="pdf-kpi-card">
-      <ReportIcon icon={Icon} size={18} className="text-[#00a66a]" />
+      <ReportIcon icon={Icon} size={18} className="text-[#64748b]" />
       <div>
         <p className="pdf-kpi-label">{label}</p>
         <p className="pdf-kpi-value">{value}</p>
@@ -443,11 +434,4 @@ function PdfDl({ label, value }: { label: string; value: string }) {
       <dd>{value}</dd>
     </>
   );
-}
-
-function seoStatusLabel(s: string) {
-  if (s === "pass") return "충족";
-  if (s === "warn") return "개선 권장";
-  if (s === "fail") return "누락";
-  return "확인 필요";
 }

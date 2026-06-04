@@ -1,5 +1,9 @@
 import type { QualityAxisKey } from "@/lib/qualityProfile";
-import { buildQualityProfile } from "@/lib/qualityProfile";
+import {
+  buildPriorityImprovements,
+  buildQualityProfile,
+} from "@/lib/qualityProfile";
+import { buildImprovementSummary } from "@/lib/improvementHint";
 import type { ReportJson, ScoreCardJson } from "@/lib/types";
 
 export type ShareAxisPoint = {
@@ -16,6 +20,7 @@ export type ShareScoreCardData = {
   issueCount: number;
   analysisSeconds: number | null;
   axes: ShareAxisPoint[];
+  improvementHint?: string | null;
 };
 
 const AXIS_LABELS: Record<QualityAxisKey, string> = {
@@ -37,7 +42,9 @@ function deriveExtraAxes(seo: number) {
 }
 
 export function shareCardDataFromReport(report: ReportJson): ShareScoreCardData {
-  const axes = buildQualityProfile(report);
+  const profileAxes = buildQualityProfile(report);
+  const priorities = buildPriorityImprovements(profileAxes);
+  const axes = profileAxes;
   const pages = report.pages.length;
   const issueCount =
     report.pages.reduce(
@@ -65,6 +72,19 @@ export function shareCardDataFromReport(report: ReportJson): ShareScoreCardData 
 
 export function shareCardDataFromScoreCard(card: ScoreCardJson): ShareScoreCardData {
   if (card.axisScores?.length) {
+    const mapped = card.axisScores.map((a) => ({
+      key: a.key as QualityAxisKey,
+      label: a.label,
+      score: a.score,
+    }));
+    const hintItems = [...mapped]
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 3)
+      .map((a) => ({
+        label: a.label,
+        key: a.key,
+        expectedGain: Math.min(8, Math.max(1, Math.round((85 - a.score) * 0.15 + 1))),
+      }));
     return {
       healthScore: card.overallScore,
       statusLabel: card.statusLabel,
@@ -72,11 +92,8 @@ export function shareCardDataFromScoreCard(card: ScoreCardJson): ShareScoreCardD
       pageCount: card.pageCount ?? 1,
       issueCount: card.issueCount ?? 0,
       analysisSeconds: card.analysisSeconds ?? null,
-      axes: card.axisScores.map((a) => ({
-        key: a.key as QualityAxisKey,
-        label: a.label,
-        score: a.score,
-      })),
+      axes: mapped,
+      improvementHint: buildImprovementSummary(hintItems, card.overallScore),
     };
   }
 
@@ -97,6 +114,20 @@ export function shareCardDataFromScoreCard(card: ScoreCardJson): ShareScoreCardD
     stability: extra.stability,
   };
 
+  const axisList = (Object.keys(AXIS_LABELS) as QualityAxisKey[]).map((key) => ({
+    key,
+    label: AXIS_LABELS[key],
+    score: scores[key],
+  }));
+  const hintItems = [...axisList]
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 3)
+    .map((a) => ({
+      label: a.label,
+      key: a.key,
+      expectedGain: Math.min(8, Math.max(1, Math.round((85 - a.score) * 0.15 + 1))),
+    }));
+
   return {
     healthScore: card.overallScore,
     statusLabel: card.statusLabel,
@@ -104,10 +135,7 @@ export function shareCardDataFromScoreCard(card: ScoreCardJson): ShareScoreCardD
     pageCount: card.pageCount ?? 1,
     issueCount: card.issueCount ?? 0,
     analysisSeconds: card.analysisSeconds ?? null,
-    axes: (Object.keys(AXIS_LABELS) as QualityAxisKey[]).map((key) => ({
-      key,
-      label: AXIS_LABELS[key],
-      score: scores[key],
-    })),
+    axes: axisList,
+    improvementHint: buildImprovementSummary(hintItems, card.overallScore),
   };
 }

@@ -125,6 +125,18 @@ export function ShareScoreCard({ data, exportMode = false }: Props) {
             >
               {shareCardTagline(data.statusLabel)}
             </p>
+            {data.improvementHint && (
+              <p
+                className="mt-3 max-w-md font-medium text-[#00a66a]"
+                style={
+                  exportMode
+                    ? { fontSize: 16, lineHeight: 1.5 }
+                    : { fontSize: "clamp(0.75rem, 2vw, 0.9rem)" }
+                }
+              >
+                {data.improvementHint}
+              </p>
+            )}
           </div>
 
           <div

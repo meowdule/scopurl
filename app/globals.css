@@ -524,6 +524,22 @@ body {
     color: #64748b;
   }
 
+  .pdf-exec-tagline {
+    margin: 0.5rem 0 0;
+    font-size: 9pt;
+    line-height: 1.45;
+    color: #334155;
+  }
+
+  .pdf-exec-hint {
+    margin: 0.35rem 0 0;
+    padding-top: 0.35rem;
+    border-top: 1px solid #f1f5f9;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    color: #475569;
+  }
+
   .pdf-exec-radar-panel {
     flex: 1;
     display: flex;
@@ -541,32 +557,54 @@ body {
     margin-bottom: 0.85rem;
   }
 
-  .pdf-priority-card-accent {
+  .pdf-priority-card-neutral {
     border: 1px solid #e2e8f0;
-    border-top-width: 4px;
     border-radius: 10px;
-    padding: 0.6rem 0.7rem;
+    padding: 0.65rem 0.75rem;
+    background: #fafbfc;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   }
 
-  .pdf-rank {
-    display: inline-block;
-    width: 1.25rem;
-    height: 1.25rem;
-    line-height: 1.25rem;
-    text-align: center;
-    border-radius: 999px;
-    background: rgba(0, 166, 106, 0.15);
-    color: #00a66a;
-    font-size: 8pt;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .pdf-gain {
-    margin-top: 0.35rem;
+  .pdf-priority-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 9pt;
     font-weight: 600;
-    color: #00a66a;
+    color: #0f172a;
+  }
+
+  .pdf-gain-badge {
+    flex-shrink: 0;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .pdf-priority-mid {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0.35rem 0 0.25rem;
+  }
+
+  .pdf-priority-score {
+    font-size: 22pt;
+    font-weight: 800;
+    line-height: 1;
+    color: #0f172a;
+  }
+
+  .pdf-priority-desc {
+    margin: 0;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: #64748b;
   }
 
   .pdf-kpi-row {
@@ -597,54 +635,55 @@ body {
     font-weight: 700;
   }
 
-  /* ── 품질 프로필 그리드 ── */
-  .pdf-axis-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-  }
-
-  .pdf-axis-card {
-    position: relative;
-    overflow: hidden;
-    padding: 0.65rem 0.75rem 0.75rem;
-    border: 1px solid;
+  /* ── Audit summary rows ── */
+  .pdf-audit-panel {
+    border: 1px solid #e2e8f0;
     border-radius: 10px;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   }
 
-  .pdf-axis-card-accent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
+  .pdf-audit-row {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 7rem) 1fr auto;
+    align-items: center;
+    gap: 0.65rem 0.85rem;
+    padding: 0.6rem 0.85rem;
   }
 
-  .pdf-axis-card-icon {
-    color: #475569;
-    margin-bottom: 0.25rem;
+  .pdf-audit-row-border {
+    border-bottom: 1px solid #f1f5f9;
   }
 
-  .pdf-axis-card-label {
-    margin: 0;
+  .pdf-audit-left {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 9.5pt;
-    font-weight: 600;
+    color: #0f172a;
   }
 
-  .pdf-axis-card-score {
-    margin: 0.15rem 0 0;
-    font-size: 20pt;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .pdf-axis-card-desc {
-    margin: 0.35rem 0 0;
-    font-size: 8.5pt;
+  .pdf-audit-desc {
+    margin: 0;
+    font-size: 9pt;
     line-height: 1.45;
     color: #475569;
+  }
+
+  .pdf-audit-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  .pdf-audit-score {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #0f172a;
+    white-space: nowrap;
   }
 
   /* ── 점수 산정 ── */
@@ -722,29 +761,21 @@ body {
     background: #fff;
   }
 
-  .pdf-issue-card-rich {
+  .pdf-issue-card-neutral {
     margin-bottom: 0.65rem;
     padding: 0.7rem 0.85rem;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     background: #fff;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   }
 
-  .pdf-issue-card-head {
+  .pdf-issue-head {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .pdf-issue-category {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 9pt;
-    font-weight: 600;
-    color: #475569;
+    margin-bottom: 0.5rem;
   }
 
   .pdf-severity-pill {
@@ -781,51 +812,44 @@ body {
   }
 
   .pdf-issue-title {
-    margin: 0 0 0.35rem;
+    margin: 0;
     font-size: 10pt;
     font-weight: 600;
     line-height: 1.4;
+    flex: 1;
   }
 
-  .pdf-issue-location {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.25rem;
-    margin: 0 0 0.5rem;
-    font-size: 8pt;
-    font-family: ui-monospace, monospace;
-    color: #64748b;
-    word-break: break-all;
-  }
-
-  .pdf-issue-impact-box {
-    margin-bottom: 0.4rem;
+  .pdf-issue-zone {
+    margin-top: 0.4rem;
     padding: 0.45rem 0.6rem;
+    min-height: 2.75rem;
     border-radius: 8px;
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    font-size: 9pt;
-    line-height: 1.45;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
   }
 
-  .pdf-issue-rec-box {
-    padding: 0.45rem 0.6rem;
-    border-radius: 8px;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    font-size: 9pt;
-    line-height: 1.45;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .pdf-issue-box-label {
+  .pdf-issue-zone-label {
     margin: 0 0 0.15rem;
-    font-size: 8pt;
+    font-size: 7.5pt;
     font-weight: 700;
-    color: #047857;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+
+  .pdf-issue-zone-body {
+    margin: 0;
+    font-size: 9pt;
+    line-height: 1.45;
+    color: #334155;
+  }
+
+  .pdf-issue-loc {
+    margin: 0.25rem 0 0;
+    font-size: 7.5pt;
+    font-family: ui-monospace, monospace;
+    color: #94a3b8;
+    word-break: break-all;
   }
 
   /* ── 테이블 · 배지 ── */
