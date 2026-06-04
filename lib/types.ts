@@ -219,12 +219,23 @@ export type ReportJson = {
   };
 };
 
+export type ShareCardAxisScore = {
+  key: string;
+  label: string;
+  score: number;
+};
+
 export type ScoreCardJson = {
   cardId: string;
+  reportId?: string;
   overallScore: number;
   categoryScores?: CategoryScores;
   statusLabel?: "Good" | "Warning" | "Critical";
   generatedAt: string;
   topImprovements?: string[];
+  pageCount?: number;
+  issueCount?: number;
+  analysisSeconds?: number | null;
+  axisScores?: ShareCardAxisScore[];
 };
 

@@ -4,6 +4,7 @@ import type { PageReport, ReportJson } from "@/lib/types";
 import { pageAxeCount } from "@/lib/reportPdfData";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import { HttpStatusBadge } from "@/components/ReportCharts";
+import { ReportIcon, Globe } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
 
@@ -35,7 +36,10 @@ export function PagesDiagnosisTable({ report }: Props) {
       data-report-section={REPORT_SECTION.pagesTable}
       className="report-section"
     >
-      <h2 className="report-section-title">페이지별 진단</h2>
+      <h2 className="report-section-title flex items-center gap-2">
+        <ReportIcon icon={Globe} size={20} className="text-accent-dim" />
+        페이지별 진단
+      </h2>
       <p className="report-section-desc">분석된 각 페이지의 품질 지표입니다.</p>
 
       <div className="mt-5 hidden overflow-x-auto rounded-[16px] border border-card-border bg-card md:block">

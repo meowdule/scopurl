@@ -380,13 +380,40 @@ async function main() {
 
     const cardsDir = path.join(process.cwd(), "public", "cards");
     await fs.mkdir(cardsDir, { recursive: true });
+    const cats = summary.categoryScores || {};
+    const seo = cats.seo ?? 72;
+    const cardIssueCount =
+      pages.reduce(
+        (s, p) =>
+          s +
+          (p.axeViolations || []).reduce((n, v) => n + v.nodes, 0) +
+          (p.uiIssues?.filter((i) => i.severity !== "info").length ?? 0),
+        0,
+      ) + dedupBroken.length;
     await writeJson(path.join(cardsDir, `${cardId}.json`), {
       cardId,
+      reportId,
       overallScore: summary.healthScore,
       categoryScores: summary.categoryScores,
       statusLabel: summary.statusLabel,
       generatedAt: completedAt,
       topImprovements: summary.topImprovements || [],
+      pageCount: pages.length,
+      issueCount: cardIssueCount,
+      analysisSeconds: timing?.totalSeconds ?? null,
+      axisScores: [
+        { key: "performance", label: "??", score: cats.performance ?? 70 },
+        { key: "accessibility", label: "???", score: cats.accessibility ?? 75 },
+        { key: "ux", label: "???", score: cats.ux ?? 80 },
+        { key: "seo", label: "SEO", score: seo },
+        {
+          key: "shareability",
+          label: "???",
+          score: Math.min(100, Math.round(seo + 2)),
+        },
+        { key: "security", label: "??", score: quick.sslOk ? 92 : 68 },
+        { key: "stability", label: "???", score: dedupBroken.length ? 78 : 88 },
+      ],
     });
 
     timer.end("report_generation");

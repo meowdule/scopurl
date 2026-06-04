@@ -1,13 +1,13 @@
 "use client";
 
-import type { QualityAxis } from "@/lib/qualityProfile";
-
-const FILL = "rgba(0, 196, 113, 0.22)";
-const STROKE = "#00a85f";
+const FILL = "rgba(0, 166, 106, 0.22)";
+const STROKE = "#00a66a";
 const GRID = "#e2e8f0";
 
+type RadarAxis = { label: string; score: number };
+
 type Props = {
-  axes: QualityAxis[];
+  axes: RadarAxis[];
   width?: number;
   height?: number;
 };
@@ -89,7 +89,7 @@ export function ShareRadarChart({
         const p = pointAt(i, 100);
         return (
           <text
-            key={axis.key}
+            key={`${axis.label}-${i}`}
             x={p.lx}
             y={p.ly}
             textAnchor="middle"

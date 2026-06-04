@@ -13,7 +13,7 @@ import { ReportIssuesSection } from "@/components/ReportIssuesSection";
 import { PagesDiagnosisTable } from "@/components/PagesDiagnosisTable";
 import { SeoChecklistSection } from "@/components/SeoChecklistSection";
 import { AnalysisScopeSection } from "@/components/AnalysisScopeSection";
-import { ExtendedReportCta } from "@/components/ExtendedReportCta";
+import { FloatingExtendedCta } from "@/components/FloatingExtendedCta";
 import { ReportPdfDocument } from "@/components/ReportPdfDocument";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import {
@@ -84,7 +84,7 @@ export function ReportDashboard({
 
   return (
     <>
-      <div className="report-screen mx-auto max-w-[1140px] px-4 pb-20 pt-8 sm:px-6">
+      <div className="report-screen mx-auto max-w-[1140px] px-4 pb-32 pt-8 sm:px-6">
         {onNewAnalysis ? (
           <button
             type="button"
@@ -119,11 +119,12 @@ export function ReportDashboard({
           <PagesDiagnosisTable report={report} />
           <SeoChecklistSection report={report} />
 
-          <ExtendedReportCta defaultSiteUrl={targetUrl} />
           <AnalysisOverview report={report} />
           <AnalysisScopeSection report={report} />
         </div>
       </div>
+
+      <FloatingExtendedCta defaultSiteUrl={targetUrl} />
 
       <div className="report-pdf-root hidden print:block">
         <ReportPdfDocument report={report} />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FileDown } from "lucide-react";
 import { LeadModal } from "@/components/LeadModal";
 
 type Props = {
@@ -20,8 +21,9 @@ export function PdfDownloadButton({ reportId, targetUrl }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-lg border border-card-border bg-card px-4 py-2 text-sm font-medium text-fg shadow-cardSm hover:border-accent-dim/40"
+        className="btn-primary"
       >
+        <FileDown className="h-4 w-4" aria-hidden />
         PDF 다운로드
       </button>
       <LeadModal

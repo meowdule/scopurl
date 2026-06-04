@@ -4,6 +4,7 @@ import type { ReportJson } from "@/lib/types";
 import { collectReportIssues } from "@/lib/reportPdfData";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import { SeverityBadge } from "@/components/ReportCharts";
+import { ReportIcon, AlertTriangle, MapPin, Wrench } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
 
@@ -38,12 +39,16 @@ export function ReportIssuesSection({ report }: Props) {
               <p className="mt-2 text-sm text-fg-muted">
                 <span className="font-medium text-fg">영향</span> — {issue.impact}
               </p>
-              <p className="mt-1.5 font-mono text-xs text-fg-muted break-all">
+              <p className="mt-1.5 flex items-start gap-1.5 font-mono text-xs text-fg-muted break-all">
+                <ReportIcon icon={MapPin} size={14} className="mt-0.5 shrink-0" />
                 {issue.location}
               </p>
-              <div className="mt-3 rounded-[12px] border border-[#eafbf3] bg-[#eafbf3]/50 px-4 py-3 text-sm text-fg">
+              <div className="mt-3 flex gap-2 rounded-[12px] border border-[#eafbf3] bg-[#eafbf3]/50 px-4 py-3 text-sm text-fg">
+                <ReportIcon icon={Wrench} size={16} className="shrink-0 text-accent-dim" />
+                <span>
                 <span className="font-medium text-accent-dim">권장 조치</span>
                 <span className="text-fg-muted"> — {issue.recommendation}</span>
+                </span>
               </div>
             </li>
           ))}

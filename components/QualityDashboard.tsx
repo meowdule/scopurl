@@ -6,7 +6,7 @@ import type { ReportJson } from "@/lib/types";
 import { assetUrl } from "@/lib/paths";
 import { captureShareCardPng } from "@/lib/shareCardImage";
 import { REPORT_SECTION } from "@/lib/reportSections";
-import { ShareScoreCard } from "@/components/ShareScoreCard";
+import { ShareScoreCardFromReport } from "@/components/ShareScoreCard";
 import { PdfDownloadButton } from "@/components/PdfDownloadButton";
 
 type Props = {
@@ -115,14 +115,14 @@ export function QualityDashboard({ report }: Props) {
           </div>
         </div>
 
-        <ShareScoreCard report={report} exportMode={false} />
+        <ShareScoreCardFromReport report={report} exportMode={false} />
 
         <div
           className="pointer-events-none fixed left-[-10000px] top-0 z-[-1] opacity-0"
           aria-hidden
         >
           <div ref={exportRef}>
-            <ShareScoreCard report={report} exportMode />
+            <ShareScoreCardFromReport report={report} exportMode />
           </div>
         </div>
       </div>

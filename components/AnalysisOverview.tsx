@@ -3,6 +3,7 @@
 import type { ReportJson } from "@/lib/types";
 import { buildReportKpi } from "@/lib/qualityProfile";
 import { REPORT_SECTION } from "@/lib/reportSections";
+import { ReportIcon, Layers, AlertTriangle, Timer, Monitor } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
 
@@ -23,10 +24,11 @@ export function AnalysisOverview({ report }: Props) {
       className="report-meta-strip"
     >
       <h2 className="report-section-title-sm">분석 개요</h2>
-      <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
-        <MetaItem label="분석 페이지" value={`${kpi.pageCount}개`} />
-        <MetaItem label="발견 이슈" value={`${kpi.issueCount}건`} />
+      <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
+        <MetaItem icon={Layers} label="분석 페이지" value={`${kpi.pageCount}개`} />
+        <MetaItem icon={AlertTriangle} label="발견 이슈" value={`${kpi.issueCount}건`} />
         <MetaItem
+          icon={Timer}
           label="분석 시간"
           value={
             kpi.analysisSeconds != null
@@ -34,17 +36,28 @@ export function AnalysisOverview({ report }: Props) {
               : "—"
           }
         />
-        <MetaItem label="분석 환경" value={deviceLabel(report)} />
+        <MetaItem icon={Monitor} label="분석 환경" value={deviceLabel(report)} />
       </dl>
     </section>
   );
 }
 
-function MetaItem({ label, value }: { label: string; value: string }) {
+function MetaItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: typeof Layers;
+  label: string;
+  value: string;
+}) {
   return (
-    <div>
-      <dt className="text-xs text-fg-muted">{label}</dt>
-      <dd className="mt-0.5 text-sm font-semibold tabular-nums text-fg">{value}</dd>
+    <div className="flex gap-2.5">
+      <ReportIcon icon={Icon} className="mt-0.5 text-accent-dim" />
+      <div>
+        <dt className="text-xs text-fg-muted">{label}</dt>
+        <dd className="mt-0.5 text-sm font-semibold tabular-nums text-fg">{value}</dd>
+      </div>
     </div>
   );
 }

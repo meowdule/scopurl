@@ -4,6 +4,7 @@ import type { ReportJson } from "@/lib/types";
 import { buildQualityProfile } from "@/lib/qualityProfile";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import { ScoreTierBadge, TierIndicator } from "@/components/ReportCharts";
+import { ReportIcon, axisIcon, Gauge } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
 
@@ -16,7 +17,10 @@ export function AxisDiagnosisGrid({ report }: Props) {
       data-report-section={REPORT_SECTION.axisCards}
       className="report-section"
     >
-      <h2 className="report-section-title">영역별 진단</h2>
+      <h2 className="report-section-title flex items-center gap-2">
+        <ReportIcon icon={Gauge} size={20} className="text-accent-dim" />
+        영역별 진단
+      </h2>
       <p className="report-section-desc">7개 품질 영역의 점수와 상태입니다.</p>
       <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {axes.map((axis) => (
@@ -25,7 +29,10 @@ export function AxisDiagnosisGrid({ report }: Props) {
             className="report-axis-card flex min-h-[148px] flex-col rounded-[16px] border border-card-border bg-card p-5 transition hover:border-accent-dim/30 hover:shadow-cardSm"
           >
             <div className="flex items-start justify-between gap-2">
-              <h3 className="text-sm font-semibold text-fg">{axis.label}</h3>
+              <h3 className="flex items-center gap-1.5 text-sm font-semibold text-fg">
+                <ReportIcon icon={axisIcon(axis.key)} size={16} className="text-accent-dim" />
+                {axis.label}
+              </h3>
               <p className="text-2xl font-bold tabular-nums leading-none text-fg">
                 {axis.score}
                 <span className="ml-0.5 text-sm font-medium text-fg-muted">점</span>

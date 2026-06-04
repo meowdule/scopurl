@@ -5,6 +5,7 @@ import { buildQualityProfile } from "@/lib/qualityProfile";
 import { buildSeoChecklist } from "@/lib/reportPdfData";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import { SeoStatusBadge } from "@/components/ReportCharts";
+import { ReportIcon, Search } from "@/lib/reportIcons";
 
 type Props = { report: ReportJson };
 
@@ -19,7 +20,10 @@ export function SeoChecklistSection({ report }: Props) {
       data-report-section={REPORT_SECTION.seoAnalysis}
       className="report-section"
     >
-      <h2 className="report-section-title">SEO 분석</h2>
+      <h2 className="report-section-title flex items-center gap-2">
+        <ReportIcon icon={Search} size={20} className="text-accent-dim" />
+        SEO 분석
+      </h2>
       <p className="report-section-desc">
         현재 SEO 점수{" "}
         <strong className="text-fg">{seoScore}점</strong> — 항목별 점검 결과입니다.
