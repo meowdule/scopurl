@@ -28,7 +28,7 @@ export class VisionCone {
     if (!this.contains(wx, wy)) return 0;
     const dist = Math.hypot(wx - this.px, wy - this.py);
     const t = dist / this.range;
-    const distFade = Math.pow(1 - t, 2.2);
+    const distFade = Math.pow(1 - t, 1.95);
     const dx = wx - this.px;
     const dy = wy - this.py;
     const angleTo = Math.atan2(dy, dx);
@@ -37,6 +37,26 @@ export class VisionCone {
     while (diff < -Math.PI) diff += Math.PI * 2;
     const edgeT = Math.abs(diff) / this.halfAngle;
     const edgeFade = 1 - Math.pow(edgeT, 3) * 0.35;
+    return distFade * edgeFade;
+  }
+
+  /** Slightly wider/longer falloff for spotting collectibles (render only). */
+  sightFalloff(wx: number, wy: number): number {
+    const dx = wx - this.px;
+    const dy = wy - this.py;
+    const dist = Math.hypot(dx, dy);
+    const sightRange = this.range * 1.1;
+    if (dist > sightRange) return 0;
+    const angleTo = Math.atan2(dy, dx);
+    let diff = angleTo - this.facing;
+    while (diff > Math.PI) diff -= Math.PI * 2;
+    while (diff < -Math.PI) diff += Math.PI * 2;
+    const sightAngle = this.halfAngle * 1.08;
+    if (Math.abs(diff) > sightAngle) return 0;
+    const t = dist / sightRange;
+    const distFade = Math.pow(1 - t, 1.75);
+    const edgeT = Math.abs(diff) / sightAngle;
+    const edgeFade = 1 - Math.pow(edgeT, 3) * 0.28;
     return distFade * edgeFade;
   }
 

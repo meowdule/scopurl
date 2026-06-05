@@ -1,4 +1,5 @@
 import {
+  EXIT_TOUCH_DIST,
   FRAGMENTS_PER_STAGE,
   STAGE_COUNT,
   WORLD_H,
@@ -9,6 +10,7 @@ import { renderGameHud } from "@/lib/waitGame/GameHud";
 import { InfoPanel } from "@/lib/waitGame/InfoPanel";
 import { PLAYER_RADIUS, Player } from "@/lib/waitGame/Player";
 import { getStageDefinition } from "@/lib/waitGame/stageDefinitions";
+import { pickSpreadPoints } from "@/lib/waitGame/spawnSpread";
 import { StageMap } from "@/lib/waitGame/StageMap";
 import type { WebTip } from "@/lib/waitGame/tips";
 import { VisionCone } from "@/lib/waitGame/VisionCone";
@@ -81,10 +83,8 @@ export class ExplorationGame {
     const faceUp = start.y > exit.y ? -Math.PI / 2 : Math.PI / 2;
     this.player.resetTo(start.x, start.y, faceUp);
 
-    const pts = [...this.map.spawnPoints].sort(() => Math.random() - 0.5);
-    this.fragments = pts
-      .slice(0, FRAGMENTS_PER_STAGE)
-      .map((p, i) => new DataFragment(i, p.x, p.y));
+    const pts = pickSpreadPoints(this.map.spawnPoints, FRAGMENTS_PER_STAGE);
+    this.fragments = pts.map((p, i) => new DataFragment(i, p.x, p.y));
 
     this.exitActive = false;
     this.pickupToasts.length = 0;
@@ -129,7 +129,7 @@ export class ExplorationGame {
     if (this.exitActive) {
       const ex = this.map.exit;
       const dist = Math.hypot(px - ex.x, py - ex.y);
-      if (dist < ex.r + PLAYER_RADIUS + 16) {
+      if (dist < EXIT_TOUCH_DIST) {
         this.advanceStage();
         return;
       }

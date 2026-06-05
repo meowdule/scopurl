@@ -1,3 +1,4 @@
+import { FRAGMENT_PICKUP_EXTRA } from "@/lib/waitGame/constants";
 import type { VisionCone } from "@/lib/waitGame/VisionCone";
 
 export const FRAGMENT_RADIUS = 9;
@@ -24,7 +25,7 @@ export class DataFragment {
     if (this.collected || this.popT >= 0) return false;
     if (!vision.contains(this.x, this.y)) return false;
     const dist = Math.hypot(this.x - px, this.y - py);
-    if (dist < FRAGMENT_RADIUS + playerRadius + 6) {
+    if (dist < FRAGMENT_RADIUS + playerRadius + FRAGMENT_PICKUP_EXTRA) {
       this.collected = true;
       this.popT = 0;
       return true;
@@ -69,8 +70,8 @@ export class DataFragment {
       return;
     }
 
-    const alpha = vision.falloff(x, y);
-    if (alpha < 0.08) return;
+    const alpha = vision.sightFalloff(x, y);
+    if (alpha < 0.04) return;
 
     const pulse = 0.5 + Math.sin(time * 3 + this.id) * 0.5;
     const r = FRAGMENT_RADIUS + 2 + pulse * 2;

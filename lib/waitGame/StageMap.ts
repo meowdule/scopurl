@@ -1,5 +1,9 @@
 import { FRAGMENTS_PER_STAGE } from "@/lib/waitGame/constants";
 import {
+  MIN_FRAGMENT_SPREAD,
+  pickSpreadPoints,
+} from "@/lib/waitGame/spawnSpread";
+import {
   drawBlueprintGrid,
   drawBlueprintMaze,
   isWorldReachable,
@@ -210,7 +214,11 @@ function buildSpawnList(
     add([...reachableWalkable].filter((p) => !tooClose(p)));
   }
 
-  return pool.slice(0, Math.max(FRAGMENTS_PER_STAGE, pool.length));
+  return pickSpreadPoints(
+    pool,
+    Math.max(FRAGMENTS_PER_STAGE, pool.length),
+    MIN_FRAGMENT_SPREAD,
+  );
 }
 
 function pushCircleOutOfRect(

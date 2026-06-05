@@ -40,6 +40,7 @@ export function SiteShell() {
         <AnalyzeForm
           onReportReady={onReportReady}
           onAnalyzingChange={setAnalyzing}
+          locked={Boolean(report)}
         />
       </main>
 

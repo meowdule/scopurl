@@ -33,9 +33,15 @@ function newReportId(): string {
 type AnalyzeFormProps = {
   onReportReady?: (report: ReportJson) => void;
   onAnalyzingChange?: (analyzing: boolean) => void;
+  /** ??? ?? ? ? ? ?? ?? ???? */
+  locked?: boolean;
 };
 
-export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormProps) {
+export function AnalyzeForm({
+  onReportReady,
+  onAnalyzingChange,
+  locked = false,
+}: AnalyzeFormProps) {
   const [urlInput, setUrlInput] = useState("");
   const [deviceProfile, setDeviceProfile] = useState<DeviceProfile>("desktop");
   const [maxPages, setMaxPages] = useState(DEFAULT_MAX_PAGES);
@@ -182,10 +188,17 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
 
   const showStatus = busy || (phase === "failed" && quick);
   const failed = phase === "failed";
+  const formDisabled = busy || locked;
 
   return (
     <div className="space-y-6">
-      <div className="panel space-y-6">
+      <div
+        className={`panel relative space-y-6 ${locked ? "opacity-60" : ""}`}
+        aria-disabled={locked || undefined}
+      >
+      {locked && (
+        <div className="pointer-events-none absolute inset-0 z-10 rounded-panel bg-page/40" />
+      )}
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
           type="url"
@@ -193,7 +206,7 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
           placeholder="https://example.com"
           className="w-full flex-1 rounded-xl border border-card-border bg-page px-4 py-3.5 text-sm text-fg outline-none ring-accent/30 placeholder:text-fg-muted/70 focus:ring-2"
           value={urlInput}
-          disabled={busy}
+          disabled={formDisabled}
           onChange={(e) => setUrlInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") void onAnalyze();
@@ -217,7 +230,7 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
             name="deviceProfile"
             value="desktop"
             checked={deviceProfile === "desktop"}
-            disabled={busy}
+            disabled={formDisabled}
             onChange={() => setDeviceProfile("desktop")}
             className="accent-accent"
           />
@@ -229,7 +242,7 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
             name="deviceProfile"
             value="mobile"
             checked={deviceProfile === "mobile"}
-            disabled={busy}
+            disabled={formDisabled}
             onChange={() => setDeviceProfile("mobile")}
             className="accent-accent"
           />
@@ -263,7 +276,7 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
               min={0}
               max={10}
               value={maxDepth}
-              disabled={busy}
+              disabled={formDisabled}
               onChange={(e) => setMaxDepth(Number(e.target.value))}
               className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             />
@@ -283,6 +296,12 @@ export function AnalyzeForm({ onReportReady, onAnalyzingChange }: AnalyzeFormPro
           </label>
         </div>
       </details>
+      {locked && (
+        <p className="text-center text-xs text-fg-muted">
+          ???? ?? ????. ? ??? ?? ?? ????? ??? ?
+          ????.
+        </p>
+      )}
       </div>
 
       {error && (

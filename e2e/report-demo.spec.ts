@@ -33,6 +33,18 @@ test.describe("fixture report (/demo)", () => {
   });
 });
 
+test.describe("game replay (/game)", () => {
+  test("loads standalone exploration game", async ({ page }) => {
+    await page.goto("/game");
+    await expect(
+      page.getByRole("heading", { name: "기억 탐험 게임" }),
+    ).toBeVisible({ timeout: 15_000 });
+    await expect(
+      page.getByRole("application", { name: "WASD 또는 방향키로 이동" }),
+    ).toBeVisible();
+  });
+});
+
 test.describe("sample report (/report)", () => {
   test("loads share card layout", async ({ page }) => {
     await page.goto("/report");
