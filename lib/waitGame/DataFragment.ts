@@ -1,8 +1,8 @@
-import { isInVisionCone, visionFalloff } from "@/lib/waitGame/vision";
+import type { VisionCone } from "@/lib/waitGame/VisionCone";
 
 export const FRAGMENT_RADIUS = 9;
 
-const PICKUP_EMOJIS = ["💾", "📡", "🔗", "⚡", "🔐", "☁️", "📱", "🔍", "♿", "🌐"];
+const MEMORY_EMOJIS = ["✨", "💫", "🔮", "📜", "🌟", "💠", "🪶", "🫧", "⭐", "🌙"];
 
 export class DataFragment {
   readonly id: number;
@@ -11,38 +11,22 @@ export class DataFragment {
   y: number;
   collected = false;
   popT = -1;
-  discovered = false;
 
   constructor(id: number, x: number, y: number) {
     this.id = id;
     this.x = x;
     this.y = y;
-    this.emoji = PICKUP_EMOJIS[id % PICKUP_EMOJIS.length];
-  }
-
-  isVisible(
-    px: number,
-    py: number,
-    facing: number,
-    range: number,
-    halfAngle: number,
-  ): boolean {
-    if (this.collected && this.popT < 0) return false;
-    return isInVisionCone(this.x, this.y, px, py, facing, range, halfAngle);
+    this.emoji = MEMORY_EMOJIS[id % MEMORY_EMOJIS.length];
   }
 
   tryCollect(
     px: number,
     py: number,
     playerRadius: number,
-    facing: number,
-    range: number,
-    halfAngle: number,
+    vision: VisionCone,
   ): boolean {
     if (this.collected || this.popT >= 0) return false;
-    if (!isInVisionCone(this.x, this.y, px, py, facing, range, halfAngle)) {
-      return false;
-    }
+    if (!vision.contains(this.x, this.y)) return false;
     const dist = Math.hypot(this.x - px, this.y - py);
     if (dist < FRAGMENT_RADIUS + playerRadius + 6) {
       this.collected = true;
@@ -59,11 +43,7 @@ export class DataFragment {
     }
   }
 
-  render(
-    ctx: CanvasRenderingContext2D,
-    time: number,
-    alpha = 1,
-  ) {
+  render(ctx: CanvasRenderingContext2D, time: number, vision: VisionCone) {
     if (this.collected && this.popT < 0) return;
     const { x, y } = this;
 
@@ -79,15 +59,18 @@ export class DataFragment {
       return;
     }
 
+    const alpha = vision.falloff(x, y);
+    if (alpha < 0.06) return;
+
     const pulse = 0.5 + Math.sin(time * 3 + this.id) * 0.5;
     const r = FRAGMENT_RADIUS + 2 + pulse;
 
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.shadowColor = "rgba(56, 189, 248, 0.9)";
-    ctx.shadowBlur = 14 + pulse * 6;
+    ctx.shadowColor = "rgba(250, 204, 21, 0.95)";
+    ctx.shadowBlur = 16 + pulse * 8;
 
-    ctx.fillStyle = "#0ea5e9";
+    ctx.fillStyle = "#fbbf24";
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 3;
     ctx.beginPath();
@@ -96,11 +79,6 @@ export class DataFragment {
     ctx.stroke();
 
     ctx.shadowBlur = 0;
-    ctx.fillStyle = "#f0f9ff";
-    ctx.beginPath();
-    ctx.arc(x, y, r - 4, 0, Math.PI * 2);
-    ctx.fill();
-
     ctx.font = "bold 15px system-ui";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

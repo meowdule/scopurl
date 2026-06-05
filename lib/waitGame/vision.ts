@@ -1,53 +1,44 @@
-/** Player-centered vision cone (world space). */
+/** @deprecated Use VisionCone — kept for backward-compatible imports. */
+export { VisionCone } from "@/lib/waitGame/VisionCone";
+export {
+  VISION_RANGE,
+  VISION_HALF_ANGLE,
+} from "@/lib/waitGame/constants";
+
+import { VisionCone } from "@/lib/waitGame/VisionCone";
+import { VISION_HALF_ANGLE, VISION_RANGE } from "@/lib/waitGame/constants";
+
 export function isInVisionCone(
   wx: number,
   wy: number,
   px: number,
   py: number,
   facing: number,
-  range: number,
-  halfAngle: number,
+  range = VISION_RANGE,
+  halfAngle = VISION_HALF_ANGLE,
 ): boolean {
-  const dx = wx - px;
-  const dy = wy - py;
-  const dist = Math.hypot(dx, dy);
-  if (dist > range) return false;
-
-  const angleTo = Math.atan2(dy, dx);
-  let diff = angleTo - facing;
-  while (diff > Math.PI) diff -= Math.PI * 2;
-  while (diff < -Math.PI) diff += Math.PI * 2;
-  return Math.abs(diff) <= halfAngle;
+  return new VisionCone(px, py, facing).contains(wx, wy);
 }
 
-/** 0–1: 1 at player, softer toward cone edge (distance falloff). */
 export function visionFalloff(
   wx: number,
   wy: number,
   px: number,
   py: number,
   facing: number,
-  range: number,
-  halfAngle: number,
+  range = VISION_RANGE,
+  halfAngle = VISION_HALF_ANGLE,
 ): number {
-  if (!isInVisionCone(wx, wy, px, py, facing, range, halfAngle)) return 0;
-  const dist = Math.hypot(wx - px, wy - py);
-  const t = Math.min(1, dist / range);
-  return 1 - t * t * 0.72;
+  return new VisionCone(px, py, facing).falloff(wx, wy);
 }
 
-/** Screen-space cone clip (player at canvas center). */
 export function clipVisionCone(
   ctx: CanvasRenderingContext2D,
   cx: number,
   cy: number,
   facing: number,
-  range: number,
-  halfAngle: number,
+  range = VISION_RANGE,
+  halfAngle = VISION_HALF_ANGLE,
 ) {
-  ctx.beginPath();
-  ctx.moveTo(cx, cy);
-  ctx.arc(cx, cy, range, facing - halfAngle, facing + halfAngle);
-  ctx.closePath();
-  ctx.clip();
+  new VisionCone(cx, cy, facing).clip(ctx);
 }

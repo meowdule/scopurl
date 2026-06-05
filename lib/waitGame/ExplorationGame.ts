@@ -1,17 +1,19 @@
+import {
+  FRAGMENTS_PER_STAGE,
+  STAGE_COUNT,
+  WORLD_H,
+  WORLD_W,
+} from "@/lib/waitGame/constants";
 import { DataFragment } from "@/lib/waitGame/DataFragment";
 import { InfoPanel } from "@/lib/waitGame/InfoPanel";
-import { Map, WORLD_H, WORLD_W } from "@/lib/waitGame/Map";
 import { PLAYER_RADIUS, Player } from "@/lib/waitGame/Player";
+import { getStageDefinition } from "@/lib/waitGame/stageDefinitions";
+import { StageMap } from "@/lib/waitGame/StageMap";
 import type { WebTip } from "@/lib/waitGame/tips";
-import {
-  clipVisionCone,
-  isInVisionCone,
-  visionFalloff,
-} from "@/lib/waitGame/vision";
+import { VisionCone } from "@/lib/waitGame/VisionCone";
 
-export const TOTAL_FRAGMENTS = 20;
-export const VISION_RANGE = 190;
-export const VISION_HALF_ANGLE = Math.PI / 3.8;
+export { FRAGMENTS_PER_STAGE };
+export const TOTAL_FRAGMENTS = FRAGMENTS_PER_STAGE;
 
 export type PickupToast = {
   id: number;
@@ -25,53 +27,87 @@ const TOAST_LIFE = 2.8;
 const MINIMAP = { x: 10, y: 10, w: 118, h: 72 };
 
 export class ExplorationGame {
-  readonly map: Map;
-  readonly player: Player;
-  readonly fragments: DataFragment[];
-  readonly infoPanel: InfoPanel;
+  map!: StageMap;
+  readonly player = new Player(360, 220);
+  fragments: DataFragment[] = [];
+  readonly infoPanel = new InfoPanel();
   readonly pickupToasts: PickupToast[] = [];
+
+  stageIndex = 0;
+  exitActive = false;
+  missionComplete = false;
+  stageClearFlash = 0;
+
   private readonly bursts: { x: number; y: number; age: number }[] = [];
   private time = 0;
   private toastId = 0;
 
   constructor() {
-    this.map = new Map();
-    this.player = new Player(WORLD_W / 2, 220);
-    this.fragments = buildFragments(this.map);
-    this.infoPanel = new InfoPanel();
+    this.loadStage(0);
+  }
+
+  get stageName(): string {
+    return this.map.def.name;
+  }
+
+  get stageTagline(): string {
+    return this.map.def.tagline;
   }
 
   get collectedCount(): number {
     return this.fragments.filter((f) => f.collected).length;
   }
 
-  get isComplete(): boolean {
-    return this.collectedCount >= TOTAL_FRAGMENTS;
+  get fragmentsPerStage(): number {
+    return FRAGMENTS_PER_STAGE;
+  }
+
+  get isStageComplete(): boolean {
+    return this.collectedCount >= FRAGMENTS_PER_STAGE;
   }
 
   get activeToasts(): readonly PickupToast[] {
     return this.pickupToasts;
   }
 
-  reset() {
-    this.player.x = WORLD_W / 2;
-    this.player.y = 218;
-    this.player.vx = 0;
-    this.player.vy = 0;
-    this.fragments.forEach((f) => {
-      f.collected = false;
-      f.popT = -1;
-      f.discovered = false;
-    });
-    this.infoPanel.reset();
+  loadStage(index: number) {
+    this.stageIndex = index;
+    const def = getStageDefinition(index);
+    this.map = new StageMap(def);
+    const faceUp = def.playerStart.y > def.exit.y ? -Math.PI / 2 : Math.PI / 2;
+    this.player.resetTo(def.playerStart.x, def.playerStart.y, faceUp);
+
+    const pts = [...def.spawnPoints].sort(() => Math.random() - 0.5);
+    this.fragments = pts
+      .slice(0, FRAGMENTS_PER_STAGE)
+      .map((p, i) => new DataFragment(i, p.x, p.y));
+
+    this.exitActive = false;
     this.pickupToasts.length = 0;
+  }
+
+  reset() {
+    this.missionComplete = false;
+    this.stageClearFlash = 0;
+    this.infoPanel.reset();
     this.time = 0;
+    this.loadStage(0);
+  }
+
+  private vision(): VisionCone {
+    return new VisionCone(this.player.x, this.player.y, this.player.facing);
   }
 
   update(dt: number, keys: ReadonlySet<string>) {
-    this.time += dt;
-    this.player.update(dt, keys, { w: WORLD_W, h: WORLD_H });
+    if (this.missionComplete) return;
 
+    this.time += dt;
+    if (this.stageClearFlash > 0) {
+      this.stageClearFlash -= dt;
+      return;
+    }
+
+    this.player.update(dt, keys);
     const resolved = this.map.resolveCircle(
       this.player.x,
       this.player.y,
@@ -80,36 +116,25 @@ export class ExplorationGame {
     this.player.x = resolved.x;
     this.player.y = resolved.y;
 
-    const { x: px, y: py, facing } = this.player;
+    const vision = this.vision();
+    const { x: px, y: py } = this.player;
+
+    if (this.isStageComplete) {
+      this.exitActive = true;
+    }
+
+    if (this.exitActive) {
+      const ex = this.map.exit;
+      const dist = Math.hypot(px - ex.x, py - ex.y);
+      if (dist < ex.r + PLAYER_RADIUS + 4) {
+        this.advanceStage();
+        return;
+      }
+    }
 
     for (const fragment of this.fragments) {
       fragment.updateAnim(dt);
-
-      if (
-        !fragment.collected &&
-        isInVisionCone(
-          fragment.x,
-          fragment.y,
-          px,
-          py,
-          facing,
-          VISION_RANGE,
-          VISION_HALF_ANGLE,
-        )
-      ) {
-        fragment.discovered = true;
-      }
-
-      if (
-        fragment.tryCollect(
-          px,
-          py,
-          PLAYER_RADIUS,
-          facing,
-          VISION_RANGE,
-          VISION_HALF_ANGLE,
-        )
-      ) {
+      if (fragment.tryCollect(px, py, PLAYER_RADIUS, vision)) {
         const tip = this.infoPanel.addFromFragment();
         this.pushPickupToast(fragment.emoji, tip);
         this.bursts.push({ x: fragment.x, y: fragment.y, age: 0 });
@@ -129,11 +154,20 @@ export class ExplorationGame {
     }
   }
 
+  private advanceStage() {
+    if (this.stageIndex >= STAGE_COUNT - 1) {
+      this.missionComplete = true;
+      return;
+    }
+    this.stageClearFlash = 1.2;
+    this.loadStage(this.stageIndex + 1);
+  }
+
   private pushPickupToast(emoji: string, tip: WebTip) {
     this.pickupToasts.unshift({
       id: this.toastId++,
       emoji,
-      title: "데이터 조각 획득",
+      title: "기억 조각 획득",
       subtitle: tip.tag,
       age: 0,
     });
@@ -148,56 +182,36 @@ export class ExplorationGame {
     const camY = canvasH / 2 - this.player.y;
     const cx = canvasW / 2;
     const cy = canvasH / 2;
-    const facing = this.player.facing;
+    const vision = this.vision();
+    const theme = this.map.theme;
 
-    ctx.fillStyle = "#0f1419";
+    ctx.fillStyle = "#0a0e14";
     ctx.fillRect(0, 0, canvasW, canvasH);
 
     ctx.save();
     ctx.translate(camX, camY);
-    ctx.globalAlpha = 0.52;
+    ctx.globalAlpha = 0.48;
     this.map.render(ctx, "dim");
     ctx.globalAlpha = 1;
+    vision.fillFogOutside(ctx, WORLD_W, WORLD_H, theme.fog);
     ctx.restore();
 
-    this.renderFogOutside(ctx, canvasW, canvasH, cx, cy, facing);
-
     ctx.save();
-    clipVisionCone(ctx, cx, cy, facing, VISION_RANGE, VISION_HALF_ANGLE);
     ctx.translate(camX, camY);
+    vision.clip(ctx);
     this.map.render(ctx, "bright");
+    this.map.renderExit(ctx, this.exitActive, pulse);
 
     for (const f of this.fragments) {
-      if (
-        f.isVisible(
-          this.player.x,
-          this.player.y,
-          facing,
-          VISION_RANGE,
-          VISION_HALF_ANGLE,
-        )
-      ) {
-        const falloff = visionFalloff(
-          f.x,
-          f.y,
-          this.player.x,
-          this.player.y,
-          facing,
-          VISION_RANGE,
-          VISION_HALF_ANGLE,
-        );
-        if (falloff > 0.08) {
-          f.render(ctx, this.time, falloff);
-        }
-      }
+      f.render(ctx, this.time, vision);
     }
 
     this.renderBursts(ctx);
-    this.renderVisionDistanceFade(ctx, cx, cy, facing);
+    vision.fillDistanceFade(ctx);
     ctx.restore();
 
     this.player.renderScreen(ctx, cx, cy, pulse);
-    this.renderVisionRim(ctx, cx, cy, facing);
+    vision.strokeRim(ctx, theme.visionRim);
 
     this.map.renderMinimap(
       ctx,
@@ -207,138 +221,49 @@ export class ExplorationGame {
       MINIMAP.h,
       this.player.x,
       this.player.y,
-      facing,
+      this.stageIndex,
     );
+
+    if (this.stageClearFlash > 0) {
+      const a = Math.min(1, this.stageClearFlash);
+      ctx.fillStyle = `rgba(0, 196, 113, ${0.25 * a})`;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.fillStyle = `rgba(255,255,255,${0.9 * a})`;
+      ctx.font = "700 14px Pretendard, system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(
+        `Stage ${this.stageIndex + 1} — ${this.stageName}`,
+        canvasW / 2,
+        canvasH / 2,
+      );
+    }
+
+    if (this.missionComplete) {
+      ctx.fillStyle = "rgba(7, 43, 34, 0.88)";
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.fillStyle = "#a7f3d0";
+      ctx.font = "700 18px Pretendard, system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("Mission Complete", canvasW / 2, canvasH / 2 - 8);
+      ctx.font = "500 12px Pretendard, system-ui, sans-serif";
+      ctx.fillStyle = "#94a3b8";
+      ctx.fillText("모든 기억의 장소를 탐험했습니다", canvasW / 2, canvasH / 2 + 14);
+    }
   }
 
   private renderBursts(ctx: CanvasRenderingContext2D) {
     for (const b of this.bursts) {
       const t = b.age / 0.5;
       const r = 8 + t * 36;
-      ctx.strokeStyle = `rgba(0, 196, 113, ${(1 - t) * 0.85})`;
+      ctx.strokeStyle = `rgba(251, 191, 36, ${(1 - t) * 0.9})`;
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.fillStyle = `rgba(167, 243, 208, ${(1 - t) * 0.35})`;
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, r * 0.6, 0, Math.PI * 2);
-      ctx.fill();
       ctx.font = "bold 13px system-ui";
       ctx.textAlign = "center";
-      ctx.fillStyle = `rgba(240, 253, 244, ${1 - t})`;
+      ctx.fillStyle = `rgba(254, 243, 199, ${1 - t})`;
       ctx.fillText("+1", b.x, b.y - t * 20);
     }
   }
-
-  /** Dark overlay only outside the vision cone (evenodd — no inner wash). */
-  private renderFogOutside(
-    ctx: CanvasRenderingContext2D,
-    canvasW: number,
-    canvasH: number,
-    cx: number,
-    cy: number,
-    facing: number,
-  ) {
-    ctx.save();
-    ctx.fillStyle = "rgba(2, 5, 12, 0.82)";
-    ctx.beginPath();
-    ctx.rect(0, 0, canvasW, canvasH);
-    ctx.moveTo(cx, cy);
-    ctx.arc(
-      cx,
-      cy,
-      VISION_RANGE,
-      facing - VISION_HALF_ANGLE,
-      facing + VISION_HALF_ANGLE,
-    );
-    ctx.closePath();
-    ctx.fill("evenodd");
-    ctx.restore();
-  }
-
-  /** Darken vision toward cone edge — clear near explorer. */
-  private renderVisionDistanceFade(
-    ctx: CanvasRenderingContext2D,
-    cx: number,
-    cy: number,
-    facing: number,
-  ) {
-    ctx.save();
-    const g = ctx.createRadialGradient(cx, cy, 8, cx, cy, VISION_RANGE);
-    g.addColorStop(0, "rgba(0, 0, 0, 0)");
-    g.addColorStop(0.4, "rgba(0, 0, 0, 0)");
-    g.addColorStop(0.72, "rgba(0, 0, 0, 0.22)");
-    g.addColorStop(1, "rgba(0, 0, 0, 0.58)");
-
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(
-      cx,
-      cy,
-      VISION_RANGE,
-      facing - VISION_HALF_ANGLE,
-      facing + VISION_HALF_ANGLE,
-    );
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
-
-  private renderVisionRim(
-    ctx: CanvasRenderingContext2D,
-    cx: number,
-    cy: number,
-    facing: number,
-  ) {
-    ctx.save();
-    ctx.strokeStyle = "rgba(0, 196, 113, 0.75)";
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(
-      cx,
-      cy,
-      VISION_RANGE,
-      facing - VISION_HALF_ANGLE,
-      facing + VISION_HALF_ANGLE,
-    );
-    ctx.closePath();
-    ctx.stroke();
-
-    ctx.strokeStyle = "rgba(167, 243, 208, 0.35)";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(
-      cx + Math.cos(facing) * VISION_RANGE * 0.92,
-      cy + Math.sin(facing) * VISION_RANGE * 0.92,
-    );
-    ctx.stroke();
-    ctx.restore();
-  }
-}
-
-function buildFragments(map: Map): DataFragment[] {
-  const points = map.getSpawnPoints();
-  const shuffled = [...points].sort(() => Math.random() - 0.5);
-  const out: DataFragment[] = [];
-
-  for (let i = 0; i < TOTAL_FRAGMENTS && i < shuffled.length; i++) {
-    out.push(new DataFragment(i, shuffled[i].x, shuffled[i].y));
-  }
-
-  let id = out.length;
-  while (out.length < TOTAL_FRAGMENTS) {
-    out.push(
-      new DataFragment(
-        id++,
-        80 + Math.random() * (WORLD_W - 160),
-        80 + Math.random() * (WORLD_H - 160),
-      ),
-    );
-  }
-
-  return out;
 }
