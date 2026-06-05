@@ -1,0 +1,10 @@
+{
+  "reportId": "d2d6461b-eac6-4dfb-9f70-3a5cac62b53f",
+  "targetUrl": "https://example.com/",
+  "deviceProfile": "desktop",
+  "maxPages": 20,
+  "maxDepth": 2,
+  "traceMode": "failure",
+  "schemaVersion": 3,
+  "createdAt": "2026-06-05T04:59:40Z"
+}
