@@ -2,6 +2,7 @@ import { FRAGMENTS_PER_STAGE } from "@/lib/waitGame/constants";
 import {
   drawBlueprintGrid,
   drawBlueprintMaze,
+  isWorldReachable,
   normalizeMaze,
   parseMazeGrid,
 } from "@/lib/waitGame/mazeGrid";
@@ -26,6 +27,7 @@ export class StageMap {
     this.spawnPoints = buildSpawnList(
       parsed.fragmentCells,
       parsed.walkableCells,
+      parsed.reachableKeys,
       parsed.playerStart,
       parsed.exit,
       def.extraSpawns,
@@ -62,14 +64,13 @@ export class StageMap {
     const t = this.def.theme;
     ctx.save();
     ctx.fillStyle = t.accent;
-    ctx.globalAlpha = 0.35;
+    ctx.globalAlpha = 0.3;
     const nodes = [
-      [60, 60],
-      [180, 120],
-      [540, 80],
-      [640, 200],
-      [120, 320],
-      [600, 360],
+      [100, 80],
+      [360, 120],
+      [620, 80],
+      [180, 280],
+      [540, 280],
     ];
     for (const [nx, ny] of nodes) {
       ctx.beginPath();
@@ -123,29 +124,58 @@ export class StageMap {
 function buildSpawnList(
   fragmentCells: { x: number; y: number }[],
   walkable: { x: number; y: number }[],
+  reachable: Set<string>,
   playerStart: { x: number; y: number },
   exit: { x: number; y: number },
   extra?: { x: number; y: number }[],
 ): { x: number; y: number }[] {
+  const reachableWalkable = walkable.filter((p) =>
+    isWorldReachable(p.x, p.y, reachable),
+  );
+
+  const tooClose = (p: { x: number; y: number }) =>
+    Math.hypot(p.x - playerStart.x, p.y - playerStart.y) < 50 ||
+    Math.hypot(p.x - exit.x, p.y - exit.y) < 40;
+
   const seen = new Set<string>();
+  const pool: { x: number; y: number }[] = [];
+
   const add = (pts: { x: number; y: number }[]) => {
     for (const p of pts) {
+      if (!isWorldReachable(p.x, p.y, reachable)) continue;
+      if (tooClose(p)) continue;
       const key = `${Math.round(p.x)},${Math.round(p.y)}`;
       if (seen.has(key)) continue;
-      if (Math.hypot(p.x - playerStart.x, p.y - playerStart.y) < 28) continue;
-      if (Math.hypot(p.x - exit.x, p.y - exit.y) < 28) continue;
       seen.add(key);
       pool.push(p);
     }
   };
 
-  const pool: { x: number; y: number }[] = [];
   add(fragmentCells);
   add(extra ?? []);
 
   if (pool.length < FRAGMENTS_PER_STAGE) {
-    const shuffled = [...walkable].sort(() => Math.random() - 0.5);
-    add(shuffled);
+    const sorted = [...reachableWalkable]
+      .filter((p) => !tooClose(p))
+      .sort(
+        (a, b) =>
+          Math.hypot(a.x - playerStart.x, a.y - playerStart.y) -
+          Math.hypot(b.x - playerStart.x, b.y - playerStart.y),
+      );
+    const step = Math.max(1, Math.floor(sorted.length / FRAGMENTS_PER_STAGE));
+    const spread: { x: number; y: number }[] = [];
+    for (let i = step; i < sorted.length; i += step) {
+      spread.push(sorted[i]);
+    }
+    add(spread.sort(() => Math.random() - 0.5));
+  }
+
+  if (pool.length < FRAGMENTS_PER_STAGE) {
+    add(
+      [...reachableWalkable]
+        .filter((p) => !tooClose(p))
+        .sort(() => Math.random() - 0.5),
+    );
   }
 
   return pool.slice(0, Math.max(FRAGMENTS_PER_STAGE, pool.length));

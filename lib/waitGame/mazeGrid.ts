@@ -4,7 +4,7 @@ import type { WallRect } from "@/lib/waitGame/stageTypes";
 export const MAZE_CELL = 20;
 export const MAZE_COLS = Math.floor(WORLD_W / MAZE_CELL);
 export const MAZE_ROWS = Math.floor(WORLD_H / MAZE_CELL);
-export const WALL_THICK = 8;
+export const WALL_THICK = 6;
 
 export type ParsedMaze = {
   walls: WallRect[];
@@ -12,12 +12,24 @@ export type ParsedMaze = {
   exit: { x: number; y: number; r: number };
   fragmentCells: { x: number; y: number }[];
   walkableCells: { x: number; y: number }[];
+  reachableKeys: Set<string>;
 };
 
 function cellCenter(col: number, row: number): { x: number; y: number } {
   return {
     x: col * MAZE_CELL + MAZE_CELL / 2,
     y: row * MAZE_CELL + MAZE_CELL / 2,
+  };
+}
+
+export function cellKey(col: number, row: number): string {
+  return `${col},${row}`;
+}
+
+export function worldToCell(x: number, y: number): { col: number; row: number } {
+  return {
+    col: Math.floor(x / MAZE_CELL),
+    row: Math.floor(y / MAZE_CELL),
   };
 }
 
@@ -38,11 +50,42 @@ function isWall(rows: string[], col: number, row: number): boolean {
   return line[col] === "#";
 }
 
+function isWalkable(rows: string[], col: number, row: number): boolean {
+  return !isWall(rows, col, row);
+}
+
+/** Flood-fill reachable floor cells from player start. */
+export function findReachableCells(
+  rows: string[],
+  startCol: number,
+  startRow: number,
+): Set<string> {
+  const reachable = new Set<string>();
+  const queue: { col: number; row: number }[] = [{ col: startCol, row: startRow }];
+
+  while (queue.length > 0) {
+    const { col, row } = queue.shift()!;
+    const key = cellKey(col, row);
+    if (reachable.has(key)) continue;
+    if (!isWalkable(rows, col, row)) continue;
+    reachable.add(key);
+    queue.push(
+      { col: col + 1, row },
+      { col: col - 1, row },
+      { col, row: row + 1 },
+      { col, row: row - 1 },
+    );
+  }
+  return reachable;
+}
+
 /** Build collision blocks + metadata from ASCII maze (# wall, . walk, P start, E exit, F fragment). */
 export function parseMazeGrid(rows: string[]): ParsedMaze {
   const normalized = normalizeMaze(rows);
   const walls: WallRect[] = [];
   let playerStart = { x: MAZE_CELL * 2, y: MAZE_CELL * 2 };
+  let startCol = 1;
+  let startRow = 1;
   let exit = { x: WORLD_W - 40, y: WORLD_H - 40, r: 22 };
   const fragmentCells: { x: number; y: number }[] = [];
   const walkableCells: { x: number; y: number }[] = [];
@@ -62,6 +105,8 @@ export function parseMazeGrid(rows: string[]): ParsedMaze {
         });
       } else if (ch === "P") {
         playerStart = cellCenter(col, row);
+        startCol = col;
+        startRow = row;
         walkableCells.push(cellCenter(col, row));
       } else if (ch === "E") {
         exit = { ...cellCenter(col, row), r: 22 };
@@ -76,7 +121,25 @@ export function parseMazeGrid(rows: string[]): ParsedMaze {
     }
   }
 
-  return { walls, playerStart, exit, fragmentCells, walkableCells };
+  const reachableKeys = findReachableCells(normalized, startCol, startRow);
+
+  return {
+    walls,
+    playerStart,
+    exit,
+    fragmentCells,
+    walkableCells,
+    reachableKeys,
+  };
+}
+
+export function isWorldReachable(
+  x: number,
+  y: number,
+  reachable: Set<string>,
+): boolean {
+  const { col, row } = worldToCell(x, y);
+  return reachable.has(cellKey(col, row));
 }
 
 /** Neon blueprint wall edges between # and walkable cells. */
@@ -94,9 +157,9 @@ export function drawBlueprintMaze(
 
   const drawSeg = (x1: number, y1: number, x2: number, y2: number) => {
     ctx.strokeStyle = glow;
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 4;
     ctx.shadowColor = glow;
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 8;
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -104,7 +167,7 @@ export function drawBlueprintMaze(
 
     ctx.shadowBlur = 0;
     ctx.strokeStyle = stroke;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -134,7 +197,7 @@ export function drawBlueprintGrid(
   ctx.save();
   ctx.strokeStyle = color;
   ctx.lineWidth = 0.5;
-  ctx.globalAlpha = 0.12;
+  ctx.globalAlpha = 0.1;
   for (let x = 0; x <= WORLD_W; x += MAZE_CELL) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
