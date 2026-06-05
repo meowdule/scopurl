@@ -33,7 +33,7 @@ function newReportId(): string {
 type AnalyzeFormProps = {
   onReportReady?: (report: ReportJson) => void;
   onAnalyzingChange?: (analyzing: boolean) => void;
-  /** ??? ?? ? ? ? ?? ?? ???? */
+  /** 리포트 표시 중에는 입력·재분석 비활성화 */
   locked?: boolean;
 };
 
@@ -215,7 +215,7 @@ export function AnalyzeForm({
         <button
           type="button"
           onClick={() => void onAnalyze()}
-          disabled={busy}
+          disabled={formDisabled}
           className="rounded-xl bg-accent px-6 py-3.5 text-sm font-semibold text-white shadow-cardSm transition hover:bg-accent-dim disabled:cursor-not-allowed disabled:opacity-60"
         >
           {busy ? t.analyzing : "Analyze"}
@@ -264,7 +264,7 @@ export function AnalyzeForm({
               min={1}
               max={FREE_MAX_PAGES}
               value={maxPages}
-              disabled={busy}
+              disabled={formDisabled}
               onChange={(e) => setMaxPages(Number(e.target.value))}
               className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             />
@@ -285,7 +285,7 @@ export function AnalyzeForm({
             <span className="text-xs text-fg-muted">{t.traceLabel}</span>
             <select
               value={traceMode}
-              disabled={busy}
+              disabled={formDisabled}
               onChange={(e) => setTraceMode(e.target.value as TraceMode)}
               className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
             >
@@ -298,8 +298,8 @@ export function AnalyzeForm({
       </details>
       {locked && (
         <p className="text-center text-xs text-fg-muted">
-          ???? ?? ????. ? ??? ?? ?? ????? ??? ?
-          ????.
+          분석이 완료되었습니다. 다른 URL을 분석하려면 리포트의「새 분석」을
+          눌러 주세요.
         </p>
       )}
       </div>

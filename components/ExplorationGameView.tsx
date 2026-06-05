@@ -8,6 +8,11 @@ import {
   type PickupToast,
 } from "@/lib/waitGame/ExplorationGame";
 import type { InfoEntry } from "@/lib/waitGame/InfoPanel";
+import {
+  VirtualJoystick,
+  type StickVector,
+} from "@/components/VirtualJoystick";
+import { useTouchPrimary } from "@/lib/useTouchPrimary";
 
 const TICKER_MESSAGES = [
   "DNS 확인 중…",
@@ -28,7 +33,10 @@ type Props = {
   standalone?: boolean;
 };
 
+const ZERO_STICK: StickVector = { x: 0, y: 0 };
+
 export function ExplorationGameView({ active, standalone = false }: Props) {
+  const touchPrimary = useTouchPrimary();
   const [msgIndex, setMsgIndex] = useState(0);
   const [entries, setEntries] = useState<readonly InfoEntry[]>([]);
   const [pickups, setPickups] = useState<readonly PickupToast[]>([]);
@@ -40,6 +48,7 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const gameRef = useRef<ExplorationGame | null>(null);
   const keysRef = useRef(new Set<string>());
+  const stickRef = useRef<StickVector>(ZERO_STICK);
   const rafRef = useRef(0);
   const lastTsRef = useRef(0);
   const uiTickRef = useRef(0);
@@ -66,8 +75,13 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
 
   const handleRestart = useCallback(() => {
     setMissionComplete(false);
+    stickRef.current = ZERO_STICK;
     startGame(Date.now());
   }, [startGame]);
+
+  const handleStickChange = useCallback((v: StickVector) => {
+    stickRef.current = v;
+  }, []);
 
   useEffect(() => {
     if (!active) return;
@@ -90,6 +104,7 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
         handleRestart();
         return;
       }
+      if (touchPrimary) return;
       const codes = [
         "ArrowUp",
         "ArrowDown",
@@ -107,13 +122,19 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
     };
 
     const onKeyUp = (e: KeyboardEvent) => {
+      if (touchPrimary) return;
       keysRef.current.delete(e.code);
     };
 
-    const onBlur = () => keysRef.current.clear();
+    const onBlur = () => {
+      keysRef.current.clear();
+      stickRef.current = ZERO_STICK;
+    };
 
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
+    if (!touchPrimary) {
+      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener("keyup", onKeyUp);
+    }
     window.addEventListener("blur", onBlur);
 
     const loop = (ts: number) => {
@@ -145,7 +166,7 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        g.update(dt, keysRef.current);
+        g.update(dt, keysRef.current, stickRef.current);
         g.render(ctx, w, h);
       }
 
@@ -162,17 +183,20 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
 
     return () => {
       cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("keyup", onKeyUp);
+      if (!touchPrimary) {
+        window.removeEventListener("keydown", onKeyDown);
+        window.removeEventListener("keyup", onKeyUp);
+      }
       window.removeEventListener("blur", onBlur);
       keysRef.current.clear();
+      stickRef.current = ZERO_STICK;
       gameRef.current = null;
       lastTsRef.current = 0;
       setEntries([]);
       setPickups([]);
       setMissionComplete(false);
     };
-  }, [active, startGame, syncUi, standalone, handleRestart]);
+  }, [active, startGame, syncUi, standalone, handleRestart, touchPrimary]);
 
   if (!active) return null;
 
@@ -223,10 +247,14 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
           className="relative min-w-0 flex-1 bg-[#020408] outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/40"
           tabIndex={0}
           role="application"
-          aria-label="WASD 또는 방향키로 이동"
+          aria-label={
+            touchPrimary
+              ? "우측 조이스틱으로 이동"
+              : "WASD, 방향키 또는 우측 조이스틱으로 이동"
+          }
         >
-          <canvas ref={canvasRef} className="block w-full" />
-          <div className="pointer-events-none absolute bottom-12 right-3 z-10 flex w-[min(100%,220px)] flex-col items-end gap-2">
+          <canvas ref={canvasRef} className="block w-full touch-none" />
+          <div className="pointer-events-none absolute bottom-32 right-3 z-10 flex w-[min(100%,220px)] flex-col items-end gap-2 sm:bottom-28">
             {pickups.map((p) => {
               const fade = Math.max(0, 1 - p.age / 2.8);
               return (
@@ -255,6 +283,14 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
                 </div>
               );
             })}
+          </div>
+
+          <div className="pointer-events-auto absolute bottom-3 right-3 z-10">
+            <VirtualJoystick
+              onChange={handleStickChange}
+              disabled={missionComplete}
+              label="캐릭터 이동 조이스틱"
+            />
           </div>
 
           {standalone && missionComplete && (
@@ -291,13 +327,17 @@ export function ExplorationGameView({ active, standalone = false }: Props) {
           <ul className="max-h-[200px] flex-1 space-y-2 overflow-y-auto p-3 lg:max-h-[360px]">
             {standalone && entries.length === 0 ? (
               <li className="text-xs leading-relaxed text-slate-500">
-                WASD / 방향키로 이동하세요. 시야 안의 기억 조각 10개를 모으면
-                출구가 열립니다. 분석 대기 없이 자유롭게 플레이할 수 있습니다.
+                {touchPrimary
+                  ? "우측 조이스틱으로 이동하세요. 시야 안의 기억 조각 10개를 모으면 출구가 열립니다."
+                  : "WASD / 방향키 또는 우측 조이스틱으로 이동하세요. 시야 안의 기억 조각 10개를 모으면 출구가 열립니다."}{" "}
+                분석 대기 없이 자유롭게 플레이할 수 있습니다.
               </li>
             ) : entries.length === 0 ? (
               <li className="text-xs leading-relaxed text-slate-500">
-                미로를 탐험하며 시야 안의 기억 조각을 수집하세요. 10개를 모으면
-                출구가 열립니다.
+                {touchPrimary
+                  ? "우측 조이스틱으로 미로를 탐험하며 시야 안의 기억 조각을 수집하세요."
+                  : "WASD / 방향키 또는 우측 조이스틱으로 미로를 탐험하세요."}{" "}
+                10개를 모으면 출구가 열립니다.
               </li>
             ) : (
               entries.map((e) => (

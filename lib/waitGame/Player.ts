@@ -26,13 +26,28 @@ export class Player {
     this.targetFacing = facing;
   }
 
-  update(dt: number, keys: ReadonlySet<string>) {
+  update(
+    dt: number,
+    keys: ReadonlySet<string>,
+    stick?: { x: number; y: number } | null,
+  ) {
     let ax = 0;
     let ay = 0;
-    if (keys.has("ArrowUp") || keys.has("KeyW")) ay -= 1;
-    if (keys.has("ArrowDown") || keys.has("KeyS")) ay += 1;
-    if (keys.has("ArrowLeft") || keys.has("KeyA")) ax -= 1;
-    if (keys.has("ArrowRight") || keys.has("KeyD")) ax += 1;
+    let moveScale = 1;
+
+    const sx = stick?.x ?? 0;
+    const sy = stick?.y ?? 0;
+    const stickMag = Math.hypot(sx, sy);
+    if (stickMag > 0.08) {
+      ax = sx / stickMag;
+      ay = sy / stickMag;
+      moveScale = Math.min(1, stickMag);
+    } else {
+      if (keys.has("ArrowUp") || keys.has("KeyW")) ay -= 1;
+      if (keys.has("ArrowDown") || keys.has("KeyS")) ay += 1;
+      if (keys.has("ArrowLeft") || keys.has("KeyA")) ax -= 1;
+      if (keys.has("ArrowRight") || keys.has("KeyD")) ax += 1;
+    }
 
     if (ax !== 0 || ay !== 0) {
       const len = Math.hypot(ax, ay) || 1;
@@ -50,8 +65,8 @@ export class Player {
     const maxSpeed = 2.65;
     const friction = Math.pow(0.82, dt * 60);
 
-    this.vx += ax * accel * dt * 60;
-    this.vy += ay * accel * dt * 60;
+    this.vx += ax * accel * dt * 60 * moveScale;
+    this.vy += ay * accel * dt * 60 * moveScale;
 
     const speed = Math.hypot(this.vx, this.vy);
     if (speed > maxSpeed) {

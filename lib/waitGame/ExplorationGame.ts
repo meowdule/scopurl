@@ -102,7 +102,11 @@ export class ExplorationGame {
     return new VisionCone(this.player.x, this.player.y, this.player.facing);
   }
 
-  update(dt: number, keys: ReadonlySet<string>) {
+  update(
+    dt: number,
+    keys: ReadonlySet<string>,
+    stick?: { x: number; y: number } | null,
+  ) {
     if (this.missionComplete) return;
 
     this.time += dt;
@@ -110,7 +114,7 @@ export class ExplorationGame {
       this.stageClearFlash -= dt;
     }
 
-    this.player.update(dt, keys);
+    this.player.update(dt, keys, stick);
     const resolved = this.map.resolveCircle(
       this.player.x,
       this.player.y,
