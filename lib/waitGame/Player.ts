@@ -1,6 +1,6 @@
 import { WORLD_H, WORLD_W } from "@/lib/waitGame/constants";
 
-export const PLAYER_RADIUS = 12;
+export const PLAYER_RADIUS = 10;
 
 export class Player {
   x: number;
@@ -76,7 +76,11 @@ export class Player {
     this.y = Math.max(pad, Math.min(WORLD_H - pad, this.y));
   }
 
-  renderScreen(
+  renderWorld(ctx: CanvasRenderingContext2D, pulse: number) {
+    this.drawAvatar(ctx, this.x, this.y, pulse);
+  }
+
+  private drawAvatar(
     ctx: CanvasRenderingContext2D,
     sx: number,
     sy: number,
@@ -84,50 +88,33 @@ export class Player {
   ) {
     ctx.save();
     ctx.translate(sx, sy);
-    ctx.rotate(this.facing);
 
-    ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
-    ctx.beginPath();
-    ctx.arc(0, 0, PLAYER_RADIUS + 5, 0, Math.PI * 2);
-    ctx.fill();
-
-    const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 26);
-    glow.addColorStop(0, "rgba(0, 196, 113, 0.5)");
-    glow.addColorStop(1, "rgba(0, 196, 113, 0)");
+    const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 28);
+    glow.addColorStop(0, "rgba(255, 255, 255, 0.35)");
+    glow.addColorStop(1, "rgba(255, 255, 255, 0)");
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(0, 0, 26, 0, Math.PI * 2);
+    ctx.arc(0, 0, 28, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = "#00c471";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.55)";
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.arc(0, 0, PLAYER_RADIUS, 0, Math.PI * 2);
+    ctx.arc(0, 0, PLAYER_RADIUS + 4 + pulse * 2, 0, Math.PI * 2);
     ctx.fill();
-
-    ctx.strokeStyle = "#064e3b";
-    ctx.lineWidth = 2.5;
     ctx.stroke();
 
-    ctx.fillStyle = "#fff";
+    ctx.rotate(this.facing);
+    ctx.fillStyle = "#ffffff";
     ctx.beginPath();
-    ctx.moveTo(8, 0);
-    ctx.lineTo(-5, -5);
-    ctx.lineTo(-5, 5);
+    ctx.moveTo(9, 0);
+    ctx.lineTo(-6, -6);
+    ctx.lineTo(-3, 0);
+    ctx.lineTo(-6, 6);
     ctx.closePath();
     ctx.fill();
 
-    ctx.strokeStyle = `rgba(0, 196, 113, ${0.5 + pulse * 0.35})`;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(0, 0, PLAYER_RADIUS + 6 + pulse * 2, 0, Math.PI * 2);
-    ctx.stroke();
-
     ctx.restore();
-
-    ctx.fillStyle = "#f8fafc";
-    ctx.font = "700 10px Pretendard, system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-    ctx.fillText("탐험가", sx, sy + PLAYER_RADIUS + 8);
   }
 }

@@ -1,13 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Compass, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import {
   ExplorationGame,
-  FRAGMENTS_PER_STAGE,
   type PickupToast,
 } from "@/lib/waitGame/ExplorationGame";
-import { STAGE_COUNT } from "@/lib/waitGame/constants";
 import type { InfoEntry } from "@/lib/waitGame/InfoPanel";
 
 const TICKER_MESSAGES = [
@@ -21,7 +19,7 @@ const TICKER_MESSAGES = [
   "리포트 생성 중…",
 ];
 
-const CANVAS_H = 280;
+const CANVAS_H = 360;
 
 type Props = {
   active: boolean;
@@ -29,11 +27,6 @@ type Props = {
 
 export function AnalysisWaitExperience({ active }: Props) {
   const [msgIndex, setMsgIndex] = useState(0);
-  const [collected, setCollected] = useState(0);
-  const [stageIndex, setStageIndex] = useState(0);
-  const [stageName, setStageName] = useState("");
-  const [exitActive, setExitActive] = useState(false);
-  const [missionComplete, setMissionComplete] = useState(false);
   const [entries, setEntries] = useState<readonly InfoEntry[]>([]);
   const [pickups, setPickups] = useState<readonly PickupToast[]>([]);
 
@@ -48,11 +41,6 @@ export function AnalysisWaitExperience({ active }: Props) {
   const syncUi = useCallback(() => {
     const g = gameRef.current;
     if (!g) return;
-    setCollected(g.collectedCount);
-    setStageIndex(g.stageIndex);
-    setStageName(g.stageName);
-    setExitActive(g.exitActive);
-    setMissionComplete(g.missionComplete);
     setEntries([...g.infoPanel.getEntries()]);
     setPickups([...g.pickupToasts]);
   }, []);
@@ -151,11 +139,6 @@ export function AnalysisWaitExperience({ active }: Props) {
       keysRef.current.clear();
       gameRef.current = null;
       lastTsRef.current = 0;
-      setCollected(0);
-      setStageIndex(0);
-      setStageName("");
-      setExitActive(false);
-      setMissionComplete(false);
       setEntries([]);
       setPickups([]);
     };
@@ -168,45 +151,24 @@ export function AnalysisWaitExperience({ active }: Props) {
       className="mb-5 overflow-hidden rounded-panel border border-card-border bg-card shadow-cardSm"
       aria-label="분석 대기 기억 탐험"
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-card-border bg-[#0f172a] px-4 py-3 text-slate-100">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <Sparkles className="h-4 w-4 shrink-0 text-[#00c471]" aria-hidden />
-            분석 대기 중 — 기억 탐험
-          </div>
-          <p className="mt-0.5 truncate text-xs text-slate-400">
-            Stage {stageIndex + 1}/{STAGE_COUNT} · {stageName}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-3 text-xs">
-          <div className="flex items-center gap-2 font-medium text-slate-400">
-            <Compass className="h-3.5 w-3.5 text-[#00c471]" aria-hidden />
-            <span className="text-slate-300">기억 조각</span>
-            <span className="font-mono text-sm font-bold tabular-nums text-[#00c471]">
-              {collected} / {FRAGMENTS_PER_STAGE}
-            </span>
-          </div>
-          {exitActive && !missionComplete && (
-            <span className="rounded-full border border-[#00c471]/40 bg-[#00c471]/15 px-2.5 py-0.5 text-[10px] font-bold text-[#a7f3d0]">
-              EXIT 활성
-            </span>
-          )}
-        </div>
+      <div className="flex items-center gap-2 border-b border-card-border bg-[#030812] px-4 py-2.5 text-slate-100">
+        <Sparkles className="h-4 w-4 shrink-0 text-cyan-400" aria-hidden />
+        <span className="text-sm font-semibold">분석 대기 중 — 디지털 미로 탐험</span>
       </div>
 
-      <div className="relative flex items-center overflow-hidden border-b border-card-border bg-slate-900/90 py-2">
-        <div className="animate-marquee whitespace-nowrap px-4 text-sm font-medium">
+      <div className="relative flex items-center overflow-hidden border-b border-card-border bg-[#030812] py-1.5">
+        <div className="animate-marquee whitespace-nowrap px-4 text-xs font-medium">
           {[...TICKER_MESSAGES, ...TICKER_MESSAGES].map((m, i) => (
             <span
               key={`${m}-${i}`}
               className={
                 i % TICKER_MESSAGES.length === msgIndex
-                  ? "text-[#00c471]"
-                  : "text-slate-500"
+                  ? "text-cyan-400"
+                  : "text-slate-600"
               }
             >
               {m}
-              <span className="mx-5 text-slate-700">·</span>
+              <span className="mx-4 text-slate-800">·</span>
             </span>
           ))}
         </div>
@@ -215,29 +177,29 @@ export function AnalysisWaitExperience({ active }: Props) {
       <div className="flex flex-col gap-0 lg:flex-row">
         <div
           ref={wrapRef}
-          className="relative min-w-0 flex-1 bg-[#0c1220] outline-none focus-visible:ring-2 focus-visible:ring-[#00c471]/50"
+          className="relative min-w-0 flex-1 bg-[#020408] outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/40"
           tabIndex={0}
           role="application"
           aria-label="WASD 또는 방향키로 이동"
         >
           <canvas ref={canvasRef} className="block w-full" />
-          <div className="pointer-events-none absolute bottom-10 right-3 z-10 flex w-[min(100%,220px)] flex-col items-end gap-2">
+          <div className="pointer-events-none absolute bottom-12 right-3 z-10 flex w-[min(100%,220px)] flex-col items-end gap-2">
             {pickups.map((p) => {
               const fade = Math.max(0, 1 - p.age / 2.8);
               return (
                 <div
                   key={p.id}
-                  className="flex items-center gap-2 rounded-lg border border-[#00c471]/35 bg-[#072b22]/95 px-3 py-2 shadow-lg backdrop-blur-sm"
+                  className="flex items-center gap-2 rounded-lg border border-cyan-500/35 bg-[#030812]/95 px-3 py-2 shadow-lg backdrop-blur-sm"
                   style={{
                     opacity: fade,
                     transform: `translateY(${(1 - fade) * 12}px)`,
                   }}
                 >
-                  <span className="text-xl leading-none" aria-hidden>
+                  <span className="text-sm leading-none text-sky-300" aria-hidden>
                     {p.emoji}
                   </span>
                   <div className="min-w-0 text-left">
-                    <p className="text-[11px] font-bold text-[#a7f3d0]">
+                    <p className="text-[11px] font-bold text-cyan-200">
                       {p.title}
                     </p>
                     <p className="truncate text-[10px] text-slate-400">
@@ -248,22 +210,19 @@ export function AnalysisWaitExperience({ active }: Props) {
               );
             })}
           </div>
-          <p className="absolute bottom-2 left-3 right-3 text-center text-[10px] font-medium text-slate-500">
-            WASD / 방향키 — 시야 안 기억 조각 수집 · 10개 모으면 출구( EXIT )로 이동
-          </p>
         </div>
 
-        <aside className="flex w-full flex-col border-t border-card-border bg-slate-50 lg:w-[220px] lg:border-l lg:border-t-0 dark:bg-slate-900/40">
-          <div className="border-b border-card-border px-3 py-2.5">
+        <aside className="flex w-full flex-col border-t border-card-border bg-slate-50 lg:w-[200px] lg:border-l lg:border-t-0 dark:bg-slate-900/40">
+          <div className="border-b border-card-border px-3 py-2">
             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-              디지털 탐험 기록
+              탐험 기록
             </p>
           </div>
-          <ul className="max-h-[200px] flex-1 space-y-2 overflow-y-auto p-3 lg:max-h-[280px]">
+          <ul className="max-h-[200px] flex-1 space-y-2 overflow-y-auto p-3 lg:max-h-[360px]">
             {entries.length === 0 ? (
               <li className="text-xs leading-relaxed text-slate-500">
-                각 스테이지에서 기억 조각 10개를 모으면 출구가 열립니다. 시야
-                안에서만 발견할 수 있습니다.
+                미로를 탐험하며 시야 안의 기억 조각을 수집하세요. 10개를 모으면
+                출구가 열립니다.
               </li>
             ) : (
               entries.map((e) => (
@@ -271,7 +230,7 @@ export function AnalysisWaitExperience({ active }: Props) {
                   key={e.id}
                   className="rounded-lg border border-card-border bg-white px-2.5 py-2 text-xs leading-relaxed shadow-sm dark:bg-slate-800/80"
                 >
-                  <p className="font-semibold text-[#00a66a]">{e.tag}</p>
+                  <p className="font-semibold text-cyan-600">{e.tag}</p>
                   <p className="mt-0.5 text-slate-600 dark:text-slate-300">
                     {e.text}
                   </p>

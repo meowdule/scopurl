@@ -93,10 +93,36 @@ export class VisionCone {
     ctx.restore();
   }
 
+  /** Soft flashlight fill (world space, inside cone). */
+  fillSoftCone(ctx: CanvasRenderingContext2D, color: string) {
+    const g = ctx.createRadialGradient(
+      this.px,
+      this.py,
+      6,
+      this.px,
+      this.py,
+      this.range,
+    );
+    g.addColorStop(0, color);
+    g.addColorStop(0.65, "rgba(0,0,0,0)");
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.save();
+    this.tracePath(ctx);
+    ctx.clip();
+    ctx.fillStyle = g;
+    ctx.fillRect(
+      this.px - this.range,
+      this.py - this.range,
+      this.range * 2,
+      this.range * 2,
+    );
+    ctx.restore();
+  }
+
   strokeRim(ctx: CanvasRenderingContext2D, color: string) {
     ctx.save();
     ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     this.tracePath(ctx);
     ctx.stroke();
     ctx.restore();

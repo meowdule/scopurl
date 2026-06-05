@@ -2,11 +2,8 @@ import type { VisionCone } from "@/lib/waitGame/VisionCone";
 
 export const FRAGMENT_RADIUS = 9;
 
-const MEMORY_EMOJIS = ["✨", "💫", "🔮", "📜", "🌟", "💠", "🪶", "🫧", "⭐", "🌙"];
-
 export class DataFragment {
   readonly id: number;
-  readonly emoji: string;
   x: number;
   y: number;
   collected = false;
@@ -16,7 +13,6 @@ export class DataFragment {
     this.id = id;
     this.x = x;
     this.y = y;
-    this.emoji = MEMORY_EMOJIS[id % MEMORY_EMOJIS.length];
   }
 
   tryCollect(
@@ -43,18 +39,32 @@ export class DataFragment {
     }
   }
 
+  private drawDiamond(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    r: number,
+  ) {
+    ctx.beginPath();
+    ctx.moveTo(x, y - r);
+    ctx.lineTo(x + r * 0.85, y);
+    ctx.lineTo(x, y + r);
+    ctx.lineTo(x - r * 0.85, y);
+    ctx.closePath();
+  }
+
   render(ctx: CanvasRenderingContext2D, time: number, vision: VisionCone) {
     if (this.collected && this.popT < 0) return;
     const { x, y } = this;
 
     if (this.popT >= 0) {
       const t = this.popT / 0.45;
+      const r = FRAGMENT_RADIUS + t * 10;
       ctx.save();
       ctx.globalAlpha = 1 - t;
-      ctx.font = `bold ${18 + t * 14}px system-ui`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(this.emoji, x, y - t * 32);
+      ctx.fillStyle = "#7dd3fc";
+      this.drawDiamond(ctx, x, y - t * 28, r);
+      ctx.fill();
       ctx.restore();
       return;
     }
@@ -63,26 +73,29 @@ export class DataFragment {
     if (alpha < 0.06) return;
 
     const pulse = 0.5 + Math.sin(time * 3 + this.id) * 0.5;
-    const r = FRAGMENT_RADIUS + 2 + pulse;
+    const r = FRAGMENT_RADIUS + 2 + pulse * 2;
 
     ctx.save();
     ctx.globalAlpha = alpha;
-    ctx.shadowColor = "rgba(250, 204, 21, 0.95)";
-    ctx.shadowBlur = 16 + pulse * 8;
+    ctx.shadowColor = "rgba(56, 189, 248, 0.95)";
+    ctx.shadowBlur = 14 + pulse * 8;
 
-    ctx.fillStyle = "#fbbf24";
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
+    this.drawDiamond(ctx, x, y, r + 4);
+    ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
     ctx.fill();
+
+    this.drawDiamond(ctx, x, y, r);
+    ctx.fillStyle = "#38bdf8";
+    ctx.fill();
+    ctx.strokeStyle = "#e0f2fe";
+    ctx.lineWidth = 2;
     ctx.stroke();
 
     ctx.shadowBlur = 0;
-    ctx.font = "bold 15px system-ui";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(this.emoji, x, y + 1);
+    ctx.fillStyle = "#f0f9ff";
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
   }
 }

@@ -1,19 +1,35 @@
+import { FRAGMENTS_PER_STAGE } from "@/lib/waitGame/constants";
+import {
+  drawBlueprintGrid,
+  drawBlueprintMaze,
+  normalizeMaze,
+  parseMazeGrid,
+} from "@/lib/waitGame/mazeGrid";
 import { WORLD_H, WORLD_W } from "@/lib/waitGame/constants";
-import type { StageDefinition, WallRect, ZoneDraw } from "@/lib/waitGame/stageTypes";
+import type { StageDefinition, WallRect } from "@/lib/waitGame/stageTypes";
 
 export class StageMap {
   readonly def: StageDefinition;
+  readonly maze: string[];
+  readonly walls: WallRect[];
+  readonly playerStart: { x: number; y: number };
+  readonly exit: { x: number; y: number; r: number };
+  readonly spawnPoints: { x: number; y: number }[];
 
   constructor(def: StageDefinition) {
     this.def = def;
-  }
-
-  get walls(): WallRect[] {
-    return this.def.walls;
-  }
-
-  get exit() {
-    return this.def.exit;
+    this.maze = normalizeMaze(def.maze);
+    const parsed = parseMazeGrid(this.maze);
+    this.walls = parsed.walls;
+    this.playerStart = parsed.playerStart;
+    this.exit = parsed.exit;
+    this.spawnPoints = buildSpawnList(
+      parsed.fragmentCells,
+      parsed.walkableCells,
+      parsed.playerStart,
+      parsed.exit,
+      def.extraSpawns,
+    );
   }
 
   get theme() {
@@ -24,7 +40,7 @@ export class StageMap {
     let x = px;
     let y = py;
     for (let pass = 0; pass < 4; pass++) {
-      for (const w of this.def.walls) {
+      for (const w of this.walls) {
         const resolved = pushCircleOutOfRect(x, y, r, w);
         x = resolved.x;
         y = resolved.y;
@@ -33,16 +49,35 @@ export class StageMap {
     return { x, y };
   }
 
-  render(ctx: CanvasRenderingContext2D, mode: "dim" | "bright") {
-    const bright = mode === "bright";
+  render(ctx: CanvasRenderingContext2D) {
     const t = this.def.theme;
-
-    ctx.fillStyle = bright ? t.bg : shade(t.bg, 0.55);
+    ctx.fillStyle = t.bg;
     ctx.fillRect(0, 0, WORLD_W, WORLD_H);
+    drawBlueprintGrid(ctx, t.grid);
+    drawBlueprintMaze(ctx, this.maze, t.wallStroke, t.wallGlow);
+    this.renderDecor(ctx);
+  }
 
-    for (const z of this.def.zones) {
-      drawZone(ctx, z, bright, t);
+  private renderDecor(ctx: CanvasRenderingContext2D) {
+    const t = this.def.theme;
+    ctx.save();
+    ctx.fillStyle = t.accent;
+    ctx.globalAlpha = 0.35;
+    const nodes = [
+      [60, 60],
+      [180, 120],
+      [540, 80],
+      [640, 200],
+      [120, 320],
+      [600, 360],
+    ];
+    for (const [nx, ny] of nodes) {
+      ctx.beginPath();
+      ctx.arc(nx, ny, 3, 0, Math.PI * 2);
+      ctx.fill();
     }
+    ctx.globalAlpha = 1;
+    ctx.restore();
   }
 
   renderExit(
@@ -50,143 +85,70 @@ export class StageMap {
     active: boolean,
     pulse: number,
   ) {
-    const { x, y, r } = this.def.exit;
+    const { x, y, r } = this.exit;
     const t = this.def.theme;
-    const glow = active ? 1 : 0.35;
+    const color = active ? t.exitActive : t.exitGlow;
+    const w = r * 1.6;
+    const h = r * 1.2;
 
     ctx.save();
-    const grd = ctx.createRadialGradient(x, y, 4, x, y, r + 12 + pulse * 6);
-    grd.addColorStop(0, hexAlpha(t.exitGlow, 0.5 * glow));
-    grd.addColorStop(1, hexAlpha(t.exitGlow, 0));
-    ctx.fillStyle = grd;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = active ? 18 + pulse * 8 : 8;
+    ctx.fillStyle = active ? hexAlpha(color, 0.35) : hexAlpha(color, 0.12);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = active ? 2.5 : 1.5;
+    ctx.setLineDash(active ? [] : [5, 4]);
     ctx.beginPath();
-    ctx.arc(x, y, r + 14 + pulse * 4, 0, Math.PI * 2);
+    ctx.roundRect(x - w / 2, y - h / 2, w, h, 4);
     ctx.fill();
-
-    ctx.strokeStyle = active ? t.exitGlow : hexAlpha(t.exitGlow, 0.4);
-    ctx.lineWidth = active ? 3 : 2;
-    ctx.setLineDash(active ? [] : [6, 4]);
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.stroke();
     ctx.setLineDash([]);
 
+    ctx.shadowBlur = 0;
     ctx.fillStyle = active ? "#fff" : hexAlpha("#fff", 0.5);
     ctx.font = `700 ${active ? 11 : 10}px Pretendard, system-ui, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(active ? "EXIT" : "출구", x, y);
-    ctx.restore();
-  }
+    ctx.fillText(active ? "EXIT ▶" : "출구", x, y);
 
-  renderMinimap(
-    ctx: CanvasRenderingContext2D,
-    boxX: number,
-    boxY: number,
-    boxW: number,
-    boxH: number,
-    playerX: number,
-    playerY: number,
-    stageIndex: number,
-  ) {
-    const scale = Math.min(boxW / WORLD_W, boxH / WORLD_H);
-    const ox = boxX + (boxW - WORLD_W * scale) / 2;
-    const oy = boxY + (boxH - WORLD_H * scale) / 2;
-
-    ctx.save();
-    ctx.fillStyle = "rgba(8, 12, 22, 0.92)";
-    ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
-    ctx.beginPath();
-    ctx.roundRect(boxX, boxY, boxW, boxH, 6);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.roundRect(boxX + 3, boxY + 3, boxW - 6, boxH - 6, 4);
-    ctx.clip();
-    ctx.translate(ox, oy);
-    ctx.scale(scale, scale);
-    ctx.globalAlpha = 0.9;
-    this.render(ctx, "bright");
-
-    const px = playerX * scale + ox;
-    const py = playerY * scale + oy;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = "#00c471";
-    ctx.beginPath();
-    ctx.arc(px, py, 3.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "#e2e8f0";
-    ctx.font = "600 9px Pretendard, system-ui, sans-serif";
-    ctx.textAlign = "left";
-    ctx.fillText(`Stage ${stageIndex + 1}`, boxX + 6, boxY + 12);
+    if (active) {
+      ctx.fillStyle = hexAlpha(color, 0.9);
+      ctx.font = "600 8px Pretendard, system-ui, sans-serif";
+      ctx.fillText("진입", x, y + h / 2 + 10);
+    }
     ctx.restore();
   }
 }
 
-function drawZone(
-  ctx: CanvasRenderingContext2D,
-  z: ZoneDraw,
-  bright: boolean,
-  theme: StageDefinition["theme"],
-) {
-  ctx.fillStyle = bright ? z.fill : shade(z.fill, 0.6);
-  const stroke = z.stroke ?? theme.pathStroke;
+function buildSpawnList(
+  fragmentCells: { x: number; y: number }[],
+  walkable: { x: number; y: number }[],
+  playerStart: { x: number; y: number },
+  exit: { x: number; y: number },
+  extra?: { x: number; y: number }[],
+): { x: number; y: number }[] {
+  const seen = new Set<string>();
+  const add = (pts: { x: number; y: number }[]) => {
+    for (const p of pts) {
+      const key = `${Math.round(p.x)},${Math.round(p.y)}`;
+      if (seen.has(key)) continue;
+      if (Math.hypot(p.x - playerStart.x, p.y - playerStart.y) < 28) continue;
+      if (Math.hypot(p.x - exit.x, p.y - exit.y) < 28) continue;
+      seen.add(key);
+      pool.push(p);
+    }
+  };
 
-  if (z.kind === "circle" || z.kind === "ring") {
-    const r = z.r ?? 20;
-    ctx.beginPath();
-    ctx.arc(z.x, z.y, r, 0, Math.PI * 2);
-    if (z.kind === "ring") {
-      ctx.fill();
-      ctx.strokeStyle = bright ? stroke : hexAlpha(stroke, 0.5);
-      ctx.lineWidth = bright ? 2 : 1;
-      ctx.stroke();
-    } else {
-      ctx.fill();
-      if (stroke) {
-        ctx.strokeStyle = stroke;
-        ctx.lineWidth = bright ? 2 : 1;
-        ctx.stroke();
-      }
-    }
-  } else if (z.kind === "roundRect") {
-    const w = z.w ?? 40;
-    const h = z.h ?? 30;
-    ctx.beginPath();
-    ctx.roundRect(z.x, z.y, w, h, 8);
-    ctx.fill();
-    if (stroke) {
-      ctx.strokeStyle = stroke;
-      ctx.lineWidth = bright ? 2 : 1;
-      ctx.stroke();
-    }
-  } else {
-    ctx.fillRect(z.x, z.y, z.w ?? 40, z.h ?? 30);
-    if (stroke) {
-      ctx.strokeStyle = stroke;
-      ctx.lineWidth = bright ? 1.5 : 1;
-      ctx.strokeRect(z.x, z.y, z.w ?? 40, z.h ?? 30);
-    }
+  const pool: { x: number; y: number }[] = [];
+  add(fragmentCells);
+  add(extra ?? []);
+
+  if (pool.length < FRAGMENTS_PER_STAGE) {
+    const shuffled = [...walkable].sort(() => Math.random() - 0.5);
+    add(shuffled);
   }
 
-  if (z.label && bright) {
-    ctx.fillStyle = "#f8fafc";
-    ctx.font = "700 10px Pretendard, system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    const cx =
-      z.kind === "circle" || z.kind === "ring"
-        ? z.x
-        : z.x + (z.w ?? 40) / 2;
-    const cy =
-      z.kind === "circle" || z.kind === "ring"
-        ? z.y
-        : z.y + (z.h ?? 30) / 2;
-    ctx.fillText(z.label, cx, cy);
-  }
+  return pool.slice(0, Math.max(FRAGMENTS_PER_STAGE, pool.length));
 }
 
 function pushCircleOutOfRect(
@@ -204,10 +166,6 @@ function pushCircleOutOfRect(
   const d = Math.sqrt(d2);
   const push = r - d + 0.5;
   return { x: cx + (dx / d) * push, y: cy + (dy / d) * push };
-}
-
-function shade(hex: string, factor: number): string {
-  return hex;
 }
 
 function hexAlpha(color: string, alpha: number): string {
