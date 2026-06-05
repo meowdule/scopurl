@@ -1,4 +1,4 @@
-import { isInVisionCone } from "@/lib/waitGame/vision";
+import { isInVisionCone, visionFalloff } from "@/lib/waitGame/vision";
 
 export const FRAGMENT_RADIUS = 9;
 
@@ -59,7 +59,11 @@ export class DataFragment {
     }
   }
 
-  render(ctx: CanvasRenderingContext2D, time: number) {
+  render(
+    ctx: CanvasRenderingContext2D,
+    time: number,
+    alpha = 1,
+  ) {
     if (this.collected && this.popT < 0) return;
     const { x, y } = this;
 
@@ -79,6 +83,7 @@ export class DataFragment {
     const r = FRAGMENT_RADIUS + 2 + pulse;
 
     ctx.save();
+    ctx.globalAlpha = alpha;
     ctx.shadowColor = "rgba(56, 189, 248, 0.9)";
     ctx.shadowBlur = 14 + pulse * 6;
 

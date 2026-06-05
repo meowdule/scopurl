@@ -3,7 +3,11 @@ import { InfoPanel } from "@/lib/waitGame/InfoPanel";
 import { Map, WORLD_H, WORLD_W } from "@/lib/waitGame/Map";
 import { PLAYER_RADIUS, Player } from "@/lib/waitGame/Player";
 import type { WebTip } from "@/lib/waitGame/tips";
-import { clipVisionCone, isInVisionCone } from "@/lib/waitGame/vision";
+import {
+  clipVisionCone,
+  isInVisionCone,
+  visionFalloff,
+} from "@/lib/waitGame/vision";
 
 export const TOTAL_FRAGMENTS = 20;
 export const VISION_RANGE = 190;
@@ -32,7 +36,7 @@ export class ExplorationGame {
 
   constructor() {
     this.map = new Map();
-    this.player = new Player(WORLD_W / 2, 218);
+    this.player = new Player(WORLD_W / 2, 220);
     this.fragments = buildFragments(this.map);
     this.infoPanel = new InfoPanel();
   }
@@ -173,11 +177,23 @@ export class ExplorationGame {
           VISION_HALF_ANGLE,
         )
       ) {
-        f.render(ctx, this.time);
+        const falloff = visionFalloff(
+          f.x,
+          f.y,
+          this.player.x,
+          this.player.y,
+          facing,
+          VISION_RANGE,
+          VISION_HALF_ANGLE,
+        );
+        if (falloff > 0.08) {
+          f.render(ctx, this.time, falloff);
+        }
       }
     }
 
     this.renderBursts(ctx);
+    this.renderVisionDistanceFade(ctx, cx, cy, facing);
     ctx.restore();
 
     this.player.renderScreen(ctx, cx, cy, pulse);
@@ -238,6 +254,35 @@ export class ExplorationGame {
     );
     ctx.closePath();
     ctx.fill("evenodd");
+    ctx.restore();
+  }
+
+  /** Darken vision toward cone edge — clear near explorer. */
+  private renderVisionDistanceFade(
+    ctx: CanvasRenderingContext2D,
+    cx: number,
+    cy: number,
+    facing: number,
+  ) {
+    ctx.save();
+    const g = ctx.createRadialGradient(cx, cy, 8, cx, cy, VISION_RANGE);
+    g.addColorStop(0, "rgba(0, 0, 0, 0)");
+    g.addColorStop(0.4, "rgba(0, 0, 0, 0)");
+    g.addColorStop(0.72, "rgba(0, 0, 0, 0.22)");
+    g.addColorStop(1, "rgba(0, 0, 0, 0.58)");
+
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(
+      cx,
+      cy,
+      VISION_RANGE,
+      facing - VISION_HALF_ANGLE,
+      facing + VISION_HALF_ANGLE,
+    );
+    ctx.closePath();
+    ctx.fill();
     ctx.restore();
   }
 

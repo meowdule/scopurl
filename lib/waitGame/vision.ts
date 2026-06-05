@@ -20,6 +20,22 @@ export function isInVisionCone(
   return Math.abs(diff) <= halfAngle;
 }
 
+/** 0–1: 1 at player, softer toward cone edge (distance falloff). */
+export function visionFalloff(
+  wx: number,
+  wy: number,
+  px: number,
+  py: number,
+  facing: number,
+  range: number,
+  halfAngle: number,
+): number {
+  if (!isInVisionCone(wx, wy, px, py, facing, range, halfAngle)) return 0;
+  const dist = Math.hypot(wx - px, wy - py);
+  const t = Math.min(1, dist / range);
+  return 1 - t * t * 0.72;
+}
+
 /** Screen-space cone clip (player at canvas center). */
 export function clipVisionCone(
   ctx: CanvasRenderingContext2D,
