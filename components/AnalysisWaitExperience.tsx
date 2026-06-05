@@ -56,7 +56,7 @@ export function AnalysisWaitExperience({ active }: Props) {
   useEffect(() => {
     if (!active) return;
 
-    const game = new ExplorationGame();
+    const game = new ExplorationGame(Date.now());
     gameRef.current = game;
     syncUi();
 

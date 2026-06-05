@@ -16,13 +16,20 @@ export type StageTheme = {
   hudBorder: string;
 };
 
+export type StageGeneratorConfig = {
+  roomCountMin: number;
+  roomCountMax: number;
+  minRoomW: number;
+  maxRoomW: number;
+  minRoomH: number;
+  maxRoomH: number;
+  corridorWidth: number;
+};
+
 export type StageDefinition = {
   id: number;
   name: string;
   tagline: string;
   theme: StageTheme;
-  /** ASCII maze rows (# wall, . floor, P player, E exit, F fragment spawn). */
-  maze: string[];
-  /** Extra fragment positions if fewer than 10 F cells in maze. */
-  extraSpawns?: { x: number; y: number }[];
+  generator: StageGeneratorConfig;
 };

@@ -38,11 +38,13 @@ export class ExplorationGame {
   missionComplete = false;
   stageClearFlash = 0;
 
+  private readonly seed: number;
   private readonly bursts: { x: number; y: number; age: number }[] = [];
   private time = 0;
   private toastId = 0;
 
-  constructor() {
+  constructor(seed?: number) {
+    this.seed = seed ?? Date.now();
     this.loadStage(0);
   }
 
@@ -73,7 +75,7 @@ export class ExplorationGame {
   loadStage(index: number) {
     this.stageIndex = index;
     const def = getStageDefinition(index);
-    this.map = new StageMap(def);
+    this.map = new StageMap(def, this.seed, index);
     const start = this.map.playerStart;
     const exit = this.map.exit;
     const faceUp = start.y > exit.y ? -Math.PI / 2 : Math.PI / 2;
@@ -183,6 +185,7 @@ export class ExplorationGame {
     const camY = canvasH / 2 - this.player.y;
     const vision = this.vision();
     const theme = this.map.theme;
+    const exitFalloff = vision.falloff(this.map.exit.x, this.map.exit.y);
 
     ctx.fillStyle = "#020408";
     ctx.fillRect(0, 0, canvasW, canvasH);
@@ -193,15 +196,15 @@ export class ExplorationGame {
 
     vision.clip(ctx);
     this.map.render(ctx);
-    this.map.renderExit(ctx, this.exitActive, pulse);
+    this.map.renderExit(ctx, this.exitActive, pulse, exitFalloff);
 
     for (const f of this.fragments) {
       f.render(ctx, this.time, vision);
     }
 
-    this.renderBursts(ctx);
-    vision.fillSoftCone(ctx, theme.visionFill);
+    this.renderBursts(ctx, vision);
     vision.fillDistanceFade(ctx);
+    vision.fillSoftCone(ctx, theme.visionFill);
     vision.strokeRim(ctx, theme.visionRim);
     this.player.renderWorld(ctx, pulse);
     ctx.restore();
@@ -241,19 +244,24 @@ export class ExplorationGame {
     }
   }
 
-  private renderBursts(ctx: CanvasRenderingContext2D) {
+  private renderBursts(ctx: CanvasRenderingContext2D, vision: VisionCone) {
     for (const b of this.bursts) {
       const t = b.age / 0.5;
+      const fade = vision.falloff(b.x, b.y);
+      if (fade < 0.05) continue;
       const r = 8 + t * 36;
-      ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - t) * 0.9})`;
+      ctx.save();
+      ctx.globalAlpha = (1 - t) * fade;
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.9)";
       ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
       ctx.stroke();
       ctx.font = "bold 13px system-ui";
       ctx.textAlign = "center";
-      ctx.fillStyle = `rgba(224, 242, 254, ${1 - t})`;
+      ctx.fillStyle = "rgba(224, 242, 254, 1)";
       ctx.fillText("+1", b.x, b.y - t * 20);
+      ctx.restore();
     }
   }
 }

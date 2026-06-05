@@ -3,9 +3,9 @@ import {
   drawBlueprintGrid,
   drawBlueprintMaze,
   isWorldReachable,
-  normalizeMaze,
   parseMazeGrid,
 } from "@/lib/waitGame/mazeGrid";
+import { generateRoomMaze } from "@/lib/waitGame/roomGenerator";
 import { WORLD_H, WORLD_W } from "@/lib/waitGame/constants";
 import type { StageDefinition, WallRect } from "@/lib/waitGame/stageTypes";
 
@@ -17,9 +17,9 @@ export class StageMap {
   readonly exit: { x: number; y: number; r: number };
   readonly spawnPoints: { x: number; y: number }[];
 
-  constructor(def: StageDefinition) {
+  constructor(def: StageDefinition, seed: number, stageIndex: number) {
     this.def = def;
-    this.maze = normalizeMaze(def.maze);
+    this.maze = generateRoomMaze(seed, stageIndex, def.generator);
     const parsed = parseMazeGrid(this.maze);
     this.walls = parsed.walls;
     this.playerStart = parsed.playerStart;
@@ -30,7 +30,6 @@ export class StageMap {
       parsed.reachableKeys,
       parsed.playerStart,
       parsed.exit,
-      def.extraSpawns,
     );
   }
 
@@ -64,17 +63,17 @@ export class StageMap {
     const t = this.def.theme;
     ctx.save();
     ctx.fillStyle = t.accent;
-    ctx.globalAlpha = 0.3;
-    const nodes = [
-      [100, 80],
-      [360, 120],
-      [620, 80],
-      [180, 280],
-      [540, 280],
-    ];
-    for (const [nx, ny] of nodes) {
+    ctx.globalAlpha = 0.25;
+    for (const [nx, ny] of [
+      [90, 70],
+      [280, 110],
+      [440, 90],
+      [580, 200],
+      [200, 300],
+      [500, 320],
+    ]) {
       ctx.beginPath();
-      ctx.arc(nx, ny, 3, 0, Math.PI * 2);
+      ctx.arc(nx, ny, 2.5, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -85,38 +84,77 @@ export class StageMap {
     ctx: CanvasRenderingContext2D,
     active: boolean,
     pulse: number,
+    visionFalloff = 1,
   ) {
-    const { x, y, r } = this.exit;
+    const { x, y } = this.exit;
     const t = this.def.theme;
     const color = active ? t.exitActive : t.exitGlow;
-    const w = r * 1.6;
-    const h = r * 1.2;
+    const alpha = Math.max(0.25, visionFalloff);
 
     ctx.save();
+    ctx.globalAlpha = alpha;
+
+    const glowR = 28 + pulse * 6;
+    const grd = ctx.createRadialGradient(x, y, 4, x, y, glowR);
+    grd.addColorStop(0, hexAlpha(color, active ? 0.5 : 0.2));
+    grd.addColorStop(1, hexAlpha(color, 0));
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(x, y, glowR, 0, Math.PI * 2);
+    ctx.fill();
+
     ctx.shadowColor = color;
-    ctx.shadowBlur = active ? 18 + pulse * 8 : 8;
-    ctx.fillStyle = active ? hexAlpha(color, 0.35) : hexAlpha(color, 0.12);
+    ctx.shadowBlur = active ? 16 + pulse * 10 : 6;
     ctx.strokeStyle = color;
     ctx.lineWidth = active ? 2.5 : 1.5;
-    ctx.setLineDash(active ? [] : [5, 4]);
+    ctx.globalAlpha = alpha * (active ? 1 : 0.65);
+
+    const fw = 22;
+    const fh = 28;
     ctx.beginPath();
-    ctx.roundRect(x - w / 2, y - h / 2, w, h, 4);
-    ctx.fill();
+    ctx.roundRect(x - fw / 2, y - fh / 2 - 2, fw, fh, 3);
     ctx.stroke();
-    ctx.setLineDash([]);
+
+    ctx.beginPath();
+    ctx.arc(x, y - fh / 2 - 2, fw / 2, Math.PI, 0);
+    ctx.stroke();
 
     ctx.shadowBlur = 0;
-    ctx.fillStyle = active ? "#fff" : hexAlpha("#fff", 0.5);
-    ctx.font = `700 ${active ? 11 : 10}px Pretendard, system-ui, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(active ? "EXIT ▶" : "출구", x, y);
+    const portal = ctx.createRadialGradient(x, y, 2, x, y, 12);
+    portal.addColorStop(0, active ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.25)");
+    portal.addColorStop(0.5, hexAlpha(color, active ? 0.45 : 0.15));
+    portal.addColorStop(1, hexAlpha(color, 0));
+    ctx.fillStyle = portal;
+    ctx.beginPath();
+    ctx.arc(x, y, 12 + pulse * 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = active ? "#fff" : hexAlpha("#fff", 0.5);
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(x - 5, y - 6);
+    ctx.lineTo(x - 5, y + 8);
+    ctx.moveTo(x + 5, y - 6);
+    ctx.lineTo(x + 5, y + 8);
+    ctx.stroke();
+
+    ctx.fillStyle = active ? "#fff" : hexAlpha("#fff", 0.6);
+    ctx.beginPath();
+    ctx.moveTo(x + 2, y + 1);
+    ctx.lineTo(x - 4, y - 3);
+    ctx.lineTo(x - 4, y + 5);
+    ctx.closePath();
+    ctx.fill();
 
     if (active) {
-      ctx.fillStyle = hexAlpha(color, 0.9);
-      ctx.font = "600 8px Pretendard, system-ui, sans-serif";
-      ctx.fillText("진입", x, y + h / 2 + 10);
+      ctx.fillStyle = hexAlpha(color, 0.95);
+      ctx.font = "700 8px Pretendard, system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      ctx.fillText("EXIT", x, y + fh / 2 + 6);
     }
+
     ctx.restore();
   }
 }
@@ -127,7 +165,6 @@ function buildSpawnList(
   reachable: Set<string>,
   playerStart: { x: number; y: number },
   exit: { x: number; y: number },
-  extra?: { x: number; y: number }[],
 ): { x: number; y: number }[] {
   const reachableWalkable = walkable.filter((p) =>
     isWorldReachable(p.x, p.y, reachable),
@@ -152,7 +189,6 @@ function buildSpawnList(
   };
 
   add(fragmentCells);
-  add(extra ?? []);
 
   if (pool.length < FRAGMENTS_PER_STAGE) {
     const sorted = [...reachableWalkable]
@@ -167,15 +203,11 @@ function buildSpawnList(
     for (let i = step; i < sorted.length; i += step) {
       spread.push(sorted[i]);
     }
-    add(spread.sort(() => Math.random() - 0.5));
+    add(spread);
   }
 
   if (pool.length < FRAGMENTS_PER_STAGE) {
-    add(
-      [...reachableWalkable]
-        .filter((p) => !tooClose(p))
-        .sort(() => Math.random() - 0.5),
-    );
+    add([...reachableWalkable].filter((p) => !tooClose(p)));
   }
 
   return pool.slice(0, Math.max(FRAGMENTS_PER_STAGE, pool.length));
@@ -199,7 +231,9 @@ function pushCircleOutOfRect(
 }
 
 function hexAlpha(color: string, alpha: number): string {
-  if (color.startsWith("rgba")) return color;
+  if (color.startsWith("rgba")) {
+    return color.replace(/[\d.]+\)$/, `${alpha})`);
+  }
   const a = Math.round(alpha * 255)
     .toString(16)
     .padStart(2, "0");

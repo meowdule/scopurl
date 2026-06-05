@@ -23,12 +23,21 @@ export class VisionCone {
     return Math.abs(diff) <= this.halfAngle;
   }
 
-  /** 0 outside cone, 1 at player, smooth quadratic falloff by distance. */
+  /** 0 outside cone, 1 at player — steep falloff with distance. */
   falloff(wx: number, wy: number): number {
     if (!this.contains(wx, wy)) return 0;
     const dist = Math.hypot(wx - this.px, wy - this.py);
     const t = dist / this.range;
-    return 1 - t * t * 0.68;
+    const distFade = Math.pow(1 - t, 2.2);
+    const dx = wx - this.px;
+    const dy = wy - this.py;
+    const angleTo = Math.atan2(dy, dx);
+    let diff = angleTo - this.facing;
+    while (diff > Math.PI) diff -= Math.PI * 2;
+    while (diff < -Math.PI) diff += Math.PI * 2;
+    const edgeT = Math.abs(diff) / this.halfAngle;
+    const edgeFade = 1 - Math.pow(edgeT, 3) * 0.35;
+    return distFade * edgeFade;
   }
 
   tracePath(ctx: CanvasRenderingContext2D) {
@@ -65,21 +74,22 @@ export class VisionCone {
     ctx.restore();
   }
 
-  /** Distance fade inside cone (world space). */
-  fillDistanceFade(ctx: CanvasRenderingContext2D, inner = 0.08) {
+  /** Strong distance darkening — near player bright, far edge very dark. */
+  fillDistanceFade(ctx: CanvasRenderingContext2D) {
     const g = ctx.createRadialGradient(
       this.px,
       this.py,
-      inner,
+      4,
       this.px,
       this.py,
       this.range,
     );
     g.addColorStop(0, "rgba(0,0,0,0)");
-    g.addColorStop(0.35, "rgba(0,0,0,0)");
-    g.addColorStop(0.62, "rgba(0,0,0,0.12)");
-    g.addColorStop(0.82, "rgba(0,0,0,0.28)");
-    g.addColorStop(1, "rgba(0,0,0,0.52)");
+    g.addColorStop(0.18, "rgba(0,0,0,0.08)");
+    g.addColorStop(0.4, "rgba(0,0,0,0.32)");
+    g.addColorStop(0.62, "rgba(0,0,0,0.58)");
+    g.addColorStop(0.82, "rgba(0,0,0,0.78)");
+    g.addColorStop(1, "rgba(0,0,0,0.9)");
     ctx.save();
     this.tracePath(ctx);
     ctx.clip();
@@ -93,18 +103,18 @@ export class VisionCone {
     ctx.restore();
   }
 
-  /** Soft flashlight fill (world space, inside cone). */
+  /** Subtle warm core near player only. */
   fillSoftCone(ctx: CanvasRenderingContext2D, color: string) {
     const g = ctx.createRadialGradient(
       this.px,
       this.py,
-      6,
+      4,
       this.px,
       this.py,
-      this.range,
+      this.range * 0.35,
     );
     g.addColorStop(0, color);
-    g.addColorStop(0.65, "rgba(0,0,0,0)");
+    g.addColorStop(0.55, color.replace(/[\d.]+\)$/, "0.03)"));
     g.addColorStop(1, "rgba(0,0,0,0)");
     ctx.save();
     this.tracePath(ctx);
@@ -122,7 +132,8 @@ export class VisionCone {
   strokeRim(ctx: CanvasRenderingContext2D, color: string) {
     ctx.save();
     ctx.strokeStyle = color;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.35;
     this.tracePath(ctx);
     ctx.stroke();
     ctx.restore();

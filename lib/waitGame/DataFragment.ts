@@ -70,7 +70,7 @@ export class DataFragment {
     }
 
     const alpha = vision.falloff(x, y);
-    if (alpha < 0.06) return;
+    if (alpha < 0.08) return;
 
     const pulse = 0.5 + Math.sin(time * 3 + this.id) * 0.5;
     const r = FRAGMENT_RADIUS + 2 + pulse * 2;
