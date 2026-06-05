@@ -6,8 +6,8 @@ import type { WebTip } from "@/lib/waitGame/tips";
 import { clipVisionCone, isInVisionCone } from "@/lib/waitGame/vision";
 
 export const TOTAL_FRAGMENTS = 20;
-export const VISION_RANGE = 175;
-export const VISION_HALF_ANGLE = Math.PI / 4.2;
+export const VISION_RANGE = 190;
+export const VISION_HALF_ANGLE = Math.PI / 3.8;
 
 export type PickupToast = {
   id: number;
@@ -18,6 +18,7 @@ export type PickupToast = {
 };
 
 const TOAST_LIFE = 2.8;
+const MINIMAP = { x: 10, y: 10, w: 118, h: 72 };
 
 export class ExplorationGame {
   readonly map: Map;
@@ -145,13 +146,22 @@ export class ExplorationGame {
     const cy = canvasH / 2;
     const facing = this.player.facing;
 
-    ctx.fillStyle = "#050810";
+    ctx.fillStyle = "#0f1419";
     ctx.fillRect(0, 0, canvasW, canvasH);
+
+    ctx.save();
+    ctx.translate(camX, camY);
+    ctx.globalAlpha = 0.52;
+    this.map.render(ctx, "dim");
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    this.renderFogOutside(ctx, canvasW, canvasH, cx, cy, facing);
 
     ctx.save();
     clipVisionCone(ctx, cx, cy, facing, VISION_RANGE, VISION_HALF_ANGLE);
     ctx.translate(camX, camY);
-    this.map.render(ctx);
+    this.map.render(ctx, "bright");
 
     for (const f of this.fragments) {
       if (
@@ -167,35 +177,46 @@ export class ExplorationGame {
       }
     }
 
-    this.player.render(ctx, pulse);
     this.renderBursts(ctx);
     ctx.restore();
 
-    this.renderFog(ctx, canvasW, canvasH, cx, cy, facing);
+    this.player.renderScreen(ctx, cx, cy, pulse);
     this.renderVisionRim(ctx, cx, cy, facing);
+
+    this.map.renderMinimap(
+      ctx,
+      MINIMAP.x,
+      MINIMAP.y,
+      MINIMAP.w,
+      MINIMAP.h,
+      this.player.x,
+      this.player.y,
+      facing,
+    );
   }
 
   private renderBursts(ctx: CanvasRenderingContext2D) {
     for (const b of this.bursts) {
       const t = b.age / 0.5;
       const r = 8 + t * 36;
-      ctx.strokeStyle = `rgba(0, 196, 113, ${(1 - t) * 0.7})`;
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = `rgba(0, 196, 113, ${(1 - t) * 0.85})`;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.fillStyle = `rgba(167, 243, 208, ${(1 - t) * 0.25})`;
+      ctx.fillStyle = `rgba(167, 243, 208, ${(1 - t) * 0.35})`;
       ctx.beginPath();
       ctx.arc(b.x, b.y, r * 0.6, 0, Math.PI * 2);
       ctx.fill();
-      ctx.font = "bold 12px system-ui";
+      ctx.font = "bold 13px system-ui";
       ctx.textAlign = "center";
-      ctx.fillStyle = `rgba(167, 243, 208, ${1 - t})`;
+      ctx.fillStyle = `rgba(240, 253, 244, ${1 - t})`;
       ctx.fillText("+1", b.x, b.y - t * 20);
     }
   }
 
-  private renderFog(
+  /** Dark overlay only outside the vision cone (evenodd — no inner wash). */
+  private renderFogOutside(
     ctx: CanvasRenderingContext2D,
     canvasW: number,
     canvasH: number,
@@ -204,21 +225,19 @@ export class ExplorationGame {
     facing: number,
   ) {
     ctx.save();
-    ctx.fillStyle = "rgba(4, 8, 16, 0.88)";
-    ctx.fillRect(0, 0, canvasW, canvasH);
-
-    ctx.globalCompositeOperation = "destination-out";
-    const cone = ctx.createRadialGradient(cx, cy, 0, cx, cy, VISION_RANGE);
-    cone.addColorStop(0, "rgba(0,0,0,1)");
-    cone.addColorStop(0.65, "rgba(0,0,0,0.92)");
-    cone.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = cone;
+    ctx.fillStyle = "rgba(2, 5, 12, 0.82)";
     ctx.beginPath();
+    ctx.rect(0, 0, canvasW, canvasH);
     ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, VISION_RANGE, facing - VISION_HALF_ANGLE, facing + VISION_HALF_ANGLE);
+    ctx.arc(
+      cx,
+      cy,
+      VISION_RANGE,
+      facing - VISION_HALF_ANGLE,
+      facing + VISION_HALF_ANGLE,
+    );
     ctx.closePath();
-    ctx.fill();
-    ctx.globalCompositeOperation = "source-over";
+    ctx.fill("evenodd");
     ctx.restore();
   }
 
@@ -229,8 +248,8 @@ export class ExplorationGame {
     facing: number,
   ) {
     ctx.save();
-    ctx.strokeStyle = "rgba(0, 196, 113, 0.22)";
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = "rgba(0, 196, 113, 0.75)";
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.arc(
@@ -241,6 +260,16 @@ export class ExplorationGame {
       facing + VISION_HALF_ANGLE,
     );
     ctx.closePath();
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(167, 243, 208, 0.35)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(
+      cx + Math.cos(facing) * VISION_RANGE * 0.92,
+      cy + Math.sin(facing) * VISION_RANGE * 0.92,
+    );
     ctx.stroke();
     ctx.restore();
   }

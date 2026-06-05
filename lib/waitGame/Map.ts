@@ -159,35 +159,124 @@ export class Map {
     return { x, y };
   }
 
-  render(ctx: CanvasRenderingContext2D) {
-    ctx.fillStyle = "#080d18";
+  render(ctx: CanvasRenderingContext2D, mode: "dim" | "bright" = "bright") {
+    const bright = mode === "bright";
+
+    ctx.fillStyle = bright ? "#1e293b" : "#0c1018";
     ctx.fillRect(0, 0, WORLD_W, WORLD_H);
 
-    drawPaths(ctx);
+    drawMapBorder(ctx, bright);
+    drawPaths(ctx, bright);
     for (const b of this.buildings) {
-      drawBuilding(ctx, b);
+      drawBuilding(ctx, b, bright);
     }
-    drawHubPlaza(ctx);
+    drawHubPlaza(ctx, bright);
+  }
+
+  /** Corner overview of full floor plan. */
+  renderMinimap(
+    ctx: CanvasRenderingContext2D,
+    boxX: number,
+    boxY: number,
+    boxW: number,
+    boxH: number,
+    playerX: number,
+    playerY: number,
+    facing: number,
+  ) {
+    const scale = Math.min(boxW / WORLD_W, boxH / WORLD_H);
+    const ox = boxX + (boxW - WORLD_W * scale) / 2;
+    const oy = boxY + (boxH - WORLD_H * scale) / 2;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(8, 12, 22, 0.92)";
+    ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(boxX, boxY, boxW, boxH, 6);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.roundRect(boxX + 3, boxY + 3, boxW - 6, boxH - 6, 4);
+    ctx.clip();
+
+    ctx.translate(ox, oy);
+    ctx.scale(scale, scale);
+    ctx.globalAlpha = 0.95;
+    this.render(ctx, "bright");
+
+    const px = playerX * scale + ox;
+    const py = playerY * scale + oy;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = 1;
+
+    ctx.fillStyle = "#00c471";
+    ctx.beginPath();
+    ctx.arc(px, py, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    const wedge = 0.55;
+    ctx.fillStyle = "rgba(0, 196, 113, 0.2)";
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.arc(px, py, 22, facing - wedge, facing + wedge);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = "rgba(226, 232, 240, 0.9)";
+    ctx.font = "600 9px Pretendard, system-ui, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("구조도", boxX + 6, boxY + 12);
+    ctx.restore();
   }
 }
 
-function drawPaths(ctx: CanvasRenderingContext2D) {
-  const paths: { x: number; y: number; w: number; h: number }[] = [
-    { x: 16, y: 182, w: WORLD_W - 32, h: 76 },
-    { x: 212, y: 170, w: 56, h: 100 },
-    { x: 452, y: 170, w: 56, h: 100 },
-    { x: 318, y: 198, w: 84, h: 44 },
-  ];
+function drawMapBorder(ctx: CanvasRenderingContext2D, bright: boolean) {
+  ctx.strokeStyle = bright ? "#94a3b8" : "rgba(71, 85, 105, 0.35)";
+  ctx.lineWidth = bright ? 2.5 : 1;
+  ctx.strokeRect(8, 8, WORLD_W - 16, WORLD_H - 16);
+}
+
+const BUILDING_LABELS_KO: Record<string, string> = {
+  browser: "브라우저",
+  search: "검색",
+  mobile: "모바일",
+  security: "보안",
+  cloud: "클라우드",
+  ux: "UX",
+};
+
+function drawPaths(ctx: CanvasRenderingContext2D, bright: boolean) {
+  const paths: { x: number; y: number; w: number; h: number; label?: string }[] =
+    [
+      { x: 16, y: 182, w: WORLD_W - 32, h: 76, label: "메인 복도" },
+      { x: 212, y: 170, w: 56, h: 100, label: "서측" },
+      { x: 452, y: 170, w: 56, h: 100, label: "동측" },
+      { x: 318, y: 198, w: 84, h: 44 },
+    ];
 
   for (const p of paths) {
-    ctx.fillStyle = "#1a2332";
+    ctx.fillStyle = bright ? "#475569" : "#1a2332";
     ctx.fillRect(p.x, p.y, p.w, p.h);
-    ctx.strokeStyle = "rgba(71, 85, 105, 0.45)";
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = bright ? "#cbd5e1" : "rgba(71, 85, 105, 0.45)";
+    ctx.lineWidth = bright ? 2 : 1;
     ctx.strokeRect(p.x + 0.5, p.y + 0.5, p.w - 1, p.h - 1);
+    if (p.label && bright) {
+      ctx.fillStyle = "#f8fafc";
+      ctx.font = "700 11px Pretendard, system-ui, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(p.label, p.x + p.w / 2, p.y + p.h / 2);
+    }
   }
 
-  ctx.strokeStyle = "rgba(51, 65, 85, 0.35)";
+  ctx.strokeStyle = bright
+    ? "rgba(100, 116, 139, 0.5)"
+    : "rgba(51, 65, 85, 0.35)";
   ctx.setLineDash([6, 10]);
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -197,51 +286,57 @@ function drawPaths(ctx: CanvasRenderingContext2D) {
   ctx.setLineDash([]);
 }
 
-function drawHubPlaza(ctx: CanvasRenderingContext2D) {
+function drawHubPlaza(ctx: CanvasRenderingContext2D, bright: boolean) {
   const cx = WORLD_W / 2;
   const cy = 218;
-  ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
+  ctx.fillStyle = bright ? "#334155" : "rgba(15, 23, 42, 0.9)";
   ctx.beginPath();
   ctx.arc(cx, cy, 28, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "rgba(0, 196, 113, 0.35)";
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = bright ? "#00c471" : "rgba(0, 196, 113, 0.35)";
+  ctx.lineWidth = bright ? 3 : 2;
   ctx.stroke();
-  ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
-  ctx.font = "600 9px Pretendard, system-ui, sans-serif";
+  ctx.fillStyle = bright ? "#ffffff" : "rgba(148, 163, 184, 0.5)";
+  ctx.font = "700 12px Pretendard, system-ui, sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("Hub", cx, cy + 3);
+  ctx.textBaseline = "middle";
+  ctx.fillText("허브", cx, cy + 1);
 }
 
-function drawBuilding(ctx: CanvasRenderingContext2D, b: BuildingPlan) {
-  ctx.fillStyle = "#111c2e";
+function drawBuilding(ctx: CanvasRenderingContext2D, b: BuildingPlan, bright: boolean) {
+  ctx.fillStyle = bright ? "#334155" : "#111c2e";
   ctx.fillRect(b.x, b.y, b.w, b.h);
 
-  ctx.strokeStyle = "rgba(71, 85, 105, 0.7)";
-  ctx.lineWidth = 3;
+  ctx.strokeStyle = bright ? "#e2e8f0" : "rgba(71, 85, 105, 0.7)";
+  ctx.lineWidth = bright ? 4 : 3;
   ctx.strokeRect(b.x + 1.5, b.y + 1.5, b.w - 3, b.h - 3);
 
   for (const r of b.rooms) {
-    ctx.fillStyle = "#0d1524";
+    ctx.fillStyle = bright ? "#1e293b" : "#0d1524";
     ctx.fillRect(r.x, r.y, r.w, r.h);
-    ctx.strokeStyle = "rgba(51, 65, 85, 0.55)";
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = bright ? "#94a3b8" : "rgba(51, 65, 85, 0.55)";
+    ctx.lineWidth = bright ? 1.5 : 1;
     ctx.strokeRect(r.x + 0.5, r.y + 0.5, r.w - 1, r.h - 1);
   }
 
-  drawDoorGap(ctx, b);
+  drawDoorGap(ctx, b, bright);
 
-  ctx.fillStyle = "rgba(148, 163, 184, 0.45)";
-  ctx.font = "600 9px Pretendard, system-ui, sans-serif";
+  const label = BUILDING_LABELS_KO[b.id] ?? b.label;
+  ctx.fillStyle = bright ? "#ffffff" : "rgba(148, 163, 184, 0.45)";
+  ctx.font = `${bright ? 700 : 600} ${bright ? 12 : 9}px Pretendard, system-ui, sans-serif`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText(b.label, b.x + b.w / 2, b.y + 12);
+  ctx.fillText(label, b.x + b.w / 2, b.y + 14);
 }
 
-function drawDoorGap(ctx: CanvasRenderingContext2D, b: BuildingPlan) {
+function drawDoorGap(
+  ctx: CanvasRenderingContext2D,
+  b: BuildingPlan,
+  bright: boolean,
+) {
   const gap = 36;
   const mid = b.doorSide === "n" || b.doorSide === "s" ? b.x + b.w / 2 : b.y + b.h / 2;
-  ctx.fillStyle = "#1a2332";
+  ctx.fillStyle = bright ? "#64748b" : "#1a2332";
   if (b.doorSide === "s") {
     ctx.fillRect(mid - gap / 2, b.y + b.h - 4, gap, 8);
   } else if (b.doorSide === "n") {

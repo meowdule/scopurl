@@ -1,6 +1,6 @@
 import { isInVisionCone } from "@/lib/waitGame/vision";
 
-export const FRAGMENT_RADIUS = 7;
+export const FRAGMENT_RADIUS = 9;
 
 const PICKUP_EMOJIS = ["💾", "📡", "🔗", "⚡", "🔐", "☁️", "📱", "🔍", "♿", "🌐"];
 
@@ -10,7 +10,6 @@ export class DataFragment {
   x: number;
   y: number;
   collected = false;
-  /** Pop animation after pickup (still drawn briefly). */
   popT = -1;
   discovered = false;
 
@@ -41,13 +40,9 @@ export class DataFragment {
     halfAngle: number,
   ): boolean {
     if (this.collected || this.popT >= 0) return false;
-
-    if (
-      !isInVisionCone(this.x, this.y, px, py, facing, range, halfAngle)
-    ) {
+    if (!isInVisionCone(this.x, this.y, px, py, facing, range, halfAngle)) {
       return false;
     }
-
     const dist = Math.hypot(this.x - px, this.y - py);
     if (dist < FRAGMENT_RADIUS + playerRadius + 6) {
       this.collected = true;
@@ -66,41 +61,45 @@ export class DataFragment {
 
   render(ctx: CanvasRenderingContext2D, time: number) {
     if (this.collected && this.popT < 0) return;
-
     const { x, y } = this;
 
     if (this.popT >= 0) {
       const t = this.popT / 0.45;
-      const scale = 1 + t * 1.8;
-      const alpha = 1 - t;
       ctx.save();
-      ctx.globalAlpha = alpha;
-      ctx.font = `${14 + t * 10}px system-ui`;
+      ctx.globalAlpha = 1 - t;
+      ctx.font = `bold ${18 + t * 14}px system-ui`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(this.emoji, x, y - t * 28);
+      ctx.fillText(this.emoji, x, y - t * 32);
       ctx.restore();
       return;
     }
 
     const pulse = 0.5 + Math.sin(time * 3 + this.id) * 0.5;
+    const r = FRAGMENT_RADIUS + 2 + pulse;
 
-    const glow = ctx.createRadialGradient(x, y, 0, x, y, 16 + pulse * 3);
-    glow.addColorStop(0, `rgba(125, 211, 252, ${0.5 + pulse * 0.25})`);
-    glow.addColorStop(1, "rgba(125, 211, 252, 0)");
-    ctx.fillStyle = glow;
+    ctx.save();
+    ctx.shadowColor = "rgba(56, 189, 248, 0.9)";
+    ctx.shadowBlur = 14 + pulse * 6;
+
+    ctx.fillStyle = "#0ea5e9";
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.arc(x, y, 16 + pulse * 3, 0, Math.PI * 2);
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "#f0f9ff";
+    ctx.beginPath();
+    ctx.arc(x, y, r - 4, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = `rgba(186, 230, 253, ${0.9})`;
-    ctx.beginPath();
-    ctx.arc(x, y, FRAGMENT_RADIUS, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.font = "11px system-ui";
+    ctx.font = "bold 15px system-ui";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(this.emoji, x, y + 0.5);
+    ctx.fillText(this.emoji, x, y + 1);
+    ctx.restore();
   }
 }

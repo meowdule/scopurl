@@ -1,4 +1,4 @@
-export const PLAYER_RADIUS = 11;
+export const PLAYER_RADIUS = 12;
 
 export class Player {
   x: number;
@@ -118,5 +118,61 @@ export class Player {
     ctx.stroke();
 
     ctx.restore();
+  }
+
+  /** Always drawn at screen center so the explorer stays visible above fog. */
+  renderScreen(
+    ctx: CanvasRenderingContext2D,
+    sx: number,
+    sy: number,
+    pulse: number,
+  ) {
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.rotate(this.facing);
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+    ctx.beginPath();
+    ctx.arc(0, 0, PLAYER_RADIUS + 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 26);
+    glow.addColorStop(0, "rgba(0, 196, 113, 0.5)");
+    glow.addColorStop(1, "rgba(0, 196, 113, 0)");
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(0, 0, 26, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#00c471";
+    ctx.beginPath();
+    ctx.arc(0, 0, PLAYER_RADIUS, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#064e3b";
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.moveTo(8, 0);
+    ctx.lineTo(-5, -5);
+    ctx.lineTo(-5, 5);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = `rgba(0, 196, 113, ${0.5 + pulse * 0.35})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0, 0, PLAYER_RADIUS + 6 + pulse * 2, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
+
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "700 10px Pretendard, system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    ctx.fillText("탐험가", sx, sy + PLAYER_RADIUS + 8);
   }
 }
