@@ -22,6 +22,10 @@ env:
   # Fine-grained PAT with repo scope (or classic PAT) — triggers repository_dispatch only.
   # Not GH_PAT; never entered by users in the UI.
   NEXT_PUBLIC_QUEUE_DISPATCH_TOKEN: ${{ secrets.QUEUE_DISPATCH_TOKEN }}
+  # FormSubmit — first submission sends activation mail to the inbox.
+  NEXT_PUBLIC_LEAD_WEBHOOK: ${{ vars.NEXT_PUBLIC_LEAD_WEBHOOK || 'https://formsubmit.co/ajax/tbell.wr@gmail.com' }}
+  # Optional: Make.com / n8n webhook → Notion DB (see docs/DEPLOY.md)
+  NEXT_PUBLIC_LEAD_NOTION_WEBHOOK: ${{ vars.NEXT_PUBLIC_LEAD_NOTION_WEBHOOK }}
 
 jobs:
   build:

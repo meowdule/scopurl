@@ -44,7 +44,51 @@ npm run analyze:local -- --report-id=test-smoke --target-url=https://example.com
 
 ## 리드 webhook (Phase 8+)
 
-`NEXT_PUBLIC_LEAD_WEBHOOK` — Formspree 등 POST URL
+| 변수 | 용도 |
+|------|------|
+| `NEXT_PUBLIC_LEAD_WEBHOOK` | 이메일 수신 (FormSubmit 등 POST URL) |
+| `NEXT_PUBLIC_LEAD_NOTION_WEBHOOK` | (선택) Notion DB 연동용 자동화 webhook |
+
+### 이메일 (기본)
+
+GitHub Actions 기본값: `https://formsubmit.co/ajax/tbell.wr@gmail.com`
+
+- **최초 1회**: FormSubmit이 `tbell.wr@gmail.com` 으로 활성화 메일을 보냅니다. 링크를 눌러야 이후 제출이 수신됩니다.
+- 다른 주소로 바꾸려면 repo **Variables** 에 `NEXT_PUBLIC_LEAD_WEBHOOK` 을 설정하세요.
+
+### Notion DB (권장 — GitHub Actions)
+
+정적 사이트에서는 **Notion 토큰을 코드·브라우저에 넣으면 안 됩니다.**  
+대신 제출 시 `repository_dispatch` → `.github/workflows/lead-to-notion.yml` 이 Notion API로 DB 행을 만듭니다.
+
+**DB:** [scopurl 리드 DB](https://app.notion.com/p/378c60fde0e48002a4e4d395db0ce125)
+
+| Notion 속성 | 제출 필드 | 값 예시 |
+|-------------|-----------|---------|
+| 종류 | `mode` | PDF / 문의 / 확장 / 구독 |
+| 이름 | `name` (없으면 이메일) | 홍길동 |
+| 이메일 | `email` | user@example.com |
+| URL | `siteUrl` 또는 리포트 링크 | https://… |
+| 회사 | `company` | (선택) |
+
+**연결 절차**
+
+1. [Notion 연동](https://www.notion.so/my-integrations)에서 Internal Integration 생성 → **시크릿 토큰** 복사
+2. Notion DB 페이지 우측 상단 `···` → **연결** → 방금 만든 Integration 추가 (필수)
+3. GitHub repo `meowdule/scopurl` → **Settings → Secrets and variables → Actions**
+   - **Secrets** → `NOTION_TOKEN` = `secret_…` (토큰 값)
+   - **Variables** (선택) → `NOTION_DATABASE_ID` = `378c60fde0e48002a4e4d395db0ce125`  
+     (기본값이 워크플로에 박혀 있어 생략 가능)
+4. `main`에 워크플로·코드 푸시 후, 사이트에서 리드 폼 테스트 제출
+5. GitHub **Actions** 탭에서 `Lead to Notion` 워크플로 성공 여부 확인
+
+**수동 테스트:** Actions → `Lead to Notion` → Run workflow
+
+제출 시 **이메일(FormSubmit) + Notion(GitHub Actions)** 이 함께 동작합니다. Notion만 실패해도 이메일은 정상 처리됩니다.
+
+### Notion DB (대안 — Make.com webhook)
+
+`NEXT_PUBLIC_LEAD_NOTION_WEBHOOK` 에 Make/n8n URL을 넣으면 GitHub Actions 없이도 연동할 수 있습니다. 토큰은 Make 쪽에만 둡니다.
 
 ## 데이터 보관 (30일)
 

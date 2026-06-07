@@ -1,0 +1,80 @@
+name: Lead to Notion
+
+on:
+  repository_dispatch:
+    types: [sitescope-lead]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Lead mode (pdf|solution|extended|general)
+        required: true
+        default: general
+      email:
+        description: Email
+        required: true
+      name:
+        description: Name (optional)
+        required: false
+      company:
+        description: Company (optional)
+        required: false
+      site_url:
+        description: Site URL (optional)
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  notion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve lead payload
+        id: lead
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            MODE="${{ github.event.inputs.mode }}"
+            EMAIL="${{ github.event.inputs.email }}"
+            NAME="${{ github.event.inputs.name }}"
+            COMPANY="${{ github.event.inputs.company }}"
+            SITE_URL="${{ github.event.inputs.site_url }}"
+          else
+            MODE="${{ github.event.client_payload.mode }}"
+            EMAIL="${{ github.event.client_payload.email }}"
+            NAME="${{ github.event.client_payload.name }}"
+            COMPANY="${{ github.event.client_payload.company }}"
+            SITE_URL="${{ github.event.client_payload.siteUrl }}"
+            REPORT_ID="${{ github.event.client_payload.reportId }}"
+            MESSAGE="${{ github.event.client_payload.message }}"
+          fi
+
+          if [[ -z "${MODE}" || -z "${EMAIL}" ]]; then
+            echo "Missing mode or email in lead payload."
+            exit 1
+          fi
+
+          PAYLOAD=$(node -e "
+            const p = {
+              mode: process.argv[1],
+              email: process.argv[2],
+              name: process.argv[3] || undefined,
+              company: process.argv[4] || undefined,
+              siteUrl: process.argv[5] || undefined,
+              reportId: process.argv[6] || undefined,
+              message: process.argv[7] || undefined,
+            };
+            console.log(JSON.stringify(p));
+          " "$MODE" "$EMAIL" "$NAME" "$COMPANY" "$SITE_URL" "${REPORT_ID:-}" "${MESSAGE:-}")
+
+          echo "payload=${PAYLOAD}" >> "$GITHUB_OUTPUT"
+
+      - name: Create Notion database item
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ vars.NOTION_DATABASE_ID || '378c60fde0e48002a4e4d395db0ce125' }}
+          LEAD_PAYLOAD: ${{ steps.lead.outputs.payload }}
+        run: node scripts/notion/create-lead.mjs
