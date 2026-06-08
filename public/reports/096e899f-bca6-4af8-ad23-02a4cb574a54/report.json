@@ -1,0 +1,3853 @@
+{
+  "reportId": "096e899f-bca6-4af8-ad23-02a4cb574a54",
+  "targetUrl": "https://m.getcha.kr/home",
+  "deviceProfile": "desktop",
+  "createdAt": "2026-06-08T06:14:38.427Z",
+  "completedAt": "2026-06-08T06:20:03.725Z",
+  "expiresAt": "2026-07-08T06:20:03.725Z",
+  "cardId": "fb679a55-7e88-45c4-a4b9-bc2a22e65366",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://m.getcha.kr/home",
+    "redirectChain": [
+      "https://m.getcha.kr/home"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 987,
+    "internalLinkCount": 8,
+    "screenshotRelativePath": "reports/096e899f-bca6-4af8-ad23-02a4cb574a54/screenshots/quick-home.jpg"
+  },
+  "pages": [
+    {
+      "url": "https://m.getcha.kr/home",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/home"
+      ],
+      "consoleErrors": [
+        "Access to XMLHttpRequest at 'https://graph.facebook.com/v23.0/815104243027596/events?access_token=[redacted]' from origin 'https://m.getcha.kr' has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://graph.facebook.com/v23.0/815104243027596/events",
+          "failure": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://cloud.getcha.io/file/promotion/bmw-m-cash-installment/hero/pc/live/20260422/17768460778891h.png",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://asia.creativecdn.com/tags/v2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://sentry.getcha.io/api/6/envelope/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 4088,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2903.4000000000233,
+        "loadEvent": 3299.1999999999534,
+        "lighthouseError": "Lighthouse could not complete (often on heavy SPA pages). Showing basic load timings instead."
+      },
+      "axeViolations": [
+        {
+          "id": "aria-hidden-focus",
+          "impact": "serious",
+          "description": "ARIA hidden element must not be focusable or contain focusable elements",
+          "nodes": 10
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 6
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 16
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Page should contain a level-one heading",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 10
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/bf4baad5-e4f6-4efb-977e-b7c31b66187c-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/home",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 719개, 클릭 후보 91개",
+          "candidateCount": 91,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "홈",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/home",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "탐색",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+          "routeBefore": "/home",
+          "routeAfter": "/search/bottom_tab",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 2,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /search/bottom_tab)",
+          "domDelta": {
+            "visible": -406,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -38
+          },
+          "networkSummary": "서버 요청 3건",
+          "apiCallCount": 3,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "커뮤니티",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+          "routeBefore": "/home",
+          "routeAfter": "/community-landing/all?from=bottom_tab",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 3,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)",
+          "domDelta": {
+            "visible": -583,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -77
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "전체",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/mypage",
+          "routeBefore": "/home",
+          "routeAfter": "/mypage",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /mypage)",
+          "domDelta": {
+            "visible": -603,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -79
+          },
+          "networkSummary": "서버 요청 8건",
+          "apiCallCount": 8,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "BMW\nHOT",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/home",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "BYD",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+          "routeBefore": "/home",
+          "routeAfter": "/search/bottom_tab",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /search/bottom_tab)",
+          "domDelta": {
+            "visible": -406,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -38
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "GMC",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+          "routeBefore": "/home",
+          "routeAfter": "/community-landing/all?from=bottom_tab",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)",
+          "domDelta": {
+            "visible": -583,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -77
+          },
+          "networkSummary": "서버 요청 6건",
+          "apiCallCount": 6,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "람보르기니",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/mypage",
+          "routeBefore": "/home",
+          "routeAfter": "/mypage",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /mypage)",
+          "domDelta": {
+            "visible": -603,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -79
+          },
+          "networkSummary": "서버 요청 10건",
+          "apiCallCount": 10,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "[card] div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "card",
+          "score": 166,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/home",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 6건",
+          "apiCallCount": 6,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/home",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "apiCallCount": 0,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "BMW 특가",
+          "targetHint": "generic",
+          "score": 146,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/home",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 5,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+          "domDelta": {
+            "visible": -637,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -85
+          },
+          "networkSummary": "서버 요청 13건",
+          "apiCallCount": 13,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "아우디 특가",
+          "targetHint": "generic",
+          "score": 146,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/home",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 5,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+          "domDelta": {
+            "visible": -637,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -85
+          },
+          "networkSummary": "서버 요청 14건",
+          "apiCallCount": 14,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "벤츠 특가",
+          "targetHint": "generic",
+          "score": 146,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/home",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 6,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+          "domDelta": {
+            "visible": -637,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -85
+          },
+          "networkSummary": "서버 요청 15건",
+          "apiCallCount": 15,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "테슬라 특가",
+          "targetHint": "generic",
+          "score": 146,
+          "urlBefore": "https://m.getcha.kr/home",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/home",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 7,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+          "domDelta": {
+            "visible": -637,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -85
+          },
+          "networkSummary": "서버 요청 14건",
+          "apiCallCount": 14,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 탐색 — 이동\n│  ├─ 경로 → /search/bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /search/bottom_tab)\n│  ├─ 서버 요청 3건\n│  └─ 새 경로 +1\n├─ 커뮤니티 — 이동\n│  ├─ 경로 → /community-landing/all?from=bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)\n│  ├─ 서버 요청 7건\n│  └─ 새 경로 +1\n├─ 전체 — 이동\n│  ├─ 경로 → /mypage\n│  ├─ 화면 경로가 변경되었습니다 (/home → /mypage)\n│  ├─ 서버 요청 8건\n│  └─ 새 경로 +1\n├─ BYD — 이동\n│  ├─ 경로 → /search/bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /search/bottom_tab)\n│  └─ 서버 요청 4건\n├─ GMC — 이동\n│  ├─ 경로 → /community-landing/all?from=bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)\n│  └─ 서버 요청 6건\n├─ 람보르기니 — 이동\n│  ├─ 경로 → /mypage\n│  ├─ 화면 경로가 변경되었습니다 (/home → /mypage)\n│  └─ 서버 요청 10건\n├─ BMW 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  ├─ 서버 요청 13건\n│  └─ 새 경로 +1\n├─ 아우디 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  └─ 서버 요청 14건\n├─ 벤츠 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  ├─ 서버 요청 15건\n│  └─ 새 경로 +1\n└─ 테슬라 특가 — 이동\n   ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n   ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n   ├─ 서버 요청 14건\n   └─ 새 경로 +1",
+      "interactionDiscovery": {
+        "profile": "homepage",
+        "deviceProfile": "desktop",
+        "runtimeRoutes": 7,
+        "outboundRoutes": 0,
+        "candidatesFound": 50,
+        "clicksAttempted": 18,
+        "clicksRecorded": 10,
+        "linksDiscovered": 7,
+        "outboundDiscovered": 0,
+        "stoppedEarly": true,
+        "runtimeMs": 47389,
+        "skippedByReason": {
+          "no_change": 4,
+          "duplicate": 4
+        },
+        "meaningfulCount": 10
+      },
+      "crawledAt": "2026-06-08T06:18:30.362Z"
+    },
+    {
+      "url": "https://m.getcha.kr/search/bottom_tab",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/search/bottom_tab"
+      ],
+      "consoleErrors": [
+        "Access to XMLHttpRequest at 'https://graph.facebook.com/v23.0/815104243027596/events?access_token=[redacted]' from origin 'https://m.getcha.kr' has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://graph.facebook.com/v23.0/815104243027596/events",
+          "failure": "net::ERR_FAILED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 3748,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2773.0999999999767,
+        "loadEvent": 3298.79999999993
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 4
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 5
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Page should contain a level-one heading",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 3
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/30ac8e5c-0b33-4432-96b8-fdb54b406c4d-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 313개, 클릭 후보 53개",
+          "candidateCount": 53,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "BMW\nHOT",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+          "urlAfter": "https://m.getcha.kr/brand/1/BMW/?from=brand_search",
+          "routeBefore": "/search/bottom_tab",
+          "routeAfter": "/brand/1/BMW?from=brand_search",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 2,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/1/BMW?from=brand_search) · 새로 보이는 화면 요소가 약 50개 증가했습니다",
+          "domDelta": {
+            "visible": 50,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -19
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "BYD",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+          "urlAfter": "https://m.getcha.kr/brand/73/BYD/?from=brand_search",
+          "routeBefore": "/search/bottom_tab",
+          "routeAfter": "/brand/73/BYD?from=brand_search",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 3,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/73/BYD?from=brand_search)",
+          "domDelta": {
+            "visible": -72,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -27
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "GMC",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+          "urlAfter": "https://m.getcha.kr/brand/72/GMC/?from=brand_search",
+          "routeBefore": "/search/bottom_tab",
+          "routeAfter": "/brand/72/GMC?from=brand_search",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 4,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/72/GMC?from=brand_search)",
+          "domDelta": {
+            "visible": -72,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -27
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "람보르기니",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+          "urlAfter": "https://m.getcha.kr/brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88/?from=brand_search",
+          "routeBefore": "/search/bottom_tab",
+          "routeAfter": "/brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 5,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search)",
+          "domDelta": {
+            "visible": -93,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -28
+          },
+          "networkSummary": "서버 요청 8건",
+          "apiCallCount": 8,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "홈",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+          "urlAfter": "https://m.getcha.kr/brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/?from=brand_search",
+          "routeBefore": "/search/bottom_tab",
+          "routeAfter": "/brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 6,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search)",
+          "domDelta": {
+            "visible": -25,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -24
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ BMW\nHOT — 이동\n│  ├─ 경로 → /brand/1/BMW?from=brand_search\n│  ├─ 화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/1/BMW?from=brand_search) · 새로 보이는 화면 요소가 약 50개 증가했습니다\n│  ├─ 서버 요청 7건\n│  ├─ 보이는 요소 +50\n│  └─ 새 경로 +1\n├─ BYD — 이동\n│  ├─ 경로 → /brand/73/BYD?from=brand_search\n│  ├─ 화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/73/BYD?from=brand_search)\n│  ├─ 서버 요청 7건\n│  └─ 새 경로 +1\n├─ GMC — 이동\n│  ├─ 경로 → /brand/72/GMC?from=brand_search\n│  ├─ 화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/72/GMC?from=brand_search)\n│  ├─ 서버 요청 7건\n│  └─ 새 경로 +1\n├─ 람보르기니 — 이동\n│  ├─ 경로 → /brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search\n│  ├─ 화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search)\n│  ├─ 서버 요청 8건\n│  └─ 새 경로 +1\n└─ 홈 — 이동\n   ├─ 경로 → /brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search\n   ├─ 화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search)\n   ├─ 서버 요청 7건\n   └─ 새 경로 +1",
+      "crawledAt": "2026-06-08T06:17:05.023Z"
+    },
+    {
+      "url": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/community-landing/all?from=bottom_tab"
+      ],
+      "consoleErrors": [
+        "Access to XMLHttpRequest at 'https://graph.facebook.com/v23.0/815104243027596/events?access_token=[redacted]' from origin 'https://m.getcha.kr' has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://graph.facebook.com/v23.0/815104243027596/events",
+          "failure": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://sentry.getcha.io/api/10/envelope/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 85,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": null,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 18.29999999993015,
+        "loadEvent": 18.599999999976717
+      },
+      "axeViolations": [
+        {
+          "id": "document-title",
+          "impact": "serious",
+          "description": "Documents must have <title> element to aid in navigation",
+          "nodes": 1
+        },
+        {
+          "id": "html-has-lang",
+          "impact": "serious",
+          "description": "<html> element must have a lang attribute",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Page should contain a level-one heading",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/a584f288-320e-42e5-91bb-a800614cc62a-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 136개, 클릭 후보 14개",
+          "candidateCount": 14,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "홈",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/community-landing/all?from=bottom_tab",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 2,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/community-landing/all?from=bottom_tab → /home) · 새로 보이는 화면 요소가 약 583개 증가했습니다",
+          "domDelta": {
+            "visible": 583,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 77
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 홈 — 이동\n   ├─ 경로 → /home\n   ├─ 화면 경로가 변경되었습니다 (/community-landing/all?from=bottom_tab → /home) · 새로 보이는 화면 요소가 약 583개 증가했습니다\n   ├─ 서버 요청 7건\n   ├─ 보이는 요소 +583\n   └─ 새 경로 +1",
+      "crawledAt": "2026-06-08T06:18:41.878Z"
+    },
+    {
+      "url": "https://m.getcha.kr/mypage",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/mypage"
+      ],
+      "consoleErrors": [
+        "Access to XMLHttpRequest at 'https://graph.facebook.com/v23.0/815104243027596/events?access_token=[redacted]' from origin 'https://m.getcha.kr' has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.",
+        "Failed to load resource: net::ERR_FAILED"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://m.getcha.kr/static/media/banner_skeleton.0dc89aee.jpg",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://graph.facebook.com/v23.0/815104243027596/events",
+          "failure": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://sentry.getcha.io/api/10/envelope/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 85,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": null,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 19.300000000046566,
+        "loadEvent": 19.70000000006985
+      },
+      "axeViolations": [
+        {
+          "id": "document-title",
+          "impact": "serious",
+          "description": "Documents must have <title> element to aid in navigation",
+          "nodes": 1
+        },
+        {
+          "id": "html-has-lang",
+          "impact": "serious",
+          "description": "<html> element must have a lang attribute",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Document should have one main landmark",
+          "nodes": 1
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Page should contain a level-one heading",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/ee75533e-99fc-47b5-a13a-2c3b40f1a11b-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/mypage",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 116개, 클릭 후보 12개",
+          "candidateCount": 12,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "홈",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://m.getcha.kr/mypage",
+          "urlAfter": "https://m.getcha.kr/home",
+          "routeBefore": "/mypage",
+          "routeAfter": "/home",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 2,
+          "newLinks": 1,
+          "domDiff": "화면 경로가 변경되었습니다 (/mypage → /home) · 새로 보이는 화면 요소가 약 603개 증가했습니다",
+          "domDelta": {
+            "visible": 603,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 79
+          },
+          "networkSummary": "서버 요청 6건",
+          "apiCallCount": 6,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 홈 — 이동\n   ├─ 경로 → /home\n   ├─ 화면 경로가 변경되었습니다 (/mypage → /home) · 새로 보이는 화면 요소가 약 603개 증가했습니다\n   ├─ 서버 요청 6건\n   ├─ 보이는 요소 +603\n   └─ 새 경로 +1",
+      "crawledAt": "2026-06-08T06:18:40.738Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 3964,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2720.3000000000466,
+        "loadEvent": 3082.70000000007
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 7
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "list",
+          "impact": "serious",
+          "description": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 36
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/7a2377c5-7f97-40a1-87e0-0daa6c5bdb28-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+          "candidateCount": 6,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:18:58.966Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 4616,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 3282.79999999993,
+        "loadEvent": 3621.0999999999767
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 7
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "list",
+          "impact": "serious",
+          "description": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 36
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/1061a4ac-f9a5-4fa7-b45d-7643cbecc3f2-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+          "candidateCount": 6,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 7건",
+          "apiCallCount": 7,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:18:59.381Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://cloud.getcha.io/file/promotion/lease-benz-3/hero/pc/live/20260416/1776301784605WD.png",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 3976,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2994.1999999999534,
+        "loadEvent": 3657.79999999993
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 9
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "list",
+          "impact": "serious",
+          "description": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 36
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/bf5ea7fa-df71-49d0-ba12-11e4e04113c0-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+          "candidateCount": 6,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:19:16.216Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 4252,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2828.6999999999534,
+        "loadEvent": 3235.8000000000466
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "list",
+          "impact": "serious",
+          "description": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 24
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/270e461a-afd9-4bca-a521-8e7ef9703452-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+          "candidateCount": 6,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 8건",
+          "apiCallCount": 8,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:19:15.645Z"
+    },
+    {
+      "url": "https://m.getcha.kr/keyword-search?from=purchase",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/keyword-search?from=purchase"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 4332,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 3001.8000000000466,
+        "loadEvent": 3390.600000000093
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 2
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 1
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/e2672c06-2170-4575-aff5-eea672b413cb-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 87개, 클릭 후보 8개",
+          "candidateCount": 8,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+          "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+          "routeBefore": "/keyword-search?from=purchase",
+          "routeAfter": "/keyword-search?from=purchase",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+          "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+          "routeBefore": "/keyword-search?from=purchase",
+          "routeAfter": "/keyword-search?from=purchase",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1loqt21 r-1otgn73",
+          "targetHint": "generic",
+          "score": 62,
+          "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+          "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+          "routeBefore": "/keyword-search?from=purchase",
+          "routeAfter": "/keyword-search?from=purchase",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": false
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:19:38.557Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 3780,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2851.29999999993,
+        "loadEvent": 3186.399999999907
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "description": "Headings should not be empty",
+          "nodes": 1
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "list",
+          "impact": "serious",
+          "description": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 12
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/9c0431b7-c0da-417d-bcb8-6ecbc5f548d1-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+          "candidateCount": 6,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 3건",
+          "apiCallCount": 3,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 1건",
+          "apiCallCount": 1,
+          "routeChanged": false,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 1건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:19:32.274Z"
+    },
+    {
+      "url": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+      "statusCode": 200,
+      "redirects": [
+        "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0"
+      ],
+      "consoleErrors": [],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/conversion",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/measurement/1p-conversion/",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/ccm/collect",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 65,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 3840,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 2901.70000000007,
+        "loadEvent": 3234.0999999999767
+      },
+      "axeViolations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "description": "Elements must only use permitted ARIA attributes",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 3
+        },
+        {
+          "id": "frame-title",
+          "impact": "serious",
+          "description": "Frames must have an accessible name",
+          "nodes": 1
+        },
+        {
+          "id": "image-alt",
+          "impact": "critical",
+          "description": "Images must have alternative text",
+          "nodes": 24
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "All page content should be contained by landmarks",
+          "nodes": 20
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Scrollable region must have keyboard access",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/ea91d465-10d1-498c-ab4e-852391b32c24-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "linksFound": 1,
+          "domSummary": "화면 요소 약 87개, 클릭 후보 7개",
+          "candidateCount": 7,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+          "targetHint": "generic",
+          "score": 154,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 6건",
+          "apiCallCount": 6,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "개인정보 수집/이용 동의",
+          "targetHint": "generic",
+          "score": 142,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+          "domDelta": {
+            "visible": 15,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 1
+          },
+          "networkSummary": "서버 요청 13건",
+          "apiCallCount": 13,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "div · css-175oi2r r-102gzdx r-1d2f490 r-u8",
+          "targetHint": "generic",
+          "score": 102,
+          "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 1,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 5건",
+          "apiCallCount": 5,
+          "routeChanged": false,
+          "success": false
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n└─ 개인정보 수집/이용 동의 — 콘텐츠 노출\n   ├─ 새로 보이는 화면 요소가 약 15개 증가했습니다\n   ├─ 서버 요청 13건\n   └─ 보이는 요소 +15",
+      "crawledAt": "2026-06-08T06:20:03.724Z"
+    }
+  ],
+  "brokenLinks": [],
+  "summary": {
+    "healthScore": 44,
+    "avgLighthousePerformance": 69,
+    "avgAxeIssuesPerPage": 29.8,
+    "totalConsoleErrors": 8,
+    "totalFailedRequests": 46,
+    "mobileWarnings": [
+      "11개 페이지에서 상세 성능 점수를 가져오지 못해 로딩 시간 기준으로 추정했습니다."
+    ],
+    "categoryScores": {
+      "performance": 69,
+      "accessibility": 23,
+      "seo": null,
+      "ux": 100
+    },
+    "statusLabel": "Critical",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 64,
+      "penaltyTotal": 20,
+      "contributions": [
+        {
+          "category": "performance",
+          "label": "성능",
+          "score": 69,
+          "weight": 0.3,
+          "weightedPoints": 20.7
+        },
+        {
+          "category": "accessibility",
+          "label": "접근성",
+          "score": 23,
+          "weight": 0.25,
+          "weightedPoints": 5.8
+        },
+        {
+          "category": "ux",
+          "label": "사용성",
+          "score": 100,
+          "weight": 0.25,
+          "weightedPoints": 25
+        }
+      ],
+      "penalties": [
+        {
+          "id": "accessibility_issues",
+          "label": "접근성 검사 이슈",
+          "points": 8,
+          "message": "페이지당 접근성 이슈가 평균 29.8건 있어 8점 감점되었습니다."
+        },
+        {
+          "id": "console_errors",
+          "label": "브라우저 오류",
+          "points": 4,
+          "message": "스크립트 오류 8건으로 4점 감점되었습니다."
+        },
+        {
+          "id": "failed_requests",
+          "label": "로딩 실패",
+          "points": 8,
+          "message": "이미지·API 등 로딩 실패 46건으로 8점 감점되었습니다."
+        }
+      ],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점",
+        "접근성 점수(23점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+        "페이지당 접근성 이슈가 평균 29.8건 있어 8점 감점되었습니다.",
+        "스크립트 오류 8건으로 4점 감점되었습니다.",
+        "이미지·API 등 로딩 실패 46건으로 8점 감점되었습니다."
+      ]
+    },
+    "topImprovements": [
+      "접근성 점수(23점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+      "페이지당 접근성 이슈가 평균 29.8건 있어 8점 감점되었습니다.",
+      "스크립트 오류 8건으로 4점 감점되었습니다."
+    ]
+  },
+  "crawlMeta": {
+    "interactions": [
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/home",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 719개, 클릭 후보 91개",
+        "candidateCount": 91,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "홈",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 2,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "탐색",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/search/bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 2,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /search/bottom_tab)",
+        "domDelta": {
+          "visible": -406,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -38
+        },
+        "spaNavigation": "pushState, replaceState",
+        "networkSummary": "서버 요청 3건",
+        "apiCallCount": 4,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "커뮤니티",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/community-landing/all?from=bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 3,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)",
+        "domDelta": {
+          "visible": -583,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -77
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 16건",
+        "apiCallCount": 19,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "전체",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/mypage",
+        "routeBefore": "/home",
+        "routeAfter": "/mypage",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /mypage)",
+        "domDelta": {
+          "visible": -603,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -79
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 9건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "[card] div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "card",
+        "score": 166,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 6,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "BMW 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 5,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 13건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "아우디 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 5,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 13건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "벤츠 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 6,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 16건",
+        "apiCallCount": 20,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "테슬라 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 7,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 13건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "즉시출고 “테슬라 모델Y”",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 8,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 8건",
+        "apiCallCount": 9,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "undefined-banner-image",
+        "targetHint": "carousel",
+        "score": 144,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+        "routeBefore": "/home",
+        "routeAfter": "/keyword-search?from=purchase",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 9,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /keyword-search?from=purchase)",
+        "domDelta": {
+          "visible": -632,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -83
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 9,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 10,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 16건",
+        "apiCallCount": 19,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "사업자 전용",
+        "targetHint": "generic",
+        "score": 134,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 11,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0)",
+        "domDelta": {
+          "visible": -632,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -84
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 8,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "content_reveal",
+        "label": "오토캐시백",
+        "targetHint": "generic",
+        "score": 134,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 11,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 2건",
+        "apiCallCount": 2,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "즉시출고",
+        "targetHint": "generic",
+        "score": 134,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 11,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 7,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/home",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 719개, 클릭 후보 91개",
+        "candidateCount": 91,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "홈",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "탐색",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/search/bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 2,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /search/bottom_tab)",
+        "domDelta": {
+          "visible": -406,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -38
+        },
+        "networkSummary": "서버 요청 3건",
+        "apiCallCount": 3,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "커뮤니티",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/community-landing/all?from=bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 3,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)",
+        "domDelta": {
+          "visible": -583,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -77
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "전체",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/mypage",
+        "routeBefore": "/home",
+        "routeAfter": "/mypage",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /mypage)",
+        "domDelta": {
+          "visible": -603,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -79
+        },
+        "networkSummary": "서버 요청 8건",
+        "apiCallCount": 8,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "BMW\nHOT",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "BYD",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/search/bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /search/bottom_tab)",
+        "domDelta": {
+          "visible": -406,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -38
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "GMC",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "routeBefore": "/home",
+        "routeAfter": "/community-landing/all?from=bottom_tab",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)",
+        "domDelta": {
+          "visible": -583,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -77
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 6,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "람보르기니",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/mypage",
+        "routeBefore": "/home",
+        "routeAfter": "/mypage",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /mypage)",
+        "domDelta": {
+          "visible": -603,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -79
+        },
+        "networkSummary": "서버 요청 10건",
+        "apiCallCount": 10,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "[card] div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "card",
+        "score": 166,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 6,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/home",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "apiCallCount": 0,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "BMW 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 5,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "networkSummary": "서버 요청 13건",
+        "apiCallCount": 13,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "아우디 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 5,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "networkSummary": "서버 요청 14건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "벤츠 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 6,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "networkSummary": "서버 요청 15건",
+        "apiCallCount": 15,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "테슬라 특가",
+        "targetHint": "generic",
+        "score": 146,
+        "urlBefore": "https://m.getcha.kr/home",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/home",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 7,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)",
+        "domDelta": {
+          "visible": -637,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -85
+        },
+        "networkSummary": "서버 요청 14건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/search/bottom_tab",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 313개, 클릭 후보 53개",
+        "candidateCount": 53,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "BMW\nHOT",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+        "urlAfter": "https://m.getcha.kr/brand/1/BMW/?from=brand_search",
+        "routeBefore": "/search/bottom_tab",
+        "routeAfter": "/brand/1/BMW?from=brand_search",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 2,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/1/BMW?from=brand_search) · 새로 보이는 화면 요소가 약 50개 증가했습니다",
+        "domDelta": {
+          "visible": 50,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -19
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "BYD",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+        "urlAfter": "https://m.getcha.kr/brand/73/BYD/?from=brand_search",
+        "routeBefore": "/search/bottom_tab",
+        "routeAfter": "/brand/73/BYD?from=brand_search",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 3,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/73/BYD?from=brand_search)",
+        "domDelta": {
+          "visible": -72,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -27
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "GMC",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+        "urlAfter": "https://m.getcha.kr/brand/72/GMC/?from=brand_search",
+        "routeBefore": "/search/bottom_tab",
+        "routeAfter": "/brand/72/GMC?from=brand_search",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 4,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/72/GMC?from=brand_search)",
+        "domDelta": {
+          "visible": -72,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -27
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "람보르기니",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+        "urlAfter": "https://m.getcha.kr/brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88/?from=brand_search",
+        "routeBefore": "/search/bottom_tab",
+        "routeAfter": "/brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 5,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/4/%EB%9E%8C%EB%B3%B4%EB%A5%B4%EA%B8%B0%EB%8B%88?from=brand_search)",
+        "domDelta": {
+          "visible": -93,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -28
+        },
+        "networkSummary": "서버 요청 8건",
+        "apiCallCount": 8,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "홈",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/search/bottom_tab",
+        "urlAfter": "https://m.getcha.kr/brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/?from=brand_search",
+        "routeBefore": "/search/bottom_tab",
+        "routeAfter": "/brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 6,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/search/bottom_tab → /brand/5/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84?from=brand_search)",
+        "domDelta": {
+          "visible": -25,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -24
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 136개, 클릭 후보 14개",
+        "candidateCount": 14,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "홈",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/community-landing/all?from=bottom_tab",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 2,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/community-landing/all?from=bottom_tab → /home) · 새로 보이는 화면 요소가 약 583개 증가했습니다",
+        "domDelta": {
+          "visible": 583,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 77
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/mypage",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 116개, 클릭 후보 12개",
+        "candidateCount": 12,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "홈",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://m.getcha.kr/mypage",
+        "urlAfter": "https://m.getcha.kr/home",
+        "routeBefore": "/mypage",
+        "routeAfter": "/home",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 2,
+        "newLinks": 1,
+        "domDiff": "화면 경로가 변경되었습니다 (/mypage → /home) · 새로 보이는 화면 요소가 약 603개 증가했습니다",
+        "domDelta": {
+          "visible": 603,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 79
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 6,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+        "candidateCount": 6,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+        "candidateCount": 6,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 7건",
+        "apiCallCount": 7,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+        "candidateCount": 6,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+        "candidateCount": 6,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 8건",
+        "apiCallCount": 8,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 87개, 클릭 후보 8개",
+        "candidateCount": 8,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+        "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+        "routeBefore": "/keyword-search?from=purchase",
+        "routeAfter": "/keyword-search?from=purchase",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+        "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+        "routeBefore": "/keyword-search?from=purchase",
+        "routeAfter": "/keyword-search?from=purchase",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1loqt21 r-1otgn73",
+        "targetHint": "generic",
+        "score": 62,
+        "urlBefore": "https://m.getcha.kr/keyword-search?from=purchase",
+        "urlAfter": "https://m.getcha.kr/keyword-search?from=purchase",
+        "routeBefore": "/keyword-search?from=purchase",
+        "routeAfter": "/keyword-search?from=purchase",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 82개, 클릭 후보 6개",
+        "candidateCount": 6,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 3건",
+        "apiCallCount": 3,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "routeBefore": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "routeAfter": "/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 1건",
+        "apiCallCount": 1,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "linksFound": 1,
+        "domSummary": "화면 요소 약 87개, 클릭 후보 7개",
+        "candidateCount": 7,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-1i6wzkk r-lrvibr r-1lo",
+        "targetHint": "generic",
+        "score": 154,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 6,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "개인정보 수집/이용 동의",
+        "targetHint": "generic",
+        "score": 142,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 15개 증가했습니다",
+        "domDelta": {
+          "visible": 15,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 1
+        },
+        "networkSummary": "서버 요청 13건",
+        "apiCallCount": 13,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "div · css-175oi2r r-102gzdx r-1d2f490 r-u8",
+        "targetHint": "generic",
+        "score": 102,
+        "urlBefore": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "urlAfter": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeBefore": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "routeAfter": "/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 5건",
+        "apiCallCount": 5,
+        "routeChanged": false,
+        "success": false
+      }
+    ],
+    "mode": "homepage_rich_subpage_light",
+    "seedScope": {
+      "origin": "https://m.getcha.kr",
+      "pathPrefix": "/home",
+      "mode": "origin"
+    },
+    "deviceProfile": "desktop",
+    "discoveryStats": {
+      "candidatesFound": 50,
+      "clicksRecorded": 45,
+      "linksDiscovered": 7,
+      "outboundDiscovered": 0,
+      "runtimeRoutes": 7,
+      "profile": "homepage",
+      "deviceProfile": "desktop",
+      "outboundRoutes": 0,
+      "clicksAttempted": 18,
+      "stoppedEarly": true,
+      "runtimeMs": 47389,
+      "skippedByReason": {
+        "no_change": 4,
+        "duplicate": 4
+      },
+      "meaningfulCount": 10
+    },
+    "outboundLinks": [],
+    "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 탐색 — 이동\n│  ├─ 경로 → /search/bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /search/bottom_tab)\n│  ├─ 서버 요청 3건\n│  └─ 새 경로 +1\n├─ 커뮤니티 — 이동\n│  ├─ 경로 → /community-landing/all?from=bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)\n│  ├─ 서버 요청 7건\n│  └─ 새 경로 +1\n├─ 전체 — 이동\n│  ├─ 경로 → /mypage\n│  ├─ 화면 경로가 변경되었습니다 (/home → /mypage)\n│  ├─ 서버 요청 8건\n│  └─ 새 경로 +1\n├─ BYD — 이동\n│  ├─ 경로 → /search/bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /search/bottom_tab)\n│  └─ 서버 요청 4건\n├─ GMC — 이동\n│  ├─ 경로 → /community-landing/all?from=bottom_tab\n│  ├─ 화면 경로가 변경되었습니다 (/home → /community-landing/all?from=bottom_tab)\n│  └─ 서버 요청 6건\n├─ 람보르기니 — 이동\n│  ├─ 경로 → /mypage\n│  ├─ 화면 경로가 변경되었습니다 (/home → /mypage)\n│  └─ 서버 요청 10건\n├─ BMW 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  ├─ 서버 요청 13건\n│  └─ 새 경로 +1\n├─ 아우디 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  └─ 서버 요청 14건\n├─ 벤츠 특가 — 이동\n│  ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n│  ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n│  ├─ 서버 요청 15건\n│  └─ 새 경로 +1\n└─ 테슬라 특가 — 이동\n   ├─ 경로 → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick\n   ├─ 화면 경로가 변경되었습니다 (/home → /web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick)\n   ├─ 서버 요청 14건\n   └─ 새 경로 +1"
+  },
+  "timing": {
+    "phases": {
+      "browser_launch": 3.075,
+      "quick_scan": 50.658,
+      "crawl": 70.927,
+      "page_analysis": 200.633
+    },
+    "pages": [
+      {
+        "url": "https://m.getcha.kr/search/bottom_tab",
+        "phases": {
+          "initial_load": 2.849,
+          "hydration_wait": 1.021,
+          "interaction_crawl": 13.277,
+          "ui_signals_desktop": 0.223,
+          "screenshots": 1.197,
+          "axe": 1.92,
+          "lighthouse": 0.011
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/home",
+        "phases": {
+          "initial_load": 2.921,
+          "hydration_wait": 0.886,
+          "interaction_crawl": 47.39,
+          "ui_signals_desktop": 0.229,
+          "screenshots": 1.2,
+          "axe": 2.03,
+          "lighthouse": 50.066
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/mypage",
+        "phases": {
+          "initial_load": 2.781,
+          "hydration_wait": 1.013,
+          "interaction_crawl": 4.231,
+          "ui_signals_desktop": 0.205,
+          "screenshots": 0.856,
+          "axe": 1.032,
+          "lighthouse": 0.003
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/community-landing/all?from=bottom_tab",
+        "phases": {
+          "initial_load": 2.872,
+          "hydration_wait": 1.32,
+          "interaction_crawl": 4.533,
+          "ui_signals_desktop": 0.206,
+          "screenshots": 0.85,
+          "axe": 1.077,
+          "lighthouse": 0.004
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fbmw-m-cash-installment/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "phases": {
+          "initial_load": 2.741,
+          "hydration_wait": 0.928,
+          "interaction_crawl": 9.413,
+          "ui_signals_desktop": 0.215,
+          "screenshots": 0.961,
+          "axe": 2.145,
+          "lighthouse": 0.011
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-audi-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "phases": {
+          "initial_load": 3.369,
+          "hydration_wait": 0.847,
+          "interaction_crawl": 9.396,
+          "ui_signals_desktop": 0.215,
+          "screenshots": 0.948,
+          "axe": 2.325,
+          "lighthouse": 0.011
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Ftesla-1/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "phases": {
+          "initial_load": 2.85,
+          "hydration_wait": 0.912,
+          "interaction_crawl": 8.956,
+          "ui_signals_desktop": 0.212,
+          "screenshots": 0.958,
+          "axe": 1.825,
+          "lighthouse": 0.016
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Flease-benz-3/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeQuick",
+        "phases": {
+          "initial_load": 3.051,
+          "hydration_wait": 1.021,
+          "interaction_crawl": 8.916,
+          "ui_signals_desktop": 0.214,
+          "screenshots": 0.963,
+          "axe": 2.243,
+          "lighthouse": 0.013
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fwww.getcha.kr%2Fads%2Fpromotion%2Fpromotion-only1-gv80-2603/%EA%B2%9F%EC%B0%A8?header_hidden=true&from=homeMain",
+        "phases": {
+          "initial_load": 2.871,
+          "hydration_wait": 0.896,
+          "interaction_crawl": 8.928,
+          "ui_signals_desktop": 0.212,
+          "screenshots": 0.948,
+          "axe": 1.796,
+          "lighthouse": 0.007
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/keyword-search?from=purchase",
+        "phases": {
+          "initial_load": 3.018,
+          "hydration_wait": 0.902,
+          "interaction_crawl": 15.827,
+          "ui_signals_desktop": 0.21,
+          "screenshots": 0.898,
+          "axe": 1.271,
+          "lighthouse": 0.005
+        }
+      },
+      {
+        "url": "https://m.getcha.kr/web/https%3A%2F%2Fautobell.co.kr%2Fsellcar%2Fchannel%2FgetCha/%EB%82%B4%20%EC%B0%A8%20%ED%8C%94%EA%B8%B0",
+        "phases": {
+          "initial_load": 2.915,
+          "hydration_wait": 0.93,
+          "interaction_crawl": 16.684,
+          "ui_signals_desktop": 0.224,
+          "screenshots": 1.014,
+          "axe": 2.454,
+          "lighthouse": 0.014
+        }
+      }
+    ],
+    "summary": [
+      "Page analysis (total): 200.6s",
+      "Interaction crawl (pages): 147.6s",
+      "URL crawl: 70.9s",
+      "Quick scan: 50.7s",
+      "Lighthouse (pages): 50.2s",
+      "Initial load (pages): 32.2s",
+      "Accessibility scan (pages): 20.1s",
+      "Screenshots (pages): 10.8s",
+      "Hydration wait (pages): 10.7s",
+      "Browser launch: 3.1s",
+      "ui_signals_desktop (pages): 2.4s"
+    ],
+    "totalSeconds": 325.293
+  },
+  "crawlLimits": {
+    "requested": {
+      "maxPages": null,
+      "maxDepth": null,
+      "traceMode": null
+    },
+    "applied": {
+      "maxPages": 20,
+      "maxDepth": 2,
+      "traceMode": "failure"
+    }
+  }
+}

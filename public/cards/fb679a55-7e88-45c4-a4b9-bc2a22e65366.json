@@ -1,0 +1,57 @@
+{
+  "cardId": "fb679a55-7e88-45c4-a4b9-bc2a22e65366",
+  "overallScore": 44,
+  "categoryScores": {
+    "performance": 69,
+    "accessibility": 23,
+    "seo": null,
+    "ux": 100
+  },
+  "statusLabel": "Critical",
+  "generatedAt": "2026-06-08T06:20:03.725Z",
+  "topImprovements": [
+    "접근성 점수(23점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+    "페이지당 접근성 이슈가 평균 29.8건 있어 8점 감점되었습니다.",
+    "스크립트 오류 8건으로 4점 감점되었습니다."
+  ],
+  "pageCount": 11,
+  "issueCount": 328,
+  "analysisSeconds": 325.293,
+  "axisScores": [
+    {
+      "key": "performance",
+      "label": "??",
+      "score": 69
+    },
+    {
+      "key": "accessibility",
+      "label": "???",
+      "score": 23
+    },
+    {
+      "key": "ux",
+      "label": "???",
+      "score": 100
+    },
+    {
+      "key": "seo",
+      "label": "SEO",
+      "score": 72
+    },
+    {
+      "key": "shareability",
+      "label": "???",
+      "score": 74
+    },
+    {
+      "key": "security",
+      "label": "??",
+      "score": 92
+    },
+    {
+      "key": "stability",
+      "label": "???",
+      "score": 88
+    }
+  ]
+}
