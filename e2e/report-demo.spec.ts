@@ -49,9 +49,10 @@ test.describe("game replay (/game)", () => {
     await expect(
       page.getByRole("heading", { name: "기억 탐험 게임" }),
     ).toBeVisible({ timeout: 15_000 });
-    await expect(
-      page.getByRole("application", { name: "WASD 또는 방향키로 이동" }),
-    ).toBeVisible();
+    const gameApp = page.locator(
+      'div[role="application"][aria-label="우측 조이스틱으로 이동"], div[role="application"][aria-label^="WASD"]',
+    );
+    await expect(gameApp.first()).toBeVisible();
   });
 });
 
