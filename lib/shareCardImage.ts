@@ -23,7 +23,7 @@ function resolveShareCardHeight(el: HTMLElement): number {
   );
 }
 
-/** 공유 인증 카드 전용 — 1200×630 기본, 내용 길면 최대 780까지 확장 */
+/** 공유 인증 카드 전용 — 1200×400 기본, 내용 길면 최대 780까지 확장 */
 export async function captureShareCardPng(
   el: HTMLElement,
   filename = "scopurl-score-card.png",

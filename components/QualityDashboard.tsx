@@ -95,7 +95,7 @@ export function QualityDashboard({ report }: Props) {
               onClick={() => void downloadPng()}
               disabled={downloading}
               aria-label="PNG 다운로드"
-              title="PNG 다운로드 (1200×630)"
+              title="PNG 다운로드 (1200×400~780)"
               className="btn-icon-secondary"
             >
               <Download className="h-4 w-4" aria-hidden />
