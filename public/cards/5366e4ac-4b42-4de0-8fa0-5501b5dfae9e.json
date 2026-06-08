@@ -1,0 +1,55 @@
+{
+  "cardId": "5366e4ac-4b42-4de0-8fa0-5501b5dfae9e",
+  "overallScore": 95,
+  "categoryScores": {
+    "performance": 100,
+    "accessibility": 95,
+    "seo": 80,
+    "ux": 100
+  },
+  "statusLabel": "Good",
+  "generatedAt": "2026-06-08T07:24:51.803Z",
+  "topImprovements": [
+    "전반적으로 양호합니다. 세부 항목을 점검해 보세요."
+  ],
+  "pageCount": 1,
+  "issueCount": 2,
+  "analysisSeconds": 33.618,
+  "axisScores": [
+    {
+      "key": "performance",
+      "label": "성능",
+      "score": 100
+    },
+    {
+      "key": "accessibility",
+      "label": "접근성",
+      "score": 95
+    },
+    {
+      "key": "ux",
+      "label": "사용성",
+      "score": 100
+    },
+    {
+      "key": "seo",
+      "label": "SEO",
+      "score": 80
+    },
+    {
+      "key": "shareability",
+      "label": "공유성",
+      "score": 82
+    },
+    {
+      "key": "security",
+      "label": "보안",
+      "score": 92
+    },
+    {
+      "key": "stability",
+      "label": "안정성",
+      "score": 88
+    }
+  ]
+}
