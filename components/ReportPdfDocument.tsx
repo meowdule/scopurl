@@ -264,10 +264,8 @@ export function ReportPdfDocument({ report }: Props) {
             })}
           </tbody>
         </table>
-      </section>
 
-      <section className="pdf-sheet">
-        <PdfSectionHeader icon={Search} title="SEO 분석" />
+        <PdfSectionHeader icon={Search} title="SEO 분석" spaced />
         <div className="pdf-audit-panel">
           {seoChecklist.map((item, i) => (
             <div
@@ -285,10 +283,8 @@ export function ReportPdfDocument({ report }: Props) {
             </div>
           ))}
         </div>
-      </section>
 
-      <section className="pdf-sheet">
-        <PdfSectionHeader icon={Layers} title="분석 범위" />
+        <PdfSectionHeader icon={Layers} title="분석 범위" spaced />
         <dl className="pdf-dl pdf-dl-box">
           <PdfDl label="분석 페이지" value={`${kpi.pageCount}개`} />
           <PdfDl label="발견 링크" value={`${kpi.linkCount}개`} />

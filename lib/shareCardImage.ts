@@ -1,6 +1,7 @@
 import { toPng } from "html-to-image";
 import {
-  SHARE_CARD_HEIGHT,
+  SHARE_CARD_MAX_HEIGHT,
+  SHARE_CARD_MIN_HEIGHT,
   SHARE_CARD_WIDTH,
 } from "@/lib/shareCardConstants";
 
@@ -14,14 +15,23 @@ function downloadDataUrl(dataUrl: string, filename: string) {
   a.remove();
 }
 
-/** 공유 인증 카드 전용 — 1200×630 고정 */
+function resolveShareCardHeight(el: HTMLElement): number {
+  const measured = Math.ceil(el.scrollHeight || el.getBoundingClientRect().height);
+  return Math.min(
+    SHARE_CARD_MAX_HEIGHT,
+    Math.max(SHARE_CARD_MIN_HEIGHT, measured),
+  );
+}
+
+/** 공유 인증 카드 전용 — 1200×630 기본, 내용 길면 최대 780까지 확장 */
 export async function captureShareCardPng(
   el: HTMLElement,
   filename = "scopurl-score-card.png",
 ): Promise<void> {
+  const height = resolveShareCardHeight(el);
   const dataUrl = await toPng(el, {
     width: SHARE_CARD_WIDTH,
-    height: SHARE_CARD_HEIGHT,
+    height,
     pixelRatio: 2,
     backgroundColor: "#ffffff",
     cacheBust: true,
@@ -45,3 +55,5 @@ export async function captureElementPng(
   });
   downloadDataUrl(dataUrl, filename);
 }
+
+export { SHARE_CARD_WIDTH, SHARE_CARD_MIN_HEIGHT, SHARE_CARD_MAX_HEIGHT };

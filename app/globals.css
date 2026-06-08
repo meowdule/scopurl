@@ -298,7 +298,11 @@ body {
 /* PDF 인쇄: SCOPURL 브랜드 진단서 전용 스타일 */
 @page {
   size: A4;
-  margin: 12mm 14mm;
+  margin: 16mm 18mm;
+}
+
+@page :first {
+  margin: 0;
 }
 
 @media print {
@@ -347,13 +351,22 @@ body {
   }
 
   .pdf-sheet {
-    padding: 0;
     background: #fff;
     page-break-after: auto;
     break-after: auto;
   }
 
-  .pdf-sheet + .pdf-sheet {
+  .pdf-sheet:not(.pdf-cover-dark) {
+    padding: 2mm 6mm 14mm;
+  }
+
+  /* 표지 다음 시트는 표지 page-break-after만 사용 (이중 브레이크 방지) */
+  .pdf-cover-dark + .pdf-sheet {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  .pdf-sheet:not(.pdf-cover-dark) + .pdf-sheet:not(.pdf-cover-dark) {
     break-before: page;
     page-break-before: always;
   }
@@ -367,17 +380,23 @@ body {
     page-break-inside: avoid;
   }
 
-  /* ── 표지 (다크 브랜드) ── */
+  /* ── 표지 (다크 브랜드 · A4 풀블리드) ── */
   .pdf-cover-dark {
     position: relative;
-    min-height: 273mm;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 0;
     padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #072b22 !important;
-    break-after: auto;
-    page-break-after: auto;
+    box-sizing: border-box;
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -387,7 +406,7 @@ body {
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 55vh !important;
+    width: 150mm !important;
     height: auto !important;
     max-width: none !important;
     opacity: 0.05 !important;

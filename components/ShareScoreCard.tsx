@@ -12,11 +12,16 @@ import type { ScoreCardJson } from "@/lib/types";
 import { shareCardTagline, shareStatusLabelEn } from "@/lib/reportCopy";
 import { ShareRadarChart } from "@/components/ShareRadarChart";
 import {
-  SHARE_CARD_HEIGHT,
+  SHARE_CARD_MAX_HEIGHT,
+  SHARE_CARD_MIN_HEIGHT,
   SHARE_CARD_WIDTH,
 } from "@/lib/shareCardConstants";
 
-export { SHARE_CARD_WIDTH, SHARE_CARD_HEIGHT } from "@/lib/shareCardConstants";
+export {
+  SHARE_CARD_WIDTH,
+  SHARE_CARD_MIN_HEIGHT,
+  SHARE_CARD_MAX_HEIGHT,
+} from "@/lib/shareCardConstants";
 
 type Props = {
   data: ShareScoreCardData;
@@ -44,19 +49,23 @@ export function ShareScoreCard({ data, exportMode = false }: Props) {
       data-share-card-root
       className={
         exportMode
-          ? "share-card-root relative overflow-hidden bg-white"
+          ? "share-card-root relative bg-white"
           : "share-card-root relative mx-auto w-full max-w-full overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white shadow-cardHero"
       }
       style={
         exportMode
           ? {
               width: SHARE_CARD_WIDTH,
-              height: SHARE_CARD_HEIGHT,
+              minHeight: SHARE_CARD_MIN_HEIGHT,
+              maxHeight: SHARE_CARD_MAX_HEIGHT,
+              height: "auto",
               fontFamily:
                 '"Pretendard", "Malgun Gothic", system-ui, sans-serif',
             }
           : {
-              aspectRatio: `${SHARE_CARD_WIDTH} / ${SHARE_CARD_HEIGHT}`,
+              width: "100%",
+              minHeight: SHARE_CARD_MIN_HEIGHT,
+              height: "auto",
               fontFamily:
                 '"Pretendard", "Malgun Gothic", system-ui, sans-serif',
             }
