@@ -16,9 +16,19 @@ test.describe("fixture report (/demo)", () => {
     await expect(page.getByRole("heading", { name: "발견 이슈 상세" })).toBeVisible();
   });
 
-  test("shows analysis overview without duplicate score", async ({ page }) => {
-    await expect(page.getByRole("heading", { name: "분석 개요" })).toBeVisible();
+  test("shows analysis overview above share card", async ({ page }) => {
+    const overview = page.locator("#report-analysis-overview");
+    const shareCard = page.locator("#report-hero-share-card");
+    await expect(overview.getByRole("heading", { name: "분석 개요" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "진단 요약" })).toHaveCount(0);
+
+    const overviewBox = await overview.boundingBox();
+    const shareBox = await shareCard.boundingBox();
+    expect(overviewBox).not.toBeNull();
+    expect(shareBox).not.toBeNull();
+    if (overviewBox && shareBox) {
+      expect(overviewBox.y).toBeLessThan(shareBox.y);
+    }
   });
 
   test("PDF download opens lead modal", async ({ page }) => {

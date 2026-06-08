@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { SlidersHorizontal } from "lucide-react";
 import { validateHttpUrl } from "@/lib/validateUrl";
 import { checkDns } from "@/lib/dnsCheck";
 import type { QuickCheckResult, ReportPhase, ReportJson } from "@/lib/types";
@@ -57,6 +58,7 @@ export function AnalyzeForm({
   );
   const waitSectionRef = useRef<HTMLDivElement>(null);
   const [pollStartedAt, setPollStartedAt] = useState<number | null>(null);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
 
   const reset = useCallback(() => {
     setError(null);
@@ -222,80 +224,99 @@ export function AnalyzeForm({
         </button>
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 text-sm text-fg">
-        <span className="text-fg-muted">{t.deviceSize}</span>
-        <label className="flex cursor-pointer items-center gap-2">
-          <input
-            type="radio"
-            name="deviceProfile"
-            value="desktop"
-            checked={deviceProfile === "desktop"}
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-fg">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-fg-muted">{t.deviceSize}</span>
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="radio"
+                name="deviceProfile"
+                value="desktop"
+                checked={deviceProfile === "desktop"}
+                disabled={formDisabled}
+                onChange={() => setDeviceProfile("desktop")}
+                className="accent-accent"
+              />
+              {t.desktop}
+            </label>
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="radio"
+                name="deviceProfile"
+                value="mobile"
+                checked={deviceProfile === "mobile"}
+                disabled={formDisabled}
+                onChange={() => setDeviceProfile("mobile")}
+                className="accent-accent"
+              />
+              {t.mobile}
+            </label>
+          </div>
+          <button
+            type="button"
+            onClick={() => setAdvancedOpen((open) => !open)}
             disabled={formDisabled}
-            onChange={() => setDeviceProfile("desktop")}
-            className="accent-accent"
-          />
-          {t.desktop}
-        </label>
-        <label className="flex cursor-pointer items-center gap-2">
-          <input
-            type="radio"
-            name="deviceProfile"
-            value="mobile"
-            checked={deviceProfile === "mobile"}
-            disabled={formDisabled}
-            onChange={() => setDeviceProfile("mobile")}
-            className="accent-accent"
-          />
-          {t.mobile}
-        </label>
-      </div>
-
-      <details className="rounded-xl border border-card-border bg-page-alt/60 px-4 py-3 text-sm">
-        <summary className="cursor-pointer select-none font-medium text-fg">
-          {t.advancedOptions}
-        </summary>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <label className="block">
-            <span className="text-xs text-fg-muted">
-              {t.maxPages(FREE_MAX_PAGES)}
-            </span>
-            <input
-              type="number"
-              min={1}
-              max={FREE_MAX_PAGES}
-              value={maxPages}
-              disabled={formDisabled}
-              onChange={(e) => setMaxPages(Number(e.target.value))}
-              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
-            />
-          </label>
-          <label className="block">
-            <span className="text-xs text-fg-muted">{t.maxDepth}</span>
-            <input
-              type="number"
-              min={0}
-              max={10}
-              value={maxDepth}
-              disabled={formDisabled}
-              onChange={(e) => setMaxDepth(Number(e.target.value))}
-              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
-            />
-          </label>
-          <label className="block sm:col-span-2">
-            <span className="text-xs text-fg-muted">{t.traceLabel}</span>
-            <select
-              value={traceMode}
-              disabled={formDisabled}
-              onChange={(e) => setTraceMode(e.target.value as TraceMode)}
-              className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
-            >
-              <option value="failure">{t.traceFailure}</option>
-              <option value="all">{t.traceAll}</option>
-              <option value="off">{t.traceOff}</option>
-            </select>
-          </label>
+            aria-expanded={advancedOpen}
+            aria-label={t.advancedFilterLabel}
+            title={t.advancedFilterLabel}
+            className={`shrink-0 p-0.5 transition disabled:cursor-not-allowed disabled:opacity-40 ${
+              advancedOpen
+                ? "text-accent-dim"
+                : "text-fg-muted hover:text-fg"
+            }`}
+          >
+            <SlidersHorizontal className="h-5 w-5" strokeWidth={1.5} aria-hidden />
+          </button>
         </div>
-      </details>
+
+        {advancedOpen && (
+          <div className="grid gap-4 border-t border-card-border pt-4 text-sm sm:grid-cols-2">
+            <p className="col-span-full text-xs font-medium text-fg-muted">
+              {t.advancedOptions}
+            </p>
+            <label className="block">
+              <span className="text-xs text-fg-muted">
+                {t.maxPages(FREE_MAX_PAGES)}
+              </span>
+              <input
+                type="number"
+                min={1}
+                max={FREE_MAX_PAGES}
+                value={maxPages}
+                disabled={formDisabled}
+                onChange={(e) => setMaxPages(Number(e.target.value))}
+                className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
+              />
+            </label>
+            <label className="block">
+              <span className="text-xs text-fg-muted">{t.maxDepth}</span>
+              <input
+                type="number"
+                min={0}
+                max={10}
+                value={maxDepth}
+                disabled={formDisabled}
+                onChange={(e) => setMaxDepth(Number(e.target.value))}
+                className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
+              />
+            </label>
+            <label className="block sm:col-span-2">
+              <span className="text-xs text-fg-muted">{t.traceLabel}</span>
+              <select
+                value={traceMode}
+                disabled={formDisabled}
+                onChange={(e) => setTraceMode(e.target.value as TraceMode)}
+                className="mt-1 w-full rounded-lg border border-card-border bg-card px-3 py-2 text-fg"
+              >
+                <option value="failure">{t.traceFailure}</option>
+                <option value="all">{t.traceAll}</option>
+                <option value="off">{t.traceOff}</option>
+              </select>
+            </label>
+          </div>
+        )}
+      </div>
       {locked && (
         <p className="text-center text-xs text-fg-muted">
           분석이 완료되었습니다. 다른 URL을 분석하려면 리포트의「새 분석」을

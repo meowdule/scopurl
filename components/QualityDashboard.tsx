@@ -8,6 +8,7 @@ import { captureShareCardPng } from "@/lib/shareCardImage";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import { ShareScoreCardFromReport } from "@/components/ShareScoreCard";
 import { PdfDownloadButton } from "@/components/PdfDownloadButton";
+import { AnalysisOverview } from "@/components/AnalysisOverview";
 
 type Props = {
   report: ReportJson;
@@ -74,6 +75,8 @@ export function QualityDashboard({ report }: Props) {
           )}
         </div>
       </div>
+
+      <AnalysisOverview report={report} />
 
       <div
         id={REPORT_SECTION.heroShareCard}

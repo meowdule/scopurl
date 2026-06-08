@@ -6,6 +6,7 @@ export const analyzeFormStrings = {
   desktop: "데스크톱 · 1440px",
   mobile: "\uBAA8\uBC14\uC77C \u00B7 390px",
   advancedOptions: "\uACE0\uAE09 \uBD84\uC11D \uC635\uC158",
+  advancedFilterLabel: "\uC0C1\uC138 \uBD84\uC11D \uC635\uC158",
   maxPages: (max: number) =>
     `\uCD5C\uB300 \uD398\uC774\uC9C0 (\uBB34\uB8CC 1-${max})`,
   maxDepth: "\uB9C1\uD06C \uAE4A\uC774 (0-10)",

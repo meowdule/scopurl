@@ -10,6 +10,6 @@ test("home shows analyze form", async ({ page }) => {
 
 test("advanced options expand", async ({ page }) => {
   await page.goto("/");
-  await page.locator("details summary").click();
+  await page.getByRole("button", { name: "상세 분석 옵션" }).click();
   await expect(page.locator('input[type="number"]').first()).toBeVisible();
 });

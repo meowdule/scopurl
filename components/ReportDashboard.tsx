@@ -6,7 +6,6 @@ import { fetchReport } from "@/lib/pollReport";
 import { assetUrl } from "@/lib/paths";
 import Link from "next/link";
 import { QualityDashboard } from "@/components/QualityDashboard";
-import { AnalysisOverview } from "@/components/AnalysisOverview";
 import { PriorityTop3 } from "@/components/PriorityTop3";
 import { AxisDiagnosisGrid } from "@/components/AxisDiagnosisGrid";
 import { ReportIssuesSection } from "@/components/ReportIssuesSection";
@@ -118,8 +117,6 @@ export function ReportDashboard({
           <ReportIssuesSection report={report} />
           <PagesDiagnosisTable report={report} />
           <SeoChecklistSection report={report} />
-
-          <AnalysisOverview report={report} />
           <AnalysisScopeSection report={report} />
         </div>
       </div>
