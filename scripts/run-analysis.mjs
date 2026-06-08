@@ -26,6 +26,7 @@ import { AnalysisTimer } from "./analysis/timing.mjs";
 import { captureViewportScreenshot } from "./analysis/screenshot.mjs";
 import { randomUUID } from "node:crypto";
 import { detectErrorCode } from "./analysis/error-codes.mjs";
+import { sanitizeReportForPublish } from "./analysis/sanitize-report.mjs";
 
 function parseDeviceProfile(value) {
   return value === "mobile" ? "mobile" : "desktop";
@@ -374,7 +375,7 @@ async function main() {
       },
     };
 
-    await writeJson(path.join(absDir, "report.json"), report);
+    await writeJson(path.join(absDir, "report.json"), sanitizeReportForPublish(report));
     const html = renderReportHtml(report);
     await fs.writeFile(path.join(absDir, "index.html"), html, "utf8");
 
@@ -392,7 +393,6 @@ async function main() {
       ) + dedupBroken.length;
     await writeJson(path.join(cardsDir, `${cardId}.json`), {
       cardId,
-      reportId,
       overallScore: summary.healthScore,
       categoryScores: summary.categoryScores,
       statusLabel: summary.statusLabel,

@@ -20,6 +20,7 @@ import {
 } from "./screenshot.mjs";
 import { createPageTimer } from "./timing.mjs";
 import { playwrightContextOptions } from "./viewport-profile.mjs";
+import { sanitizeNetworkUrl } from "./sanitize-network-url.mjs";
 
 function redirectChainFromResponse(response) {
   const chain = [];
@@ -89,14 +90,14 @@ export async function analyzePage({
   page.on("requestfailed", (req) => {
     const f = req.failure();
     failedRequests.push({
-      url: req.url(),
+      url: sanitizeNetworkUrl(req.url()),
       failure: f?.errorText || "request failed",
     });
   });
   page.on("response", (res) => {
     const st = res.status();
     if (st >= 400) {
-      const entry = { url: res.url(), status: st };
+      const entry = { url: sanitizeNetworkUrl(res.url()), status: st };
       failedRequests.push(entry);
       httpErrors.push(entry);
     }
