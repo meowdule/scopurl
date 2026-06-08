@@ -1,0 +1,2920 @@
+{
+  "reportId": "a532c993-c79e-46b5-bb39-7712ccee2771",
+  "targetUrl": "https://web.getcha.kr/",
+  "deviceProfile": "desktop",
+  "createdAt": "2026-06-08T02:06:11.713Z",
+  "completedAt": "2026-06-08T02:17:53.741Z",
+  "expiresAt": "2026-07-08T02:17:53.741Z",
+  "cardId": "f0036813-5b66-4c1d-927f-7455f6491a12",
+  "quick": {
+    "validUrl": true,
+    "dnsOk": true,
+    "dnsMessage": "DNS resolves.",
+    "httpStatus": 200,
+    "httpOk": true,
+    "finalUrl": "https://web.getcha.kr/",
+    "redirectChain": [
+      "https://web.getcha.kr/"
+    ],
+    "sslOk": true,
+    "sslMessage": "HTTPS in use.",
+    "responseTimeMs": 861,
+    "internalLinkCount": 472,
+    "screenshotRelativePath": "reports/a532c993-c79e-46b5-bb39-7712ccee2771/screenshots/quick-home.jpg"
+  },
+  "pages": [
+    {
+      "url": "https://web.getcha.kr/",
+      "statusCode": 200,
+      "redirects": [
+        "https://web.getcha.kr/"
+      ],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()",
+        "Error: <svg> attribute width: Expected length, \"size\".",
+        "Error: <svg> attribute height: Expected length, \"size\"."
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/d195582400fc2e8d.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/d195582400fc2e8d.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/609b57d35441914b.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/609b57d35441914b.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGAC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2F&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=10509",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mpc-prod-27-s6uit34pua-uk.a.run.app/events/8e4cea513f11f8cf962386451ab81b0e83e74240d364db1783aaef9ded9fb2de",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://sr-client-cfg.amplitude.com/config/f6e1d9914962d9986c2eb3285f8a5f22?config_group=browser",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2F%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EC%95%84%EC%9A%B0%EB%94%94/Q5?id=698&gradeId=17393&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/BMW/1%EC%8B%9C%EB%A6%AC%EC%A6%88?id=442&gradeId=17600&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/E-%ED%81%B4%EB%9E%98%EC%8A%A4?id=592&gradeId=17348&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/GLE-%ED%81%B4%EB%9E%98%EC%8A%A4?id=596&gradeId=17796&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&_s=2&tfd=18404",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AEAAAGQC&ae=a&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=3&tag_exp=0~115616986~115938465~115938469~118228215~119027222&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dr=https%3A%2F%2Fweb.getcha.kr%2F&sid=1780884543&sct=1&seg=1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&en=page_view&_et=560&tfd=19703",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=4&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2F&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&en=home_view&_ee=1&ep.rest=%5Bobject%20Object%5D&_et=1296&tfd=20797",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AEAAAGQC&ae=a&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=5&tag_exp=0~115616986~115938465~115938469~118228215~119027222&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&sid=1780884543&sct=1&seg=1&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&en=page_view&_et=1090&tfd=21029",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&_s=6&tfd=26029",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&_s=7&tfd=29710",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AEAAAGQC&ae=a&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=8&tag_exp=0~115616986~115938465~115938469~118228215~119027222&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dr=https%3A%2F%2Fweb.getcha.kr%2F&sid=1780884543&sct=1&seg=1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&en=page_view&_et=829&tfd=31655",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=9&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2F&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&en=home_view&_ee=1&ep.rest=%5Bobject%20Object%5D&_et=1941&tfd=32744",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AEAAAGQC&ae=a&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=10&tag_exp=0~115616986~115938465~115938469~118228215~119027222&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&sid=1780884543&sct=1&seg=1&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&en=page_view&_et=1087&tfd=37745",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394&_rsc=vusbg",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2Fcars%2F%EC%A7%80%ED%94%84%2F%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L%3Fid%3D985%26gradeId%3D16394&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&_s=11&tfd=45261",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2F%25EC%25A7%2580%25ED%2594%2584%2F%25EA%25B7%25B8%25EB%259E%259C%25EB%2593%259C%2520%25EC%25B2%25B4%25EB%25A1%259C%25ED%2582%25A4%2520L%3Fid%3D985%26gradeId%3D16394%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884543453&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=8745041&_eu=AAAAAGQC&are=1&cid=1963744217.1780884544&frm=0&pscdl=noapi&rcb=14&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938469~118228215~119027222&sid=1780884543&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2F&dr=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=%EA%B2%9F%EC%B0%A8%20-%20%EC%89%BD%EA%B3%A0%20%EB%B9%A0%EB%A5%B8%20%EA%B2%AC%EC%A0%81%20%EB%B9%84%EA%B5%90%2C%20%EC%8B%A0%EC%B0%A8%20%EA%B5%AC%EB%A7%A4%20%ED%95%84%EC%88%98%20%ED%94%8C%EB%9E%AB%ED%8F%BC&_s=12&tfd=50632",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%ED%8F%AD%EC%8A%A4%EB%B0%94%EA%B2%90/ID.4?id=995&gradeId=18072&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/BMW?modelId=446&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/%EC%95%84%EC%9A%B0%EB%94%94?modelId=694&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/%EA%B8%B0%EC%95%84?modelId=491&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/consulting/new-car/condition?from=discountPrice&brandId=24&modelId=985&modelYearId=2980&gradeId=16394&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1&_rsc=1lunu",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/%EC%A7%80%ED%94%84?modelId=985&_rsc=1lunu",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 25,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 6384,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 6389.399999999965,
+        "loadEvent": 10214.099999999977,
+        "lighthouseError": "Lighthouse could not complete (often on heavy SPA pages). Showing basic load timings instead."
+      },
+      "axeViolations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "description": "Buttons must have discernible text",
+          "nodes": 2
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 11
+        },
+        {
+          "id": "label",
+          "impact": "critical",
+          "description": "Form elements must have labels",
+          "nodes": 1
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Links must have discernible text",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [
+        {
+          "id": "overlap-desktop-0-19",
+          "type": "overlap",
+          "message": "Two interactive elements overlap significantly.",
+          "viewport": "desktop",
+          "severity": "warn",
+          "title": "요소 겹침",
+          "friendlyMessage": "버튼·링크 등이 서로 겹쳐 누르기 어려울 수 있습니다.",
+          "userImpact": "터치/클릭이 어려워 주요 기능 이용에 방해가 될 수 있습니다.",
+          "category": "ux"
+        },
+        {
+          "id": "off-desktop-3",
+          "type": "outside_viewport",
+          "message": "Meaningful content is mostly outside the visible viewport.",
+          "viewport": "desktop",
+          "severity": "info",
+          "title": "화면 밖 콘텐츠 가능성",
+          "friendlyMessage": "일부 요소가 화면 밖에 있어 스크롤 없이는 보이지 않을 수 있습니다.",
+          "userImpact": "중요한 안내·버튼이 첫 화면에서 보이지 않을 수 있습니다. (의도된 캐러셀·숨김 메뉴는 제외)",
+          "category": "ux"
+        }
+      ],
+      "screenshotPaths": {
+        "desktop": "screenshots/e35048ad-7dcd-4da9-9231-64989aa5f15c-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://web.getcha.kr/",
+          "linksFound": 43,
+          "domSummary": "화면 요소 약 476개, 클릭 후보 37개",
+          "candidateCount": 37,
+          "success": true
+        },
+        {
+          "action": "scroll_reveal",
+          "label": "스크롤 1/3 — 요소 +545",
+          "domDiff": "스크롤 후 보이는 요소 약 545개 증가",
+          "success": true,
+          "newLinks": 0
+        },
+        {
+          "action": "content_reveal",
+          "label": "벤츠",
+          "targetHint": "generic",
+          "score": 138,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 43,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 380개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다",
+          "domDelta": {
+            "visible": 380,
+            "overlays": 0,
+            "links": 25,
+            "interactive": 27
+          },
+          "networkSummary": "서버 요청 14건",
+          "apiCallCount": 14,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "신차구매",
+          "targetHint": "cta",
+          "score": 231,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "routeBefore": "/",
+          "routeAfter": "/discount-price/1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 421,
+          "domDiff": "화면 경로가 변경되었습니다 (/ → /discount-price/1) · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+          "domDelta": {
+            "visible": -245,
+            "overlays": 0,
+            "links": -33,
+            "interactive": 22
+          },
+          "networkSummary": "서버 요청 14건",
+          "apiCallCount": 14,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "a · v07njgc",
+          "targetHint": "generic",
+          "score": 208,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": -377,
+            "overlays": 0,
+            "links": -25,
+            "interactive": -27
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "content_reveal",
+          "label": "로그인",
+          "targetHint": "generic",
+          "score": 204,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 6개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다",
+          "domDelta": {
+            "visible": 6,
+            "overlays": 0,
+            "links": 1,
+            "interactive": 2
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "커뮤니티",
+          "targetHint": "generic",
+          "score": 196,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "routeBefore": "/",
+          "routeAfter": "/discount-price/1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/ → /discount-price/1) · 새로 보이는 화면 요소가 약 126개 증가했습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+          "domDelta": {
+            "visible": 126,
+            "overlays": 0,
+            "links": -9,
+            "interactive": 47
+          },
+          "networkSummary": "서버 요청 10건",
+          "apiCallCount": 10,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "content_reveal",
+          "label": "아티클",
+          "targetHint": "generic",
+          "score": 196,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 375개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다",
+          "domDelta": {
+            "visible": 375,
+            "overlays": 0,
+            "links": 25,
+            "interactive": 27
+          },
+          "networkSummary": "서버 요청 5건",
+          "apiCallCount": 5,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "content_reveal",
+          "label": "혜택",
+          "targetHint": "generic",
+          "score": 196,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 4개 증가했습니다",
+          "domDelta": {
+            "visible": 4,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "content_reveal",
+          "label": "button · _1wjaeui9 _1wjaeui8",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 464,
+          "newLinks": 0,
+          "domDiff": "새로 보이는 화면 요소가 약 164개 증가했습니다 · 클릭 가능한 링크·경로가 28개 늘었습니다",
+          "domDelta": {
+            "visible": 164,
+            "overlays": 0,
+            "links": 28,
+            "interactive": 28
+          },
+          "networkSummary": "서버 요청 9건",
+          "apiCallCount": 9,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "button · _1wjaeuia _1wjaeui8",
+          "targetHint": "generic",
+          "score": 168,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+          "routeBefore": "/",
+          "routeAfter": "/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 469,
+          "newLinks": 5,
+          "domDiff": "화면 경로가 변경되었습니다 (/ → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394) · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+          "domDelta": {
+            "visible": -790,
+            "overlays": 0,
+            "links": -82,
+            "interactive": -51
+          },
+          "networkSummary": "서버 요청 9건",
+          "apiCallCount": 9,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "BMW",
+          "targetHint": "generic",
+          "score": 138,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 469,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 4건",
+          "apiCallCount": 4,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "click",
+          "label": "아우디",
+          "targetHint": "generic",
+          "score": 138,
+          "urlBefore": "https://web.getcha.kr/",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 469,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 2건",
+          "apiCallCount": 2,
+          "routeChanged": false,
+          "success": false
+        }
+      ],
+      "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 스크롤 1/3 — 요소 +545 — 스크롤 노출\n│  └─ 스크롤 후 보이는 요소 약 545개 증가\n├─ 벤츠 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 380개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다\n│  ├─ 서버 요청 14건\n│  └─ 보이는 요소 +380\n├─ 신차구매 [cta] — 이동\n│  ├─ 경로 → /discount-price/1\n│  ├─ 화면 경로가 변경되었습니다 (/ → /discount-price/1) · 아래로 스크롤할 콘텐츠가 늘어났습니다\n│  ├─ 서버 요청 14건\n│  └─ 새 경로 +421\n├─ 로그인 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 6개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다\n│  ├─ 서버 요청 4건\n│  └─ 보이는 요소 +6\n├─ 커뮤니티 — 이동\n│  ├─ 경로 → /discount-price/1\n│  ├─ 화면 경로가 변경되었습니다 (/ → /discount-price/1) · 새로 보이는 화면 요소가 약 126개 증가했습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다\n│  ├─ 서버 요청 10건\n│  └─ 보이는 요소 +126\n├─ 아티클 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 375개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다\n│  ├─ 서버 요청 5건\n│  └─ 보이는 요소 +375\n├─ 혜택 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 4개 증가했습니다\n│  ├─ 서버 요청 4건\n│  └─ 보이는 요소 +4\n├─ button · _1wjaeui9 _1wjaeui8 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 164개 증가했습니다 · 클릭 가능한 링크·경로가 28개 늘었습니다\n│  ├─ 서버 요청 9건\n│  └─ 보이는 요소 +164\n└─ button · _1wjaeuia _1wjaeui8 — 이동\n   ├─ 경로 → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394\n   ├─ 화면 경로가 변경되었습니다 (/ → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394) · 아래로 스크롤할 콘텐츠가 늘어났습니다\n   ├─ 서버 요청 9건\n   └─ 새 경로 +5",
+      "interactionDiscovery": {
+        "profile": "homepage",
+        "deviceProfile": "desktop",
+        "runtimeRoutes": 469,
+        "outboundRoutes": 2,
+        "candidatesFound": 50,
+        "clicksAttempted": 12,
+        "clicksRecorded": 8,
+        "linksDiscovered": 469,
+        "outboundDiscovered": 2,
+        "stoppedEarly": true,
+        "runtimeMs": 51900,
+        "skippedByReason": {
+          "no_change": 3,
+          "duplicate": 1
+        },
+        "meaningfulCount": 8
+      },
+      "crawledAt": "2026-06-08T02:11:06.567Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price",
+      "statusCode": 200,
+      "redirects": [
+        "https://web.getcha.kr/discount-price",
+        "https://web.getcha.kr/discount-price/1"
+      ],
+      "consoleErrors": [
+        "Error: <svg> attribute width: Expected length, \"size\".",
+        "Error: <svg> attribute height: Expected length, \"size\".",
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884544594&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=118873164&_eu=AAAAAGAC&are=1&cid=839234832.1780884545&frm=0&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115616986~115938465~115938468~118228214~119027222&sid=1780884544&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=11800",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mpc-prod-27-s6uit34pua-uk.a.run.app/events/8e4cea513f11f8cf962386451ab81b0e83e74240d364db1783aaef9ded9fb2de",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/consulting/auto-cashback?_rsc=4nuqv",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884544594&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=118873164&_eu=AAAAAGQC&are=1&cid=839234832.1780884545&frm=0&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=2&tag_exp=0~115616986~115938465~115938468~118228214~119027222&sid=1780884544&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&en=web_gnb_click&_ee=1&ep.rest=%5Bobject%20Object%5D&_et=3426&up.device_id=1wWPQG2tl4nQb8zJsNXzBecMqPDI&tfd=20263",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884544594&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=118873164&_eu=AAAAAGQC&are=1&cid=839234832.1780884545&frm=0&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938468~118228214~119027222&sid=1780884544&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&_s=3&tfd=25283",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/5?_rsc=mauit",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/Discovery?id=526&gradeId=18559&_rsc=17kie",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/Discovery?id=526&gradeId=18561&_rsc=17kie",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/5?_rsc=17kie",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/Discovery?id=526&gradeId=18562&_rsc=17kie",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/Discovery-Sport?id=527&gradeId=18540&_rsc=17kie",
+          "status": 503
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22%EB%A0%89%EC%84%9C%EC%8A%A4%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/6?_rsc=mauit",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/6?_rsc=zjeah",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A0%89%EC%84%9C%EC%8A%A4/LM?id=1066&gradeId=17715&_rsc=zjeah",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A0%89%EC%84%9C%EC%8A%A4/ES?id=533&gradeId=16013&_rsc=zjeah",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A0%89%EC%84%9C%EC%8A%A4/LS?id=537&gradeId=17939&_rsc=zjeah",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22%EB%A1%9C%ED%84%B0%EC%8A%A4%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/65?_rsc=mauit",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/65?_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=17167&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=17169&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=17170&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=15814&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=15816&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A1%9C%ED%84%B0%EC%8A%A4/Emeya?id=1076&gradeId=15815&_rsc=gwkb2",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884544594&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=118873164&_eu=AAAAAGQC&are=1&cid=839234832.1780884545&frm=0&pscdl=noapi&rcb=11&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938465~115938468~118228214~119027222&sid=1780884544&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2Fdiscount-price%2F1&dt=BMW%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%B5%9C%EB%8C%80%20%ED%95%A0%EC%9D%B8%20%EC%A0%95%EB%B3%B4%20-%20%EA%B2%9F%EC%B0%A8&_s=4&tfd=34085",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84/Discovery-Sport?id=527&gradeId=15466&_rsc=17kie",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%A0%89%EC%84%9C%EC%8A%A4/LS?id=537&gradeId=17938&_rsc=zjeah",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 25,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 9676,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 10086.400000000023,
+        "loadEvent": 10748.800000000047
+      },
+      "axeViolations": [
+        {
+          "id": "aria-allowed-role",
+          "impact": "minor",
+          "description": "ARIA role should be appropriate for the element",
+          "nodes": 422
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 2865
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "label",
+          "impact": "critical",
+          "description": "Form elements must have labels",
+          "nodes": 1
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Links must have discernible text",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [
+        {
+          "id": "off-desktop-3",
+          "type": "outside_viewport",
+          "message": "Meaningful content is mostly outside the visible viewport.",
+          "viewport": "desktop",
+          "severity": "info",
+          "title": "화면 밖 콘텐츠 가능성",
+          "friendlyMessage": "일부 요소가 화면 밖에 있어 스크롤 없이는 보이지 않을 수 있습니다.",
+          "userImpact": "중요한 안내·버튼이 첫 화면에서 보이지 않을 수 있습니다. (의도된 캐러셀·숨김 메뉴는 제외)",
+          "category": "ux"
+        }
+      ],
+      "screenshotPaths": {
+        "desktop": "screenshots/67510b13-56a0-483a-aaee-285488c88a36-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "linksFound": 433,
+          "domSummary": "화면 요소 약 608개, 클릭 후보 93개",
+          "candidateCount": 93,
+          "success": true
+        },
+        {
+          "action": "content_reveal",
+          "label": "상담신청",
+          "targetHint": "generic",
+          "score": 239,
+          "urlBefore": "https://web.getcha.kr/discount-price/1",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "routeBefore": "/discount-price/1",
+          "routeAfter": "/discount-price/1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 434,
+          "newLinks": 1,
+          "domDiff": "새로 보이는 화면 요소가 약 7개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다",
+          "domDelta": {
+            "visible": 7,
+            "overlays": 0,
+            "links": 1,
+            "interactive": 3
+          },
+          "networkSummary": "서버 요청 3건",
+          "apiCallCount": 3,
+          "routeChanged": false,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "신차구매",
+          "targetHint": "cta",
+          "score": 231,
+          "urlBefore": "https://web.getcha.kr/discount-price/1",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "routeBefore": "/discount-price/1",
+          "routeAfter": "/discount-price/1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 434,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": -7,
+            "overlays": 0,
+            "links": -1,
+            "interactive": -3
+          },
+          "networkSummary": "서버 요청 3건",
+          "apiCallCount": 3,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "랜드로버\n7종",
+          "targetHint": "generic",
+          "score": 230,
+          "urlBefore": "https://web.getcha.kr/discount-price/1",
+          "urlAfter": "https://web.getcha.kr/discount-price/5",
+          "routeBefore": "/discount-price/1",
+          "routeAfter": "/discount-price/5",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 498,
+          "newLinks": 64,
+          "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/5) · 클릭 가능한 링크·경로가 3개 늘었습니다",
+          "domDelta": {
+            "visible": -33,
+            "overlays": 0,
+            "links": 3,
+            "interactive": -21
+          },
+          "networkSummary": "서버 요청 16건",
+          "apiCallCount": 16,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "렉서스\n7종",
+          "targetHint": "generic",
+          "score": 230,
+          "urlBefore": "https://web.getcha.kr/discount-price/1",
+          "urlAfter": "https://web.getcha.kr/discount-price/6",
+          "routeBefore": "/discount-price/1",
+          "routeAfter": "/discount-price/6",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 524,
+          "newLinks": 26,
+          "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/6)",
+          "domDelta": {
+            "visible": -100,
+            "overlays": 0,
+            "links": 0,
+            "interactive": -24
+          },
+          "networkSummary": "서버 요청 15건",
+          "apiCallCount": 15,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "로터스\n3종",
+          "targetHint": "generic",
+          "score": 230,
+          "urlBefore": "https://web.getcha.kr/discount-price/1",
+          "urlAfter": "https://web.getcha.kr/discount-price/65",
+          "routeBefore": "/discount-price/1",
+          "routeAfter": "/discount-price/65",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 542,
+          "newLinks": 18,
+          "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/65) · 클릭 가능한 링크·경로가 1개 늘었습니다",
+          "domDelta": {
+            "visible": -94,
+            "overlays": 0,
+            "links": 1,
+            "interactive": -23
+          },
+          "networkSummary": "서버 요청 16건",
+          "apiCallCount": 16,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 상담신청 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 7개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다\n│  ├─ 서버 요청 3건\n│  ├─ 보이는 요소 +7\n│  └─ 새 경로 +1\n├─ 랜드로버\n7종 — 이동\n│  ├─ 경로 → /discount-price/5\n│  ├─ 화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/5) · 클릭 가능한 링크·경로가 3개 늘었습니다\n│  ├─ 서버 요청 16건\n│  └─ 새 경로 +64\n├─ 렉서스\n7종 — 이동\n│  ├─ 경로 → /discount-price/6\n│  ├─ 화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/6)\n│  ├─ 서버 요청 15건\n│  └─ 새 경로 +26\n└─ 로터스\n3종 — 이동\n   ├─ 경로 → /discount-price/65\n   ├─ 화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/65) · 클릭 가능한 링크·경로가 1개 늘었습니다\n   ├─ 서버 요청 16건\n   └─ 새 경로 +18",
+      "crawledAt": "2026-06-08T02:10:27.527Z"
+    },
+    {
+      "url": "https://web.getcha.kr/community/all",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/community/all\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ea26aa0126bf7fd9.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ea26aa0126bf7fd9.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:11:51.700Z"
+    },
+    {
+      "url": "https://web.getcha.kr/articles",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/articles\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/articles",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:11:51.676Z"
+    },
+    {
+      "url": "https://web.getcha.kr/promotion/list",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/promotion/list\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:12:36.944Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/13",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/13\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:12:36.897Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/1",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/1\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:13:22.176Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/19",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/19\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:13:22.164Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/64",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/64\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/63685ebd3918e912.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/63685ebd3918e912.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/13d68769455cb797.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/13d68769455cb797.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:14:07.454Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/36",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/36\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:14:07.438Z"
+    },
+    {
+      "url": "https://web.getcha.kr/discount-price/23",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/discount-price/23\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f4381480ffbf062d.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f4381480ffbf062d.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:14:52.722Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/E-%ED%81%B4%EB%9E%98%EC%8A%A4?id=592&gradeId=17348",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/E-%ED%81%B4%EB%9E%98%EC%8A%A4?id=592&gradeId=17348\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:14:52.726Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+      "statusCode": 200,
+      "redirects": [
+        "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617"
+      ],
+      "consoleErrors": [
+        "Error: <svg> attribute width: Expected length, \"size\".",
+        "Error: <svg> attribute height: Expected length, \"size\".",
+        "Failed to load resource: the server responded with a status of 503 ()",
+        "%c [AIRBRIDGE] TypeError: Failed to fetch background: #D60000; color: #fff"
+      ],
+      "jsExceptions": [],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/chunks/9836-59a2b920f46eb36f.js",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/chunks/app/(content)/discount-price/%5BbrandId%5D/page-106ef2502294a762.js",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884904424&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=821337903&_eu=AAAAAGAC&are=1&cid=26486913.1780884905&frm=0&pscdl=noapi&rcb=16&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&_s=1&tag_exp=0~115938466~115938469~118228215~119027224&sid=1780884904&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%EC%8B%9C%EB%A6%AC%EC%A6%88%3Fid%3D443%26gradeId%3D17617&dt=BMW%203%EC%8B%9C%EB%A6%AC%EC%A6%88%2026%EB%85%84%EC%8B%9D%20320i%20M%20%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EC%A0%95%EB%B3%B4%2C%20%ED%95%A0%EC%9D%B8%EA%B0%80%20%EC%B4%9D%EC%A0%95%EB%A6%AC%20%7C%20%EA%B2%9F%EC%B0%A8&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=926",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mpc-prod-27-s6uit34pua-uk.a.run.app/events/8e4cea513f11f8cf962386451ab81b0e83e74240d364db1783aaef9ded9fb2de",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%25EC%258B%259C%25EB%25A6%25AC%25EC%25A6%2588%3Fid%3D443%26gradeId%3D17617%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://sr-client-cfg.amplitude.com/config/f6e1d9914962d9986c2eb3285f8a5f22?config_group=browser",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22%EC%B5%9C%EC%A0%80%EA%B0%80%20%EA%B2%AC%EC%A0%81%20%EB%B0%9B%EA%B8%B0%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%25EC%258B%259C%25EB%25A6%25AC%25EC%25A6%2588%3Fid%3D443%26gradeId%3D17617%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1&_rsc=1b7ll",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/788484c667b3ccf0.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/5fcfafdb0d80e51e.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/articles?_rsc=1617q",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price?_rsc=1617q",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884904424&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=821337903&_eu=AAAAAGQC&are=1&cid=26486913.1780884905&frm=0&pscdl=noapi&rcb=16&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115938466~115938469~118228215~119027224&sid=1780884904&sct=1&seg=0&dl=https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%EC%8B%9C%EB%A6%AC%EC%A6%88%3Fid%3D443%26gradeId%3D17617&dt=BMW%203%EC%8B%9C%EB%A6%AC%EC%A6%88%2026%EB%85%84%EC%8B%9D%20320i%20M%20%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EC%A0%95%EB%B3%B4%2C%20%ED%95%A0%EC%9D%B8%EA%B0%80%20%EC%B4%9D%EC%A0%95%EB%A6%AC%20%7C%20%EA%B2%9F%EC%B0%A8&_s=2&tfd=7943",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1&monthlyPrice=0&_rsc=oqrf4",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22%EA%B5%AC%EB%A7%A4%20%EC%A1%B0%EA%B1%B4%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fconsulting%2Fnew-car%2Fcondition%3Ffrom%3DdiscountPrice%26brandId%3D1%26modelId%3D443%26modelYearId%3D3141%26gradeId%3D17617%26buyType%3DLEASE%26payment%3DPREPAYMENT%26payRate%3D30%26period%3D60%26isAll%3D1%22%2C%22ref_url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%25EC%258B%259C%25EB%25A6%25AC%25EC%25A6%2588%3Fid%3D443%26gradeId%3D17617%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fconsulting%2Fnew-car%2Fcondition%3Ffrom%3DdiscountPrice%26brandId%3D1%26modelId%3D443%26modelYearId%3D3141%26gradeId%3D17617%26buyType%3DLEASE%26payment%3DPREPAYMENT%26payRate%3D30%26period%3D60%26isAll%3D1%22%2C%22ref_url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%25EC%258B%259C%25EB%25A6%25AC%25EC%25A6%2588%3Fid%3D443%26gradeId%3D17617%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/articles?_rsc=rur75",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/community/all?_rsc=rur75",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/discount-price/1",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://core.airbridge.io/api/v3.1/apps/getcha/events/web/9120",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884912637&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=821337903&_eu=AAAAAGQC&are=1&cid=26486913.1780884905&frm=0&pscdl=noapi&rcb=15&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115938465~115938469~118228215~119027224&sid=1780884904&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2Fconsulting%2Fnew-car%2Fcondition%3Ffrom%3DdiscountPrice%26brandId%3D1%26modelId%3D443%26modelYearId%3D3141%26gradeId%3D17617%26buyType%3DLEASE%26payment%3DPREPAYMENT%26payRate%3D30%26period%3D60%26isAll%3D1&dr=https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%EC%8B%9C%EB%A6%AC%EC%A6%88%3Fid%3D443%26gradeId%3D17617&dt=%EB%A6%AC%EC%8A%A4%C2%B7%EC%9E%A5%EA%B8%B0%EB%A0%8C%ED%8A%B8%20%EC%83%81%EB%8B%B4%EC%8B%A0%EC%B2%AD%ED%95%98%EA%B8%B0&_s=1&tfd=1855",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/promotion/list?_rsc=rur75",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://api.getcha.io/api/estimate/model/443/calc",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22Participation%22%2C%22params%22%3A%7B%22tag%22%3A%22BMW%22%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fconsulting%2Fnew-car%2Fcondition%3Ffrom%3DdiscountPrice%26brandId%3D1%26modelId%3D443%26modelYearId%3D3141%26gradeId%3D17617%26buyType%3DLEASE%26payment%3DPREPAYMENT%26payRate%3D30%26period%3D60%26isAll%3D1%26monthlyPrice%3D0%22%2C%22ref_url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%25EC%258B%259C%25EB%25A6%25AC%25EC%25A6%2588%3Fid%3D443%26gradeId%3D17617%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://img.getcha.io/file/image/20240305/1709627612zVTCsBEyvz.png",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/promotion/list?_rsc=1617q",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/E-%ED%81%B4%EB%9E%98%EC%8A%A4?id=592&gradeId=17348&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://bc.ad.daum.net/bc?d=%7B%22track_id%22%3A%222451390308105697011%22%2C%22event_code%22%3A%22PageView%22%2C%22params%22%3A%7B%7D%2C%22props%22%3A%7B%22lmt%22%3A%22N%22%7D%2C%22site%22%3A%7B%22identifier%22%3A%22web.getcha.kr%22%7D%2C%22sdk%22%3A%7B%22type%22%3A%22WEB%22%2C%22version%22%3A%221.6.7%22%2C%22tpc%22%3A%22Y%22%7D%2C%22page%22%3A%7B%22url%22%3A%22https%3A%2F%2Fweb.getcha.kr%2F%22%2C%22is_frame_env%22%3Afalse%7D%2C%22device%22%3A%7B%22dnt%22%3A%22N%22%2C%22device_type%22%3A%22pc%22%2C%22is_mobile%22%3A%22N%22%2C%22browser%22%3A%22HeadlessChrome%22%2C%22browser_version%22%3A%22148.0.7778.96%22%2C%22os%22%3A%22Windows%22%2C%22os_version%22%3A%2210.0%22%7D%7D",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/?_rsc=1617q",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review?_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/%EC%95%84%EC%9A%B0%EB%94%94?modelId=694&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/owners-review/%ED%98%84%EB%8C%80?modelId=854&_rsc=3lb4g",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://analytics.google.com/g/collect?v=2&tid=G-1FH2NS162W&gtm=45je6631v9204490764za200zd9204490764&_p=1780884913471&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=821337903&_eu=AAAAAGQC&are=1&cid=26486913.1780884905&frm=0&pscdl=noapi&rcb=6&sr=1440x900&uaa=x86&uab=64&uafvl=Chromium%3B148.0.7778.96%7CHeadlessChrome%3B148.0.7778.96%7CNot%252FA)Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&gaf=2&tag_exp=0~115616986~115938466~115938469~118228215~119027224&sid=1780884904&sct=1&seg=1&dl=https%3A%2F%2Fweb.getcha.kr%2Fcars%2FBMW%2F3%EC%8B%9C%EB%A6%AC%EC%A6%88%3Fid%3D443%26gradeId%3D17617&dt=BMW%203%EC%8B%9C%EB%A6%AC%EC%A6%88%2026%EB%85%84%EC%8B%9D%20320i%20M%20%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EC%A0%95%EB%B3%B4%2C%20%ED%95%A0%EC%9D%B8%EA%B0%80%20%EC%B4%9D%EC%A0%95%EB%A6%AC%20%7C%20%EA%B2%9F%EC%B0%A8&_s=1&tfd=6835",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "lighthouse": {
+        "performance": 85,
+        "accessibility": null,
+        "bestPractices": null,
+        "seo": null,
+        "fcp": 1636,
+        "lcp": null,
+        "cls": null,
+        "tbt": null,
+        "si": null,
+        "collected": false,
+        "fallback": true,
+        "mode": "fallback",
+        "domContentLoaded": 1707.8000000000466,
+        "loadEvent": 1708.2000000000698
+      },
+      "axeViolations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "description": "Buttons must have discernible text",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 70
+        },
+        {
+          "id": "image-redundant-alt",
+          "impact": "minor",
+          "description": "Alternative text of images should not be repeated as text",
+          "nodes": 19
+        },
+        {
+          "id": "label",
+          "impact": "critical",
+          "description": "Form elements must have labels",
+          "nodes": 1
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Links must have discernible text",
+          "nodes": 1
+        },
+        {
+          "id": "meta-viewport",
+          "impact": "moderate",
+          "description": "Zooming and scaling must not be disabled",
+          "nodes": 1
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "description": "Page should contain a level-one heading",
+          "nodes": 1
+        }
+      ],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {
+        "desktop": "screenshots/7ee9fc44-b278-458a-b2f5-3e6c911dc141-desktop.jpg"
+      },
+      "interactionLog": [
+        {
+          "action": "initial_scan",
+          "label": "페이지 로드·스크롤 후 스캔",
+          "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "linksFound": 16,
+          "domSummary": "화면 요소 약 303개, 클릭 후보 16개",
+          "candidateCount": 16,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "상담신청",
+          "targetHint": "generic",
+          "score": 191,
+          "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeAfter": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 16,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "apiCallCount": 0,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "신차구매",
+          "targetHint": "cta",
+          "score": 183,
+          "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "urlAfter": "https://web.getcha.kr/discount-price/1",
+          "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeAfter": "/discount-price/1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 439,
+          "newLinks": 423,
+          "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /discount-price/1) · 새로 보이는 화면 요소가 약 305개 증가했습니다 · 클릭 가능한 링크·경로가 19개 늘었습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+          "domDelta": {
+            "visible": 305,
+            "overlays": 0,
+            "links": 19,
+            "interactive": 51
+          },
+          "apiCallCount": 0,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "click",
+          "label": "button · _1j32yg74",
+          "targetHint": "generic",
+          "score": 182,
+          "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeAfter": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 439,
+          "newLinks": 0,
+          "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+          "domDelta": {
+            "visible": 0,
+            "overlays": 0,
+            "links": 0,
+            "interactive": 0
+          },
+          "networkSummary": "서버 요청 5건",
+          "apiCallCount": 10,
+          "routeChanged": false,
+          "success": false
+        },
+        {
+          "action": "navigation",
+          "label": "최저가 견적 받기",
+          "targetHint": "cta",
+          "score": 161,
+          "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "urlAfter": "https://web.getcha.kr/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1",
+          "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeAfter": "/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 439,
+          "newLinks": 0,
+          "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1)",
+          "domDelta": {
+            "visible": -325,
+            "overlays": 0,
+            "links": -7,
+            "interactive": -45
+          },
+          "networkSummary": "서버 요청 6건",
+          "apiCallCount": 6,
+          "routeChanged": true,
+          "success": true
+        },
+        {
+          "action": "navigation",
+          "label": "a · v07njgc",
+          "targetHint": "generic",
+          "score": 160,
+          "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "urlAfter": "https://web.getcha.kr/",
+          "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+          "routeAfter": "/",
+          "hashBefore": "",
+          "hashAfter": "",
+          "linksFound": 470,
+          "newLinks": 31,
+          "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /) · 새로 보이는 화면 요소가 약 752개 증가했습니다 · 클릭 가능한 링크·경로가 83개 늘었습니다",
+          "domDelta": {
+            "visible": 752,
+            "overlays": 0,
+            "links": 83,
+            "interactive": 60
+          },
+          "spaNavigation": "pushState",
+          "networkSummary": "서버 요청 20건",
+          "apiCallCount": 40,
+          "routeChanged": true,
+          "success": true
+        }
+      ],
+      "interactionFlow": "Page\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 신차구매 [cta] — 이동\n│  ├─ 경로 → /discount-price/1\n│  ├─ 화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /discount-price/1) · 새로 보이는 화면 요소가 약 305개 증가했습니다 · 클릭 가능한 링크·경로가 19개 늘었습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다\n│  ├─ 보이는 요소 +305\n│  └─ 새 경로 +423\n├─ 최저가 견적 받기 [cta] — 이동\n│  ├─ 경로 → /consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1\n│  ├─ 화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1)\n│  └─ 서버 요청 6건\n└─ a · v07njgc — 이동\n   ├─ SPA 경로 변경 (pushState)\n   ├─ 경로 → /\n   ├─ 화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /) · 새로 보이는 화면 요소가 약 752개 증가했습니다 · 클릭 가능한 링크·경로가 83개 늘었습니다\n   ├─ 서버 요청 20건\n   ├─ 보이는 요소 +752\n   └─ 새 경로 +31",
+      "crawledAt": "2026-06-08T02:15:36.688Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/%EC%95%84%EC%9A%B0%EB%94%94/Q5?id=698&gradeId=17393",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/%EC%95%84%EC%9A%B0%EB%94%94/Q5?id=698&gradeId=17393\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:15:37.879Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/GLE-%ED%81%B4%EB%9E%98%EC%8A%A4?id=596&gradeId=17796",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/GLE-%ED%81%B4%EB%9E%98%EC%8A%A4?id=596&gradeId=17796\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/9b40ef4ef6b957de.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/9b40ef4ef6b957de.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/bd994357963b3b12.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/bd994357963b3b12.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:16:23.176Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/BMW/i5?id=1045&gradeId=17592",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/BMW/i5?id=1045&gradeId=17592\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f06e006804350205.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f06e006804350205.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/627588c2847c005b.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/627588c2847c005b.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ddfcc11e7eb6743b.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ddfcc11e7eb6743b.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/8cf98646b435479e.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/8cf98646b435479e.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ca08e673f6884d8b.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/ca08e673f6884d8b.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/68b03b3f98d5f9a0.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/68b03b3f98d5f9a0.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/61dc76edabc91d8f.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/61dc76edabc91d8f.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/39c118a2c2989228.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/39c118a2c2989228.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:16:23.182Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/%ED%8F%AD%EC%8A%A4%EB%B0%94%EA%B2%90/ID.4?id=995&gradeId=18072",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/%ED%8F%AD%EC%8A%A4%EB%B0%94%EA%B2%90/ID.4?id=995&gradeId=18072\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/cars/%ED%8F%AD%EC%8A%A4%EB%B0%94%EA%B2%90/ID.4?id=995&gradeId=18072",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:17:08.285Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:17:08.417Z"
+    },
+    {
+      "url": "https://web.getcha.kr/cars/BMW/1%EC%8B%9C%EB%A6%AC%EC%A6%88?id=442&gradeId=17600",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/cars/BMW/1%EC%8B%9C%EB%A6%AC%EC%A6%88?id=442&gradeId=17600\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:17:53.706Z"
+    },
+    {
+      "url": "https://web.getcha.kr/owners-review",
+      "statusCode": null,
+      "redirects": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 503 ()"
+      ],
+      "jsExceptions": [
+        "page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://web.getcha.kr/owners-review\", waiting until \"domcontentloaded\"\n"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://web.getcha.kr/_next/static/css/627588c2847c005b.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/627588c2847c005b.css",
+          "failure": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f561d3e81967975e.css",
+          "status": 503
+        },
+        {
+          "url": "https://web.getcha.kr/_next/static/css/f561d3e81967975e.css",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "axeViolations": [],
+      "brokenImages": [],
+      "uiIssues": [],
+      "screenshotPaths": {},
+      "interactionLog": [],
+      "crawledAt": "2026-06-08T02:17:53.740Z"
+    }
+  ],
+  "brokenLinks": [
+    {
+      "from": "https://web.getcha.kr/",
+      "to": "https://web.getcha.kr/discount-price",
+      "reason": "apiRequestContext.head: Timeout 8000ms exceeded.\nCall log:\n  - → HEAD https://web.getcha.kr/discount-price\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 SiteScope/0.1\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: x-picky-device-id=1wWPQF2kXxKKWjdaKJmBZ6k39PDI; _ga=GA1.1.1963744217.1780884544; airbridge_migration_metadata__getcha=%7B%22version%22%3A%221.11.9%22%7D; ab180ClientId=6019d387-a0c0-45e9-a9e4-0c4dc0a192b4; AMP_MKTG_f6e1d99149=JTdCJTdE; AMP_f6e1d99149=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjJjNDdjOWNjNS01MzFiLTQ4ODYtYTY1YS00YjdiOWM4ZjQzYjAlMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzgwODg0NTQzOTExJTJDJTIyb3B0T3V0JTIyJTNBdHJ1ZSUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNzgwODg0NTQzOTExJTJDJTIycGFnZUNvdW50ZXIlMjIlM0EwJTdE; _fbp=fb.1.1780884544055.698069595355954174; airbridge_user__getcha=%7B%22externalUserID%22%3A%221wWPQF2kXxKKWjdaKJmBZ6k39PDI%22%7D; airbridge_session__getcha=%7B%22id%22%3A%22b959387e-b794-46f3-a903-674b588f0bac%22%2C%22timeout%22%3A1800000%2C%22start%22%3A1780884544504%2C%22end%22%3A1780884580045%7D; _ga_1FH2NS162W=GS2.1.s1780884543$o1$g1$t1780884580$j23$l0$h8745041\n"
+    },
+    {
+      "from": "https://web.getcha.kr/discount-price",
+      "to": "https://web.getcha.kr/",
+      "reason": "apiRequestContext.head: Timeout 8000ms exceeded.\nCall log:\n  - → HEAD https://web.getcha.kr/\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 SiteScope/0.1\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: x-picky-device-id=1wWPQG2tl4nQb8zJsNXzBecMqPDI; _ga=GA1.1.839234832.1780884545; airbridge_migration_metadata__getcha=%7B%22version%22%3A%221.11.9%22%7D; ab180ClientId=71a859f7-f156-44c7-85ba-dcbd19d64077; AMP_MKTG_f6e1d99149=JTdCJTdE; AMP_f6e1d99149=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjI0NTkxZGE1Ni03N2Q4LTRkNzYtOWFmOC0zYTFlODQ2ZWY0ZTUlMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzgwODg0NTQ1MTA4JTJDJTIyb3B0T3V0JTIyJTNBdHJ1ZSUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNzgwODg0NTQ1MTA4JTJDJTIycGFnZUNvdW50ZXIlMjIlM0EwJTdE; _fbp=fb.1.1780884545257.507882820904578236; airbridge_user__getcha=%7B%22externalUserID%22%3A%221wWPQG2tl4nQb8zJsNXzBecMqPDI%22%7D; airbridge_session__getcha=%7B%22id%22%3A%22d0b1a49d-ca3f-4602-bdfd-0b3b87514262%22%2C%22timeout%22%3A1800000%2C%22start%22%3A1780884545478%2C%22end%22%3A1780884565554%7D; _ga_1FH2NS162W=GS2.1.s1780884544$o1$g1$t1780884565$j39$l0$h118873164\n"
+    },
+    {
+      "from": "https://web.getcha.kr/discount-price",
+      "to": "https://web.getcha.kr/discount-price",
+      "reason": "apiRequestContext.head: Timeout 8000ms exceeded.\nCall log:\n  - → HEAD https://web.getcha.kr/discount-price\n    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 SiteScope/0.1\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n    - cookie: x-picky-device-id=1wWPQG2tl4nQb8zJsNXzBecMqPDI; _ga=GA1.1.839234832.1780884545; airbridge_migration_metadata__getcha=%7B%22version%22%3A%221.11.9%22%7D; ab180ClientId=71a859f7-f156-44c7-85ba-dcbd19d64077; AMP_MKTG_f6e1d99149=JTdCJTdE; AMP_f6e1d99149=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjI0NTkxZGE1Ni03N2Q4LTRkNzYtOWFmOC0zYTFlODQ2ZWY0ZTUlMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzgwODg0NTQ1MTA4JTJDJTIyb3B0T3V0JTIyJTNBdHJ1ZSUyQyUyMmxhc3RFdmVudFRpbWUlMjIlM0ExNzgwODg0NTQ1MTA4JTJDJTIycGFnZUNvdW50ZXIlMjIlM0EwJTdE; _fbp=fb.1.1780884545257.507882820904578236; airbridge_user__getcha=%7B%22externalUserID%22%3A%221wWPQG2tl4nQb8zJsNXzBecMqPDI%22%7D; airbridge_session__getcha=%7B%22id%22%3A%22d0b1a49d-ca3f-4602-bdfd-0b3b87514262%22%2C%22timeout%22%3A1800000%2C%22start%22%3A1780884545478%2C%22end%22%3A1780884565554%7D; _ga_1FH2NS162W=GS2.1.s1780884544$o1$g1$t1780884565$j39$l0$h118873164\n"
+    }
+  ],
+  "summary": {
+    "healthScore": 49,
+    "avgLighthousePerformance": 45,
+    "avgAxeIssuesPerPage": 170.1,
+    "totalConsoleErrors": 16,
+    "totalFailedRequests": 131,
+    "mobileWarnings": [
+      "3개 페이지에서 상세 성능 점수를 가져오지 못해 로딩 시간 기준으로 추정했습니다.",
+      "2개 페이지의 성능 점수가 50점 미만입니다."
+    ],
+    "categoryScores": {
+      "performance": 45,
+      "accessibility": 86,
+      "seo": null,
+      "ux": 96
+    },
+    "statusLabel": "Critical",
+    "healthBreakdown": {
+      "formula": "종합 점수 = 카테고리 가중 평균(성능 30%·접근성 25%·사용성 25%·SEO 20%) − 추가 감점",
+      "weights": {
+        "performance": 0.3,
+        "accessibility": 0.25,
+        "ux": 0.25,
+        "seo": 0.2
+      },
+      "weightedBase": 74,
+      "penaltyTotal": 25,
+      "contributions": [
+        {
+          "category": "performance",
+          "label": "성능",
+          "score": 45,
+          "weight": 0.3,
+          "weightedPoints": 13.5
+        },
+        {
+          "category": "accessibility",
+          "label": "접근성",
+          "score": 86,
+          "weight": 0.25,
+          "weightedPoints": 21.5
+        },
+        {
+          "category": "ux",
+          "label": "사용성",
+          "score": 96,
+          "weight": 0.25,
+          "weightedPoints": 24
+        }
+      ],
+      "penalties": [
+        {
+          "id": "accessibility_issues",
+          "label": "접근성 검사 이슈",
+          "points": 8,
+          "message": "페이지당 접근성 이슈가 평균 170.1건 있어 8점 감점되었습니다."
+        },
+        {
+          "id": "console_errors",
+          "label": "브라우저 오류",
+          "points": 8,
+          "message": "스크립트 오류 16건으로 8점 감점되었습니다."
+        },
+        {
+          "id": "failed_requests",
+          "label": "로딩 실패",
+          "points": 8,
+          "message": "이미지·API 등 로딩 실패 131건으로 8점 감점되었습니다."
+        },
+        {
+          "id": "low_performance_pages",
+          "label": "느린 페이지",
+          "points": 4,
+          "message": "성능 50점 미만 페이지 2개로 4점 감점되었습니다."
+        }
+      ],
+      "explanation": [
+        "종합 점수 = 성능(30%) + 접근성(25%) + 사용성(25%) + 검색·공유(20%) − 추가 감점",
+        "성능 점수(45점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+        "성능 점수 45점이 낮습니다. 첫 화면·이미지 로딩이 느리면 이탈이 늘어날 수 있습니다.",
+        "페이지당 접근성 이슈가 평균 170.1건 있어 8점 감점되었습니다.",
+        "스크립트 오류 16건으로 8점 감점되었습니다.",
+        "이미지·API 등 로딩 실패 131건으로 8점 감점되었습니다.",
+        "성능 50점 미만 페이지 2개로 4점 감점되었습니다."
+      ]
+    },
+    "topImprovements": [
+      "성능 점수(45점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+      "성능 점수 45점이 낮습니다. 첫 화면·이미지 로딩이 느리면 이탈이 늘어날 수 있습니…",
+      "페이지당 접근성 이슈가 평균 170.1건 있어 8점 감점되었습니다."
+    ]
+  },
+  "crawlMeta": {
+    "interactions": [
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://web.getcha.kr/",
+        "linksFound": 43,
+        "domSummary": "화면 요소 약 507개, 클릭 후보 48개",
+        "candidateCount": 48,
+        "success": true
+      },
+      {
+        "action": "scroll_reveal",
+        "label": "스크롤 1/3 — 요소 +381",
+        "domDiff": "스크롤 후 보이는 요소 약 381개 증가",
+        "success": true,
+        "newLinks": 0
+      },
+      {
+        "action": "scroll_reveal",
+        "label": "스크롤 2/3 — 요소 +141",
+        "domDiff": "스크롤 후 보이는 요소 약 141개 증가",
+        "success": true,
+        "newLinks": 0
+      },
+      {
+        "action": "content_reveal",
+        "label": "상담신청",
+        "targetHint": "generic",
+        "score": 239,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 1,
+        "domDiff": "새로 보이는 화면 요소가 약 7개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다",
+        "domDelta": {
+          "visible": 7,
+          "overlays": 0,
+          "links": 1,
+          "interactive": 3
+        },
+        "networkSummary": "서버 요청 10건",
+        "apiCallCount": 20,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "button · _1wjaeui9 _1wjaeui8",
+        "targetHint": "generic",
+        "score": 238,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": -8,
+          "overlays": 0,
+          "links": -1,
+          "interactive": -3
+        },
+        "networkSummary": "서버 요청 2건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "button · _1wjaeuia _1wjaeui8",
+        "targetHint": "generic",
+        "score": 238,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 518개 증가했습니다 · 클릭 가능한 링크·경로가 52개 늘었습니다",
+        "domDelta": {
+          "visible": 518,
+          "overlays": 0,
+          "links": 52,
+          "interactive": 53
+        },
+        "networkSummary": "서버 요청 8건",
+        "apiCallCount": 16,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "신차구매",
+        "targetHint": "cta",
+        "score": 231,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 5건",
+        "apiCallCount": 10,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "click",
+        "label": "a · v07njgc",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 8,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "click",
+        "label": "로그인",
+        "targetHint": "generic",
+        "score": 204,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 12,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "BMW",
+        "targetHint": "generic",
+        "score": 186,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 44,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /) · 클릭 가능한 링크·경로가 10개 늘었습니다",
+        "domDelta": {
+          "visible": -101,
+          "overlays": 0,
+          "links": 10,
+          "interactive": -45
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 12건",
+        "apiCallCount": 24,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "전체 필터",
+        "targetHint": "generic",
+        "score": 230,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/1?discount-filter=open",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/1?discount-filter=open",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 466,
+        "newLinks": 422,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/1?discount-filter=open) · 새로 보이는 화면 요소가 약 41개 증가했습니다",
+        "domDelta": {
+          "visible": 41,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 15
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 8,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "KGM\n9종",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/18",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/18",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 545,
+        "newLinks": 79,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/18) · 클릭 가능한 링크·경로가 9개 늘었습니다",
+        "domDelta": {
+          "visible": -5,
+          "overlays": 0,
+          "links": 9,
+          "interactive": -15
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 10건",
+        "apiCallCount": 20,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "기아\n32종",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/2",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/2",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 907,
+        "newLinks": 362,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/2) · 클릭 가능한 링크·경로가 3개 늘었습니다",
+        "domDelta": {
+          "visible": -78,
+          "overlays": 0,
+          "links": 3,
+          "interactive": -21
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 17건",
+        "apiCallCount": 34,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "르노코리아\n6종",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/8",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/8",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 935,
+        "newLinks": 28,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/8) · 클릭 가능한 링크·경로가 1개 늘었습니다",
+        "domDelta": {
+          "visible": -105,
+          "overlays": 0,
+          "links": 1,
+          "interactive": -23
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 11건",
+        "apiCallCount": 22,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "쉐보레\n2종",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/16",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/16",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 944,
+        "newLinks": 9,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/16)",
+        "domDelta": {
+          "visible": -188,
+          "overlays": 0,
+          "links": -5,
+          "interactive": -27
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 12,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "제네시스\n11종",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/23",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/23",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 1103,
+        "newLinks": 159,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/23) · 클릭 가능한 링크·경로가 7개 늘었습니다",
+        "domDelta": {
+          "visible": -27,
+          "overlays": 0,
+          "links": 7,
+          "interactive": -17
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 19건",
+        "apiCallCount": 38,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://web.getcha.kr/",
+        "linksFound": 43,
+        "domSummary": "화면 요소 약 476개, 클릭 후보 37개",
+        "candidateCount": 37,
+        "success": true
+      },
+      {
+        "action": "scroll_reveal",
+        "label": "스크롤 1/3 — 요소 +545",
+        "domDiff": "스크롤 후 보이는 요소 약 545개 증가",
+        "success": true,
+        "newLinks": 0
+      },
+      {
+        "action": "content_reveal",
+        "label": "벤츠",
+        "targetHint": "generic",
+        "score": 138,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 43,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 380개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다",
+        "domDelta": {
+          "visible": 380,
+          "overlays": 0,
+          "links": 25,
+          "interactive": 27
+        },
+        "networkSummary": "서버 요청 14건",
+        "apiCallCount": 14,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "신차구매",
+        "targetHint": "cta",
+        "score": 231,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "routeBefore": "/",
+        "routeAfter": "/discount-price/1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 421,
+        "domDiff": "화면 경로가 변경되었습니다 (/ → /discount-price/1) · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+        "domDelta": {
+          "visible": -245,
+          "overlays": 0,
+          "links": -33,
+          "interactive": 22
+        },
+        "networkSummary": "서버 요청 14건",
+        "apiCallCount": 14,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "a · v07njgc",
+        "targetHint": "generic",
+        "score": 208,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": -377,
+          "overlays": 0,
+          "links": -25,
+          "interactive": -27
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "content_reveal",
+        "label": "로그인",
+        "targetHint": "generic",
+        "score": 204,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 6개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다",
+        "domDelta": {
+          "visible": 6,
+          "overlays": 0,
+          "links": 1,
+          "interactive": 2
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "커뮤니티",
+        "targetHint": "generic",
+        "score": 196,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "routeBefore": "/",
+        "routeAfter": "/discount-price/1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/ → /discount-price/1) · 새로 보이는 화면 요소가 약 126개 증가했습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+        "domDelta": {
+          "visible": 126,
+          "overlays": 0,
+          "links": -9,
+          "interactive": 47
+        },
+        "networkSummary": "서버 요청 10건",
+        "apiCallCount": 10,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "content_reveal",
+        "label": "아티클",
+        "targetHint": "generic",
+        "score": 196,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 375개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다",
+        "domDelta": {
+          "visible": 375,
+          "overlays": 0,
+          "links": 25,
+          "interactive": 27
+        },
+        "networkSummary": "서버 요청 5건",
+        "apiCallCount": 5,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "content_reveal",
+        "label": "혜택",
+        "targetHint": "generic",
+        "score": 196,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 4개 증가했습니다",
+        "domDelta": {
+          "visible": 4,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "content_reveal",
+        "label": "button · _1wjaeui9 _1wjaeui8",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 464,
+        "newLinks": 0,
+        "domDiff": "새로 보이는 화면 요소가 약 164개 증가했습니다 · 클릭 가능한 링크·경로가 28개 늘었습니다",
+        "domDelta": {
+          "visible": 164,
+          "overlays": 0,
+          "links": 28,
+          "interactive": 28
+        },
+        "networkSummary": "서버 요청 9건",
+        "apiCallCount": 9,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "button · _1wjaeuia _1wjaeui8",
+        "targetHint": "generic",
+        "score": 168,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+        "routeBefore": "/",
+        "routeAfter": "/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 469,
+        "newLinks": 5,
+        "domDiff": "화면 경로가 변경되었습니다 (/ → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394) · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+        "domDelta": {
+          "visible": -790,
+          "overlays": 0,
+          "links": -82,
+          "interactive": -51
+        },
+        "networkSummary": "서버 요청 9건",
+        "apiCallCount": 9,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "BMW",
+        "targetHint": "generic",
+        "score": 138,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 469,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 4건",
+        "apiCallCount": 4,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "click",
+        "label": "아우디",
+        "targetHint": "generic",
+        "score": 138,
+        "urlBefore": "https://web.getcha.kr/",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 469,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 2건",
+        "apiCallCount": 2,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "linksFound": 433,
+        "domSummary": "화면 요소 약 608개, 클릭 후보 93개",
+        "candidateCount": 93,
+        "success": true
+      },
+      {
+        "action": "content_reveal",
+        "label": "상담신청",
+        "targetHint": "generic",
+        "score": 239,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 434,
+        "newLinks": 1,
+        "domDiff": "새로 보이는 화면 요소가 약 7개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다",
+        "domDelta": {
+          "visible": 7,
+          "overlays": 0,
+          "links": 1,
+          "interactive": 3
+        },
+        "networkSummary": "서버 요청 3건",
+        "apiCallCount": 3,
+        "routeChanged": false,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "신차구매",
+        "targetHint": "cta",
+        "score": 231,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 434,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": -7,
+          "overlays": 0,
+          "links": -1,
+          "interactive": -3
+        },
+        "networkSummary": "서버 요청 3건",
+        "apiCallCount": 3,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "랜드로버\n7종",
+        "targetHint": "generic",
+        "score": 230,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/5",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/5",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 498,
+        "newLinks": 64,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/5) · 클릭 가능한 링크·경로가 3개 늘었습니다",
+        "domDelta": {
+          "visible": -33,
+          "overlays": 0,
+          "links": 3,
+          "interactive": -21
+        },
+        "networkSummary": "서버 요청 16건",
+        "apiCallCount": 16,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "렉서스\n7종",
+        "targetHint": "generic",
+        "score": 230,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/6",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/6",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 524,
+        "newLinks": 26,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/6)",
+        "domDelta": {
+          "visible": -100,
+          "overlays": 0,
+          "links": 0,
+          "interactive": -24
+        },
+        "networkSummary": "서버 요청 15건",
+        "apiCallCount": 15,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "로터스\n3종",
+        "targetHint": "generic",
+        "score": 230,
+        "urlBefore": "https://web.getcha.kr/discount-price/1",
+        "urlAfter": "https://web.getcha.kr/discount-price/65",
+        "routeBefore": "/discount-price/1",
+        "routeAfter": "/discount-price/65",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 542,
+        "newLinks": 18,
+        "domDiff": "화면 경로가 변경되었습니다 (/discount-price/1 → /discount-price/65) · 클릭 가능한 링크·경로가 1개 늘었습니다",
+        "domDelta": {
+          "visible": -94,
+          "overlays": 0,
+          "links": 1,
+          "interactive": -23
+        },
+        "networkSummary": "서버 요청 16건",
+        "apiCallCount": 16,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "initial_scan",
+        "label": "페이지 로드·스크롤 후 스캔",
+        "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "linksFound": 16,
+        "domSummary": "화면 요소 약 303개, 클릭 후보 16개",
+        "candidateCount": 16,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "상담신청",
+        "targetHint": "generic",
+        "score": 191,
+        "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeAfter": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 16,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "apiCallCount": 0,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "신차구매",
+        "targetHint": "cta",
+        "score": 183,
+        "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "urlAfter": "https://web.getcha.kr/discount-price/1",
+        "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeAfter": "/discount-price/1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 439,
+        "newLinks": 423,
+        "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /discount-price/1) · 새로 보이는 화면 요소가 약 305개 증가했습니다 · 클릭 가능한 링크·경로가 19개 늘었습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다",
+        "domDelta": {
+          "visible": 305,
+          "overlays": 0,
+          "links": 19,
+          "interactive": 51
+        },
+        "apiCallCount": 0,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "click",
+        "label": "button · _1j32yg74",
+        "targetHint": "generic",
+        "score": 182,
+        "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "urlAfter": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeAfter": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 439,
+        "newLinks": 0,
+        "domDiff": "눈에 띄는 화면 변화는 없었습니다",
+        "domDelta": {
+          "visible": 0,
+          "overlays": 0,
+          "links": 0,
+          "interactive": 0
+        },
+        "networkSummary": "서버 요청 5건",
+        "apiCallCount": 10,
+        "routeChanged": false,
+        "success": false
+      },
+      {
+        "action": "navigation",
+        "label": "최저가 견적 받기",
+        "targetHint": "cta",
+        "score": 161,
+        "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "urlAfter": "https://web.getcha.kr/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1",
+        "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeAfter": "/consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 439,
+        "newLinks": 0,
+        "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /consulting/new-car/condition?from=discountPrice&brandId=1&modelId=443&modelYearId=3141&gradeId=17617&buyType=LEASE&payment=PREPAYMENT&payRate=30&period=60&isAll=1)",
+        "domDelta": {
+          "visible": -325,
+          "overlays": 0,
+          "links": -7,
+          "interactive": -45
+        },
+        "networkSummary": "서버 요청 6건",
+        "apiCallCount": 6,
+        "routeChanged": true,
+        "success": true
+      },
+      {
+        "action": "navigation",
+        "label": "a · v07njgc",
+        "targetHint": "generic",
+        "score": 160,
+        "urlBefore": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "urlAfter": "https://web.getcha.kr/",
+        "routeBefore": "/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "routeAfter": "/",
+        "hashBefore": "",
+        "hashAfter": "",
+        "linksFound": 470,
+        "newLinks": 31,
+        "domDiff": "화면 경로가 변경되었습니다 (/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617 → /) · 새로 보이는 화면 요소가 약 752개 증가했습니다 · 클릭 가능한 링크·경로가 83개 늘었습니다",
+        "domDelta": {
+          "visible": 752,
+          "overlays": 0,
+          "links": 83,
+          "interactive": 60
+        },
+        "spaNavigation": "pushState",
+        "networkSummary": "서버 요청 20건",
+        "apiCallCount": 40,
+        "routeChanged": true,
+        "success": true
+      }
+    ],
+    "mode": "homepage_rich_subpage_light",
+    "seedScope": {
+      "origin": "https://web.getcha.kr",
+      "pathPrefix": null,
+      "mode": "origin"
+    },
+    "deviceProfile": "desktop",
+    "discoveryStats": {
+      "candidatesFound": 50,
+      "clicksRecorded": 27,
+      "linksDiscovered": 469,
+      "outboundDiscovered": 2,
+      "runtimeRoutes": 469,
+      "profile": "homepage",
+      "deviceProfile": "desktop",
+      "outboundRoutes": 2,
+      "clicksAttempted": 12,
+      "stoppedEarly": true,
+      "runtimeMs": 51900,
+      "skippedByReason": {
+        "no_change": 3,
+        "duplicate": 1
+      },
+      "meaningfulCount": 8
+    },
+    "outboundLinks": [
+      "https://link.getcha.kr/o67n0i"
+    ],
+    "interactionFlow": "Home\n├─ 페이지 로드·스크롤 후 스캔 — 초기 스캔\n├─ 스크롤 1/3 — 요소 +545 — 스크롤 노출\n│  └─ 스크롤 후 보이는 요소 약 545개 증가\n├─ 벤츠 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 380개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다\n│  ├─ 서버 요청 14건\n│  └─ 보이는 요소 +380\n├─ 신차구매 [cta] — 이동\n│  ├─ 경로 → /discount-price/1\n│  ├─ 화면 경로가 변경되었습니다 (/ → /discount-price/1) · 아래로 스크롤할 콘텐츠가 늘어났습니다\n│  ├─ 서버 요청 14건\n│  └─ 새 경로 +421\n├─ 로그인 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 6개 증가했습니다 · 클릭 가능한 링크·경로가 1개 늘었습니다\n│  ├─ 서버 요청 4건\n│  └─ 보이는 요소 +6\n├─ 커뮤니티 — 이동\n│  ├─ 경로 → /discount-price/1\n│  ├─ 화면 경로가 변경되었습니다 (/ → /discount-price/1) · 새로 보이는 화면 요소가 약 126개 증가했습니다 · 아래로 스크롤할 콘텐츠가 늘어났습니다\n│  ├─ 서버 요청 10건\n│  └─ 보이는 요소 +126\n├─ 아티클 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 375개 증가했습니다 · 클릭 가능한 링크·경로가 25개 늘었습니다\n│  ├─ 서버 요청 5건\n│  └─ 보이는 요소 +375\n├─ 혜택 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 4개 증가했습니다\n│  ├─ 서버 요청 4건\n│  └─ 보이는 요소 +4\n├─ button · _1wjaeui9 _1wjaeui8 — 콘텐츠 노출\n│  ├─ 새로 보이는 화면 요소가 약 164개 증가했습니다 · 클릭 가능한 링크·경로가 28개 늘었습니다\n│  ├─ 서버 요청 9건\n│  └─ 보이는 요소 +164\n└─ button · _1wjaeuia _1wjaeui8 — 이동\n   ├─ 경로 → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394\n   ├─ 화면 경로가 변경되었습니다 (/ → /cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394) · 아래로 스크롤할 콘텐츠가 늘어났습니다\n   ├─ 서버 요청 9건\n   └─ 새 경로 +5"
+  },
+  "timing": {
+    "phases": {
+      "browser_launch": 0.196,
+      "quick_scan": 50.272,
+      "crawl": 110.926,
+      "page_analysis": 540.627
+    },
+    "pages": [
+      {
+        "url": "https://web.getcha.kr/",
+        "phases": {
+          "initial_load": 6.437,
+          "hydration_wait": 0.695,
+          "interaction_crawl": 51.901,
+          "ui_signals_desktop": 0.225,
+          "screenshots": 1.988,
+          "axe": 3.127,
+          "lighthouse": 50.048
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price",
+        "phases": {
+          "initial_load": 10.367,
+          "hydration_wait": 2.016,
+          "interaction_crawl": 22.735,
+          "ui_signals_desktop": 0.369,
+          "screenshots": 1.368,
+          "axe": 27.134,
+          "lighthouse": 0.099
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/articles",
+        "phases": {
+          "initial_load": 45.027
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/community/all",
+        "phases": {
+          "initial_load": 45.031
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/13",
+        "phases": {
+          "initial_load": 45.047
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/promotion/list",
+        "phases": {
+          "initial_load": 45.058
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/1",
+        "phases": {
+          "initial_load": 45.034
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/19",
+        "phases": {
+          "initial_load": 45.031
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/36",
+        "phases": {
+          "initial_load": 45.037
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/64",
+        "phases": {
+          "initial_load": 45.036
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/discount-price/23",
+        "phases": {
+          "initial_load": 45.052
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/E-%ED%81%B4%EB%9E%98%EC%8A%A4?id=592&gradeId=17348",
+        "phases": {
+          "initial_load": 45.056
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/BMW/3%EC%8B%9C%EB%A6%AC%EC%A6%88?id=443&gradeId=17617",
+        "phases": {
+          "initial_load": 1.53,
+          "hydration_wait": 0.716,
+          "interaction_crawl": 21.38,
+          "ui_signals_desktop": 0.216,
+          "screenshots": 0.926,
+          "axe": 2.322,
+          "lighthouse": 0.012
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/%EC%95%84%EC%9A%B0%EB%94%94/Q5?id=698&gradeId=17393",
+        "phases": {
+          "initial_load": 45.015
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/BMW/i5?id=1045&gradeId=17592",
+        "phases": {
+          "initial_load": 45.046
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/%EB%B2%A4%EC%B8%A0/GLE-%ED%81%B4%EB%9E%98%EC%8A%A4?id=596&gradeId=17796",
+        "phases": {
+          "initial_load": 45.048
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/%ED%8F%AD%EC%8A%A4%EB%B0%94%EA%B2%90/ID.4?id=995&gradeId=18072",
+        "phases": {
+          "initial_load": 45.045
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/%EC%A7%80%ED%94%84/%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%B2%B4%EB%A1%9C%ED%82%A4%20L?id=985&gradeId=16394",
+        "phases": {
+          "initial_load": 45.056
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/owners-review",
+        "phases": {
+          "initial_load": 45.054
+        }
+      },
+      {
+        "url": "https://web.getcha.kr/cars/BMW/1%EC%8B%9C%EB%A6%AC%EC%A6%88?id=442&gradeId=17600",
+        "phases": {
+          "initial_load": 45.057
+        }
+      }
+    ],
+    "summary": [
+      "Initial load (pages): 784.1s",
+      "Page analysis (total): 540.6s",
+      "URL crawl: 110.9s",
+      "Interaction crawl (pages): 96.0s",
+      "Quick scan: 50.3s",
+      "Lighthouse (pages): 50.2s",
+      "Accessibility scan (pages): 32.6s",
+      "Screenshots (pages): 4.3s",
+      "Hydration wait (pages): 3.4s",
+      "ui_signals_desktop (pages): 0.8s",
+      "Browser launch: 0.2s"
+    ],
+    "totalSeconds": 702.021
+  },
+  "crawlLimits": {
+    "requested": {
+      "maxPages": null,
+      "maxDepth": null,
+      "traceMode": null
+    },
+    "applied": {
+      "maxPages": 20,
+      "maxDepth": 2,
+      "traceMode": "failure"
+    }
+  }
+}

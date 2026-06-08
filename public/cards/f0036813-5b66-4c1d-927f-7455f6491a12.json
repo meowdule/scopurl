@@ -1,0 +1,58 @@
+{
+  "cardId": "f0036813-5b66-4c1d-927f-7455f6491a12",
+  "reportId": "a532c993-c79e-46b5-bb39-7712ccee2771",
+  "overallScore": 49,
+  "categoryScores": {
+    "performance": 45,
+    "accessibility": 86,
+    "seo": null,
+    "ux": 96
+  },
+  "statusLabel": "Critical",
+  "generatedAt": "2026-06-08T02:17:53.741Z",
+  "topImprovements": [
+    "성능 점수(45점)가 전체 점수를 가장 많이 낮추고 있습니다.",
+    "성능 점수 45점이 낮습니다. 첫 화면·이미지 로딩이 느리면 이탈이 늘어날 수 있습니…",
+    "페이지당 접근성 이슈가 평균 170.1건 있어 8점 감점되었습니다."
+  ],
+  "pageCount": 20,
+  "issueCount": 3405,
+  "analysisSeconds": 702.021,
+  "axisScores": [
+    {
+      "key": "performance",
+      "label": "??",
+      "score": 45
+    },
+    {
+      "key": "accessibility",
+      "label": "???",
+      "score": 86
+    },
+    {
+      "key": "ux",
+      "label": "???",
+      "score": 96
+    },
+    {
+      "key": "seo",
+      "label": "SEO",
+      "score": 72
+    },
+    {
+      "key": "shareability",
+      "label": "???",
+      "score": 74
+    },
+    {
+      "key": "security",
+      "label": "??",
+      "score": 92
+    },
+    {
+      "key": "stability",
+      "label": "???",
+      "score": 78
+    }
+  ]
+}
