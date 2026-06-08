@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { FileDown } from "lucide-react";
 import { LeadModal } from "@/components/LeadModal";
+import { useGatedPrint } from "@/lib/useGatedPrint";
 
 type Props = {
   reportId: string;
@@ -10,24 +10,11 @@ type Props = {
 };
 
 export function PdfDownloadButton({ reportId, targetUrl }: Props) {
-  const [open, setOpen] = useState(false);
-
-  const downloadPdf = async () => {
-    try {
-      await document.fonts.ready;
-    } catch {
-      /* ignore */
-    }
-    window.print();
-  };
+  const { open, requestPrint, close, onLeadSuccess } = useGatedPrint();
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="btn-primary"
-      >
+      <button type="button" onClick={requestPrint} className="btn-primary">
         <FileDown className="h-4 w-4" aria-hidden />
         PDF 다운로드
       </button>
@@ -36,10 +23,8 @@ export function PdfDownloadButton({ reportId, targetUrl }: Props) {
         mode="pdf"
         reportId={reportId}
         defaultSiteUrl={targetUrl}
-        onClose={() => setOpen(false)}
-        onSuccess={() => {
-          setTimeout(() => void downloadPdf(), 300);
-        }}
+        onClose={close}
+        onSuccess={onLeadSuccess}
       />
     </>
   );

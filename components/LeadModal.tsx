@@ -92,6 +92,7 @@ export function LeadModal({
             <input
               type="email"
               required
+              autoFocus={mode === "pdf"}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 w-full rounded-lg border border-card-border bg-page px-3 py-2 text-sm text-fg"

@@ -377,7 +377,7 @@ body {
   }
 
   .pdf-sheet:not(.pdf-cover-dark) {
-    padding: 22mm 24mm 24mm 24mm;
+    padding: 55mm 60mm 60mm 60mm;
   }
 
   /* 표지 다음 시트는 표지 page-break-after만 사용 (이중 브레이크 방지) */
