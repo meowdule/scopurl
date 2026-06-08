@@ -12,7 +12,12 @@ type Props = {
 export function PdfDownloadButton({ reportId, targetUrl }: Props) {
   const [open, setOpen] = useState(false);
 
-  const downloadPdf = () => {
+  const downloadPdf = async () => {
+    try {
+      await document.fonts.ready;
+    } catch {
+      /* ignore */
+    }
     window.print();
   };
 
@@ -33,7 +38,7 @@ export function PdfDownloadButton({ reportId, targetUrl }: Props) {
         defaultSiteUrl={targetUrl}
         onClose={() => setOpen(false)}
         onSuccess={() => {
-          setTimeout(downloadPdf, 300);
+          setTimeout(() => void downloadPdf(), 300);
         }}
       />
     </>

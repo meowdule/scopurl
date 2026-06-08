@@ -29,7 +29,7 @@ export function FloatingLeadButton({ shake }: Props) {
         onClick={() => setOpen(true)}
         aria-label="업데이트 구독"
         title="업데이트 구독"
-        className={`fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-card hover:bg-accent-dim ${
+        className={`fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-card hover:bg-accent-dim print:hidden ${
           shake ? "animate-shake" : ""
         }`}
       >

@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 /**
  * CI: run Lighthouse against the static `out/` home page.
- * Uses Playwright's Chromium (same as analysis pipeline).
+ * Launches Playwright Chromium with a CDP port, then connects Lighthouse to it.
+ * (Direct --chrome-path fails on Linux CI: "Unable to connect to Chrome".)
  */
 import { spawn } from "node:child_process";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
-import { createRequire } from "node:module";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
-
-const execFileP = promisify(execFile);
-const require = createRequire(import.meta.url);
+import lighthouse from "lighthouse";
 
 const PORT = Number(process.env.QA_LH_PORT || 3457);
+const DEBUG_PORT = Number(process.env.QA_LH_DEBUG_PORT || 9222);
 const HOME_URL = `http://127.0.0.1:${PORT}/`;
 const OUT_FILE = "lighthouse-home.json";
 
@@ -37,28 +34,30 @@ async function main() {
     shell: true,
   });
 
+  let browser;
   try {
     await waitForServer(HOME_URL);
 
-    const chromePath = chromium.executablePath();
-    const lhCli = require.resolve("lighthouse/cli/index.js");
-    await execFileP(
-      process.execPath,
-      [
-        lhCli,
-        HOME_URL,
-        "--quiet",
-        `--chrome-path=${chromePath}`,
-        "--output=json",
-        `--output-path=${OUT_FILE}`,
-        "--only-categories=performance,accessibility,best-practices",
-        "--chrome-flags=--headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu",
+    browser = await chromium.launch({
+      headless: true,
+      args: [
+        `--remote-debugging-port=${DEBUG_PORT}`,
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu",
       ],
-      { timeout: 120_000, env: { ...process.env, NODE_OPTIONS: "" } },
-    );
+    });
 
-    const report = JSON.parse(await fs.readFile(OUT_FILE, "utf8"));
-    const categories = report.categories || {};
+    const result = await lighthouse(HOME_URL, {
+      port: DEBUG_PORT,
+      output: "json",
+      logLevel: "error",
+      onlyCategories: ["performance", "accessibility", "best-practices"],
+    });
+
+    await fs.writeFile(OUT_FILE, result.report);
+
+    const categories = result.lhr.categories || {};
     const perf = Math.round((categories.performance?.score || 0) * 100);
     const a11y = Math.round((categories.accessibility?.score || 0) * 100);
     console.log("Performance", perf);
@@ -67,6 +66,7 @@ async function main() {
       throw new Error(`Performance score too low: ${perf}`);
     }
   } finally {
+    if (browser) await browser.close().catch(() => {});
     serve.kill("SIGTERM");
   }
 }
