@@ -12,6 +12,7 @@
     "qa:errors": "node scripts/qa/test-error-codes.mjs",
     "qa:smoke": "node scripts/qa/smoke-analysis.mjs",
     "qa:getcha": "node scripts/qa/smoke-getcha.mjs",
+    "qa:lighthouse": "node scripts/qa/lighthouse-home.mjs",
     "qa": "npm run qa:errors && npm run build && npm run qa:smoke",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install chromium"

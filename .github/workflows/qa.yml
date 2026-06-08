@@ -109,27 +109,16 @@ jobs:
 
       - run: npm ci
 
+      - name: Install Chromium for Lighthouse
+        run: npx playwright install --with-deps chromium
+
       - uses: actions/download-artifact@v4
         with:
           name: sitescope-out
           path: out
 
       - name: Lighthouse CI (home)
-        run: |
-          npx serve out -l 3457 &
-          sleep 2
-          npx lighthouse http://127.0.0.1:3457/ \
-            --only-categories=performance,accessibility,best-practices \
-            --chrome-flags="--headless --no-sandbox" \
-            --output=json --output-path=./lighthouse-home.json \
-            --quiet
-          node -e "
-            const r=require('./lighthouse-home.json');
-            const s=r.categories;
-            console.log('Performance', Math.round((s.performance?.score||0)*100));
-            console.log('Accessibility', Math.round((s.accessibility?.score||0)*100));
-            if ((s.performance?.score||0)<0.5) process.exit(1);
-          "
+        run: npm run qa:lighthouse
 
   getcha-smoke:
     if: github.event_name == 'workflow_dispatch' && inputs.run_getcha == true
