@@ -53,9 +53,13 @@ export function ShareScoreCard({ data, exportMode = false }: Props) {
               width: SHARE_CARD_WIDTH,
               height: SHARE_CARD_HEIGHT,
               fontFamily:
-                '"Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+                '"Pretendard", "Malgun Gothic", system-ui, sans-serif',
             }
-          : { aspectRatio: `${SHARE_CARD_WIDTH} / ${SHARE_CARD_HEIGHT}` }
+          : {
+              aspectRatio: `${SHARE_CARD_WIDTH} / ${SHARE_CARD_HEIGHT}`,
+              fontFamily:
+                '"Pretendard", "Malgun Gothic", system-ui, sans-serif',
+            }
       }
     >
       <div

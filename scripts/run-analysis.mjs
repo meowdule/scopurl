@@ -27,6 +27,7 @@ import { captureViewportScreenshot } from "./analysis/screenshot.mjs";
 import { randomUUID } from "node:crypto";
 import { detectErrorCode } from "./analysis/error-codes.mjs";
 import { sanitizeReportForPublish } from "./analysis/sanitize-report.mjs";
+import { QUALITY_AXIS_LABELS } from "./analysis/axis-labels.mjs";
 
 function parseDeviceProfile(value) {
   return value === "mobile" ? "mobile" : "desktop";
@@ -402,17 +403,17 @@ async function main() {
       issueCount: cardIssueCount,
       analysisSeconds: timing?.totalSeconds ?? null,
       axisScores: [
-        { key: "performance", label: "??", score: cats.performance ?? 70 },
-        { key: "accessibility", label: "???", score: cats.accessibility ?? 75 },
-        { key: "ux", label: "???", score: cats.ux ?? 80 },
-        { key: "seo", label: "SEO", score: seo },
+        { key: "performance", label: QUALITY_AXIS_LABELS.performance, score: cats.performance ?? 70 },
+        { key: "accessibility", label: QUALITY_AXIS_LABELS.accessibility, score: cats.accessibility ?? 75 },
+        { key: "ux", label: QUALITY_AXIS_LABELS.ux, score: cats.ux ?? 80 },
+        { key: "seo", label: QUALITY_AXIS_LABELS.seo, score: seo },
         {
           key: "shareability",
-          label: "???",
+          label: QUALITY_AXIS_LABELS.shareability,
           score: Math.min(100, Math.round(seo + 2)),
         },
-        { key: "security", label: "??", score: quick.sslOk ? 92 : 68 },
-        { key: "stability", label: "???", score: dedupBroken.length ? 78 : 88 },
+        { key: "security", label: QUALITY_AXIS_LABELS.security, score: quick.sslOk ? 92 : 68 },
+        { key: "stability", label: QUALITY_AXIS_LABELS.stability, score: dedupBroken.length ? 78 : 88 },
       ],
     });
 

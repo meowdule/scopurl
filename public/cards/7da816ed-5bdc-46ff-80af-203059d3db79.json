@@ -19,17 +19,17 @@
   "axisScores": [
     {
       "key": "performance",
-      "label": "??",
+      "label": "성능",
       "score": 96
     },
     {
       "key": "accessibility",
-      "label": "???",
+      "label": "접근성",
       "score": 95
     },
     {
       "key": "ux",
-      "label": "???",
+      "label": "사용성",
       "score": 100
     },
     {
@@ -39,17 +39,17 @@
     },
     {
       "key": "shareability",
-      "label": "???",
+      "label": "공유성",
       "score": 82
     },
     {
       "key": "security",
-      "label": "??",
+      "label": "보안",
       "score": 92
     },
     {
       "key": "stability",
-      "label": "???",
+      "label": "안정성",
       "score": 88
     }
   ]

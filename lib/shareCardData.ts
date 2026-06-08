@@ -3,6 +3,7 @@ import {
   buildPriorityImprovements,
   buildQualityProfile,
 } from "@/lib/qualityProfile";
+import { QUALITY_AXIS_LABELS } from "@/lib/axisLabels";
 import { buildImprovementSummary } from "@/lib/improvementHint";
 import type { ReportJson, ScoreCardJson } from "@/lib/types";
 
@@ -23,15 +24,11 @@ export type ShareScoreCardData = {
   improvementHint?: string | null;
 };
 
-const AXIS_LABELS: Record<QualityAxisKey, string> = {
-  performance: "성능",
-  accessibility: "접근성",
-  ux: "사용성",
-  seo: "SEO",
-  shareability: "공유성",
-  security: "보안",
-  stability: "안정성",
-};
+const AXIS_LABELS = QUALITY_AXIS_LABELS;
+
+function resolveAxisLabel(key: QualityAxisKey, stored?: string): string {
+  return QUALITY_AXIS_LABELS[key] ?? stored ?? key;
+}
 
 function deriveExtraAxes(seo: number) {
   return {
@@ -74,7 +71,7 @@ export function shareCardDataFromScoreCard(card: ScoreCardJson): ShareScoreCardD
   if (card.axisScores?.length) {
     const mapped = card.axisScores.map((a) => ({
       key: a.key as QualityAxisKey,
-      label: a.label,
+      label: resolveAxisLabel(a.key as QualityAxisKey, a.label),
       score: a.score,
     }));
     const hintItems = [...mapped]

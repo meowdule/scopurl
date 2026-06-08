@@ -97,6 +97,7 @@ export function ShareRadarChart({
             fill="#475569"
             fontSize={13}
             fontWeight={500}
+            fontFamily='"Pretendard", "Malgun Gothic", system-ui, sans-serif'
           >
             {axis.label}
           </text>
