@@ -1,17 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { runAuthorizedPrint } from "@/lib/printGate";
 
-async function runPrint() {
-  try {
-    await document.fonts.ready;
-  } catch {
-    /* ignore */
-  }
-  window.print();
-}
-
-/** 이메일 제출 후 window.print() — PDF 버튼·Ctrl+P 공통 */
+/** PDF 다운로드 버튼 전용 — 이메일 제출 후에만 인쇄 허용 */
 export function useGatedPrint() {
   const [open, setOpen] = useState(false);
   const pendingPrintRef = useRef(false);
@@ -30,21 +22,8 @@ export function useGatedPrint() {
     setOpen(false);
     if (pendingPrintRef.current) {
       pendingPrintRef.current = false;
-      setTimeout(() => void runPrint(), 300);
+      setTimeout(() => void runAuthorizedPrint(), 300);
     }
-  }, []);
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== "p") return;
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      pendingPrintRef.current = true;
-      setOpen(true);
-    };
-
-    window.addEventListener("keydown", onKeyDown, { capture: true });
-    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
   }, []);
 
   return { open, requestPrint, close, onLeadSuccess };

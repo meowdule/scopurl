@@ -14,6 +14,7 @@ import { SeoChecklistSection } from "@/components/SeoChecklistSection";
 import { AnalysisScopeSection } from "@/components/AnalysisScopeSection";
 import { FloatingExtendedCta } from "@/components/FloatingExtendedCta";
 import { ReportPdfDocument } from "@/components/ReportPdfDocument";
+import { ReportPrintGate } from "@/components/ReportPrintGate";
 import { REPORT_SECTION } from "@/lib/reportSections";
 import {
   buildPriorityImprovements,
@@ -83,6 +84,7 @@ export function ReportDashboard({
 
   return (
     <>
+      <ReportPrintGate />
       <div className="report-screen mx-auto max-w-[1140px] px-4 pb-32 pt-8 sm:px-6">
         {onNewAnalysis ? (
           <button
@@ -123,7 +125,7 @@ export function ReportDashboard({
 
       <FloatingExtendedCta defaultSiteUrl={targetUrl} />
 
-      <div className="report-pdf-root hidden print:block">
+      <div className="report-pdf-root hidden">
         <ReportPdfDocument report={report} />
       </div>
     </>

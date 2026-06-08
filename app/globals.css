@@ -345,6 +345,10 @@ body {
   }
 
   .report-pdf-root {
+    display: none !important;
+  }
+
+  body.print-allowed .report-pdf-root {
     display: block !important;
     position: static !important;
     width: 100% !important;
@@ -377,7 +381,7 @@ body {
   }
 
   .pdf-sheet:not(.pdf-cover-dark) {
-    padding: 55mm 60mm 60mm 60mm;
+    padding: 17mm 18mm 18mm 18mm;
   }
 
   /* 표지 다음 시트는 표지 page-break-after만 사용 (이중 브레이크 방지) */
