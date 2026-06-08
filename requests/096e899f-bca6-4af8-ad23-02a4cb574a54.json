@@ -1,0 +1,10 @@
+{
+  "reportId": "096e899f-bca6-4af8-ad23-02a4cb574a54",
+  "targetUrl": "https://m.getcha.kr/home",
+  "deviceProfile": "desktop",
+  "maxPages": 20,
+  "maxDepth": 2,
+  "traceMode": "failure",
+  "schemaVersion": 3,
+  "createdAt": "2026-06-08T06:13:28Z"
+}
